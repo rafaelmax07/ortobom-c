@@ -47,3 +47,5 @@
 - [x] Criar tabelas no Supabase (categories, products, variants)
 - [x] **US-11**: Coleta de Dados (Web Scraping Completo)
 - [x] Popular banco com dado real (Seed)
+- [x] **US-01**: Slider de Promoções na Home
+- [x] **US-02**: Categorias em Destaque
