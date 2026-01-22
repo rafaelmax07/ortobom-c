@@ -3,17 +3,17 @@
 ## 📝 To Do (A Fazer)
 
 ### Fase 1: Setup e Dados (Fundação)
-- [/] Popular banco com dado real (Seed)
+- [x] Popular banco com dado real (Seed)
 
 ### Fase 2: Interface & Navegação (Épicos 1 & 2)
-- [/] **US-01**: Slider de Promoções na Home
+- [x] **US-01**: Slider de Promoções na Home
   - *Tech*: Componente `HeroSlider`, Tabela de banners
-- [/] **US-02**: Categorias em Destaque
+- [x] **US-02**: Categorias em Destaque
   - *Tech*: Componente `CategoryGrid`
-- [ ] **US-03**: Busca de Produtos
-  - *Tech*: Componente `SearchBar`, Query `ilike`
-- [ ] **US-04**: Filtros de Produto (PLP)
-  - *Tech*: Sidebar/Drawer, Query dinâmica
+- [/] **US-03**: Busca de Produtos
+  - *Tech*: Componente `SearchHeader` (Visual pronto)
+- [/] **US-04**: Filtros de Produto (PLP)
+  - *Tech*: Página `/c/[slug]`, Sidebar (Visual pronto)
 - [ ] **US-05**: Galeria de Imagens (PDP)
   - *Tech*: Componente `ProductGallery`
 - [ ] **US-06**: Seleção de Variação (Tamanho)

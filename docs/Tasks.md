@@ -10,11 +10,11 @@ Este documento detalha as User Stories com seus critérios de aceitação espec�
 **História:** Como cliente, quero visualizar um slider com promoções na página inicial, para saber das melhores ofertas imediatamente.
 
 **Critérios de Aceitação:**
-- [ ] O slider deve ocupar a largura total (full-width) ou destaque significativo no topo da Home.
-- [ ] Deve conter pelo menos 3 banners rotativos.
-- [ ] Deve haver setas de navegação (anterior/próximo) e indicadores de página (bolinhas).
-- [ ] O slider deve pausar a rotação automática ao passar o mouse (desktop) ou tocar (mobile).
-- [ ] Em mobile, deve suportar gestos de "swipe".
+- [x] O slider deve ocupar a largura total (full-width) ou destaque significativo no topo da Home.
+- [x] Deve conter pelo menos 3 banners rotativos.
+- [x] Deve haver setas de navegação (anterior/próximo) e indicadores de página (bolinhas).
+- [x] O slider deve pausar a rotação automática ao passar o mouse (desktop) ou tocar (mobile).
+- [x] Em mobile, deve suportar gestos de "swipe".
 
 **Tarefas Técnicas:**
 - Implementar componente `HeroSlider` usando `Embla Carousel`.
@@ -24,9 +24,9 @@ Este documento detalha as User Stories com seus critérios de aceitação espec�
 **História:** Como cliente, quero ver categorias em destaque, para navegar rapidamente para o tipo de produto que desejo.
 
 **Critérios de Aceitação:**
-- [ ] Exibir cards ou ícones circulares com as principais categorias (ex: Colchões, Camas, Travesseiros).
-- [ ] Ao clicar em uma categoria, redirecionar para uma página de listagem filtrada ou seção específica.
-- [ ] Deve ser responsivo (grid ajustável: 2 por linha em mobile, 4+ em desktop).
+- [x] Exibir cards ou ícones circulares com as principais categorias (ex: Colchões, Camas, Travesseiros).
+- [x] Ao clicar em uma categoria, redirecionar para uma página de listagem filtrada ou seção específica.
+- [x] Deve ser responsivo (grid ajustável: 2 por linha em mobile, 4+ em desktop).
 
 **Tarefas Técnicas:**
 - Criar componente `CategoryGrid`.
@@ -36,7 +36,7 @@ Este documento detalha as User Stories com seus critérios de aceitação espec�
 **História:** Como cliente, quero buscar produtos por nome, para encontrar um item específico.
 
 **Critérios de Aceitação:**
-- [ ] Campo de busca visível no Header.
+- [x] Campo de busca visível no Header.
 - [ ] Ao digitar e dar "Enter" (ou clicar na lupa), redirecionar para página de resultados.
 - [ ] Se nenhum produto for encontrado, exibir mensagem amigável ("Nenhum produto encontrado...").
 - [ ] A busca deve ser *case-insensitive* e parcial (ex: "free" acha "Freedom").
@@ -149,13 +149,13 @@ Este documento detalha as User Stories com seus critérios de aceitação espec�
 **História:** Como administrador, quero popular o banco de dados com **todos** os produtos ativos do site oficial, para que o catálogo esteja **completo** desde o início.
 
 **Critérios de Aceitação:**
-- [ ] O script deve varrer as principais categorias (Colchões, Camas, Travesseiros).
-- [ ] Extrair todos os produtos ativos (Ignorar indisponíveis se possível).
-- [ ] Para cada produto, extrair:
+- [x] O script deve varrer as principais categorias (Colchões, Camas, Travesseiros).
+- [x] Extrair todos os produtos ativos (Ignorar indisponíveis se possível).
+- [x] Para cada produto, extrair:
     - Título e Descrição HTML.
     - Todas as imagens de alta resolução.
     - Mapeamento completo de variações (Tamanho x Preço x SKU).
-- [ ] Gerar arquivo `seed.json` compatível com a modelagem do Supabase.
+- [x] Gerar arquivo `seed.json` compatível com a modelagem do Supabase.
 
 **Tarefas Técnicas:**
 - Criar script com `Puppeteer` ou `Playwright`.

@@ -87,7 +87,10 @@ async function scrape() {
                             || document.querySelector('.imgCenterProd img')
                             || document.querySelector('.product-image-gallery img')
                             || document.querySelector('.main-image img');
-                        if (imgEl) featured_image = imgEl.src;
+                        if (imgEl) {
+                            // Remove query params like ?w=210&h=140 to get full resolution
+                            featured_image = imgEl.src.split('?')[0];
+                        }
 
                         // Price
                         let price = 0;
