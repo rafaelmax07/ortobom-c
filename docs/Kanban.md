@@ -3,12 +3,12 @@
 ## 📝 To Do (A Fazer)
 
 ### Fase 1: Setup e Dados (Fundação)
-- [ ] Popular banco com dado real (Seed)
+- [/] Popular banco com dado real (Seed)
 
 ### Fase 2: Interface & Navegação (Épicos 1 & 2)
-- [ ] **US-01**: Slider de Promoções na Home
+- [/] **US-01**: Slider de Promoções na Home
   - *Tech*: Componente `HeroSlider`, Tabela de banners
-- [ ] **US-02**: Categorias em Destaque
+- [/] **US-02**: Categorias em Destaque
   - *Tech*: Componente `CategoryGrid`
 - [ ] **US-03**: Busca de Produtos
   - *Tech*: Componente `SearchBar`, Query `ilike`
@@ -35,8 +35,7 @@
 ---
 
 ## 🚧 In Progress (Em Progresso)
-- [ ] **US-11**: Coleta de Dados (Web Scraping Completo)
-  - *Tech*: Script Node.js (`Puppeteer`), Scan recursivo
+
 
 ---
 
@@ -46,3 +45,5 @@
 - [x] Configurar projeto Next.js + Tailwind
 - [x] Configurar projeto Supabase
 - [x] Criar tabelas no Supabase (categories, products, variants)
+- [x] **US-11**: Coleta de Dados (Web Scraping Completo)
+- [x] Popular banco com dado real (Seed)
