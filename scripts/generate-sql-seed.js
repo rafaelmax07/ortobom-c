@@ -28,6 +28,9 @@ sql += '\n';
 
 // 2. Products and Variants
 sql += '-- Products & Variants\n';
+sql += '-- Prevent duplicates by clearing variants (since we insert them fresh)\n';
+sql += 'TRUNCATE TABLE variants CASCADE;\n\n';
+
 sql += 'DO $$\n';
 sql += 'DECLARE\n';
 sql += '  cat_id uuid;\n';

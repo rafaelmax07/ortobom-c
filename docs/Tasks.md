@@ -10,11 +10,11 @@ Este documento detalha as User Stories com seus critérios de aceitação espec�
 **História:** Como cliente, quero visualizar um slider com promoções na página inicial, para saber das melhores ofertas imediatamente.
 
 **Critérios de Aceitação:**
-- [ ] O slider deve ocupar a largura total (full-width) ou destaque significativo no topo da Home.
-- [ ] Deve conter pelo menos 3 banners rotativos.
-- [ ] Deve haver setas de navegação (anterior/próximo) e indicadores de página (bolinhas).
-- [ ] O slider deve pausar a rotação automática ao passar o mouse (desktop) ou tocar (mobile).
-- [ ] Em mobile, deve suportar gestos de "swipe".
+- [x] O slider deve ocupar a largura total (full-width) ou destaque significativo no topo da Home.
+- [x] Deve conter pelo menos 3 banners rotativos.
+- [x] Deve haver setas de navegação (anterior/próximo) e indicadores de página (bolinhas).
+- [x] O slider deve pausar a rotação automática ao passar o mouse (desktop) ou tocar (mobile).
+- [x] Em mobile, deve suportar gestos de "swipe".
 
 **Tarefas Técnicas:**
 - Implementar componente `HeroSlider` usando `Embla Carousel`.
@@ -24,9 +24,9 @@ Este documento detalha as User Stories com seus critérios de aceitação espec�
 **História:** Como cliente, quero ver categorias em destaque, para navegar rapidamente para o tipo de produto que desejo.
 
 **Critérios de Aceitação:**
-- [ ] Exibir cards ou ícones circulares com as principais categorias (ex: Colchões, Camas, Travesseiros).
-- [ ] Ao clicar em uma categoria, redirecionar para uma página de listagem filtrada ou seção específica.
-- [ ] Deve ser responsivo (grid ajustável: 2 por linha em mobile, 4+ em desktop).
+- [x] Exibir cards ou ícones circulares com as principais categorias (ex: Colchões, Camas, Travesseiros).
+- [x] Ao clicar em uma categoria, redirecionar para uma página de listagem filtrada ou seção específica.
+- [x] Deve ser responsivo (grid ajustável: 2 por linha em mobile, 4+ em desktop).
 
 **Tarefas Técnicas:**
 - Criar componente `CategoryGrid`.
@@ -36,7 +36,7 @@ Este documento detalha as User Stories com seus critérios de aceitação espec�
 **História:** Como cliente, quero buscar produtos por nome, para encontrar um item específico.
 
 **Critérios de Aceitação:**
-- [ ] Campo de busca visível no Header.
+- [x] Campo de busca visível no Header.
 - [ ] Ao digitar e dar "Enter" (ou clicar na lupa), redirecionar para página de resultados.
 - [ ] Se nenhum produto for encontrado, exibir mensagem amigável ("Nenhum produto encontrado...").
 - [ ] A busca deve ser *case-insensitive* e parcial (ex: "free" acha "Freedom").
@@ -67,9 +67,9 @@ Este documento detalha as User Stories com seus critérios de aceitação espec�
 **História:** Como cliente, quero ver fotos detalhadas do produto, para avaliar a qualidade.
 
 **Critérios de Aceitação:**
-- [ ] Imagem principal em destaque e carrossel de miniaturas abaixo/lado.
-- [ ] Zoom na imagem ao passar o mouse (desktop) ou clicar para expandir (lightbox).
-- [ ] Suporte a múltiplas imagens por produto.
+- [x] Imagem principal em destaque e carrossel de miniaturas abaixo/lado.
+- [x] Zoom na imagem ao passar o mouse (desktop) ou clicar para expandir (lightbox).
+- [x] Suporte a múltiplas imagens por produto.
 
 **Tarefas Técnicas:**
 - Criar componente `ProductGallery`.
@@ -79,10 +79,10 @@ Este documento detalha as User Stories com seus critérios de aceitação espec�
 **História:** Como cliente, quero selecionar o tamanho, para ver o preço correspondente.
 
 **Critérios de Aceitação:**
-- [ ] Botões visíveis com os nomes das variações (ex: Casal, Queen).
-- [ ] O botão do tamanho selecionado deve ter destaque visual (borda/cor diferente).
-- [ ] Ao mudar o tamanho, o **Preço** e o **Preço "De"** devem atualizar imediatamente.
-- [ ] Se uma variação estiver sem estoque (opcional para V1), o botão deve estar desabilitado ou visualmente indicativo.
+- [x] Botões visíveis com os nomes das variações (ex: Casal, Queen).
+- [x] O botão do tamanho selecionado deve ter destaque visual (borda/cor diferente).
+- [x] Ao mudar o tamanho, o **Preço** e o **Preço "De"** devem atualizar imediatamente.
+- [x] Se uma variação estiver sem estoque (opcional para V1), o botão deve estar desabilitado ou visualmente indicativo.
 
 **Tarefas Técnicas:**
 - Lógica de estado no React (`useState` para `selectedVariant`).
@@ -92,8 +92,8 @@ Este documento detalha as User Stories com seus critérios de aceitação espec�
 **História:** Como cliente, quero ler especificações técnicas, para confirmar detalhes.
 
 **Critérios de Aceitação:**
-- [ ] Exibir descrição rica (HTML/Markdown renderizado).
-- [ ] Tabela ou lista clara com dimensões do tamanho selecionado.
+- [x] Exibir descrição rica (HTML/Markdown renderizado).
+- [x] Tabela ou lista clara com dimensões do tamanho selecionado.
 
 **Tarefas Técnicas:**
 - Renderização de Rich Text.
@@ -106,10 +106,10 @@ Este documento detalha as User Stories com seus critérios de aceitação espec�
 **História:** Como cliente, quero iniciar uma conversa com o vendedor com os detalhes já preenchidos.
 
 **Critérios de Aceitação:**
-- [ ] O botão deve ser proeminente (CTA Principal) na página do produto.
-- [ ] Ao clicar, deve abrir o WhatsApp Web (desktop) ou App do WhatsApp (mobile).
-- [ ] A mensagem pré-preenchida deve conter: Nome do Produto, Tamanho Selecionado, Preço e Código (SKU).
-- [ ] Formatação da mensagem deve ser legível (uso de quebras de linha e emojis).
+- [x] O botão deve ser proeminente (CTA Principal) na página do produto.
+- [x] Ao clicar, deve abrir o WhatsApp Web (desktop) ou App do WhatsApp (mobile).
+- [x] A mensagem pré-preenchida deve conter: Nome do Produto, Tamanho Selecionado, Preço e Código (SKU).
+- [x] Formatação da mensagem deve ser legível (uso de quebras de linha e emojis).
 
 **Tarefas Técnicas:**
 - Implementar função `generateWhatsAppLink`.
@@ -119,9 +119,9 @@ Este documento detalha as User Stories com seus critérios de aceitação espec�
 **História:** Como cliente, quero que o sistema me avise se eu esquecer de selecionar um tamanho.
 
 **Critérios de Aceitação:**
-- [ ] Se o usuário clicar em "Comprar" sem selecionar tamanho, **NÃO** abrir o WhatsApp.
-- [ ] Exibir mensagem de erro visual (Toast ou texto vermelho abaixo das opções).
-- [ ] Focar ou destacar a área de seleção de tamanho.
+- [x] Se o usuário clicar em "Comprar" sem selecionar tamanho, **NÃO** abrir o WhatsApp.
+- [x] Exibir mensagem de erro visual (Toast ou texto vermelho abaixo das opções).
+- [x] Focar ou destacar a área de seleção de tamanho.
 
 **Tarefas Técnicas:**
 - Validação no handler `handleBuyClick`.
@@ -149,13 +149,13 @@ Este documento detalha as User Stories com seus critérios de aceitação espec�
 **História:** Como administrador, quero popular o banco de dados com **todos** os produtos ativos do site oficial, para que o catálogo esteja **completo** desde o início.
 
 **Critérios de Aceitação:**
-- [ ] O script deve varrer as principais categorias (Colchões, Camas, Travesseiros).
-- [ ] Extrair todos os produtos ativos (Ignorar indisponíveis se possível).
-- [ ] Para cada produto, extrair:
+- [x] O script deve varrer as principais categorias (Colchões, Camas, Travesseiros).
+- [x] Extrair todos os produtos ativos (Ignorar indisponíveis se possível).
+- [x] Para cada produto, extrair:
     - Título e Descrição HTML.
     - Todas as imagens de alta resolução.
     - Mapeamento completo de variações (Tamanho x Preço x SKU).
-- [ ] Gerar arquivo `seed.json` compatível com a modelagem do Supabase.
+- [x] Gerar arquivo `seed.json` compatível com a modelagem do Supabase.
 
 **Tarefas Técnicas:**
 - Criar script com `Puppeteer` ou `Playwright`.

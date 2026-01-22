@@ -48,8 +48,8 @@ export function Header() {
                     <div className="hidden md:flex flex-1 max-w-2xl mx-8 relative">
                         <input
                             type="text"
-                            placeholder="O que você está procurando?"
-                            className="w-full border border-gray-300 rounded-full py-2.5 px-6 pr-12 text-sm focus:outline-none focus:border-[#1B2B4E] transition-colors"
+                            placeholder="O que deseja buscar?"
+                            className="w-full border border-gray-300 rounded-full py-2.5 px-6 pr-12 text-sm focus:outline-none focus:border-[#1B2B4E] transition-colors placeholder-gray-500"
                         />
                         <button className="absolute right-2 top-1/2 -translate-y-1/2 bg-[#1B2B4E] text-white p-1.5 rounded-full hover:bg-blue-900 transition">
                             <Search size={18} />
