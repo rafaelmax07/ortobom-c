@@ -2,7 +2,7 @@
 
 import Link from 'next/link'
 import { useState } from 'react'
-import { Slider } from "@/components/ui/slider" // Assuming we can use shadcn slider later, but for now standard inputs or simpler logic
+// import { Slider } from "@/components/ui/slider"
 // Actually I don't have shadcn installed yet properly for slider, let's use standard inputs
 
 interface FilterSidebarProps {
@@ -31,8 +31,8 @@ export function FilterSidebar({ activeCategorySlug }: FilterSidebarProps) {
                             <Link
                                 href={`/c/${cat.slug}`}
                                 className={`block text-sm py-1 transition-colors ${activeCategorySlug === cat.slug
-                                        ? 'text-blue-600 font-bold'
-                                        : 'text-gray-600 hover:text-blue-600'
+                                    ? 'text-blue-600 font-bold'
+                                    : 'text-gray-600 hover:text-blue-600'
                                     }`}
                             >
                                 {cat.name}
