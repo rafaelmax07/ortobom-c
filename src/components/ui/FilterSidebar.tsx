@@ -13,12 +13,14 @@ interface FilterSidebarProps {
 
 const CATEGORIES = [
     { name: 'Colchões', slug: 'colchoes' },
-    { name: 'Camas e Bases', slug: 'camas' },
+    { name: 'Bases', slug: 'camas' },
+    { name: 'Cabeceiras', slug: 'cabeceiras' },
     { name: 'Travesseiros', slug: 'travesseiros' },
-    { name: 'Roupa de Cama', slug: 'roupa-de-cama' },
+    { name: 'Acessórios', slug: 'acessorios' },
+    { name: 'Móveis', slug: 'moveis' },
 ]
 
-const SIZES = ['Solteiro', 'Casal', 'Queen', 'King', 'Padrão']
+const SIZES = ['Solteiro', 'Casal', 'Queen', 'King', 'Super King', 'Padrão']
 
 export function FilterSidebar({ activeCategorySlug, currentMinPrice, currentMaxPrice, currentSizes }: FilterSidebarProps) {
     const router = useRouter()

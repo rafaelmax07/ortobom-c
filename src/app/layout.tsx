@@ -1,6 +1,10 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
+import { CartProvider } from "@/context/CartContext";
+import CartDrawer from "@/components/ui/CartDrawer";
+import { Header } from "@/components/layout/Header";
+import { Footer } from "@/components/layout/Footer";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -20,9 +24,6 @@ export const metadata: Metadata = {
   description: 'Encontre colchões, camas e travesseiros com as melhores condições. Compre direto pelo WhatsApp.',
 };
 
-import { Header } from "@/components/layout/Header";
-import { Footer } from "@/components/layout/Footer";
-
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -34,9 +35,12 @@ export default function RootLayout({
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
         suppressHydrationWarning={true}
       >
-        <Header />
-        {children}
-        <Footer />
+        <CartProvider>
+          <Header />
+          {children}
+          <Footer />
+          <CartDrawer />
+        </CartProvider>
       </body>
     </html>
   );

@@ -1,137 +1,1313 @@
-[
-  {
-    "name": "Colchão Fashion Standard",
-    "description": "",
-    "featured_image": "https://cdn.ortobom.com.br/file/892a53c2-f82a-4bd4-88e7-d5537c3c77f9/COLCHAO-PRO-SAUDE-STANDARD-SOLTEIRO--5-.jpg",
-    "price": 399,
-    "slug": "colchao-fashion-standard",
-    "category_slug": "colchoes",
-    "original_url": "https://www.ortobom.com.br/p/colchao/colchao-pro-saude-standard/solteiro88"
-  },
-  {
-    "name": "Colchão Pro Saude Extra",
-    "description": "",
-    "featured_image": "https://cdn.ortobom.com.br/file/3dff424a-b785-4b05-8001-11481a0be0a0/Ortobom4479-1.jpg.jpg",
-    "price": 1799,
-    "slug": "colchao-pro-saude-extra",
-    "category_slug": "colchoes",
-    "original_url": "https://www.ortobom.com.br/p/colchao/colchao-pro-saude-extra/casal138"
-  },
-  {
-    "name": "Colchão Orion",
-    "description": "",
-    "featured_image": "https://cdn.ortobom.com.br/file/dc96b011-0d1c-432b-8457-3bf98c479e77/orion%20site.jpg",
-    "price": 4099,
-    "slug": "colchao-orion",
-    "category_slug": "colchoes",
-    "original_url": "https://www.ortobom.com.br/p/colchao/colchao-orion/casal138"
-  },
-  {
-    "name": "Colchão Orthopur",
-    "description": "",
-    "featured_image": "https://cdn.ortobom.com.br/file/46975b39-49fa-4982-86f8-cb080f859053/6040703650_ORTHOPUR_1000X1000.jpg",
-    "price": 3949,
-    "slug": "colchao-orthopur",
-    "category_slug": "colchoes",
-    "original_url": "https://www.ortobom.com.br/p/colchao/colchao-orthopur/casal138"
-  },
-  {
-    "name": "Colchão Ortopedico Premium",
-    "description": "",
-    "featured_image": "https://cdn.ortobom.com.br/file/4c4ee978-1fa1-4cba-850f-703968eadcff/605064.9781-1.jpg",
-    "price": 2699,
-    "slug": "colchao-ortopedico-premium",
-    "category_slug": "colchoes",
-    "original_url": "https://www.ortobom.com.br/p/colchao/colchao-ortopedico-premium/casal138"
-  },
-  {
-    "name": "Base Sommier Pró Saúde",
-    "description": "",
-    "featured_image": "https://cdn.ortobom.com.br/file/1b0ec652-f98e-4c45-b572-1aac27396e56/6050649950_P.png",
-    "price": 459,
-    "slug": "base-sommier-pro-saude",
-    "category_slug": "camas",
-    "original_url": "https://www.ortobom.com.br/p/cama/base-sommier-pro-saude-brown/solteiro88"
-  },
-  {
-    "name": "Base Sommier Pró Força",
-    "description": "",
-    "featured_image": "https://cdn.ortobom.com.br/file/1c33395d-7f30-46d6-a07c-df2c7f2eef05/BASE-SOMMIER-PRO-FORCA-CASAL--2-.jpg",
-    "price": 959,
-    "slug": "base-sommier-pro-forca",
-    "category_slug": "camas",
-    "original_url": "https://www.ortobom.com.br/p/cama/base-sommier-pro-forca-black/casal138"
-  },
-  {
-    "name": "Base Sommier Ouro Spring",
-    "description": "",
-    "featured_image": "https://cdn.ortobom.com.br/file/10e31c87-7431-432f-9db0-be1b7f93c08f/BASE-SOMMIER-OURO-SPRING-CASAL--2-.jpg",
-    "price": 799,
-    "slug": "base-sommier-ouro-spring",
-    "category_slug": "camas",
-    "original_url": "https://www.ortobom.com.br/p/cama/base-sommier-ouro-spring-cream/casal138"
-  },
-  {
-    "name": "Base Sommier Baú Fashion Cori",
-    "description": "",
-    "featured_image": "https://cdn.ortobom.com.br/file/8fe66f8f-59a3-4190-8dc9-458eb595f939/PRETO.jpg",
-    "price": 1299,
-    "slug": "base-sommier-bau-fashion-cori",
-    "category_slug": "camas",
-    "original_url": "https://www.ortobom.com.br/p/cama/base-sommier-bau-fashion-cori-black/casal138"
-  },
-  {
-    "name": "Base Sommier Baú Fashion Nobuck",
-    "description": "",
-    "featured_image": "https://cdn.ortobom.com.br/file/79aa3d0f-ca23-4bf4-8efb-b61da47ad189/BASE-SOMMIER-BAU-FASHION-NOBUCK-CREAM-CASAL--5-.jpg",
-    "price": 1299,
-    "slug": "base-sommier-bau-fashion-nobuck",
-    "category_slug": "camas",
-    "original_url": "https://www.ortobom.com.br/p/cama/base-sommier-bau-fashion-nobuck-cream/casal138"
-  },
-  {
-    "name": "Travesseiro Viscopur",
-    "description": "",
-    "featured_image": "https://cdn.ortobom.com.br/file/68821870-21d0-4380-8754-bb9701d1bf9e/Travesseiro_Viscopur_Master.jpg",
-    "price": 189,
-    "slug": "travesseiro-viscopur",
-    "category_slug": "travesseiros",
-    "original_url": "https://www.ortobom.com.br/p/travesseiro/travesseiro-viscopur/3472"
-  },
-  {
-    "name": "Travesseiro King Premium",
-    "description": "",
-    "featured_image": "https://cdn.ortobom.com.br/file/f55bdd80-c338-47cd-a74a-5200cc6b10a2/TRAVESSEIRO-KING-PREMIUM.jpg",
-    "price": 289,
-    "slug": "travesseiro-king-premium",
-    "category_slug": "travesseiros",
-    "original_url": "https://www.ortobom.com.br/p/travesseiro/travesseiro-premium/7029"
-  },
-  {
-    "name": "Travesseiro Hug",
-    "description": "",
-    "featured_image": "https://cdn.ortobom.com.br/file/c16ca12e-f540-4d37-a463-628b4eb8ac94/TRAVESSEIRO-DE-CORPO-HUG.jpg",
-    "price": 169,
-    "slug": "travesseiro-hug",
-    "category_slug": "travesseiros",
-    "original_url": "https://www.ortobom.com.br/p/travesseiro/travesseiro-hug/7028"
-  },
-  {
-    "name": "Travesseiro Seis Estrelas",
-    "description": "",
-    "featured_image": "https://cdn.ortobom.com.br/file/cd65629b-37f8-492b-bcc7-fa53b3746a72/TRAVESSEIRO-SEIS-ESTRELAS.jpg",
-    "price": 59,
-    "slug": "travesseiro-seis-estrelas",
-    "category_slug": "travesseiros",
-    "original_url": "https://www.ortobom.com.br/p/travesseiro/travesseiro-seis-estrelas/3485"
-  },
-  {
-    "name": "Travesseiro Flock",
-    "description": "",
-    "featured_image": "https://cdn.ortobom.com.br/file/48c5f932-a7ae-4eb2-aed5-17fdcfcd606d/6090740048.jpg",
-    "price": 199,
-    "slug": "travesseiro-flock",
-    "category_slug": "travesseiros",
-    "original_url": "https://www.ortobom.com.br/p/travesseiro/travesseiro-flock/3455"
-  }
-]
+{
+  "products": [
+    {
+      "name": "Colchão Orthopur",
+      "slug": "colchao-orthopur",
+      "description": "",
+      "description_html": "",
+      "featured_image": "https://cdn.ortobom.com.br/file/46975b39-49fa-4982-86f8-cb080f859053/6040703650_ORTHOPUR_1000X1000.jpg",
+      "images": [
+        "https://cdn.ortobom.com.br/file/46975b39-49fa-4982-86f8-cb080f859053/6040703650_ORTHOPUR_1000X1000.jpg",
+        "https://cdn.ortobom.com.br/file/e436cd86-6a08-4449-9aac-be87529e92a8/6040703650_ORTHOPUR_1000X1000.jpg",
+        "https://cdn.ortobom.com.br/file/5a80740c-9049-41f4-8fa3-604ae1871b18/6040703650_ORTHOPUR_1000X1000_2.jpg",
+        "https://cdn.ortobom.com.br/file/a5669575-8788-41f6-b5b5-04920bfc615f/6040703650_ORTHOPUR_1000X1000_3.jpg",
+        "https://cdn.ortobom.com.br/file/5ec6f844-8000-4786-80cc-a101391055c3/6040703650_F%20(1).png",
+        "https://cdn.ortobom.com.br/file/ee577a63-b364-4723-be13-e4443159e118/6040703650_P%20(2).png",
+        "https://cdn.ortobom.com.br/file/3acaf63b-6d4b-4028-8631-8ee2a439a4c6/detalhe%20orthopur%201%20(1).png",
+        "https://cdn.ortobom.com.br/file/38abd5e7-5dad-4c7f-a089-09fe697d672a/detalhe%20orthopur%202%20(1).png",
+        "https://cdn.ortobom.com.br/file/49a5e3f9-6fe0-4060-b2df-b1375b96fe68/detalhe%20orthopur%203%20(1).png",
+        "https://cdn.ortobom.com.br/file/4b3a49a9-df96-493d-9de1-05a166254d3a/1000x1000_3.jpg"
+      ],
+      "variants": [
+        {
+          "size": "Padrão",
+          "price": 4999,
+          "dimensions": ""
+        }
+      ],
+      "compare_at_price_base": 5849,
+      "category_slug": "colchoes",
+      "original_url": "https://www.ortobom.com.br/p/colchao/colchao-orthopur/casal138"
+    },
+    {
+      "name": "Colchão Pró Saúde Nanolastic",
+      "slug": "colchao-pro-saude-nanolastic",
+      "description": "",
+      "description_html": "",
+      "featured_image": "https://cdn.ortobom.com.br/file/91454714-5ea7-4490-a4fd-314228ef4977/_MG_4214-1.jpg.jpg",
+      "images": [
+        "https://cdn.ortobom.com.br/file/91454714-5ea7-4490-a4fd-314228ef4977/_MG_4214-1.jpg.jpg",
+        "https://cdn.ortobom.com.br/file/daf92909-f498-47a8-91fd-65c84c2b1412/Ortobom4347-1.jpg.jpg",
+        "https://cdn.ortobom.com.br/file/f934bc44-03b3-44cf-8f87-386659564b7e/Camada-82.jpg.jpg",
+        "https://cdn.ortobom.com.br/file/cfb624f0-aa08-4754-8a45-5afc635b89e2/Camada-80.jpg.jpg",
+        "https://cdn.ortobom.com.br/file/0135835d-94c2-403e-830c-821a38c32117/Camada-85.jpg.jpg",
+        "https://cdn.ortobom.com.br/file/31148da2-9fb8-40f3-ad42-9e60733053db/Camada-86.jpg.jpg",
+        "https://cdn.ortobom.com.br/file/7cb1612f-5819-45d2-ba36-3f41551f3444/Ortobom4321-1.jpg.jpg"
+      ],
+      "variants": [
+        {
+          "size": "Kit Travesseiro Seis Estrelas",
+          "price": 2162.801558,
+          "dimensions": ""
+        }
+      ],
+      "compare_at_price_base": 1999,
+      "category_slug": "colchoes",
+      "original_url": "https://www.ortobom.com.br/p/colchao/colchao-pro-saude-nanolastic/casal138"
+    },
+    {
+      "name": "Colchão Pro Saude Extra",
+      "slug": "colchao-pro-saude-extra",
+      "description": "",
+      "description_html": "",
+      "featured_image": "https://cdn.ortobom.com.br/file/3dff424a-b785-4b05-8001-11481a0be0a0/Ortobom4479-1.jpg.jpg",
+      "images": [
+        "https://cdn.ortobom.com.br/file/3dff424a-b785-4b05-8001-11481a0be0a0/Ortobom4479-1.jpg.jpg",
+        "https://cdn.ortobom.com.br/file/f3dcfe82-0e18-4b96-a28b-a8a3b4f4b2d5/Ortobom4460-1.jpg.jpg",
+        "https://cdn.ortobom.com.br/file/0f3a0398-fa09-4439-b93f-d70aa9569539/Camada-15.jpg.jpg",
+        "https://cdn.ortobom.com.br/file/b1440ecd-b118-422b-8e8b-d94cf914ae49/Camada-13.jpg.jpg",
+        "https://cdn.ortobom.com.br/file/f9dc3d05-9d18-41cc-ba6c-82716c455136/Camada-16.jpg.jpg",
+        "https://cdn.ortobom.com.br/file/2bc47cfd-6888-475f-ace0-b5432df5108e/Camada-14.jpg.jpg",
+        "https://cdn.ortobom.com.br/file/3404aaaa-a449-4b68-91a9-5850e04e292b/Ortobom4622-1.jpg.jpg",
+        "https://cdn.ortobom.com.br/file/2c91107b-6bb7-43a7-bad0-3c569cc6fae6/Ortobom4650-1.jpg.jpg"
+      ],
+      "variants": [
+        {
+          "size": "Padrão",
+          "price": 2119,
+          "dimensions": ""
+        }
+      ],
+      "compare_at_price_base": 2620,
+      "category_slug": "colchoes",
+      "original_url": "https://www.ortobom.com.br/p/colchao/colchao-pro-saude-extra/casal138"
+    },
+    {
+      "name": "Colchão Ortopedico Premium",
+      "slug": "colchao-ortopedico-premium",
+      "description": "",
+      "description_html": "",
+      "featured_image": "https://cdn.ortobom.com.br/file/4c4ee978-1fa1-4cba-850f-703968eadcff/605064.9781-1.jpg",
+      "images": [
+        "https://cdn.ortobom.com.br/file/4c4ee978-1fa1-4cba-850f-703968eadcff/605064.9781-1.jpg",
+        "https://cdn.ortobom.com.br/file/c9e70456-435b-4543-a165-c8f64eca31c5/ORTOPEDICO-PREMIUM-2.jpg",
+        "https://cdn.ortobom.com.br/file/9bf91d38-f679-4ecf-a117-ed9b5dc8b1ca/ORTOPEDICO-PREMIUM-1.jpg",
+        "https://cdn.ortobom.com.br/file/2cc86b9d-0624-47c8-a543-fb52a9525421/ORTOPEDICO-PREMIUM-3.jpg",
+        "https://cdn.ortobom.com.br/file/0fc785c6-a466-44a7-8e3d-22aa24f3dfd1/605064.9781-2.jpg",
+        "https://cdn.ortobom.com.br/file/75f13443-e8cd-4789-9273-d29df4bfd5ce/605064.9781-3.jpg",
+        "https://cdn.ortobom.com.br/file/d6a55f68-d712-481c-9527-6cf761a258eb/605064.9781-4.jpg",
+        "https://cdn.ortobom.com.br/file/60e311f6-0cff-4ca9-94ac-f97e8c945830/605064.9781-5.jpg",
+        "https://cdn.ortobom.com.br/file/ea66d857-13d5-4c0a-94c7-d7bc7e196998/605064.9781-6.jpg",
+        "https://cdn.ortobom.com.br/file/10e32a1b-be17-404b-842f-a4632caacba1/605064.9781-7.jpg",
+        "https://cdn.ortobom.com.br/file/4e06b915-b0f5-4c5e-bb04-cd8b29064cbf/605064.9781-8.png",
+        "https://cdn.ortobom.com.br/file/887dff38-4a65-4564-9eaf-daa39fed332b/605064.9781-9.jpg",
+        "https://cdn.ortobom.com.br/file/bb8b78d7-600a-4dba-8345-bfb5e2d67e08/605064.9781-10.jpg"
+      ],
+      "variants": [
+        {
+          "size": "Padrão",
+          "price": 2599,
+          "dimensions": ""
+        }
+      ],
+      "compare_at_price_base": 3700,
+      "category_slug": "colchoes",
+      "original_url": "https://www.ortobom.com.br/p/colchao/colchao-ortopedico-premium/casal138"
+    },
+    {
+      "name": "Colchão Liberty",
+      "slug": "colchao-liberty",
+      "description": "",
+      "description_html": "",
+      "featured_image": "https://cdn.ortobom.com.br/file/34dfaf5b-db37-472b-a3ae-4d4e36c220e7/liberty%20site.jpg",
+      "images": [
+        "https://cdn.ortobom.com.br/file/34dfaf5b-db37-472b-a3ae-4d4e36c220e7/liberty%20site.jpg",
+        "https://cdn.ortobom.com.br/file/692925ad-a31b-4e63-ba66-c5617f453fcf/LIBERTY-3.jpg",
+        "https://cdn.ortobom.com.br/file/70cbe2e3-a8db-4e66-b2e9-d233393e77a6/LIBERTY-2.jpg",
+        "https://cdn.ortobom.com.br/file/cb3ee704-90fe-4b16-a31d-855202ffcfd0/LIBERTY-1.jpg",
+        "https://cdn.ortobom.com.br/file/83b07f4c-b3ae-45b1-b007-86ea81c6822f/COLCHAO-LIBERTY-CASAL--7-.jpg",
+        "https://cdn.ortobom.com.br/file/62b2da2b-bcaf-462b-b88b-aa27f97d7ca4/COLCHAO-LIBERTY-CASAL.jpg",
+        "https://cdn.ortobom.com.br/file/03f2834c-5e46-49de-8586-0278eec851e2/COLCHAO-LIBERTY-CASAL--6-.jpg",
+        "https://cdn.ortobom.com.br/file/686ff471-ab22-46a1-992c-550eff43c109/COLCHAO-LIBERTY-CASAL--5-.jpg",
+        "https://cdn.ortobom.com.br/file/e9c581a8-1cc0-4a3d-85c3-a7a42063cffb/COLCHAO-LIBERTY-CASAL--10-.jpg",
+        "https://cdn.ortobom.com.br/file/42c1f642-ff08-4053-8a37-2d69f9a486da/COLCHAO-LIBERTY-CASAL--2-.jpg",
+        "https://cdn.ortobom.com.br/file/5ee4d190-90c7-49c2-8322-18595b17cdb2/COLCHAO-LIBERTY-CASAL--4-.jpg"
+      ],
+      "variants": [
+        {
+          "size": "Padrão",
+          "price": 3099,
+          "dimensions": ""
+        }
+      ],
+      "compare_at_price_base": 4550,
+      "category_slug": "colchoes",
+      "original_url": "https://www.ortobom.com.br/p/colchao/colchao-liberty/casal138"
+    },
+    {
+      "name": "Colchão Absolut Hybrid",
+      "slug": "colchao-absolut-hybrid",
+      "description": "",
+      "description_html": "",
+      "featured_image": "https://cdn.ortobom.com.br/file/50abb42c-2077-4bbc-90db-7a6145f10e1a/6040703657_ABSOLUT_1000X1000_1.jpg",
+      "images": [
+        "https://cdn.ortobom.com.br/file/50abb42c-2077-4bbc-90db-7a6145f10e1a/6040703657_ABSOLUT_1000X1000_1.jpg",
+        "https://cdn.ortobom.com.br/file/00a1edc8-4069-4fde-9089-c6d44048e368/6040703657_ABSOLUT_1000X1000_3.jpg",
+        "https://cdn.ortobom.com.br/file/43af246d-2709-4831-a06d-c87ad3439848/6040703657_ABSOLUT_1000X1000_4.jpg"
+      ],
+      "variants": [
+        {
+          "size": "Kit Travesseiro Royal Pillow",
+          "price": 6012.063908,
+          "dimensions": ""
+        }
+      ],
+      "compare_at_price_base": 4499,
+      "category_slug": "colchoes",
+      "original_url": "https://www.ortobom.com.br/p/colchao/colchao-absolut-hybrid/casal138"
+    },
+    {
+      "name": "Colchão Pró Força",
+      "slug": "colchao-pro-forca",
+      "description": "",
+      "description_html": "",
+      "featured_image": "https://cdn.ortobom.com.br/file/e6df314e-2bfd-43d4-a01f-8d64b1f6aea4/pro%20for%C3%A7a%20site.jpg",
+      "images": [
+        "https://cdn.ortobom.com.br/file/e6df314e-2bfd-43d4-a01f-8d64b1f6aea4/pro%20for%C3%A7a%20site.jpg",
+        "https://cdn.ortobom.com.br/file/617e6afc-6434-46d1-8579-da5fb6e2134e/604070.3609%20(7).png",
+        "https://cdn.ortobom.com.br/file/6b8e0198-839a-4f19-9b90-40b72ab9c91f/604070.3609%20(2).jpg",
+        "https://cdn.ortobom.com.br/file/4af40221-165a-44ab-897d-a0b82c04ccbb/604070.3609%20(10).png",
+        "https://cdn.ortobom.com.br/file/bcbd001e-e487-44d9-a2b0-5a4ff25d9359/604070.3609%20(6).jpg",
+        "https://cdn.ortobom.com.br/file/9795024b-dd89-4603-9449-9472afb9175f/604070.3609%20(8).png",
+        "https://cdn.ortobom.com.br/file/a9ff01de-8c02-4d42-bb63-cce7c676b0d2/604070.3609%20(9).png",
+        "https://cdn.ortobom.com.br/file/13fc1f0d-6f72-4fbf-8b16-111139837445/604070.3609%20(4).jpg",
+        "https://cdn.ortobom.com.br/file/9efb5835-9b3f-44ba-a34d-7a5f0d62da43/604070.3609%20(3).jpg",
+        "https://cdn.ortobom.com.br/file/6185b4e1-b88c-4a35-b058-75292352f9a3/604070.3609%20(1).jpg",
+        "https://cdn.ortobom.com.br/file/05067775-896f-4619-9578-2e77dc0ff521/604070.3609%20(5).jpg"
+      ],
+      "variants": [
+        {
+          "size": "Padrão",
+          "price": 3749,
+          "dimensions": ""
+        }
+      ],
+      "compare_at_price_base": 4690,
+      "category_slug": "colchoes",
+      "original_url": "https://www.ortobom.com.br/p/colchao/colchao-pro-forca/casal138"
+    },
+    {
+      "name": "Colchão Pró Saúde Ortopedico",
+      "slug": "colchao-pro-saude-ortopedico",
+      "description": "",
+      "description_html": "",
+      "featured_image": "https://cdn.ortobom.com.br/file/a2af300e-5530-4f88-a92e-f8011dae4f08/ProsaudeOrtopedico.jpg.jpg",
+      "images": [
+        "https://cdn.ortobom.com.br/file/a2af300e-5530-4f88-a92e-f8011dae4f08/ProsaudeOrtopedico.jpg.jpg",
+        "https://cdn.ortobom.com.br/file/1dd9e28f-4b98-4caa-832d-2ea596ab6bd5/ProsaudeOrtopedico2.jpg.jpg",
+        "https://cdn.ortobom.com.br/file/a079268c-5151-40f9-938c-104bfadf8f06/ProsaudeOrtopedico3.jpg.jpg",
+        "https://cdn.ortobom.com.br/file/698fae05-8105-43c4-ab12-cb0a2cb786ef/ProsaudeOrtopedico4.jpg.jpg",
+        "https://cdn.ortobom.com.br/file/aad292df-8b2f-487c-b3c3-d588b2fdd5ec/ProsaudeOrtopedico5.jpg.jpg",
+        "https://cdn.ortobom.com.br/file/eeb49e88-9320-48b0-811d-8091ae805b20/ProsaudeOrtopedico6.jpg.jpg",
+        "https://cdn.ortobom.com.br/file/d6f87f86-90cf-4150-9560-3d5804ac106a/ProsaudeOrtopedico7.jpg.jpg"
+      ],
+      "variants": [
+        {
+          "size": "10x de R$ 211,00",
+          "price": 2823.09211,
+          "dimensions": ""
+        }
+      ],
+      "compare_at_price_base": 1999,
+      "category_slug": "colchoes",
+      "original_url": "https://www.ortobom.com.br/p/colchao/ortopedico25/casal138"
+    },
+    {
+      "name": "Colchão Pró Saúde Superpocket",
+      "slug": "colchao-pro-saude-superpocket",
+      "description": "",
+      "description_html": "",
+      "featured_image": "https://cdn.ortobom.com.br/file/4c7ce4b1-7d53-423a-a622-f8175e6913d8/ProSaudeSuperpocket.jpg.jpg",
+      "images": [
+        "https://cdn.ortobom.com.br/file/4c7ce4b1-7d53-423a-a622-f8175e6913d8/ProSaudeSuperpocket.jpg.jpg",
+        "https://cdn.ortobom.com.br/file/aad73803-baa9-4a26-8fd5-17b3a007e4b1/ProSaudeSuperpocket2.jpg.jpg",
+        "https://cdn.ortobom.com.br/file/06fc5e50-dc14-43a2-8e76-45720f9fa2ab/ProSaudeSuperpocket3.jpg.jpg",
+        "https://cdn.ortobom.com.br/file/5016b912-c842-4a26-809c-73a56753da78/ProSaudeSuperpocket4.jpg.jpg",
+        "https://cdn.ortobom.com.br/file/674c5b8f-e602-4442-98ef-b361afc9d888/ProSaudeSuperpocket5.jpg.jpg",
+        "https://cdn.ortobom.com.br/file/9293b6d1-794f-41de-ac1f-d0f450d9c705/ProSaudeSuperpocket6.jpg.jpg",
+        "https://cdn.ortobom.com.br/file/2c59915d-3d56-43c8-8af0-9d2d1d146ca2/ProSaudeSuperpocket7.jpg.jpg",
+        "https://cdn.ortobom.com.br/file/0ce008ea-1144-41bd-a038-924d7af82396/ProSaudeSuperpocket8.jpg.jpg"
+      ],
+      "variants": [
+        {
+          "size": "Padrão",
+          "price": 2249,
+          "dimensions": ""
+        }
+      ],
+      "compare_at_price_base": 2800,
+      "category_slug": "colchoes",
+      "original_url": "https://www.ortobom.com.br/p/colchao/colchao-pro-saude-superpocket/queen158"
+    },
+    {
+      "name": "Colchão Ouro Spring",
+      "slug": "colchao-ouro-spring",
+      "description": "",
+      "description_html": "",
+      "featured_image": "https://cdn.ortobom.com.br/file/94fb3845-5464-4d69-ab2f-8cf30b6938b2/ouro%20spring%20site.jpg",
+      "images": [
+        "https://cdn.ortobom.com.br/file/94fb3845-5464-4d69-ab2f-8cf30b6938b2/ouro%20spring%20site.jpg",
+        "https://cdn.ortobom.com.br/file/c8b0d84a-5e76-4c14-aa6f-8ac4b6e11bcb/COLCHAO-OURO-SPRING-CASAL.jpg",
+        "https://cdn.ortobom.com.br/file/88cf0b3c-45b1-400e-8dbf-3889f5367b87/COLCHAO-OURO-SPRING-CASAL--5-.jpg",
+        "https://cdn.ortobom.com.br/file/f110ae97-21d6-4b6f-9f29-5fb8e1a4d111/COLCHAO-OURO-SPRING-CASAL--8-.jpg",
+        "https://cdn.ortobom.com.br/file/2e07e51b-7f6b-44bf-8890-c90cb3208042/COLCHAO-OURO-SPRING-CASAL--9-.jpg",
+        "https://cdn.ortobom.com.br/file/7d79a348-9cc6-4fae-915c-5149fedb7aae/COLCHAO-OURO-SPRING-CASAL--2-.jpg",
+        "https://cdn.ortobom.com.br/file/413ab353-447d-4a55-aaf3-a843120757db/Ortobom0181-1.jpg",
+        "https://cdn.ortobom.com.br/file/5b380adc-40ea-4678-97c6-4626e31f8b3e/Ortobom0227-1.jpg",
+        "https://cdn.ortobom.com.br/file/5ceecf0f-3fc6-4fb6-afb4-928dd0634fc9/OURO-SPRING-3.jpg",
+        "https://cdn.ortobom.com.br/file/954e1638-1237-406f-9f54-be8012f6d6f2/OURO-SPRING-1.jpg",
+        "https://cdn.ortobom.com.br/file/90b72910-9adb-491c-a1c8-c1e05e8d10fa/OURO-SPRING-2.jpg"
+      ],
+      "variants": [
+        {
+          "size": "Padrão",
+          "price": 2849,
+          "dimensions": ""
+        }
+      ],
+      "compare_at_price_base": 4398,
+      "category_slug": "colchoes",
+      "original_url": "https://www.ortobom.com.br/p/colchao/colchao-ouro-spring-/casal138"
+    },
+    {
+      "name": "Base Sommier Orthopur",
+      "slug": "base-sommier-orthopur",
+      "description": "",
+      "description_html": "",
+      "featured_image": "https://cdn.ortobom.com.br/file/cd1b168a-bc07-4258-a713-a8ef98a5b056/BASE-SOMM--ORTHOPUR-2.4-CASAL--7-.jpg",
+      "images": [
+        "https://cdn.ortobom.com.br/file/cd1b168a-bc07-4258-a713-a8ef98a5b056/BASE-SOMM--ORTHOPUR-2.4-CASAL--7-.jpg",
+        "https://cdn.ortobom.com.br/file/8089dd48-5987-4082-81c8-64d238efc020/BASE-SOMM--ORTHOPUR-2.4-CASAL--4-.jpg",
+        "https://cdn.ortobom.com.br/file/79e5542a-0b88-41db-b147-738ff32633cb/BASE-SOMM--ORTHOPUR-2.4-CASAL--5-.jpg",
+        "https://cdn.ortobom.com.br/file/6c358e34-d207-4e16-af98-f49da3a5b648/BASE-SOMM--ORTHOPUR-2.4-CASAL--3-.jpg",
+        "https://cdn.ortobom.com.br/file/ea12c246-40a4-4b04-b1bf-1b9fc68b78c5/BASE-SOMM--ORTHOPUR-2.4-CASAL--6-.jpg",
+        "https://cdn.ortobom.com.br/file/b8e85651-675e-4d04-a283-8e360a3f8eb4/BASE-SOMM--ORTHOPUR-2.4-CASAL.jpg"
+      ],
+      "variants": [
+        {
+          "size": "Padrão",
+          "price": 899,
+          "dimensions": ""
+        }
+      ],
+      "compare_at_price_base": 879.9,
+      "category_slug": "camas",
+      "original_url": "https://www.ortobom.com.br/p/cama/base-sommier-orthopur-white/casal138"
+    },
+    {
+      "name": "Base Sommier Pró Saúde",
+      "slug": "base-sommier-pro-saude",
+      "description": "",
+      "description_html": "",
+      "featured_image": "https://cdn.ortobom.com.br/file/151a45af-3ec0-453b-887c-59a2aa4e26ac/6050649952_P.png",
+      "images": [
+        "https://cdn.ortobom.com.br/file/151a45af-3ec0-453b-887c-59a2aa4e26ac/6050649952_P.png",
+        "https://cdn.ortobom.com.br/file/9fd68840-e058-43ba-8b9f-9974f2732693/Camada-80.jpg.jpg",
+        "https://cdn.ortobom.com.br/file/b144908b-cc5b-4b4d-83eb-f68dddbf4eb6/Camada-78.jpg.jpg",
+        "https://cdn.ortobom.com.br/file/ab6aabcb-a227-4794-b053-674c5f452368/Camada-79.jpg.jpg"
+      ],
+      "variants": [
+        {
+          "size": "Padrão",
+          "price": 729,
+          "dimensions": ""
+        }
+      ],
+      "compare_at_price_base": 907.61,
+      "category_slug": "camas",
+      "original_url": "https://www.ortobom.com.br/p/cama/base-sommier-pro-saude-brown/casal138"
+    },
+    {
+      "name": "Base Sommier Liberty",
+      "slug": "base-sommier-liberty",
+      "description": "",
+      "description_html": "",
+      "featured_image": "https://cdn.ortobom.com.br/file/02adf6bb-7cf9-40bc-b755-a84b9c268bab/BASE-SOMMIER-LIBERTY-CASAL--7-.jpg",
+      "images": [
+        "https://cdn.ortobom.com.br/file/02adf6bb-7cf9-40bc-b755-a84b9c268bab/BASE-SOMMIER-LIBERTY-CASAL--7-.jpg",
+        "https://cdn.ortobom.com.br/file/1dd388ef-3aac-462a-be3f-8552b6fac241/BASE-SOMMIER-LIBERTY-CASAL--5-.jpg",
+        "https://cdn.ortobom.com.br/file/82759080-0d37-4388-bb0c-e3da3acf8bb9/BASE-SOMMIER-LIBERTY-CASAL--2-.jpg",
+        "https://cdn.ortobom.com.br/file/8341603f-340c-431e-b426-682cd5685391/BASE-SOMMIER-LIBERTY-CASAL--6-.jpg",
+        "https://cdn.ortobom.com.br/file/5b4f8cc3-278b-4e61-9f28-e6efc95783ad/BASE-SOMMIER-LIBERTY-CASAL.jpg",
+        "https://cdn.ortobom.com.br/file/004d2e08-4d77-4d7a-b19f-28d794973a16/BASE-SOMMIER-LIBERTY-CASAL--4-.jpg"
+      ],
+      "variants": [
+        {
+          "size": "Padrão",
+          "price": 829,
+          "dimensions": ""
+        }
+      ],
+      "compare_at_price_base": 1389,
+      "category_slug": "camas",
+      "original_url": "https://www.ortobom.com.br/p/cama/base-sommier-liberty-24-white/casal138"
+    },
+    {
+      "name": "Base Sommier Baú Fashion Nobuck",
+      "slug": "base-sommier-bau-fashion-nobuck",
+      "description": "",
+      "description_html": "",
+      "featured_image": "https://cdn.ortobom.com.br/file/79aa3d0f-ca23-4bf4-8efb-b61da47ad189/BASE-SOMMIER-BAU-FASHION-NOBUCK-CREAM-CASAL--5-.jpg",
+      "images": [
+        "https://cdn.ortobom.com.br/file/79aa3d0f-ca23-4bf4-8efb-b61da47ad189/BASE-SOMMIER-BAU-FASHION-NOBUCK-CREAM-CASAL--5-.jpg",
+        "https://cdn.ortobom.com.br/file/a120252f-6573-42b9-9d95-3bca351524a0/21910.jpg",
+        "https://cdn.ortobom.com.br/file/63e30bcf-1316-4a8d-9c4d-7305d6bc6d93/BASE-SOMMIER-BAU-FASHION-NOBUCK-CREAM-CASAL--4-.jpg",
+        "https://cdn.ortobom.com.br/file/dc2604d2-60b8-450b-8cf0-3c59aaaaf79e/BASE-SOMMIER-BAU-FASHION-NOBUCK-CREAM-CASAL--7-.jpg",
+        "https://cdn.ortobom.com.br/file/44e7cb6b-4a86-4b80-af42-7b866cf369e6/BASE-SOMMIER-BAU-FASHION-NOBUCK-CREAM-CASAL--6-.jpg",
+        "https://cdn.ortobom.com.br/file/4bc53429-d419-4db0-ab4e-3e5e9e8cdf6c/BASE-SOMMIER-BAU-FASHION-NOBUCK-CREAM-CASAL--2-.jpg",
+        "https://cdn.ortobom.com.br/file/d114e3a5-52ef-40e2-97d3-059c30a2fb5c/BASE-SOMMIER-BAU-FASHION-NOBUCK-CREAM-CASAL--3-.jpg",
+        "https://cdn.ortobom.com.br/file/30c33db6-df60-4630-a29b-7e1db72b5c01/BASE-SOMMIER-BAU-FASHION-NOBUCK-CREAM-CASAL.jpg",
+        "https://cdn.ortobom.com.br/file/273e024a-c63a-45d0-a3c6-51a565c307aa/CREME.jpg",
+        "https://cdn.ortobom.com.br/file/f0b7b5ff-fbfa-416e-ad54-d97d360f2e28/CREME.jpg"
+      ],
+      "variants": [
+        {
+          "size": "Padrão",
+          "price": 1399,
+          "dimensions": ""
+        }
+      ],
+      "compare_at_price_base": 2500,
+      "category_slug": "camas",
+      "original_url": "https://www.ortobom.com.br/p/cama/base-sommier-bau-fashion-nobuck-cream/casal138"
+    },
+    {
+      "name": "Base Sommier Ouro Spring",
+      "slug": "base-sommier-ouro-spring",
+      "description": "",
+      "description_html": "",
+      "featured_image": "https://cdn.ortobom.com.br/file/10e31c87-7431-432f-9db0-be1b7f93c08f/BASE-SOMMIER-OURO-SPRING-CASAL--2-.jpg",
+      "images": [
+        "https://cdn.ortobom.com.br/file/10e31c87-7431-432f-9db0-be1b7f93c08f/BASE-SOMMIER-OURO-SPRING-CASAL--2-.jpg",
+        "https://cdn.ortobom.com.br/file/4487b49a-47d1-40ad-b3ca-44b86f68c1d5/BASE-SOMMIER-OURO-SPRING-CASAL--6-.jpg",
+        "https://cdn.ortobom.com.br/file/81e1b582-ec8c-4ef7-9afa-42dc63e49b9c/BASE-SOMMIER-OURO-SPRING-CASAL--4-.jpg",
+        "https://cdn.ortobom.com.br/file/f54294a8-4d42-4e60-a9b7-83441a6f7111/BASE-SOMMIER-OURO-SPRING-CASAL--5-.jpg",
+        "https://cdn.ortobom.com.br/file/915d0c14-4623-47b7-a5e8-09272744e830/BASE-SOMMIER-OURO-SPRING-CASAL.jpg",
+        "https://cdn.ortobom.com.br/file/3f1166f6-43d2-4688-8169-28a01f7ab8bc/BASE-SOMMIER-OURO-SPRING-CASAL--3-.jpg"
+      ],
+      "variants": [
+        {
+          "size": "Padrão",
+          "price": 839,
+          "dimensions": ""
+        }
+      ],
+      "compare_at_price_base": 1090,
+      "category_slug": "camas",
+      "original_url": "https://www.ortobom.com.br/p/cama/base-sommier-ouro-spring-cream/casal138"
+    },
+    {
+      "name": "Base Sommier Pró Força",
+      "slug": "base-sommier-pro-forca",
+      "description": "",
+      "description_html": "",
+      "featured_image": "https://cdn.ortobom.com.br/file/1c33395d-7f30-46d6-a07c-df2c7f2eef05/BASE-SOMMIER-PRO-FORCA-CASAL--2-.jpg",
+      "images": [
+        "https://cdn.ortobom.com.br/file/1c33395d-7f30-46d6-a07c-df2c7f2eef05/BASE-SOMMIER-PRO-FORCA-CASAL--2-.jpg",
+        "https://cdn.ortobom.com.br/file/150afb01-e773-4978-9f01-4ab21501735e/BASE-SOMMIER-PRO-FORCA-CASAL--6-.jpg",
+        "https://cdn.ortobom.com.br/file/0e00e771-4fb4-40d6-a628-3d81f6461c6e/BASE-SOMMIER-PRO-FORCA-CASAL--4-.jpg",
+        "https://cdn.ortobom.com.br/file/4bf7bc80-4a34-4dc7-be80-5e4adcc283db/BASE-SOMMIER-PRO-FORCA-CASAL--5-.jpg",
+        "https://cdn.ortobom.com.br/file/0e09e187-99c2-4096-8009-d16a20780c44/BASE-SOMMIER-PRO-FORCA-CASAL.jpg",
+        "https://cdn.ortobom.com.br/file/ca4fc2b9-a94f-4e9e-90e1-e050c0947cac/BASE-SOMMIER-PRO-FORCA-CASAL--3-.jpg"
+      ],
+      "variants": [
+        {
+          "size": "Padrão",
+          "price": 859,
+          "dimensions": ""
+        }
+      ],
+      "compare_at_price_base": 1439.9,
+      "category_slug": "camas",
+      "original_url": "https://www.ortobom.com.br/p/cama/base-sommier-pro-forca-black/casal138"
+    },
+    {
+      "name": "Base Sommier Orion",
+      "slug": "base-sommier-orion",
+      "description": "",
+      "description_html": "",
+      "featured_image": "https://cdn.ortobom.com.br/file/e2102d94-e21b-41dc-8fd0-b22734876092/6_Frame%206_138X188,21781_NoLogo,46853.jpg",
+      "images": [
+        "https://cdn.ortobom.com.br/file/e2102d94-e21b-41dc-8fd0-b22734876092/6_Frame%206_138X188,21781_NoLogo,46853.jpg",
+        "https://cdn.ortobom.com.br/file/adfb0f34-7919-4ea1-930d-6997969bcdcd/1_Frame%201_21781_NoLogo,46853,88X188.jpg",
+        "https://cdn.ortobom.com.br/file/6b948959-8d08-4beb-9f20-72b01816509d/6_Frame%206_138X188,21781_NoLogo,4685l3.jpg",
+        "https://cdn.ortobom.com.br/file/d7817d06-96d4-4c78-8971-936e1e3b7f81/9_Frame%209_21781_NoLogo,46853,88X188.jpg",
+        "https://cdn.ortobom.com.br/file/09170e58-50b1-4050-bacd-028afdf41f1d/detail_Single%20shot_21781_NoLogo,46853,88X188%20(1).jpg",
+        "https://cdn.ortobom.com.br/file/41607c2a-485d-438c-b215-3505c4a50ecb/detail_Single%20shot_21781_NoLogo,46853,88X188%20(2).jpg",
+        "https://cdn.ortobom.com.br/file/5e6615df-3c7f-46c3-b7ef-b9d49fdc61ec/detail_Single%20shot_21781_NoLogo,46853,88X188.jpg"
+      ],
+      "variants": [
+        {
+          "size": "Padrão",
+          "price": 1289,
+          "dimensions": ""
+        }
+      ],
+      "compare_at_price_base": 1604.81,
+      "category_slug": "camas",
+      "original_url": "https://www.ortobom.com.br/p/cama/base-sommier-orion/casal138"
+    },
+    {
+      "name": "Base Sommier Bellona",
+      "slug": "base-sommier-bellona",
+      "description": "",
+      "description_html": "",
+      "featured_image": "https://cdn.ortobom.com.br/file/1998b98d-ed71-4a21-bec2-195b87b45bf8/BASE-SOMMIER-BELLONA-CASAL--2-.jpg",
+      "images": [
+        "https://cdn.ortobom.com.br/file/1998b98d-ed71-4a21-bec2-195b87b45bf8/BASE-SOMMIER-BELLONA-CASAL--2-.jpg",
+        "https://cdn.ortobom.com.br/file/e2e8f414-7bf3-4ada-b2f8-de2a697e53c3/BASE-SOMMIER-BELLONA-CASAL--6-.jpg",
+        "https://cdn.ortobom.com.br/file/6026bcc2-b3c3-4967-868d-62fbc0cb144a/BASE-SOMMIER-BELLONA-CASAL--5-.jpg",
+        "https://cdn.ortobom.com.br/file/7fc91d2a-2b35-4f48-ab40-8d9b9af6fef3/BASE-SOMMIER-BELLONA-CASAL--7-.jpg",
+        "https://cdn.ortobom.com.br/file/0f5ba117-4e60-4a0c-b096-1d0b97228508/BASE-SOMMIER-BELLONA-CASAL.jpg",
+        "https://cdn.ortobom.com.br/file/4fa366de-007c-40c6-ad4f-638bb4573e1d/BASE-SOMMIER-BELLONA-CASAL--3-.jpg"
+      ],
+      "variants": [
+        {
+          "size": "Padrão",
+          "price": 1279,
+          "dimensions": ""
+        }
+      ],
+      "compare_at_price_base": 1623.75,
+      "category_slug": "camas",
+      "original_url": "https://www.ortobom.com.br/p/cama/base-sommier-bellona-brown/casal138"
+    },
+    {
+      "name": "Colchão Pró Saúde Visco Adapt",
+      "slug": "colchao-pro-saude-visco-adapt",
+      "description": "",
+      "description_html": "",
+      "featured_image": "https://cdn.ortobom.com.br/file/40f9e9c8-0b1a-45cc-bddb-c2f09fd1f673/PRO-SAUDE-VISCO-ADAPT-CASAL--4-.jpg",
+      "images": [
+        "https://cdn.ortobom.com.br/file/40f9e9c8-0b1a-45cc-bddb-c2f09fd1f673/PRO-SAUDE-VISCO-ADAPT-CASAL--4-.jpg",
+        "https://cdn.ortobom.com.br/file/2d32f860-792e-42d1-abf4-b99802305303/PRO-SAUDE-VISCO-ADAPT-CASAL--10-.jpg",
+        "https://cdn.ortobom.com.br/file/c4762acc-065b-4899-b119-ae435327f975/PRO-SAUDE-VISCO-ADAPT-CASAL--7-.jpg",
+        "https://cdn.ortobom.com.br/file/8cfd3c28-4d9f-4d7f-8379-0ac0326f5695/PRO-SAUDE-VISCO-ADAPT-CASAL--5-.jpg",
+        "https://cdn.ortobom.com.br/file/5217f924-8404-4e97-934f-9d2c1d95f4ce/PRO-SAUDE-VISCO-ADAPT-CASAL--6-.jpg",
+        "https://cdn.ortobom.com.br/file/a442b7ae-b28b-47bd-90a0-0f2909dcfde5/PRO-SAUDE-VISCO-ADAPT-CASAL--9-.jpg",
+        "https://cdn.ortobom.com.br/file/e0d90049-eebd-4edc-a1f7-84239abc1781/PRO-SAUDE-VISCO-ADAPT-CASAL.jpg",
+        "https://cdn.ortobom.com.br/file/045b3ba2-d252-4411-8f25-b21a37a45bf7/PRO-SAUDE-VISCO-ADAPT-CASAL--3-.jpg",
+        "https://cdn.ortobom.com.br/file/39a2a615-62f7-4062-b801-793689482942/PRO-SAUDE-VISCO-ADAPT-CASAL--8-.jpg"
+      ],
+      "variants": [
+        {
+          "size": "10x de R$ 1.489,80",
+          "price": 17620.7814898,
+          "dimensions": ""
+        },
+        {
+          "size": "21x de R$ 53,30",
+          "price": 899.002153,
+          "dimensions": ""
+        },
+        {
+          "size": "6x de R$ 121,50",
+          "price": 178.61907,
+          "dimensions": ""
+        },
+        {
+          "size": "6x de R$ 138,17",
+          "price": 560.001389,
+          "dimensions": ""
+        },
+        {
+          "size": "6x de R$ 233,17",
+          "price": 1101.0025,
+          "dimensions": ""
+        },
+        {
+          "size": "6x de R$ 139,84",
+          "price": 251.00109,
+          "dimensions": ""
+        },
+        {
+          "size": "21x de R$ 50,93",
+          "price": 580.901439,
+          "dimensions": ""
+        },
+        {
+          "size": "21x de R$ 76,42",
+          "price": 315.811604,
+          "dimensions": ""
+        },
+        {
+          "size": "21x de R$ 75,83",
+          "price": 344.751623,
+          "dimensions": ""
+        },
+        {
+          "size": "21x de R$ 165,95",
+          "price": 1199.903998,
+          "dimensions": ""
+        },
+        {
+          "size": "21x de R$ 55,08",
+          "price": 51.0098,
+          "dimensions": ""
+        },
+        {
+          "size": "6x de R$ 156,50",
+          "price": 230.061169,
+          "dimensions": ""
+        }
+      ],
+      "compare_at_price_base": 3510.9,
+      "category_slug": "camas",
+      "original_url": "https://ortobom.com.br/p/colchao/colchao-pro-saude-visco-adapt/casal138"
+    },
+    {
+      "name": "Cabeceira Glamour Linho",
+      "slug": "cabeceira-glamour-linho",
+      "description": "",
+      "description_html": "",
+      "featured_image": "https://cdn.ortobom.com.br/file/8716eb1e-5880-4379-9ae1-4df748eb0de1/4070957248_P.png",
+      "images": [
+        "https://cdn.ortobom.com.br/file/8716eb1e-5880-4379-9ae1-4df748eb0de1/4070957248_P.png",
+        "https://cdn.ortobom.com.br/file/abc6a7be-36f3-4253-8f5b-1a6eb2396fc2/4070957248%20(1).png",
+        "https://cdn.ortobom.com.br/file/517e3a4a-f607-495c-8309-129047931596/4070957248%20(2).png",
+        "https://cdn.ortobom.com.br/file/f03adbb4-9af3-4598-bafc-4d567081916c/4070957248_F.png"
+      ],
+      "variants": [
+        {
+          "size": "Padrão",
+          "price": 629,
+          "dimensions": ""
+        }
+      ],
+      "compare_at_price_base": 1515.38,
+      "category_slug": "cabeceiras",
+      "original_url": "https://www.ortobom.com.br/p/cabeceira/cabeceira-glamour-linho-gray/queen160"
+    },
+    {
+      "name": "Cabeceira Lieve Cori",
+      "slug": "cabeceira-lieve-cori",
+      "description": "",
+      "description_html": "",
+      "featured_image": "https://cdn.ortobom.com.br/file/5b681b14-7a8e-4c5d-8fdc-a5976ae6ab36/6040742733_4.jpg",
+      "images": [
+        "https://cdn.ortobom.com.br/file/5b681b14-7a8e-4c5d-8fdc-a5976ae6ab36/6040742733_4.jpg",
+        "https://cdn.ortobom.com.br/file/769f2ad0-aa22-415b-921d-90ec3396c880/6040742733_1.jpg",
+        "https://cdn.ortobom.com.br/file/aa2d3e21-efa0-4650-95e7-0a5a82c28d7e/6040742733_2.jpg",
+        "https://cdn.ortobom.com.br/file/fef7091e-0673-4b20-aea8-885275e67d6d/6040742733_3.jpg"
+      ],
+      "variants": [
+        {
+          "size": "Padrão",
+          "price": 499,
+          "dimensions": ""
+        }
+      ],
+      "compare_at_price_base": 720.8,
+      "category_slug": "cabeceiras",
+      "original_url": "https://www.ortobom.com.br/p/cabeceira/cabeceira-lieve-cori-black/casal140"
+    },
+    {
+      "name": "Cabeceira Lovely Facto",
+      "slug": "cabeceira-lovely-facto",
+      "description": "",
+      "description_html": "",
+      "featured_image": "https://cdn.ortobom.com.br/file/128d95e8-7142-4b66-b2bd-a1c737881555/4070957310_P.jpg",
+      "images": [
+        "https://cdn.ortobom.com.br/file/128d95e8-7142-4b66-b2bd-a1c737881555/4070957310_P.jpg",
+        "https://cdn.ortobom.com.br/file/d7e87e25-c194-4feb-b9e2-b56e86e4d4e1/4070957310_DETALHE1.jpg",
+        "https://cdn.ortobom.com.br/file/d05b8343-a1fa-4877-956a-afaf1af6c5d9/4070957310_DETALHE2.jpg",
+        "https://cdn.ortobom.com.br/file/2c8e9f48-8eda-455e-a738-1bc72c3a7828/4070957310_F.jpg"
+      ],
+      "variants": [
+        {
+          "size": "Padrão",
+          "price": 649,
+          "dimensions": ""
+        }
+      ],
+      "compare_at_price_base": 1120,
+      "category_slug": "cabeceiras",
+      "original_url": "https://www.ortobom.com.br/p/cabeceira/cabeceira-lovely-facto-cream/casal140"
+    },
+    {
+      "name": "Cabeceira Cherie Veludo",
+      "slug": "cabeceira-cherie-veludo",
+      "description": "",
+      "description_html": "",
+      "featured_image": "https://cdn.ortobom.com.br/file/f45b7d0d-9253-44c7-b835-56d19686959a/6040742888_P.jpg",
+      "images": [
+        "https://cdn.ortobom.com.br/file/f45b7d0d-9253-44c7-b835-56d19686959a/6040742888_P.jpg",
+        "https://cdn.ortobom.com.br/file/3a90adac-fce5-415d-ac29-f7dc81b347f4/6040742888%20(2).jpg",
+        "https://cdn.ortobom.com.br/file/2093a95a-8ba6-4a81-9b75-63b97b0e3d89/6040742888.jpg",
+        "https://cdn.ortobom.com.br/file/06bb7966-ebd3-41b6-841d-98fa996babb8/6040742888_F.jpg"
+      ],
+      "variants": [
+        {
+          "size": "Padrão",
+          "price": 459,
+          "dimensions": ""
+        }
+      ],
+      "compare_at_price_base": 749,
+      "category_slug": "cabeceiras",
+      "original_url": "https://www.ortobom.com.br/p/cabeceira/cabeceira-cherie-veludo-gray/casal140"
+    },
+    {
+      "name": "Cabeceira Cherie Linho",
+      "slug": "cabeceira-cherie-linho",
+      "description": "",
+      "description_html": "",
+      "featured_image": "https://cdn.ortobom.com.br/file/2fea0b49-5403-46c1-bcea-64079c4fd891/6040742853_P.jpg",
+      "images": [
+        "https://cdn.ortobom.com.br/file/2fea0b49-5403-46c1-bcea-64079c4fd891/6040742853_P.jpg",
+        "https://cdn.ortobom.com.br/file/9a9f6e6e-86d2-485c-ab55-93796743c16b/6040742853%20(2).jpg",
+        "https://cdn.ortobom.com.br/file/b4457ce3-4689-454d-b50e-108d6c2f42f2/6040742853.jpg",
+        "https://cdn.ortobom.com.br/file/eabdc353-77d0-45dc-84f7-5a50201d5d7e/6040742853_F.jpg"
+      ],
+      "variants": [
+        {
+          "size": "Padrão",
+          "price": 779,
+          "dimensions": ""
+        }
+      ],
+      "compare_at_price_base": 1014.12,
+      "category_slug": "cabeceiras",
+      "original_url": "https://www.ortobom.com.br/p/cabeceira/cabeceira-cherie-linho-black/casal140"
+    },
+    {
+      "name": "Cabeceira Lieve Facto",
+      "slug": "cabeceira-lieve-facto",
+      "description": "",
+      "description_html": "",
+      "featured_image": "https://cdn.ortobom.com.br/file/6e6a2842-7aad-436e-b656-9265a15d5af4/6040742737_P.jpg",
+      "images": [
+        "https://cdn.ortobom.com.br/file/6e6a2842-7aad-436e-b656-9265a15d5af4/6040742737_P.jpg",
+        "https://cdn.ortobom.com.br/file/38bebcf6-497e-4a6d-8849-d14ae6ab2a7a/6040742738%20(2).jpg",
+        "https://cdn.ortobom.com.br/file/7dea4ee0-43f8-410f-8132-bbdcd99421f5/6040742738.jpg",
+        "https://cdn.ortobom.com.br/file/7d2668af-f254-4b95-80fe-11df6c34ec1a/6040742738_F.jpg",
+        "https://cdn.ortobom.com.br/file/39608321-270c-4120-9066-072c7dc9155c/6040742738_P.jpg"
+      ],
+      "variants": [
+        {
+          "size": "Padrão",
+          "price": 919,
+          "dimensions": ""
+        }
+      ],
+      "compare_at_price_base": 1390.9,
+      "category_slug": "cabeceiras",
+      "original_url": "https://www.ortobom.com.br/p/cabeceira/cabeceira-lieve-facto-white/casal140"
+    },
+    {
+      "name": "Cabeceira Glamour Veludo",
+      "slug": "cabeceira-glamour-veludo",
+      "description": "",
+      "description_html": "",
+      "featured_image": "https://cdn.ortobom.com.br/file/016968b0-8dd9-4829-bf2c-dca6984a5ef9/6040742981_P.png",
+      "images": [
+        "https://cdn.ortobom.com.br/file/016968b0-8dd9-4829-bf2c-dca6984a5ef9/6040742981_P.png",
+        "https://cdn.ortobom.com.br/file/61b996fd-4eb5-4e69-b86d-26823eccfa32/6040742981_DETALHE%20(2).jpg",
+        "https://cdn.ortobom.com.br/file/efead398-f522-4fab-becc-41b50bd944d4/6040742981_DETALHE.jpg",
+        "https://cdn.ortobom.com.br/file/ee94f017-b458-4126-a202-2217bb2617a8/6040742981_F.png"
+      ],
+      "variants": [
+        {
+          "size": "Padrão",
+          "price": 799,
+          "dimensions": ""
+        }
+      ],
+      "compare_at_price_base": 1228.9,
+      "category_slug": "cabeceiras",
+      "original_url": "https://www.ortobom.com.br/p/cabeceira/cabeceira-glamour-veludo-black/king195"
+    },
+    {
+      "name": "Travesseiro Pró Latex",
+      "slug": "travesseiro-pro-latex",
+      "description": "",
+      "description_html": "",
+      "featured_image": "https://cdn.ortobom.com.br/file/b387034e-dce5-4a53-b624-3d17fb49f6d5/Travesseiro_ProLatex_Master.jpg",
+      "images": [
+        "https://cdn.ortobom.com.br/file/b387034e-dce5-4a53-b624-3d17fb49f6d5/Travesseiro_ProLatex_Master.jpg",
+        "https://cdn.ortobom.com.br/file/f4414e88-bcbb-45bf-9b66-44c1b7e07462/Design-sem-nome--8-.jpg"
+      ],
+      "variants": [
+        {
+          "size": "Padrão",
+          "price": 259,
+          "dimensions": ""
+        }
+      ],
+      "compare_at_price_base": 221.9,
+      "category_slug": "travesseiros",
+      "original_url": "https://www.ortobom.com.br/p/travesseiro/travesseiro-pro-latex/3470"
+    },
+    {
+      "name": "Travesseiro Viscopur Gel",
+      "slug": "travesseiro-viscopur-gel",
+      "description": "",
+      "description_html": "",
+      "featured_image": "https://cdn.ortobom.com.br/file/fc3e447c-dc07-4e30-aee4-549c32f9590e/Embalagem-Viscopur-Gel.jpg",
+      "images": [
+        "https://cdn.ortobom.com.br/file/fc3e447c-dc07-4e30-aee4-549c32f9590e/Embalagem-Viscopur-Gel.jpg",
+        "https://cdn.ortobom.com.br/file/0a0697f1-5941-464b-ae8b-6f4b0fb1bbbc/6996.jpeg",
+        "https://cdn.ortobom.com.br/file/0642c140-0ade-4480-ba09-100e12bec0d3/6997.jpeg"
+      ],
+      "variants": [
+        {
+          "size": "Padrão",
+          "price": 399,
+          "dimensions": ""
+        }
+      ],
+      "compare_at_price_base": 399,
+      "category_slug": "travesseiros",
+      "original_url": "https://www.ortobom.com.br/p/travesseiro/travesseiro-viscopur-gel/8164"
+    },
+    {
+      "name": "Travesseiro Conforto Regulável",
+      "slug": "travesseiro-conforto-regulavel",
+      "description": "",
+      "description_html": "",
+      "featured_image": "https://cdn.ortobom.com.br/file/69d6a7b2-b17a-4622-885e-599d6b6ed20f/Travesseiro_Conf_Regulavel_Master.jpg",
+      "images": [
+        "https://cdn.ortobom.com.br/file/69d6a7b2-b17a-4622-885e-599d6b6ed20f/Travesseiro_Conf_Regulavel_Master.jpg"
+      ],
+      "variants": [
+        {
+          "size": "Padrão",
+          "price": 159,
+          "dimensions": ""
+        }
+      ],
+      "compare_at_price_base": 175.9,
+      "category_slug": "travesseiros",
+      "original_url": "https://www.ortobom.com.br/p/travesseiro/travesseiro-conforto-regulavel/7027"
+    },
+    {
+      "name": "Travesseiro Viscopur",
+      "slug": "travesseiro-viscopur",
+      "description": "",
+      "description_html": "",
+      "featured_image": "https://cdn.ortobom.com.br/file/68821870-21d0-4380-8754-bb9701d1bf9e/Travesseiro_Viscopur_Master.jpg",
+      "images": [
+        "https://cdn.ortobom.com.br/file/68821870-21d0-4380-8754-bb9701d1bf9e/Travesseiro_Viscopur_Master.jpg",
+        "https://cdn.ortobom.com.br/file/b2f88d2d-0a4f-4029-81b9-8303fa1bcf05/visco-1.jpg"
+      ],
+      "variants": [
+        {
+          "size": "Padrão",
+          "price": 169,
+          "dimensions": ""
+        }
+      ],
+      "compare_at_price_base": 185.9,
+      "category_slug": "travesseiros",
+      "original_url": "https://www.ortobom.com.br/p/travesseiro/travesseiro-viscopur/3472"
+    },
+    {
+      "name": "Travesseiro Royal Pillow",
+      "slug": "travesseiro-royal-pillow",
+      "description": "",
+      "description_html": "",
+      "featured_image": "https://cdn.ortobom.com.br/file/03ecb3a0-81dc-43ef-b725-a963ef03f229/Travesseiro_Royal_Pillow_Master.jpg",
+      "images": [
+        "https://cdn.ortobom.com.br/file/03ecb3a0-81dc-43ef-b725-a963ef03f229/Travesseiro_Royal_Pillow_Master.jpg",
+        "https://cdn.ortobom.com.br/file/450f8575-a505-41fb-b117-a51e97ff2764/Design-sem-nome--7-.jpg",
+        "https://cdn.ortobom.com.br/file/c50140ad-0f0f-4427-8b8a-96d37cd51cdb/Design-sem-nome.jpg",
+        "https://cdn.ortobom.com.br/file/22bd04cd-6ce4-4d94-a866-34e8c863f7db/Travesseiro_Royal_Pillow.jpg"
+      ],
+      "variants": [
+        {
+          "size": "Padrão",
+          "price": 159,
+          "dimensions": ""
+        }
+      ],
+      "compare_at_price_base": 172,
+      "category_slug": "travesseiros",
+      "original_url": "https://www.ortobom.com.br/p/travesseiro/travesseiro-royal-pillow/6573"
+    },
+    {
+      "name": "Travesseiro Sonho",
+      "slug": "travesseiro-sonho",
+      "description": "",
+      "description_html": "",
+      "featured_image": "https://cdn.ortobom.com.br/file/def1ba8e-c905-471c-a3c0-67f4cdbe1577/TRAVESSEIRO-SONHO.jpg",
+      "images": [
+        "https://cdn.ortobom.com.br/file/def1ba8e-c905-471c-a3c0-67f4cdbe1577/TRAVESSEIRO-SONHO.jpg",
+        "https://cdn.ortobom.com.br/file/20274384-d4b8-47e1-9e28-45fbcf6b2c65/Design-sem-nome--5-.jpg",
+        "https://cdn.ortobom.com.br/file/e9d4d498-50c5-4c75-a00f-4c73bb64eab1/Design-sem-nome--6-.jpg",
+        "https://cdn.ortobom.com.br/file/baca4360-a8a1-4da6-8812-4bf7a50e1e40/Travesseiro_Sonho_1000x1000.jpg"
+      ],
+      "variants": [
+        {
+          "size": "Padrão",
+          "price": 119,
+          "dimensions": ""
+        }
+      ],
+      "compare_at_price_base": 165.65,
+      "category_slug": "travesseiros",
+      "original_url": "https://www.ortobom.com.br/p/travesseiro/travesseiro-sonho/3483"
+    },
+    {
+      "name": "Travesseiro Flock",
+      "slug": "travesseiro-flock",
+      "description": "",
+      "description_html": "",
+      "featured_image": "https://cdn.ortobom.com.br/file/48c5f932-a7ae-4eb2-aed5-17fdcfcd606d/6090740048.jpg",
+      "images": [
+        "https://cdn.ortobom.com.br/file/48c5f932-a7ae-4eb2-aed5-17fdcfcd606d/6090740048.jpg",
+        "https://cdn.ortobom.com.br/file/3fc6f6f8-595a-4312-ba43-99f47cc7be2d/Design-sem-nome--2-.jpg"
+      ],
+      "variants": [
+        {
+          "size": "Padrão",
+          "price": 179,
+          "dimensions": ""
+        }
+      ],
+      "compare_at_price_base": 376.99,
+      "category_slug": "travesseiros",
+      "original_url": "https://www.ortobom.com.br/p/travesseiro/travesseiro-flock/3455"
+    },
+    {
+      "name": "Travesseiro Hug",
+      "slug": "travesseiro-hug",
+      "description": "",
+      "description_html": "",
+      "featured_image": "https://cdn.ortobom.com.br/file/c16ca12e-f540-4d37-a463-628b4eb8ac94/TRAVESSEIRO-DE-CORPO-HUG.jpg",
+      "images": [
+        "https://cdn.ortobom.com.br/file/c16ca12e-f540-4d37-a463-628b4eb8ac94/TRAVESSEIRO-DE-CORPO-HUG.jpg",
+        "https://cdn.ortobom.com.br/file/92fea4f9-003d-464d-8ac6-24f366ff54c2/Design-sem-nome.jpg",
+        "https://cdn.ortobom.com.br/file/eba9ef32-d6e0-410e-bd6d-5c26f906ca63/Design-sem-nome--1-.jpg"
+      ],
+      "variants": [
+        {
+          "size": "Padrão",
+          "price": 179,
+          "dimensions": ""
+        }
+      ],
+      "compare_at_price_base": 189.85,
+      "category_slug": "travesseiros",
+      "original_url": "https://www.ortobom.com.br/p/travesseiro/travesseiro-hug/7028"
+    },
+    {
+      "name": "Travesseiro Pró Látex Gel",
+      "slug": "travesseiro-pro-latex-gel",
+      "description": "",
+      "description_html": "",
+      "featured_image": "https://cdn.ortobom.com.br/file/eca9e910-0fed-441b-b928-5c6dabf73941/TRAVESSEIRO-PRO--LATEX-GEL.jpg",
+      "images": [
+        "https://cdn.ortobom.com.br/file/eca9e910-0fed-441b-b928-5c6dabf73941/TRAVESSEIRO-PRO--LATEX-GEL.jpg"
+      ],
+      "variants": [
+        {
+          "size": "Padrão",
+          "price": 549,
+          "dimensions": ""
+        }
+      ],
+      "compare_at_price_base": 699,
+      "category_slug": "travesseiros",
+      "original_url": "https://ortobom.com.br/p/travesseiro/travesseiro-pro-latex-gel/8165"
+    },
+    {
+      "name": "Travesseiro Pluma de Ganso",
+      "slug": "travesseiro-pluma-de-ganso",
+      "description": "",
+      "description_html": "",
+      "featured_image": "https://cdn.ortobom.com.br/file/a1cc7a45-679f-4da0-9a19-4ffd7ceb51e6/TRAVESSEIRO-PLUMA-DE-GANSO.jpg",
+      "images": [
+        "https://cdn.ortobom.com.br/file/a1cc7a45-679f-4da0-9a19-4ffd7ceb51e6/TRAVESSEIRO-PLUMA-DE-GANSO.jpg"
+      ],
+      "variants": [
+        {
+          "size": "Padrão",
+          "price": 599,
+          "dimensions": ""
+        }
+      ],
+      "compare_at_price_base": 562.03,
+      "category_slug": "travesseiros",
+      "original_url": "https://ortobom.com.br/p/travesseiro/travesseiro-pluma-de-ganso/2024"
+    },
+    {
+      "name": "Tapete de Yoga",
+      "slug": "tapete-de-yoga",
+      "description": "",
+      "description_html": "",
+      "featured_image": "https://cdn.ortobom.com.br/file/745d1f2a-ff96-4401-8b16-6e9e7f7c80eb/TAPETE-DE-YOGA.jpg",
+      "images": [
+        "https://cdn.ortobom.com.br/file/745d1f2a-ff96-4401-8b16-6e9e7f7c80eb/TAPETE-DE-YOGA.jpg",
+        "https://cdn.ortobom.com.br/file/fd8c2a39-b7c4-4d02-b5b7-9637046869af/TAPETE-DE-YOGA--2-.jpg"
+      ],
+      "variants": [
+        {
+          "size": "Padrão",
+          "price": 139,
+          "dimensions": ""
+        }
+      ],
+      "compare_at_price_base": 124.38,
+      "category_slug": "acessorios",
+      "original_url": "https://www.ortobom.com.br/p/acessorios/tapete-de-yoga/10440"
+    },
+    {
+      "name": "Almofada Rolete Nobuck",
+      "slug": "almofada-rolete-nobuck",
+      "description": "",
+      "description_html": "",
+      "featured_image": "https://cdn.ortobom.com.br/file/6a14e720-e613-48b2-a6f7-237c374f804c/Almofada-Rolete-Camurca_Brown_1.jpg",
+      "images": [
+        "https://cdn.ortobom.com.br/file/6a14e720-e613-48b2-a6f7-237c374f804c/Almofada-Rolete-Camurca_Brown_1.jpg",
+        "https://cdn.ortobom.com.br/file/dc0ac3f8-3e83-4bad-9796-4f647bd2b64c/Almofada-Rolete-Camurca_Brown_2.jpg"
+      ],
+      "variants": [
+        {
+          "size": "Padrão",
+          "price": 59,
+          "dimensions": ""
+        }
+      ],
+      "compare_at_price_base": 73.46,
+      "category_slug": "acessorios",
+      "original_url": "https://www.ortobom.com.br/p/acessorios/almofada-rolete-nobuck-brown/11892"
+    },
+    {
+      "name": "Colchonete All Day",
+      "slug": "colchonete-all-day",
+      "description": "",
+      "description_html": "",
+      "featured_image": "https://cdn.ortobom.com.br/file/bfdaa7be-6d4f-4f86-994c-bcb8d16ddca2/COLCHONETE-ALL-DAY-CASAL.jpg",
+      "images": [
+        "https://cdn.ortobom.com.br/file/bfdaa7be-6d4f-4f86-994c-bcb8d16ddca2/COLCHONETE-ALL-DAY-CASAL.jpg",
+        "https://cdn.ortobom.com.br/file/38a0410f-f429-4abc-9797-81a5718cbb48/COLCHONETE-ALL-DAY-CASAL--2-.jpg"
+      ],
+      "variants": [
+        {
+          "size": "Padrão",
+          "price": 429,
+          "dimensions": ""
+        }
+      ],
+      "compare_at_price_base": 490.03,
+      "category_slug": "acessorios",
+      "original_url": "https://www.ortobom.com.br/p/acessorios/colchonete-all-day/10687"
+    },
+    {
+      "name": "Colchonete Big para Academia",
+      "slug": "colchonete-big-para-academia",
+      "description": "",
+      "description_html": "",
+      "featured_image": "https://cdn.ortobom.com.br/file/22bdda24-4331-4ca9-8271-cd083b992e20/COLCHONETE-DE-ACADEMIA-AZUL-BIG.jpg",
+      "images": [
+        "https://cdn.ortobom.com.br/file/22bdda24-4331-4ca9-8271-cd083b992e20/COLCHONETE-DE-ACADEMIA-AZUL-BIG.jpg"
+      ],
+      "variants": [
+        {
+          "size": "Padrão",
+          "price": 79,
+          "dimensions": ""
+        }
+      ],
+      "compare_at_price_base": 139.88,
+      "category_slug": "acessorios",
+      "original_url": "https://www.ortobom.com.br/p/acessorios/colchonete-big-para-academia/9769"
+    },
+    {
+      "name": "Encosto Dino Veludo",
+      "slug": "encosto-dino-veludo",
+      "description": "",
+      "description_html": "",
+      "featured_image": "https://cdn.ortobom.com.br/file/b10f353f-605d-4ce4-8c55-4b6d0fa19b27/ENCONSTO-DINO-VELUDO-GRAY.jpg",
+      "images": [
+        "https://cdn.ortobom.com.br/file/b10f353f-605d-4ce4-8c55-4b6d0fa19b27/ENCONSTO-DINO-VELUDO-GRAY.jpg"
+      ],
+      "variants": [
+        {
+          "size": "Padrão",
+          "price": 129,
+          "dimensions": ""
+        }
+      ],
+      "compare_at_price_base": 258,
+      "category_slug": "acessorios",
+      "original_url": "https://www.ortobom.com.br/p/acessorios/encosto-dino-veludo-gray/8287"
+    },
+    {
+      "name": "Colchonete Small para Academia",
+      "slug": "colchonete-small-para-academia",
+      "description": "",
+      "description_html": "",
+      "featured_image": "https://cdn.ortobom.com.br/file/11526fc9-d839-49fc-b24d-5085b2d98f60/COLCHONETE-DE-ACADEMIA-AZUL.jpg",
+      "images": [
+        "https://cdn.ortobom.com.br/file/11526fc9-d839-49fc-b24d-5085b2d98f60/COLCHONETE-DE-ACADEMIA-AZUL.jpg"
+      ],
+      "variants": [
+        {
+          "size": "Padrão",
+          "price": 59,
+          "dimensions": ""
+        }
+      ],
+      "compare_at_price_base": 85.34,
+      "category_slug": "acessorios",
+      "original_url": "https://www.ortobom.com.br/p/acessorios/colchonete-small-para-academia/8220"
+    },
+    {
+      "name": "Suavencosto Infantil",
+      "slug": "suavencosto-infantil",
+      "description": "",
+      "description_html": "",
+      "featured_image": "https://cdn.ortobom.com.br/file/4cd99eed-0766-4677-88d9-4d6dbf5392bf/20095.jpg",
+      "images": [
+        "https://cdn.ortobom.com.br/file/4cd99eed-0766-4677-88d9-4d6dbf5392bf/20095.jpg",
+        "https://cdn.ortobom.com.br/file/ab74c656-1ef4-4fcd-8c76-7de0313697dd/1154.jpg",
+        "https://cdn.ortobom.com.br/file/8f76d7a0-aa58-40ee-9ab9-1251a31e41fb/1155.jpg",
+        "https://cdn.ortobom.com.br/file/1bf3bfd6-bf5a-4874-9816-faa59b769930/1156.jpg"
+      ],
+      "variants": [
+        {
+          "size": "Padrão",
+          "price": 89,
+          "dimensions": ""
+        }
+      ],
+      "compare_at_price_base": 112.85,
+      "category_slug": "acessorios",
+      "original_url": "https://www.ortobom.com.br/p/acessorios/suavencosto-infantil-suavencosto_infantil/6215"
+    },
+    {
+      "name": "Massageador Alveolado",
+      "slug": "massageador-alveolado",
+      "description": "",
+      "description_html": "",
+      "featured_image": "https://cdn.ortobom.com.br/file/3f8f4719-86fe-41bc-a889-5192e9e92295/MASSAGEADOR-ALVEOLADO-CASAL.jpg",
+      "images": [
+        "https://cdn.ortobom.com.br/file/3f8f4719-86fe-41bc-a889-5192e9e92295/MASSAGEADOR-ALVEOLADO-CASAL.jpg"
+      ],
+      "variants": [
+        {
+          "size": "Padrão",
+          "price": 169,
+          "dimensions": ""
+        }
+      ],
+      "compare_at_price_base": 201.23,
+      "category_slug": "acessorios",
+      "original_url": "https://www.ortobom.com.br/p/acessorios/massageador-alveolado/5254"
+    },
+    {
+      "name": "Suavencosto Alveolado",
+      "slug": "suavencosto-alveolado",
+      "description": "",
+      "description_html": "",
+      "featured_image": "https://cdn.ortobom.com.br/file/8db0de46-059c-410c-90cf-3571422bc504/SUAVENCOSTO-ALVEOLADO--3-.jpg",
+      "images": [
+        "https://cdn.ortobom.com.br/file/8db0de46-059c-410c-90cf-3571422bc504/SUAVENCOSTO-ALVEOLADO--3-.jpg",
+        "https://cdn.ortobom.com.br/file/1ca3059a-2070-468c-9523-630dcf30f6af/8511.jpg",
+        "https://cdn.ortobom.com.br/file/1349f311-4d83-47ba-b035-5df5dc4f01ec/SUAVENCOSTO-IMAGEM-3.jpg"
+      ],
+      "variants": [
+        {
+          "size": "Padrão",
+          "price": 209,
+          "dimensions": ""
+        }
+      ],
+      "compare_at_price_base": 266.73,
+      "category_slug": "acessorios",
+      "original_url": "https://www.ortobom.com.br/p/acessorios/suavencosto-alveolado-suavencosto_alveolado/3449"
+    },
+    {
+      "name": "Sofá Cama 2L Veludo Azul Marinho",
+      "slug": "sofa-cama-2l-veludo-azul-marinho",
+      "description": "",
+      "description_html": "",
+      "featured_image": "https://cdn.ortobom.com.br/file/af802fee-44f7-44fb-88ba-639e27593efd/SOFA-CAMA-LUIZA-SLIM-MARINHO--3-.jpg",
+      "images": [
+        "https://cdn.ortobom.com.br/file/af802fee-44f7-44fb-88ba-639e27593efd/SOFA-CAMA-LUIZA-SLIM-MARINHO--3-.jpg",
+        "https://cdn.ortobom.com.br/file/62a7eac1-4c3f-401b-a3bf-3a4e5f63f515/SOFA-CAMA-LUIZA-SLIM-MARINHO.jpg",
+        "https://cdn.ortobom.com.br/file/fe225379-daa8-4092-87d0-6317a98ac91a/SOFA-CAMA-LUIZA-SLIM-MARINHO--2-.jpg"
+      ],
+      "variants": [
+        {
+          "size": "Padrão",
+          "price": 3999,
+          "dimensions": ""
+        }
+      ],
+      "compare_at_price_base": 6665,
+      "category_slug": "moveis",
+      "original_url": "https://www.ortobom.com.br/p/moveis/sofa-cama-2l-veludo-azul-marinho"
+    },
+    {
+      "name": "Poltrona Reclinável Ortobom Cori",
+      "slug": "poltrona-reclinavel-ortobom-cori",
+      "description": "",
+      "description_html": "",
+      "featured_image": "https://cdn.ortobom.com.br/file/5345839c-dc5d-45cd-a7f4-cc648b147da3/POLTRONA-COPENHAGEM-POP-BROWN--3-.jpg",
+      "images": [
+        "https://cdn.ortobom.com.br/file/5345839c-dc5d-45cd-a7f4-cc648b147da3/POLTRONA-COPENHAGEM-POP-BROWN--3-.jpg",
+        "https://cdn.ortobom.com.br/file/490f51cc-ff92-4ef6-8700-463cd2790760/Poltrona-Copenhagen-Fechada_Pu-Marrom-POP_Sem-Gatilho_ambientada_1000x1000.jpg",
+        "https://cdn.ortobom.com.br/file/0cdf7e12-8bf4-421f-b4ed-b1cee82770da/Poltrona-Copenhagen_FI_Pu-Marrom-POP---Sem-Gatilho_1000x1000.jpg"
+      ],
+      "variants": [
+        {
+          "size": "Padrão",
+          "price": 2119,
+          "dimensions": ""
+        }
+      ],
+      "compare_at_price_base": 3028,
+      "category_slug": "moveis",
+      "original_url": "https://www.ortobom.com.br/p/moveis/poltrona-reclinavel-ortobom-cori-brown"
+    },
+    {
+      "name": "Sofá Cama 3L Linho Bege",
+      "slug": "sofa-cama-3l-linho-bege",
+      "description": "",
+      "description_html": "",
+      "featured_image": "https://cdn.ortobom.com.br/file/11e98b9d-376d-4b0f-a993-adb361f9bc2e/SOFA-CAMA-MALU-BEGE--3-.jpg",
+      "images": [
+        "https://cdn.ortobom.com.br/file/11e98b9d-376d-4b0f-a993-adb361f9bc2e/SOFA-CAMA-MALU-BEGE--3-.jpg",
+        "https://cdn.ortobom.com.br/file/b5827f47-b486-4c8c-a5c6-97892cf65871/SOFA-CAMA-MALU-BEGE--2-.jpg",
+        "https://cdn.ortobom.com.br/file/4406d03e-777c-4e94-aad7-9699de2a4c32/SOFA-CAMA-MALU-BEGE.jpg"
+      ],
+      "variants": [
+        {
+          "size": "Padrão",
+          "price": 2799,
+          "dimensions": ""
+        }
+      ],
+      "compare_at_price_base": 4665,
+      "category_slug": "moveis",
+      "original_url": "https://www.ortobom.com.br/p/moveis/sofa-cama-3l-linho-bege"
+    },
+    {
+      "name": "Poltrona Reclinável Ortobom Nobuck",
+      "slug": "poltrona-reclinavel-ortobom-nobuck",
+      "description": "",
+      "description_html": "",
+      "featured_image": "https://cdn.ortobom.com.br/file/616b5de4-879d-4166-9d42-d68a9593f012/19170.jpg",
+      "images": [
+        "https://cdn.ortobom.com.br/file/616b5de4-879d-4166-9d42-d68a9593f012/19170.jpg",
+        "https://cdn.ortobom.com.br/file/2d4077d0-d026-41dc-97a5-a9b7688c96fd/POLTRONA-COPENHAGEM-POP-SLIM-GRAY--3-.jpg",
+        "https://cdn.ortobom.com.br/file/5fa17221-e783-4b01-8dfc-082b8dcfb47c/19169.jpg"
+      ],
+      "variants": [
+        {
+          "size": "Padrão",
+          "price": 2119,
+          "dimensions": ""
+        }
+      ],
+      "compare_at_price_base": 3028,
+      "category_slug": "moveis",
+      "original_url": "https://www.ortobom.com.br/p/moveis/poltrona-reclinavel-ortobom-nobuck-gray"
+    },
+    {
+      "name": "Sofá Cama 2L Linho Cinza",
+      "slug": "sofa-cama-2l-linho-cinza",
+      "description": "",
+      "description_html": "",
+      "featured_image": "https://cdn.ortobom.com.br/file/36f0af20-c68b-4411-bc1d-3803583a2f1f/19176.jpg",
+      "images": [
+        "https://cdn.ortobom.com.br/file/36f0af20-c68b-4411-bc1d-3803583a2f1f/19176.jpg",
+        "https://cdn.ortobom.com.br/file/cc036a26-b42f-4074-b0b0-49c85137011d/SOFA-CAMA-LUIZA-CINZA--3-.jpg"
+      ],
+      "variants": [
+        {
+          "size": "Padrão",
+          "price": 3999,
+          "dimensions": ""
+        }
+      ],
+      "compare_at_price_base": 6665,
+      "category_slug": "moveis",
+      "original_url": "https://www.ortobom.com.br/p/moveis/sofa-cama-2l-linho-cinza"
+    },
+    {
+      "name": "Sofá Cama 3L Veludo Azul Marinho",
+      "slug": "sofa-cama-3l-veludo-azul-marinho",
+      "description": "",
+      "description_html": "",
+      "featured_image": "https://cdn.ortobom.com.br/file/ca8dcf4b-44d6-4552-9edc-69271e8e2d50/21781.jpg",
+      "images": [
+        "https://cdn.ortobom.com.br/file/ca8dcf4b-44d6-4552-9edc-69271e8e2d50/21781.jpg",
+        "https://cdn.ortobom.com.br/file/199403b2-c5c8-47b4-aab4-90ec373f3b68/21783.jpg",
+        "https://cdn.ortobom.com.br/file/8e534fbb-fc35-4fdd-bf98-62007681f197/21784.jpg",
+        "https://cdn.ortobom.com.br/file/5407dbc5-f733-494d-924a-d13a2a71167b/21782.jpg"
+      ],
+      "variants": [
+        {
+          "size": "Padrão",
+          "price": 2799,
+          "dimensions": ""
+        }
+      ],
+      "compare_at_price_base": 4665,
+      "category_slug": "moveis",
+      "original_url": "https://www.ortobom.com.br/p/moveis/sofa-cama-3l-veludo-azul-marinho"
+    },
+    {
+      "name": "Poltrona Massageadora Ortobom Cori",
+      "slug": "poltrona-massageadora-ortobom-cori",
+      "description": "",
+      "description_html": "",
+      "featured_image": "https://cdn.ortobom.com.br/file/17fc2758-e52c-4e45-bb8d-76ecc332efcf/POLTRONA-MASSAGEADORA-RELAX-BROWN--5-.jpg",
+      "images": [
+        "https://cdn.ortobom.com.br/file/17fc2758-e52c-4e45-bb8d-76ecc332efcf/POLTRONA-MASSAGEADORA-RELAX-BROWN--5-.jpg",
+        "https://cdn.ortobom.com.br/file/b3f56fab-1dd5-44e7-9d8f-bb019433ceab/POLTRONA-MASSAGEADORA-RELAX-BROWN.jpg",
+        "https://cdn.ortobom.com.br/file/1b542d59-6736-4324-8c6e-bcbb083fcd82/Relaxmedic_2023_Ortobom_PoltronadoPapai_ImagensWeb_D.jpg",
+        "https://cdn.ortobom.com.br/file/611550a7-7eb6-4d9f-87d6-c37111a8e653/Relaxmedic_2023_Ortobom_PoltronadoPapai_ImagensWeb_E.jpg",
+        "https://cdn.ortobom.com.br/file/72a6c95a-3c7c-48cd-9196-f610dd357345/Relaxmedic_2023_Ortobom_PoltronadoPapai_ImagensWeb_C.jpg",
+        "https://cdn.ortobom.com.br/file/fa431d77-ac93-48c3-988a-5b042e03393a/Relaxmedic_2023_Ortobom_PoltronadoPapai_ImagensWeb_B.jpg",
+        "https://cdn.ortobom.com.br/file/4beb517f-0eaa-49fb-b218-8d7b602d9175/POLTRONA-DO-PAPAI-RELAX--RM-PM2121A-02_1000x1000.jpg"
+      ],
+      "variants": [
+        {
+          "size": "Padrão",
+          "price": 4999,
+          "dimensions": ""
+        }
+      ],
+      "compare_at_price_base": 5555,
+      "category_slug": "moveis",
+      "original_url": "https://www.ortobom.com.br/p/moveis/poltrona-relax-massagem-pu-pre-brown"
+    },
+    {
+      "name": "Poltrona Reclinável Ortobom Premium Nobuck",
+      "slug": "poltrona-reclinavel-ortobom-premium-nobuck",
+      "description": "",
+      "description_html": "",
+      "featured_image": "https://cdn.ortobom.com.br/file/e6ab80fa-b1c2-4991-be01-09c3b88ff4a0/POLTRONA-COPENHAGEM-PREMIUM-GRAY--3-.jpg",
+      "images": [
+        "https://cdn.ortobom.com.br/file/e6ab80fa-b1c2-4991-be01-09c3b88ff4a0/POLTRONA-COPENHAGEM-PREMIUM-GRAY--3-.jpg",
+        "https://cdn.ortobom.com.br/file/12cf4565-0359-4175-b802-59c0d1ff9b74/POLTRONA-COPENHAGEM-PREMIUM-GRAY--2-.jpg",
+        "https://cdn.ortobom.com.br/file/9163f09a-3191-4d6f-b353-5e2034061b9d/POLTRONA-COPENHAGEM-PREMIUM-GRAY.jpg"
+      ],
+      "variants": [
+        {
+          "size": "Padrão",
+          "price": 2729,
+          "dimensions": ""
+        }
+      ],
+      "compare_at_price_base": 3899,
+      "category_slug": "moveis",
+      "original_url": "https://www.ortobom.com.br/p/moveis/poltrona-reclinavel-ortobom-premium-nobuck-gray"
+    }
+  ],
+  "banners": []
+}

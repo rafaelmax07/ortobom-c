@@ -1,14 +1,20 @@
-import { createClient } from '@supabase/supabase-js'
-import { HeroSlider } from "@/components/ui/HeroSlider";
-import { CategoryGrid } from "@/components/ui/CategoryGrid";
-import { ProductCard } from "@/components/ui/ProductCard";
+import { supabase } from '@/lib/supabase'
+import { HeroSlider } from "@/components/ui/HeroSlider"
+import { BenefitsBar } from "@/components/ui/BenefitsBar"
+import { CategoryGrid } from "@/components/ui/CategoryGrid"
+import { ProductCard } from "@/components/ui/ProductCard"
 
-const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL!
-const supabaseKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!
-const supabase = createClient(supabaseUrl, supabaseKey)
+export const revalidate = 60 // Revalidate home page every 60 seconds
 
 export default async function Home() {
-    // Fetch featured products (newest first, limit 6)
+    // 1. Fetch banners from database
+    const { data: banners } = await supabase
+        .from('banners')
+        .select('*')
+        .eq('is_active', true)
+        .order('position', { ascending: true })
+
+    // 2. Fetch active products with variants
     const { data: rawProducts } = await supabase
         .from('products')
         .select(`
@@ -21,9 +27,9 @@ export default async function Home() {
         `)
         .eq('is_active', true)
         .order('created_at', { ascending: false })
-        .limit(6)
 
-    const products = (rawProducts || []).map(p => {
+    // Format products to get their lowest price and compare_at_price
+    const formattedProducts = (rawProducts || []).map(p => {
         const variants = (p.variants as any[]) || []
         // Get lowest price variant
         const cheapest = variants.reduce(
@@ -37,30 +43,70 @@ export default async function Home() {
         }
     })
 
-    return (
-        <main className="min-h-screen bg-gray-50">
-            <HeroSlider />
+    // Filter products for "Ofertas do Dia" (discounted products)
+    const offers = formattedProducts.filter(p => p.compare_at_price && p.compare_at_price > p.price).slice(0, 6)
 
+    // Filter products for "Destaques" (all other products, up to 6)
+    const featured = formattedProducts.slice(0, 6)
+
+    return (
+        <main className="min-h-screen bg-gray-50/50 pb-16">
+            {/* Hero Slider Banner */}
+            <HeroSlider banners={banners || []} />
+
+            {/* Trust Benefits Bar */}
+            <BenefitsBar />
+
+            {/* Category Grid */}
             <CategoryGrid />
 
-            {/* Featured Products */}
-            <section className="py-12 bg-gray-50">
-                <div className="container mx-auto px-4">
-                    <h2 className="text-2xl md:text-3xl font-bold text-gray-900 mb-8 text-center">
-                        Produtos em Destaque
-                    </h2>
+            {/* ── Seção: Ofertas do Dia (with discount badges) ───────────────── */}
+            {offers.length > 0 && (
+                <section className="py-12 bg-white border-t border-b border-gray-100">
+                    <div className="container mx-auto px-4">
+                        <div className="flex flex-col items-center mb-10">
+                            <span className="bg-red-50 text-red-600 text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wider mb-2">
+                                Tempo Limitado
+                            </span>
+                            <h2 className="text-2xl md:text-3xl font-extrabold text-gray-900 tracking-tight text-center">
+                                Ofertas do Dia
+                            </h2>
+                            <div className="w-12 h-1 bg-[#F97316] rounded-full mt-3" />
+                        </div>
 
-                    {products.length > 0 ? (
-                        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-                            {products.map(product => (
+                        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
+                            {offers.map(product => (
+                                <ProductCard key={product.id} product={product} />
+                            ))}
+                        </div>
+                    </div>
+                </section>
+            )}
+
+            {/* ── Seção: Mais Procurados / Destaques ─────────────────────────── */}
+            <section className="py-16">
+                <div className="container mx-auto px-4">
+                    <div className="flex flex-col items-center mb-10">
+                        <span className="bg-blue-50 text-[#1B2B4E] text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wider mb-2">
+                            Os Favoritos
+                        </span>
+                        <h2 className="text-2xl md:text-3xl font-extrabold text-gray-900 tracking-tight text-center">
+                            Destaques Ortobom
+                        </h2>
+                        <div className="w-12 h-1 bg-[#1B2B4E] rounded-full mt-3" />
+                    </div>
+
+                    {featured.length > 0 ? (
+                        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
+                            {featured.map(product => (
                                 <ProductCard key={product.id} product={product} />
                             ))}
                         </div>
                     ) : (
-                        <p className="text-center text-gray-500">Nenhum produto disponível no momento.</p>
+                        <p className="text-center text-gray-500 py-12">Nenhum produto disponível no momento.</p>
                     )}
                 </div>
             </section>
         </main>
-    );
+    )
 }

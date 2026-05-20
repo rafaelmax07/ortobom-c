@@ -40,11 +40,14 @@ export default async function SearchPage({ searchParams }: { searchParams: Promi
 
         products = rawProducts?.map(p => {
             const variants = p.variants as any[] || []
-            const mainVariant = variants[0] || { price: 0 }
+            const cheapest = variants.reduce(
+                (min, v) => (v.price < min.price ? v : min),
+                variants[0] || { price: 0, compare_at_price: null }
+            )
             return {
                 ...p,
-                price: mainVariant.price,
-                compare_at_price: mainVariant.compare_at_price || null,
+                price: cheapest.price,
+                compare_at_price: cheapest.compare_at_price || null,
             }
         }) || []
     }
