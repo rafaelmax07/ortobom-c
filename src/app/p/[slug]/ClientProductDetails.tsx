@@ -28,7 +28,7 @@ export function ClientProductDetails({ product }: { product: Product }) {
     const [selectedVariant, setSelectedVariant] = useState<Variant | null>(product.variants?.[0] || null)
 
     const price = selectedVariant ? selectedVariant.price : 0
-    const oldPrice = selectedVariant?.compare_at_price || price * 1.4 // Mock 40% mockup if no compare price
+    const oldPrice = selectedVariant?.compare_at_price || null
 
     return (
         <div className="flex flex-col gap-6">
@@ -39,14 +39,16 @@ export function ClientProductDetails({ product }: { product: Product }) {
 
             {/* Price Box */}
             <div className="bg-gray-50 p-6 rounded-xl border border-gray-100">
+                {oldPrice && oldPrice > price && (
                 <div className="flex items-center gap-3 mb-1">
                     <span className="text-gray-400 line-through text-lg">
                         {oldPrice.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })}
                     </span>
                     <span className="bg-green-100 text-green-700 px-2 py-0.5 rounded text-sm font-bold">
-                        30% OFF
+                        {Math.round((1 - price / oldPrice) * 100)}% OFF
                     </span>
                 </div>
+                )}
                 <div className="text-4xl font-extrabold text-[#1B2B4E] mb-2">
                     {price.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })}
                 </div>

@@ -7,6 +7,7 @@ interface ProductCardProps {
         name: string
         slug: string
         price: number
+        compare_at_price?: number
         featured_image: string
         category_slug?: string
     }
@@ -48,14 +49,16 @@ export function ProductCard({ product }: ProductCardProps) {
 
                 {/* Price Section */}
                 <div className="mt-auto">
+                    {product.compare_at_price && product.compare_at_price > product.price && (
                     <div className="flex items-baseline gap-2 mb-1">
                         <span className="text-xs text-gray-400 line-through">
-                            {(product.price * 1.4).toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })}
+                            {product.compare_at_price.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })}
                         </span>
                         <span className="text-green-600 text-xs font-bold bg-green-50 px-2 py-0.5 rounded-full">
-                            30% OFF
+                            {Math.round((1 - product.price / product.compare_at_price) * 100)}% OFF
                         </span>
                     </div>
+                    )}
                     <div className="text-xl md:text-2xl font-bold text-[#1B2B4E]">
                         {formattedPrice}
                     </div>

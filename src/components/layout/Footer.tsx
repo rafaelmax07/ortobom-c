@@ -11,20 +11,20 @@ export function Footer() {
                     <div>
                         <h4 className="font-bold text-[#1B2B4E] mb-4">Institucional</h4>
                         <ul className="space-y-2 text-sm">
-                            <li><Link href="#" className="hover:underline">Sobre a Ortobom</Link></li>
-                            <li><Link href="#" className="hover:underline">Trabalhe Conosco</Link></li>
-                            <li><Link href="#" className="hover:underline">Sustentabilidade</Link></li>
-                            <li><Link href="#" className="hover:underline">Política de Privacidade</Link></li>
+                            <li><Link href="/" className="hover:underline">Sobre a Ortobom</Link></li>
+                            <li><Link href="/" className="hover:underline">Trabalhe Conosco</Link></li>
+                            <li><Link href="/" className="hover:underline">Sustentabilidade</Link></li>
+                            <li><Link href="/" className="hover:underline">Política de Privacidade</Link></li>
                         </ul>
                     </div>
 
                     <div>
                         <h4 className="font-bold text-[#1B2B4E] mb-4">Ajuda e Suporte</h4>
                         <ul className="space-y-2 text-sm">
-                            <li><Link href="#" className="hover:underline">Central de Atendimento</Link></li>
-                            <li><Link href="#" className="hover:underline">Política de Troca</Link></li>
-                            <li><Link href="#" className="hover:underline">Prazos de Entrega</Link></li>
-                            <li><Link href="#" className="hover:underline">Perguntas Frequentes</Link></li>
+                            <li><Link href="/" className="hover:underline">Central de Atendimento</Link></li>
+                            <li><Link href="/" className="hover:underline">Política de Troca</Link></li>
+                            <li><Link href="/" className="hover:underline">Prazos de Entrega</Link></li>
+                            <li><Link href="/" className="hover:underline">Perguntas Frequentes</Link></li>
                         </ul>
                     </div>
 
@@ -40,13 +40,13 @@ export function Footer() {
                     <div>
                         <h4 className="font-bold text-[#1B2B4E] mb-4">Siga-nos</h4>
                         <div className="flex gap-4">
-                            <Link href="#" className="bg-white p-2 rounded-full shadow-sm hover:text-blue-600 transition">
+                            <Link href="/" className="bg-white p-2 rounded-full shadow-sm hover:text-blue-600 transition">
                                 <Facebook size={20} />
                             </Link>
-                            <Link href="#" className="bg-white p-2 rounded-full shadow-sm hover:text-pink-600 transition">
+                            <Link href="/" className="bg-white p-2 rounded-full shadow-sm hover:text-pink-600 transition">
                                 <Instagram size={20} />
                             </Link>
-                            <Link href="#" className="bg-white p-2 rounded-full shadow-sm hover:text-red-600 transition">
+                            <Link href="/" className="bg-white p-2 rounded-full shadow-sm hover:text-red-600 transition">
                                 <Youtube size={20} />
                             </Link>
                         </div>

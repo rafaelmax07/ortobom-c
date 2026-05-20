@@ -1,3 +1,4 @@
+import type { Metadata } from 'next'
 import { createClient } from '@supabase/supabase-js'
 import { notFound } from 'next/navigation'
 import { ProductGallery } from '@/components/ui/ProductGallery'
@@ -7,6 +8,21 @@ import { ClientProductDetails } from './ClientProductDetails'
 const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL!
 const supabaseKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!
 const supabase = createClient(supabaseUrl, supabaseKey)
+
+export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
+  const { slug } = await params
+  const { data: product } = await supabase.from('products').select('name, featured_image, description').eq('slug', slug).single()
+  if (!product) return { title: 'Produto não encontrado' }
+  return {
+    title: product.name,
+    description: product.description?.substring(0, 160) || `Compre ${product.name} com as melhores condições na Ortobom.`,
+    openGraph: {
+      title: product.name,
+      description: `Compre ${product.name} pelo WhatsApp com entrega rápida.`,
+      images: product.featured_image ? [product.featured_image] : [],
+    },
+  }
+}
 
 export default async function ProductPage({ params }: { params: Promise<{ slug: string }> }) {
     const { slug } = await params

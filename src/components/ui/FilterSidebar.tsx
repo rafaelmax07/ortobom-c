@@ -2,23 +2,56 @@
 
 import Link from 'next/link'
 import { useState } from 'react'
-// import { Slider } from "@/components/ui/slider"
-// Actually I don't have shadcn installed yet properly for slider, let's use standard inputs
+import { useRouter, usePathname } from 'next/navigation'
 
 interface FilterSidebarProps {
     activeCategorySlug: string
+    currentMinPrice: string
+    currentMaxPrice: string
+    currentSizes: string[]
 }
 
 const CATEGORIES = [
     { name: 'Colchões', slug: 'colchoes' },
     { name: 'Camas e Bases', slug: 'camas' },
     { name: 'Travesseiros', slug: 'travesseiros' },
-    { name: 'Roupas de Cama', slug: 'roupa-de-cama' },
+    { name: 'Roupa de Cama', slug: 'roupa-de-cama' },
 ]
 
-export function FilterSidebar({ activeCategorySlug }: FilterSidebarProps) {
-    const [minPrice, setMinPrice] = useState('')
-    const [maxPrice, setMaxPrice] = useState('')
+const SIZES = ['Solteiro', 'Casal', 'Queen', 'King', 'Padrão']
+
+export function FilterSidebar({ activeCategorySlug, currentMinPrice, currentMaxPrice, currentSizes }: FilterSidebarProps) {
+    const router = useRouter()
+    const pathname = usePathname()
+
+    const [minPrice, setMinPrice] = useState(currentMinPrice)
+    const [maxPrice, setMaxPrice] = useState(currentMaxPrice)
+    const [selectedSizes, setSelectedSizes] = useState<string[]>(currentSizes)
+
+    const applyFilters = () => {
+        const params = new URLSearchParams()
+        if (minPrice) params.set('minPrice', minPrice)
+        if (maxPrice) params.set('maxPrice', maxPrice)
+        if (selectedSizes.length > 0) params.set('sizes', selectedSizes.join(','))
+
+        const queryString = params.toString()
+        router.push(queryString ? `${pathname}?${queryString}` : pathname)
+    }
+
+    const toggleSize = (size: string) => {
+        setSelectedSizes(prev =>
+            prev.includes(size)
+                ? prev.filter(s => s !== size)
+                : [...prev, size]
+        )
+    }
+
+    const clearFilters = () => {
+        setMinPrice('')
+        setMaxPrice('')
+        setSelectedSizes([])
+        router.push(pathname)
+    }
 
     return (
         <aside className="w-full md:w-64 flex-shrink-0 space-y-8">
@@ -42,7 +75,7 @@ export function FilterSidebar({ activeCategorySlug }: FilterSidebarProps) {
                 </ul>
             </div>
 
-            {/* Price Filter - Simplified for V1 */}
+            {/* Price Filter */}
             <div>
                 <h3 className="font-bold text-[#1B2B4E] mb-4 text-lg">Preço</h3>
                 <div className="flex items-center gap-2 mb-4">
@@ -68,28 +101,40 @@ export function FilterSidebar({ activeCategorySlug }: FilterSidebarProps) {
                         />
                     </div>
                 </div>
-                <button
-                    className="w-full bg-gray-100 text-gray-700 font-medium py-2 rounded-md text-sm hover:bg-gray-200 transition-colors"
-                    onClick={() => {
-                        // Future: push params to router
-                        alert('Filtro de preço será implementado na US-04!')
-                    }}
-                >
-                    Filtrar
-                </button>
             </div>
 
-            {/* Other Mock Filters */}
+            {/* Size Filter */}
             <div>
                 <h3 className="font-bold text-[#1B2B4E] mb-4 text-lg">Tamanho</h3>
                 <div className="space-y-2">
-                    {['Solteiro', 'Casal', 'Queen', 'King'].map(size => (
+                    {SIZES.map(size => (
                         <label key={size} className="flex items-center gap-2 cursor-pointer group">
-                            <input type="checkbox" className="rounded border-gray-300 text-blue-600 focus:ring-blue-500" />
+                            <input
+                                type="checkbox"
+                                checked={selectedSizes.includes(size)}
+                                onChange={() => toggleSize(size)}
+                                className="rounded border-gray-300 text-blue-600 focus:ring-blue-500"
+                            />
                             <span className="text-sm text-gray-600 group-hover:text-gray-900">{size}</span>
                         </label>
                     ))}
                 </div>
+            </div>
+
+            {/* Action Buttons */}
+            <div className="space-y-2">
+                <button
+                    className="w-full bg-[#1B2B4E] text-white font-medium py-2.5 rounded-md text-sm hover:bg-blue-900 transition-colors"
+                    onClick={applyFilters}
+                >
+                    Filtrar
+                </button>
+                <button
+                    className="w-full bg-gray-100 text-gray-700 font-medium py-2 rounded-md text-sm hover:bg-gray-200 transition-colors"
+                    onClick={clearFilters}
+                >
+                    Limpar Filtros
+                </button>
             </div>
         </aside>
     )
