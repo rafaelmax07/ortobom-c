@@ -234,12 +234,22 @@ export function Header() {
                                 <span className={`mt-1 transition-all duration-300 ${isScrolled ? 'text-[12px]' : 'text-[13px]'}`} style={{ fontWeight: 700 }}>João Pessoa – PB</span>
                             </div>
                             {/* Login */}
-                            <Link href="#" className="flex flex-col items-center justify-center hover:text-orange-300 transition-colors">
+                            <Link
+                                href="https://www.ortobom.com.br/Account/LogOn"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="flex flex-col items-center justify-center hover:text-orange-300 transition-colors"
+                            >
                                 <User size={24} strokeWidth={2.25} />
                                 <span className={`mt-1 text-white transition-all duration-300 ${isScrolled ? 'text-[12px]' : 'text-[13px]'}`} style={{ fontWeight: 700 }}>Fazer login</span>
                             </Link>
                             {/* Favoritos */}
-                            <Link href="#" className="flex flex-col items-center justify-center hover:text-orange-300 transition-colors">
+                            <Link
+                                href="https://www.ortobom.com.br/Account/Favoritos"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="flex flex-col items-center justify-center hover:text-orange-300 transition-colors"
+                            >
                                 <Heart size={24} strokeWidth={2.25} />
                                 <span className={`mt-1 text-white transition-all duration-300 ${isScrolled ? 'text-[12px]' : 'text-[13px]'}`} style={{ fontWeight: 700 }}>Favoritos</span>
                             </Link>
@@ -377,7 +387,15 @@ export function Header() {
                             <span className="text-white font-bold">Menu</span>
                             <button onClick={() => setIsMenuOpen(false)} className="text-white/70 hover:text-white"><X size={20} /></button>
                         </div>
-                        <Link href="#" className="px-5 py-3.5 text-sm text-primary font-semibold border-b border-border" onClick={() => setIsMenuOpen(false)}>Fazer login</Link>
+                        <Link
+                            href="https://www.ortobom.com.br/Account/LogOn"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="px-5 py-3.5 text-sm text-primary font-semibold border-b border-border"
+                            onClick={() => setIsMenuOpen(false)}
+                        >
+                            Fazer login
+                        </Link>
                         <Link href="/c/colchoes" className="px-5 py-3.5 text-accent font-bold text-sm border-b border-border" onClick={() => setIsMenuOpen(false)}>OFERTAS</Link>
                         {NAV_CATEGORIES.map(cat => (
                             <Link key={cat.slug} href={`/c/${cat.slug}`} className="flex items-center justify-between px-5 py-3.5 text-sm text-text-main border-b border-border hover:bg-bg-light" onClick={() => setIsMenuOpen(false)}>

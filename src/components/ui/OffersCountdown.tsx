@@ -50,10 +50,10 @@ export function OffersCountdown() {
 
 function TimeBlock({ value, label }: { value: string; label: string }) {
     return (
-        <div className="flex flex-col items-center w-[45px]">
-            <span className="text-[24px] font-bold leading-none">{value}</span>
+        <div className="flex flex-col items-center w-[38px]">
+            <span className="text-[20px] font-bold leading-none">{value}</span>
             <span
-                className="text-[10px] font-medium uppercase mt-2"
+                className="text-[9px] font-medium uppercase mt-1.5"
                 style={{ letterSpacing: '0.5px', color: '#E2E8F0' }}
             >
                 {label}
@@ -64,7 +64,7 @@ function TimeBlock({ value, label }: { value: string; label: string }) {
 
 function Separator() {
     return (
-        <span className="text-[20px] font-bold mx-1 relative" style={{ top: -2 }}>
+        <span className="text-[16px] font-bold mx-0.5 relative" style={{ top: -2 }}>
             :
         </span>
     )

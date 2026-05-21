@@ -49,6 +49,7 @@ export function ClientProductDetails({ product }: { product: Product }) {
             variantSize: selectedVariant.size,
             variantSku: selectedVariant.sku,
             price: selectedVariant.price,
+            compare_at_price: selectedVariant.compare_at_price ?? null,
             image: product.featured_image || '',
             quantity: quantity,
             dimensions: selectedVariant.dimensions,

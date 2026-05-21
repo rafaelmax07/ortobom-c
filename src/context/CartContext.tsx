@@ -19,6 +19,8 @@ export interface CartItem {
   variantSize: string;
   variantSku: string;
   price: number;
+  /** Preço "de" / antes do desconto (para mostrar riscado e calcular % OFF) */
+  compare_at_price?: number | null;
   image: string;
   quantity: number;
   dimensions?: string | null;
@@ -159,7 +161,7 @@ export function CartProvider({ children }: { children: React.ReactNode }) {
     const total = totalPrice.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
 
     const message = [
-      '🛒 *Pedido via Ortobom*',
+      '*Pedido via Ortobom*',
       '',
       ...lines,
       '',
@@ -178,7 +180,7 @@ export function CartProvider({ children }: { children: React.ReactNode }) {
       const message = [
         `Olá! Tenho interesse em:`,
         ``,
-        `🛏️ *${item.productName}*`,
+        `*${item.productName}*`,
         `Tamanho: ${item.variantSize}${dims}`,
         `Preço: ${price}`,
         `SKU: ${item.variantSku}`,

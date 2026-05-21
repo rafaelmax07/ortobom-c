@@ -11,10 +11,10 @@ export interface WhatsAppDeeplinkArgs {
 
 export const WHATSAPP_MESSAGE_TEMPLATE =
   "Olá! Gostaria de saber sobre o prazo e o frete para este item:\n\n" +
-  "🛏️ *Modelo:* {productName}\n" +
-  "📏 *Tamanho:* {size} ({dimensions})\n" +
-  "💰 *Preço:* {formattedPrice}\n" +
-  "🆔 *SKU:* {sku}\n\n" +
+  "*Modelo:* {productName}\n" +
+  "*Tamanho:* {size} ({dimensions})\n" +
+  "*Preço:* {formattedPrice}\n" +
+  "*SKU:* {sku}\n\n" +
   "Por favor, me informe as opções para pagamento.";
 
 export function formatBRL(value: number): string {

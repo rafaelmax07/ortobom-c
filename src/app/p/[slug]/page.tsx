@@ -154,8 +154,13 @@ export default async function ProductPage({ params }: { params: Promise<{ slug: 
                     <div
                         className="prose prose-sm sm:prose max-w-4xl mx-auto text-text-muted leading-relaxed
                             [&_img]:rounded-lg [&_img]:mx-auto [&_img]:my-6 [&_img]:max-w-full
-                            [&_p]:mb-4 [&_h3]:text-primary [&_h3]:font-bold"
-                        dangerouslySetInnerHTML={{ __html: product.description || '<p>Descrição em breve.</p>' }}
+                            [&_p]:mb-4 [&_h3]:text-primary [&_h3]:font-bold [&_section]:my-6"
+                        dangerouslySetInnerHTML={{
+                            __html:
+                                product.description_html ||
+                                product.description ||
+                                '<p>Descrição em breve.</p>',
+                        }}
                     />
                 </Container>
             </section>

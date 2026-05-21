@@ -5,8 +5,8 @@ import { CategoryGrid } from '@/components/ui/CategoryGrid'
 import { HeroOffersGrid } from '@/components/ui/HeroOffersGrid'
 import { ComfortSection } from '@/components/ui/ComfortSection'
 import { NewsletterSection } from '@/components/ui/NewsletterSection'
-import { Section } from '@/components/ui/Section'
-import { ProductGrid } from '@/components/ui/ProductGrid'
+import { CategoryTabsSection } from '@/components/ui/CategoryTabsSection'
+import { AwardsCarousel } from '@/components/ui/AwardsCarousel'
 
 export const revalidate = 60
 
@@ -77,11 +77,11 @@ export default async function Home() {
         })
         .slice(0, 12)
 
-    // By category
-    const colchoes = formattedProducts.filter(p => p.category_slug === 'colchoes').slice(0, 4)
-    const bases = formattedProducts.filter(p => p.category_slug === 'camas').slice(0, 4)
-    const travesseiros = formattedProducts.filter(p => p.category_slug === 'travesseiros').slice(0, 4)
-    const acessorios = formattedProducts.filter(p => p.category_slug === 'acessorios').slice(0, 4)
+    // Produtos por categoria para a seção de tabs (carrossel à direita)
+    const tabsCategorySlugs = ['colchoes', 'camas', 'cabeceiras', 'travesseiros', 'moveis']
+    const tabsProducts = formattedProducts.filter(p =>
+        tabsCategorySlugs.includes(p.category_slug)
+    )
 
     return (
         <main className="min-h-screen bg-bg-page">
@@ -90,50 +90,11 @@ export default async function Home() {
             <HeroOffersGrid products={offers} />
             <CategoryGrid />
 
-            {colchoes.length > 0 && (
-                <Section
-                    title="Seu conforto ideal começa aqui"
-                    seeMoreHref="/c/colchoes"
-                    divider="top"
-                >
-                    <ProductGrid products={colchoes} />
-                </Section>
-            )}
+            <CategoryTabsSection products={tabsProducts} />
 
             <ComfortSection />
 
-            {bases.length > 0 && (
-                <Section
-                    title="Já conhece nossas bases?"
-                    seeMoreHref="/c/camas"
-                    seeMoreLabel="Ver todas as bases"
-                    divider="top"
-                >
-                    <ProductGrid products={bases} />
-                </Section>
-            )}
-
-            {travesseiros.length > 0 && (
-                <Section
-                    title="Travesseiros em destaque"
-                    seeMoreHref="/c/travesseiros"
-                    seeMoreLabel="Ver todos os travesseiros"
-                    divider="top"
-                >
-                    <ProductGrid products={travesseiros} />
-                </Section>
-            )}
-
-            {acessorios.length > 0 && (
-                <Section
-                    title="Acessórios"
-                    seeMoreHref="/c/acessorios"
-                    seeMoreLabel="Ver todos os acessórios"
-                    divider="top"
-                >
-                    <ProductGrid products={acessorios} />
-                </Section>
-            )}
+            <AwardsCarousel />
 
             <NewsletterSection />
         </main>

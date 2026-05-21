@@ -61,10 +61,10 @@ export function HeroOffersGrid({ products }: HeroOffersGridProps) {
                 </div>
 
                 {/* Wrapper que controla a área do carousel */}
-                <div className="grid grid-cols-1 lg:grid-cols-[280px_minmax(0,1fr)] gap-5">
+                <div className="grid grid-cols-1 lg:grid-cols-[300px_minmax(0,1fr)] gap-5">
                     {/* Card Countdown */}
                     <div
-                        className="relative rounded-[var(--radius-card)] flex flex-col text-center text-white min-h-[543px] overflow-hidden pt-[50px]"
+                        className="relative rounded-[var(--radius-card)] flex flex-col text-center text-white min-h-[400px] overflow-hidden pt-[50px]"
                         style={{
                             background:
                                 'linear-gradient(135deg, #243E69 0%, #152238 50%, #0E1624 100%)',
@@ -184,7 +184,7 @@ export function HeroOffersGrid({ products }: HeroOffersGridProps) {
                                 {products.map((product) => (
                                     <div
                                         key={product.id}
-                                        className="flex-[0_0_33.333%] min-w-0 px-2"
+                                        className="flex-[0_0_33.333%] min-w-0 px-2 [&>article_.aspect-square]:aspect-[5/4]"
                                     >
                                         <ProductCard product={product} variant="offer" />
                                     </div>

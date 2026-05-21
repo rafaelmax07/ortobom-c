@@ -1,14 +1,15 @@
-import Link from 'next/link'
-import { Facebook, Instagram, Youtube, Linkedin } from 'lucide-react'
+import Image from 'next/image'
+import { Phone, BookOpen, ChevronRight, Facebook, Instagram, Youtube, Linkedin } from 'lucide-react'
+import { FactoriesAccordion } from './FactoriesAccordion'
 
 const ORTOBOM_BASE = 'https://www.ortobom.com.br'
 
 const INSTITUCIONAL = [
-    { label: 'Sobre a Ortobom', href: `${ORTOBOM_BASE}/i/sobre-a-ortobom` },
+    { label: 'Sobre a ortobom', href: `${ORTOBOM_BASE}/i/sobre-a-ortobom` },
     { label: 'Mapa de Lojas', href: `${ORTOBOM_BASE}/listalojas` },
     { label: 'Ortobom na Mídia', href: `${ORTOBOM_BASE}/midia` },
     { label: 'Manual do Sono', href: 'https://cdn.ortobom.com.br/file/b094f962-936c-4f52-8607-ddbcfb7d3ff5/MANUAL%20DO%20SONO%20FRANQUIA%202.2024-otimizado.pdf' },
-    { label: 'Mapa de Conforto', href: `${ORTOBOM_BASE}/i/mapa-do-conforto` },
+    { label: 'Mapa de conforto', href: `${ORTOBOM_BASE}/i/mapa-do-conforto` },
     { label: 'Teste de Qualidade', href: `${ORTOBOM_BASE}/i/teste-de-qualidade` },
     { label: 'Responsabilidade Social', href: `${ORTOBOM_BASE}/i/responsabilidade-social` },
     { label: 'Meio Ambiente', href: `${ORTOBOM_BASE}/i/meio-ambiente` },
@@ -16,6 +17,9 @@ const INSTITUCIONAL = [
     { label: 'Política de Promoções', href: `${ORTOBOM_BASE}/i/politicadepromocao` },
     { label: 'Cupom de Desconto', href: `${ORTOBOM_BASE}/cupomdedesconto` },
     { label: 'Cartilha da Diversidade', href: `${ORTOBOM_BASE}/i/cartilha-da-diversidade` },
+]
+
+const INSTITUCIONAL_EXTRA = [
     { label: 'Extranet', href: 'http://extranet.ortobom.com.br/' },
     { label: 'Sisloja', href: 'https://sisloja.ortobom.com.br/' },
 ]
@@ -43,22 +47,36 @@ const FALE_CONOSCO = [
 ]
 
 const PAGINAS_ESPECIAIS = [
-    { label: 'Fábrica dos Sonhos', href: `${ORTOBOM_BASE}/FabricaDosSonhos` },
+    { label: 'Fábrica dos sonhos', href: `${ORTOBOM_BASE}/FabricaDosSonhos` },
     { label: 'Colchão Ideal', href: `${ORTOBOM_BASE}/colchaoideal` },
     { label: 'Colchão na Caixa Only', href: `${ORTOBOM_BASE}/cemdias` },
-    { label: 'Relatório de Transparência Salarial', href: `${ORTOBOM_BASE}/institucional/relatorio-de-transparencia-salarial` },
+    { label: 'Relatório de transparência salarial', href: `${ORTOBOM_BASE}/institucional/relatorio-de-transparencia-salarial` },
+]
+
+const PAYMENT_METHODS = [
+    { name: 'Mastercard', src: '/payment-icons/icone-mastercard.png' },
+    { name: 'Visa', src: '/payment-icons/icone-visa.png' },
+    { name: 'Elo', src: '/payment-icons/icone-elo.png' },
+    { name: 'American Express', src: '/payment-icons/icone-amex.png' },
+    { name: 'Diners Club', src: '/payment-icons/icone-diners.png' },
+    { name: 'Sorocred', src: '/payment-icons/icone-sorocred.png' },
+    { name: 'Banestes', src: '/payment-icons/icone-banestes.png' },
+    { name: 'Cabal', src: '/payment-icons/icone-cabal.png' },
+    { name: 'Pix', src: '/payment-icons/icone-pix.png' },
+    { name: 'Boleto', src: '/payment-icons/icone-boleto.png' },
 ]
 
 interface FooterColumnProps {
     title: string
     items: { label: string; href: string }[]
+    extraItems?: { label: string; href: string }[]
 }
 
-function FooterColumn({ title, items }: FooterColumnProps) {
+function FooterColumn({ title, items, extraItems }: FooterColumnProps) {
     return (
         <div>
-            <h4 className="font-bold text-white text-xs uppercase tracking-wider mb-4">{title}</h4>
-            <ul className="space-y-2 text-xs">
+            <h4 className="font-bold text-white text-[15px] mb-4">{title}</h4>
+            <ul className="space-y-2 text-[13px]">
                 {items.map(item => (
                     <li key={item.label}>
                         <a
@@ -72,83 +90,169 @@ function FooterColumn({ title, items }: FooterColumnProps) {
                     </li>
                 ))}
             </ul>
+
+            {extraItems && extraItems.length > 0 && (
+                <ul className="space-y-2 text-[13px] mt-5 pt-5">
+                    {extraItems.map(item => (
+                        <li key={item.label}>
+                            <a
+                                href={item.href}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="hover:text-white transition-colors"
+                            >
+                                {item.label}
+                            </a>
+                        </li>
+                    ))}
+                </ul>
+            )}
         </div>
+    )
+}
+
+function SocialIcon({
+    href,
+    label,
+    children,
+}: {
+    href: string
+    label: string
+    children: React.ReactNode
+}) {
+    return (
+        <a
+            href={href}
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label={label}
+            className="w-10 h-10 rounded-md flex items-center justify-center text-white transition-opacity hover:opacity-90"
+            style={{ backgroundColor: 'var(--color-primary)' }}
+        >
+            {children}
+        </a>
     )
 }
 
 export function Footer() {
     return (
-        <footer className="bg-navy-dark text-white/70 font-sans text-sm">
+        <footer className="bg-navy-dark text-white/70">
             <div className="max-w-[1280px] mx-auto px-6 pt-10 pb-6">
-                {/* Top utility row */}
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 mb-10 pb-8 border-b border-white/10">
-                    <div>
-                        <h4 className="font-bold text-white text-xs uppercase tracking-wider mb-2">Televendas</h4>
-                        <p className="text-white/60 text-xs">Nossa equipe de consultores está preparada para te auxiliar.</p>
-                        <a href="tel:30035011" className="text-white font-bold text-base mt-1 block">3003-5011</a>
-                    </div>
-                    <div>
-                        <h4 className="font-bold text-white text-xs uppercase tracking-wider mb-2">Manual do Sono Ortobom</h4>
-                        <p className="text-white/60 text-xs">Confira como ter sono melhores com o nosso manual.</p>
+                {/* Top: cards Televendas + Manual do Sono */}
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-5 mb-10 max-w-[1200px] mx-auto">
+                    <div className="border border-white rounded-xl px-5 py-6 flex items-center justify-center gap-4 min-h-[88px]">
+                        <Phone size={22} className="text-white shrink-0" aria-hidden="true" />
+                        <div className="min-w-0 max-w-[290px] flex flex-col justify-center">
+                            <h4 className="font-medium text-white text-[15px] leading-tight">Televendas</h4>
+                            <p className="text-white/65 text-[11px] leading-snug">
+                                Nossa equipe de consultores está preparada para te auxiliar.
+                            </p>
+                        </div>
                         <a
-                            href="https://drive.google.com/file/d/1sGNmqQuYNc0kG7q6g4YjpTKm265_o9EO/view"
+                            href={`${ORTOBOM_BASE}/Televendas`}
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="text-white font-bold text-xs mt-1 inline-block hover:underline"
+                            className="text-white text-[13px] font-bold inline-flex items-center gap-1 hover:underline whitespace-nowrap"
                         >
-                            Acesse e confira →
+                            Fale com consultores <ChevronRight size={14} />
+                        </a>
+                    </div>
+
+                    <div className="border border-white rounded-xl px-5 py-6 flex items-center justify-center gap-3 min-h-[88px]">
+                        <BookOpen size={28} className="text-white shrink-0" aria-hidden="true" />
+                        <div className="min-w-0 max-w-[330px] flex flex-col justify-center">
+                            <h4 className="font-medium text-white text-[15px] leading-tight">
+                                Manual do Sono Ortobom
+                            </h4>
+                            <p className="text-white/65 text-[12px] leading-snug">
+                                Confira como ter sono melhores com o nosso manual.
+                            </p>
+                        </div>
+                        <a
+                            href="https://cdn.ortobom.com.br/file/b094f962-936c-4f52-8607-ddbcfb7d3ff5/MANUAL%20DO%20SONO%20FRANQUIA%202.2024-otimizado.pdf"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="text-white text-[13px] font-bold inline-flex items-center gap-1 hover:underline whitespace-nowrap"
+                        >
+                            Acesse e confira <ChevronRight size={14} />
                         </a>
                     </div>
                 </div>
 
-                {/* Main Columns */}
-                <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-8 mb-10">
-                    <FooterColumn title="Institucional" items={INSTITUCIONAL} />
+                {/* Colunas */}
+                <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-8 mb-10 max-w-[1200px] mx-auto">
+                    <FooterColumn
+                        title="Institucional"
+                        items={INSTITUCIONAL}
+                        extraItems={INSTITUCIONAL_EXTRA}
+                    />
                     <FooterColumn title="Central do Cliente" items={CENTRAL_CLIENTE} />
                     <FooterColumn title="Fale Conosco" items={FALE_CONOSCO} />
                     <FooterColumn title="Páginas Especiais" items={PAGINAS_ESPECIAIS} />
 
-                    {/* Social */}
                     <div>
-                        <h4 className="font-bold text-white text-xs uppercase tracking-wider mb-4">Nossas Redes</h4>
-                        <div className="flex gap-3 mb-6">
-                            <a href="https://www.facebook.com/ortobom" target="_blank" rel="noopener noreferrer" aria-label="Facebook" className="w-9 h-9 rounded-full bg-white/10 flex items-center justify-center hover:bg-white/20 transition-colors">
-                                <Facebook size={15} />
-                            </a>
-                            <a href="https://www.instagram.com/ortobom" target="_blank" rel="noopener noreferrer" aria-label="Instagram" className="w-9 h-9 rounded-full bg-white/10 flex items-center justify-center hover:bg-white/20 transition-colors">
-                                <Instagram size={15} />
-                            </a>
-                            <a href="https://www.youtube.com/ortobom" target="_blank" rel="noopener noreferrer" aria-label="YouTube" className="w-9 h-9 rounded-full bg-white/10 flex items-center justify-center hover:bg-white/20 transition-colors">
-                                <Youtube size={15} />
-                            </a>
-                            <a href="https://www.linkedin.com/company/ortobom/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn" className="w-9 h-9 rounded-full bg-white/10 flex items-center justify-center hover:bg-white/20 transition-colors">
-                                <Linkedin size={15} />
-                            </a>
+                        <h4 className="font-bold text-white text-[15px] mb-4">Nossas Redes</h4>
+                        <div className="grid grid-cols-3 gap-2 max-w-[140px]">
+                            <SocialIcon href="https://www.facebook.com/ortobom" label="Facebook">
+                                <Facebook size={18} />
+                            </SocialIcon>
+                            <SocialIcon href="https://www.instagram.com/ortobom" label="Instagram">
+                                <Instagram size={18} />
+                            </SocialIcon>
+                            <SocialIcon href="https://www.youtube.com/ortobom" label="YouTube">
+                                <Youtube size={18} />
+                            </SocialIcon>
+                            <SocialIcon
+                                href="https://www.linkedin.com/company/ortobom/"
+                                label="LinkedIn"
+                            >
+                                <Linkedin size={18} />
+                            </SocialIcon>
                         </div>
+                    </div>
+                </div>
 
-                        <h4 className="font-bold text-white text-xs uppercase tracking-wider mb-3">Formas de pagamento</h4>
+                {/* Pagamentos + Segurança */}
+                <div className="grid grid-cols-1 md:grid-cols-[1fr_auto] gap-8 pt-6 items-start max-w-[1200px] mx-auto">
+                    <div>
+                        <h5 className="font-bold text-white text-[13px] mb-3">
+                            Formas e bandeiras de pagamento aceitas
+                        </h5>
                         <div className="flex flex-wrap gap-2">
-                            {['Mastercard', 'Visa', 'Elo', 'Amex', 'Pix', 'Boleto'].map(method => (
-                                <span key={method} className="bg-white/10 text-white/80 text-[10px] font-medium px-2 py-1 rounded">
-                                    {method}
-                                </span>
+                            {PAYMENT_METHODS.map(p => (
+                                <Image
+                                    key={p.name}
+                                    src={p.src}
+                                    alt={p.name}
+                                    width={40}
+                                    height={26}
+                                    className="h-[26px] w-auto rounded-sm bg-white/95 px-1"
+                                />
                             ))}
                         </div>
+                    </div>
 
-                        <h4 className="font-bold text-white text-xs uppercase tracking-wider mt-5 mb-2">Segurança</h4>
-                        <span className="bg-white/10 text-white/80 text-[10px] font-medium px-2 py-1 rounded inline-block">
-                            🔒 Site Seguro
-                        </span>
+                    <div>
+                        <h5 className="font-bold text-white text-[13px] mb-3">Selos de segurança</h5>
+                        <Image
+                            src="/payment-icons/icone-seguranca.png"
+                            alt="Selo de Segurança"
+                            width={44}
+                            height={44}
+                            className="h-[44px] w-auto rounded-sm bg-white/95 p-1 inline-block"
+                        />
                     </div>
                 </div>
             </div>
 
             {/* Copyright */}
-            <div className="border-t border-white/10 py-4">
-                <div className="max-w-[1280px] mx-auto px-6 text-center text-xs text-white/50">
+            <div className="py-8">
+                <div className="max-w-[1200px] mx-auto px-6 text-[12px] text-white border-t border-b border-white/30 py-8">
                     <p>© Copyright ORTOBOM – Todos os direitos reservados.</p>
                 </div>
             </div>
+
+            <FactoriesAccordion />
         </footer>
     )
 }
