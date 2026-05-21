@@ -27,7 +27,17 @@ function makeSlug(name) {
 }
 
 // Standard size order for mattresses/bases
-const SIZE_ORDER = ['Solteiro', 'Casal', 'Queen', 'King', 'Super King', 'Padrão'];
+const SIZE_ORDER = [
+  'Solteiro',
+  'Solteiro Extra',
+  'Casal',
+  'Queen',
+  'King',
+  'Super King',
+  'Infantil',
+  'Berço',
+  'Padrão',
+];
 
 function sortVariants(variants) {
   return [...variants].sort((a, b) => {
@@ -123,21 +133,23 @@ products.forEach((p) => {
   const variants = p.variants || [];
   const sorted = sortVariants(variants);
 
-  sorted.forEach((v, idx) => {
+  sorted.forEach((v) => {
     // Skip "sob medida"
     if (v.size.toLowerCase().includes('sob medida') || v.size.toLowerCase().includes('medida')) return;
 
     const price = Math.round(v.price || 0);
-    // If no compare_at_price scraped, use the product-level base or add 30%
-    const compareBase = p.compare_at_price_base || 0;
-    const comparePrice = compareBase > 0 && idx === 0
-      ? Math.round(compareBase)
-      : Math.round(price * 1.3);
+    // Prioridade: compare_at_price da variante > compare_at_price_base do produto
+    let comparePrice = null;
+    if (v.compare_at_price && v.compare_at_price > price) {
+      comparePrice = Math.round(v.compare_at_price);
+    } else if (p.compare_at_price_base && p.compare_at_price_base > price) {
+      comparePrice = Math.round(p.compare_at_price_base);
+    }
 
     const variantSku = `${slug}-${v.size.replace(/\s+/g, '').toUpperCase().substring(0, 5)}`;
 
     sql += `  INSERT INTO variants (product_id, size, price, compare_at_price, sku, dimensions, stock)\n`;
-    sql += `    VALUES (prod_id, ${escape(v.size)}, ${price}, ${comparePrice}, '${variantSku}', ${escape(v.dimensions || null)}, 50);\n`;
+    sql += `    VALUES (prod_id, ${escape(v.size)}, ${price}, ${comparePrice ?? 'NULL'}, '${variantSku}', ${escape(v.dimensions || null)}, 50);\n`;
   });
 });
 

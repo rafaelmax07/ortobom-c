@@ -32,7 +32,11 @@ export function OffersCountdown() {
     const pad = (n: number) => String(n).padStart(2, '0')
 
     return (
-        <div className="flex items-center gap-1.5" aria-live="polite" aria-label="Tempo restante da promoção">
+        <div
+            className="flex items-start justify-center text-white tabular-nums"
+            aria-live="polite"
+            aria-label="Tempo restante da promoção"
+        >
             <TimeBlock value={pad(time.days)} label="DIAS" />
             <Separator />
             <TimeBlock value={pad(time.hours)} label="HORAS" />
@@ -46,15 +50,22 @@ export function OffersCountdown() {
 
 function TimeBlock({ value, label }: { value: string; label: string }) {
     return (
-        <div className="flex flex-col items-center">
-            <span className="bg-primary text-white font-bold text-base sm:text-lg px-2.5 py-1.5 rounded-[var(--radius-button)] min-w-[40px] sm:min-w-[48px] text-center tabular-nums leading-none">
-                {value}
+        <div className="flex flex-col items-center w-[45px]">
+            <span className="text-[24px] font-bold leading-none">{value}</span>
+            <span
+                className="text-[10px] font-medium uppercase mt-2"
+                style={{ letterSpacing: '0.5px', color: '#E2E8F0' }}
+            >
+                {label}
             </span>
-            <span className="text-[9px] text-text-muted mt-1 font-medium">{label}</span>
         </div>
     )
 }
 
 function Separator() {
-    return <span className="text-primary font-bold text-lg self-start mt-1.5">:</span>
+    return (
+        <span className="text-[20px] font-bold mx-1 relative" style={{ top: -2 }}>
+            :
+        </span>
+    )
 }

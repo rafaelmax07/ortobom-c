@@ -106,91 +106,95 @@ export function HeroSlider({ banners = [] }: HeroSliderProps) {
     }, [emblaApi])
 
     return (
-        <section className="relative bg-bg-light">
-            {/* Banner viewport */}
-            <div className="overflow-hidden" ref={emblaRef}>
-                <div className="flex">
-                    {displayBanners.map((banner) => (
-                        <div
-                            key={banner.id}
-                            className="flex-[0_0_100%] min-w-0 relative aspect-[16/5] md:aspect-[64/15]"
-                        >
-                            <Link href={banner.link || '#'} className="block w-full h-full relative">
-                                {/* Desktop Image */}
-                                <div className="hidden md:block w-full h-full relative">
-                                    <Image
-                                        src={banner.image_desktop_url}
-                                        alt={banner.title}
-                                        fill
-                                        sizes="100vw"
-                                        className="object-cover"
-                                        priority
-                                        unoptimized
-                                    />
+        <section className="bg-white">
+            <div className="max-w-[1600px] mx-auto px-6">
+                <div className="relative">
+                    {/* Banner viewport */}
+                    <div className="overflow-hidden" ref={emblaRef}>
+                        <div className="flex">
+                            {displayBanners.map((banner) => (
+                                <div
+                                    key={banner.id}
+                                    className="flex-[0_0_100%] min-w-0 relative aspect-[16/5] md:aspect-[64/16]"
+                                >
+                                    <Link href={banner.link || '#'} className="block w-full h-full relative">
+                                        {/* Desktop Image */}
+                                        <div className="hidden md:block w-full h-full relative">
+                                            <Image
+                                                src={banner.image_desktop_url}
+                                                alt={banner.title}
+                                                fill
+                                                sizes="(max-width: 1280px) 100vw, 1280px"
+                                                className="object-cover"
+                                                priority
+                                                unoptimized
+                                            />
+                                        </div>
+                                        {/* Mobile Image */}
+                                        <div className="block md:hidden w-full h-full relative">
+                                            <Image
+                                                src={banner.image_mobile_url || banner.image_desktop_url}
+                                                alt={banner.title}
+                                                fill
+                                                sizes="100vw"
+                                                className="object-cover"
+                                                priority
+                                                unoptimized
+                                            />
+                                        </div>
+                                    </Link>
                                 </div>
-                                {/* Mobile Image */}
-                                <div className="block md:hidden w-full h-full relative">
-                                    <Image
-                                        src={banner.image_mobile_url || banner.image_desktop_url}
-                                        alt={banner.title}
-                                        fill
-                                        sizes="100vw"
-                                        className="object-cover"
-                                        priority
-                                        unoptimized
-                                    />
-                                </div>
-                            </Link>
+                            ))}
                         </div>
-                    ))}
-                </div>
-            </div>
-
-            {/* Barra de navegação inferior — setas + nomes dos banners (sobreposta ao banner) */}
-            <div className="absolute left-0 right-0 bottom-0 z-10 bg-black/35 backdrop-blur-md">
-                <div className="flex items-center px-6 lg:px-10 xl:px-16 py-1.5 gap-4">
-                    {/* Setas */}
-                    <div className="flex items-center gap-2 flex-shrink-0">
-                        <button
-                            type="button"
-                            aria-label="Banner anterior"
-                            onClick={scrollPrev}
-                            className="w-9 h-9 flex items-center justify-center rounded-md bg-white/15 hover:bg-white/30 text-white transition-colors"
-                        >
-                            <ChevronLeft size={18} />
-                        </button>
-                        <button
-                            type="button"
-                            aria-label="Próximo banner"
-                            onClick={scrollNext}
-                            className="w-9 h-9 flex items-center justify-center rounded-md bg-white/15 hover:bg-white/30 text-white transition-colors"
-                        >
-                            <ChevronRight size={18} />
-                        </button>
                     </div>
 
-                    {/* Lista de nomes dos banners */}
-                    <ul className="flex items-center gap-7 overflow-x-auto scrollbar-hide flex-1 min-w-0">
-                        {displayBanners.map((banner, idx) => {
-                            const isActive = idx === selectedIndex
-                            return (
-                                <li key={banner.id} className="flex-shrink-0">
-                                    <button
-                                        type="button"
-                                        onClick={() => scrollTo(idx)}
-                                        className={`text-[14px] whitespace-nowrap transition-colors ${
-                                            isActive
-                                                ? 'text-white'
-                                                : 'text-white/75 hover:text-white'
-                                        }`}
-                                        style={{ fontWeight: isActive ? 700 : 500 }}
-                                    >
-                                        {shortenTitle(banner.title)}
-                                    </button>
-                                </li>
-                            )
-                        })}
-                    </ul>
+            {/* Barra de navegação inferior — setas + nomes dos banners (sobreposta ao banner) */}
+                    <div className="absolute left-0 right-0 bottom-0 z-10 bg-black/35 backdrop-blur-md">
+                        <div className="flex items-center px-6 lg:px-10 xl:px-12 py-1.5 gap-4">
+                            {/* Setas */}
+                            <div className="flex items-center gap-2 flex-shrink-0">
+                                <button
+                                    type="button"
+                                    aria-label="Banner anterior"
+                                    onClick={scrollPrev}
+                                    className="w-9 h-9 flex items-center justify-center rounded-md bg-white/15 hover:bg-white/30 text-white transition-colors"
+                                >
+                                    <ChevronLeft size={18} />
+                                </button>
+                                <button
+                                    type="button"
+                                    aria-label="Próximo banner"
+                                    onClick={scrollNext}
+                                    className="w-9 h-9 flex items-center justify-center rounded-md bg-white/15 hover:bg-white/30 text-white transition-colors"
+                                >
+                                    <ChevronRight size={18} />
+                                </button>
+                            </div>
+
+                            {/* Lista de nomes dos banners */}
+                            <ul className="flex items-center gap-7 overflow-x-auto scrollbar-hide flex-1 min-w-0">
+                                {displayBanners.map((banner, idx) => {
+                                    const isActive = idx === selectedIndex
+                                    return (
+                                        <li key={banner.id} className="flex-shrink-0">
+                                            <button
+                                                type="button"
+                                                onClick={() => scrollTo(idx)}
+                                                className={`text-[14px] whitespace-nowrap transition-colors ${
+                                                    isActive
+                                                        ? 'text-white'
+                                                        : 'text-white/75 hover:text-white'
+                                                }`}
+                                                style={{ fontWeight: isActive ? 700 : 500 }}
+                                            >
+                                                {shortenTitle(banner.title)}
+                                            </button>
+                                        </li>
+                                    )
+                                })}
+                            </ul>
+                        </div>
+                    </div>
                 </div>
             </div>
         </section>

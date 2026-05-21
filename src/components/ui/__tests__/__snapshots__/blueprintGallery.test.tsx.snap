@@ -69,8 +69,7 @@ exports[`ProductGallery > renders with four images and no discount badge 1`] = `
       </div>
       <button
         aria-label="Imagem anterior"
-        class="absolute left-3 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-navy-medium text-white flex items-center justify-center shadow-md hover:bg-primary-hover transition-colors"
-        type="button"
+        class="inline-flex items-center justify-center transition-colors duration-150 w-10 h-10 bg-navy-medium text-white hover:bg-primary-hover rounded-full absolute left-3 top-1/2 -translate-y-1/2 shadow-md"
       >
         <svg
           aria-hidden="true"
@@ -92,8 +91,7 @@ exports[`ProductGallery > renders with four images and no discount badge 1`] = `
       </button>
       <button
         aria-label="Próxima imagem"
-        class="absolute right-3 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-navy-medium text-white flex items-center justify-center shadow-md hover:bg-primary-hover transition-colors"
-        type="button"
+        class="inline-flex items-center justify-center transition-colors duration-150 w-10 h-10 bg-navy-medium text-white hover:bg-primary-hover rounded-full absolute right-3 top-1/2 -translate-y-1/2 shadow-md"
       >
         <svg
           aria-hidden="true"
@@ -197,7 +195,7 @@ exports[`ProductGallery > renders with two images and a discount badge 1`] = `
       class="relative bg-white rounded-[var(--radius-card)] shadow-sm overflow-hidden"
     >
       <span
-        class="bg-accent text-white font-bold text-[11px] px-2 py-0.5 rounded-[var(--radius-button)] absolute top-3 left-3 z-10"
+        class="inline-flex items-center gap-1 bg-accent text-white px-2.5 py-1 t-badge rounded-full absolute top-3 left-3 z-10"
       >
         15
         % OFF
@@ -237,8 +235,7 @@ exports[`ProductGallery > renders with two images and a discount badge 1`] = `
       </div>
       <button
         aria-label="Imagem anterior"
-        class="absolute left-3 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-navy-medium text-white flex items-center justify-center shadow-md hover:bg-primary-hover transition-colors"
-        type="button"
+        class="inline-flex items-center justify-center transition-colors duration-150 w-10 h-10 bg-navy-medium text-white hover:bg-primary-hover rounded-full absolute left-3 top-1/2 -translate-y-1/2 shadow-md"
       >
         <svg
           aria-hidden="true"
@@ -260,8 +257,7 @@ exports[`ProductGallery > renders with two images and a discount badge 1`] = `
       </button>
       <button
         aria-label="Próxima imagem"
-        class="absolute right-3 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-navy-medium text-white flex items-center justify-center shadow-md hover:bg-primary-hover transition-colors"
-        type="button"
+        class="inline-flex items-center justify-center transition-colors duration-150 w-10 h-10 bg-navy-medium text-white hover:bg-primary-hover rounded-full absolute right-3 top-1/2 -translate-y-1/2 shadow-md"
       >
         <svg
           aria-hidden="true"

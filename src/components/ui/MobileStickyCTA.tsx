@@ -6,6 +6,7 @@ import {
     formatBRL,
     resolveWhatsAppPhone,
 } from '@/lib/whatsapp'
+import { Button } from './primitives/Button'
 
 interface Variant {
     id: string
@@ -48,30 +49,22 @@ export function MobileStickyCTA({
             className="fixed bottom-0 left-0 right-0 z-50 md:hidden bg-white shadow-mega border-t border-bg-light px-4 py-3 flex items-center gap-3"
         >
             <div className="flex flex-col min-w-0 flex-1">
-                <span className="text-xs text-text-muted truncate">
-                    {selectedVariant.size}
-                </span>
-                <span className="text-base font-extrabold text-primary tabular-nums truncate">
+                <span className="t-meta truncate">{selectedVariant.size}</span>
+                <span className="t-price-medium text-primary truncate">
                     {formatBRL(selectedVariant.price)}
                 </span>
             </div>
 
-            <button
-                type="button"
+            <Button
+                onClick={handleClick}
                 disabled={!phoneAvailable}
                 aria-disabled={!phoneAvailable}
-                onClick={handleClick}
-                className={[
-                    'inline-flex items-center justify-center gap-2 font-bold text-sm',
-                    'px-4 py-3 rounded-[var(--radius-button)] whitespace-nowrap',
-                    phoneAvailable
-                        ? 'bg-whatsapp hover:bg-whatsapp-hover text-white'
-                        : 'bg-bg-light text-text-muted cursor-not-allowed',
-                ].join(' ')}
+                variant={phoneAvailable ? 'whatsapp' : 'secondary'}
+                size="md"
+                leadingIcon={<MessageCircle className="w-4 h-4" />}
             >
-                <MessageCircle className="w-4 h-4" />
                 Comprar via WhatsApp
-            </button>
+            </Button>
         </aside>
     )
 }

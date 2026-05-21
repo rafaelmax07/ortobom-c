@@ -39,7 +39,7 @@ export function NavCategoryItem({
 
     return (
         <li
-            className={`relative flex items-center -my-1.5 py-1.5 border-b-2 transition-colors duration-200 min-w-[180px] xl:min-w-[200px] ${
+            className={`relative flex items-center -my-1.5 py-1.5 border-b-2 transition-colors duration-200 min-w-[140px] xl:min-w-[160px] ${
                 active ? 'bg-white border-accent' : 'bg-transparent border-transparent'
             }`}
             onMouseEnter={handleEnter}
@@ -47,10 +47,10 @@ export function NavCategoryItem({
         >
             <Link
                 href={href}
-                className={`flex-1 text-center py-1.5 text-[15px] transition-colors ${
+                className={`flex-1 text-center py-1.5 text-[13px] transition-colors ${
                     accent
                         ? `font-bold uppercase tracking-wide ${active ? 'text-navy-medium' : 'text-accent'}`
-                        : `${active ? 'text-navy-medium' : 'text-white/80'}`
+                        : `${active ? 'text-navy-medium' : 'text-white'}`
                 }`}
                 style={accent ? undefined : { fontWeight: 600 }}
             >
@@ -58,8 +58,8 @@ export function NavCategoryItem({
             </Link>
             {showChevron && (
                 <ChevronDown
-                    size={16}
-                    strokeWidth={2.5}
+                    size={14}
+                    strokeWidth={2.25}
                     className={`flex-shrink-0 mr-3 transition-all duration-200 ${
                         active ? 'text-navy-medium -rotate-180' : 'text-white/70 rotate-0'
                     }`}

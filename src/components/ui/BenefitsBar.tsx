@@ -41,7 +41,7 @@ const BENEFITS: Benefit[] = [
 
 export function BenefitsBar() {
     return (
-        <section className="bg-white border-b border-border py-6">
+        <section className="bg-white py-6">
             <div className="max-w-[1280px] mx-auto px-6">
                 <div className="grid grid-cols-2 md:grid-cols-4 gap-6 md:gap-8">
                     {BENEFITS.map((benefit, idx) => {

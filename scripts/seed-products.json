@@ -20,9 +20,39 @@
       ],
       "variants": [
         {
-          "size": "Padrão",
+          "size": "Solteiro",
+          "price": 3299,
+          "compare_at_price": 5849,
+          "dimensions": "31 x 188 x 88",
+          "sku": "colchao-orthopur-solteiro"
+        },
+        {
+          "size": "Solteiro Extra",
+          "price": 4119,
+          "compare_at_price": 5849,
+          "dimensions": "31 x 198 x 108",
+          "sku": "colchao-orthopur-solteiro-extra"
+        },
+        {
+          "size": "Casal",
           "price": 4999,
-          "dimensions": ""
+          "compare_at_price": 5849,
+          "dimensions": "31 x 188 x 138",
+          "sku": "colchao-orthopur-casal"
+        },
+        {
+          "size": "Queen",
+          "price": 5849,
+          "compare_at_price": null,
+          "dimensions": "31 x 198 x 158",
+          "sku": "colchao-orthopur-queen"
+        },
+        {
+          "size": "King",
+          "price": 7299,
+          "compare_at_price": null,
+          "dimensions": "31 x 203 x 193",
+          "sku": "colchao-orthopur-king"
         }
       ],
       "compare_at_price_base": 5849,
@@ -46,9 +76,39 @@
       ],
       "variants": [
         {
-          "size": "Kit Travesseiro Seis Estrelas",
-          "price": 2162.801558,
-          "dimensions": ""
+          "size": "Solteiro",
+          "price": 1019,
+          "compare_at_price": 1999,
+          "dimensions": "25 x 188 x 88",
+          "sku": "colchao-pro-saude-nanolastic-solteiro"
+        },
+        {
+          "size": "Solteiro Extra",
+          "price": 1349,
+          "compare_at_price": 1999,
+          "dimensions": "25 x 198 x 108",
+          "sku": "colchao-pro-saude-nanolastic-solteiro-extra"
+        },
+        {
+          "size": "Casal",
+          "price": 1499,
+          "compare_at_price": 1999,
+          "dimensions": "25 x 188 x 138",
+          "sku": "colchao-pro-saude-nanolastic-casal"
+        },
+        {
+          "size": "Queen",
+          "price": 2099,
+          "compare_at_price": null,
+          "dimensions": "25 x 198 x 158",
+          "sku": "colchao-pro-saude-nanolastic-queen"
+        },
+        {
+          "size": "King",
+          "price": 2349,
+          "compare_at_price": null,
+          "dimensions": "25 x 203 x 193",
+          "sku": "colchao-pro-saude-nanolastic-king"
         }
       ],
       "compare_at_price_base": 1999,
@@ -73,9 +133,39 @@
       ],
       "variants": [
         {
-          "size": "Padrão",
+          "size": "Solteiro",
+          "price": 1399,
+          "compare_at_price": 2620,
+          "dimensions": "25 x 188 x 88",
+          "sku": "colchao-pro-saude-extra-solteiro"
+        },
+        {
+          "size": "Solteiro Extra",
+          "price": 1749,
+          "compare_at_price": 2620,
+          "dimensions": "25 x 198 x 108",
+          "sku": "colchao-pro-saude-extra-solteiro-extra"
+        },
+        {
+          "size": "Casal",
           "price": 2119,
-          "dimensions": ""
+          "compare_at_price": 2620,
+          "dimensions": "25 x 188 x 138",
+          "sku": "colchao-pro-saude-extra-casal"
+        },
+        {
+          "size": "Queen",
+          "price": 2549,
+          "compare_at_price": 2620,
+          "dimensions": "25 x 198 x 158",
+          "sku": "colchao-pro-saude-extra-queen"
+        },
+        {
+          "size": "King",
+          "price": 3119,
+          "compare_at_price": null,
+          "dimensions": "25 x 203 x 193",
+          "sku": "colchao-pro-saude-extra-king"
         }
       ],
       "compare_at_price_base": 2620,
@@ -105,9 +195,25 @@
       ],
       "variants": [
         {
-          "size": "Padrão",
+          "size": "Solteiro",
+          "price": 1729,
+          "compare_at_price": 3700,
+          "dimensions": "31 x 188 x 88",
+          "sku": "colchao-ortopedico-premium-solteiro"
+        },
+        {
+          "size": "Casal",
           "price": 2599,
-          "dimensions": ""
+          "compare_at_price": 3700,
+          "dimensions": "31 x 188 x 138",
+          "sku": "colchao-ortopedico-premium-casal"
+        },
+        {
+          "size": "Queen",
+          "price": 3139,
+          "compare_at_price": 3700,
+          "dimensions": "31 x 198 x 158",
+          "sku": "colchao-ortopedico-premium-queen"
         }
       ],
       "compare_at_price_base": 3700,
@@ -135,9 +241,39 @@
       ],
       "variants": [
         {
-          "size": "Padrão",
+          "size": "Solteiro",
+          "price": 2149,
+          "compare_at_price": 4550,
+          "dimensions": "31 x 188 x 88",
+          "sku": "colchao-liberty-solteiro"
+        },
+        {
+          "size": "Solteiro Extra",
+          "price": 2649,
+          "compare_at_price": 4550,
+          "dimensions": "31 x 198 x 108",
+          "sku": "colchao-liberty-solteiro-extra"
+        },
+        {
+          "size": "Casal",
           "price": 3099,
-          "dimensions": ""
+          "compare_at_price": 4550,
+          "dimensions": "31 x 188 x 138",
+          "sku": "colchao-liberty-casal"
+        },
+        {
+          "size": "Queen",
+          "price": 3649,
+          "compare_at_price": 4550,
+          "dimensions": "31 x 198 x 158",
+          "sku": "colchao-liberty-queen"
+        },
+        {
+          "size": "King",
+          "price": 4549,
+          "compare_at_price": 4550,
+          "dimensions": "31 x 203 x 193",
+          "sku": "colchao-liberty-king"
         }
       ],
       "compare_at_price_base": 4550,
@@ -157,9 +293,39 @@
       ],
       "variants": [
         {
-          "size": "Kit Travesseiro Royal Pillow",
-          "price": 6012.063908,
-          "dimensions": ""
+          "size": "Solteiro",
+          "price": 2249,
+          "compare_at_price": 4499,
+          "dimensions": "31 x 188 x 88",
+          "sku": "colchao-absolut-hybrid-solteiro"
+        },
+        {
+          "size": "Solteiro Extra",
+          "price": 2849,
+          "compare_at_price": 4499,
+          "dimensions": "31 x 198 x 108",
+          "sku": "colchao-absolut-hybrid-solteiro-extra"
+        },
+        {
+          "size": "Casal",
+          "price": 3349,
+          "compare_at_price": 4499,
+          "dimensions": "31 x 188 x 138",
+          "sku": "colchao-absolut-hybrid-casal"
+        },
+        {
+          "size": "Queen",
+          "price": 3949,
+          "compare_at_price": 4499,
+          "dimensions": "31 x 198 x 158",
+          "sku": "colchao-absolut-hybrid-queen"
+        },
+        {
+          "size": "King",
+          "price": 4799,
+          "compare_at_price": null,
+          "dimensions": "31 x 203 x 193",
+          "sku": "colchao-absolut-hybrid-king"
         }
       ],
       "compare_at_price_base": 4499,
@@ -187,9 +353,39 @@
       ],
       "variants": [
         {
-          "size": "Padrão",
+          "size": "Solteiro",
+          "price": 2499,
+          "compare_at_price": 4690,
+          "dimensions": "31 x 188 x 88",
+          "sku": "colchao-pro-forca-solteiro"
+        },
+        {
+          "size": "Solteiro Extra",
+          "price": 3049,
+          "compare_at_price": 4690,
+          "dimensions": "31 x 198 x 108",
+          "sku": "colchao-pro-forca-solteiro-extra"
+        },
+        {
+          "size": "Casal",
           "price": 3749,
-          "dimensions": ""
+          "compare_at_price": 4690,
+          "dimensions": "31 x 188 x 138",
+          "sku": "colchao-pro-forca-casal"
+        },
+        {
+          "size": "Queen",
+          "price": 4349,
+          "compare_at_price": 4690,
+          "dimensions": "31 x 198 x 158",
+          "sku": "colchao-pro-forca-queen"
+        },
+        {
+          "size": "King",
+          "price": 5299,
+          "compare_at_price": null,
+          "dimensions": "31 x 203 x 193",
+          "sku": "colchao-pro-forca-king"
         }
       ],
       "compare_at_price_base": 4690,
@@ -213,9 +409,25 @@
       ],
       "variants": [
         {
-          "size": "10x de R$ 211,00",
-          "price": 2823.09211,
-          "dimensions": ""
+          "size": "Solteiro",
+          "price": 1079,
+          "compare_at_price": 1999,
+          "dimensions": "25 x 188 x 88",
+          "sku": "colchao-pro-saude-ortopedico-solteiro"
+        },
+        {
+          "size": "Casal",
+          "price": 1619,
+          "compare_at_price": 1999,
+          "dimensions": "25 x 188 x 138",
+          "sku": "colchao-pro-saude-ortopedico-casal"
+        },
+        {
+          "size": "Queen",
+          "price": 1889,
+          "compare_at_price": 1999,
+          "dimensions": "25 x 198 x 158",
+          "sku": "colchao-pro-saude-ortopedico-queen"
         }
       ],
       "compare_at_price_base": 1999,
@@ -240,9 +452,39 @@
       ],
       "variants": [
         {
-          "size": "Padrão",
+          "size": "Solteiro",
+          "price": 1299,
+          "compare_at_price": 2800,
+          "dimensions": "25 x 188 x 88",
+          "sku": "colchao-pro-saude-superpocket-solteiro"
+        },
+        {
+          "size": "Solteiro Extra",
+          "price": 1649,
+          "compare_at_price": 2800,
+          "dimensions": "25 x 198 x 108",
+          "sku": "colchao-pro-saude-superpocket-solteiro-extra"
+        },
+        {
+          "size": "Casal",
+          "price": 1899,
+          "compare_at_price": 2800,
+          "dimensions": "25 x 188 x 138",
+          "sku": "colchao-pro-saude-superpocket-casal"
+        },
+        {
+          "size": "Queen",
           "price": 2249,
-          "dimensions": ""
+          "compare_at_price": 2800,
+          "dimensions": "25 x 198 x 158",
+          "sku": "colchao-pro-saude-superpocket-queen"
+        },
+        {
+          "size": "King",
+          "price": 2699,
+          "compare_at_price": 2800,
+          "dimensions": "25 x 203 x 193",
+          "sku": "colchao-pro-saude-superpocket-king"
         }
       ],
       "compare_at_price_base": 2800,
@@ -270,9 +512,39 @@
       ],
       "variants": [
         {
-          "size": "Padrão",
+          "size": "Solteiro",
+          "price": 1949,
+          "compare_at_price": 4398,
+          "dimensions": "31 x 188 x 88",
+          "sku": "colchao-ouro-spring-solteiro"
+        },
+        {
+          "size": "Solteiro Extra",
+          "price": 2349,
+          "compare_at_price": 4398,
+          "dimensions": "31 x 198 x 108",
+          "sku": "colchao-ouro-spring-solteiro-extra"
+        },
+        {
+          "size": "Casal",
           "price": 2849,
-          "dimensions": ""
+          "compare_at_price": 4398,
+          "dimensions": "31 x 188 x 138",
+          "sku": "colchao-ouro-spring-casal"
+        },
+        {
+          "size": "Queen",
+          "price": 3299,
+          "compare_at_price": 4398,
+          "dimensions": "31 x 198 x 158",
+          "sku": "colchao-ouro-spring-queen"
+        },
+        {
+          "size": "King",
+          "price": 4099,
+          "compare_at_price": 4398,
+          "dimensions": "31 x 203 x 193",
+          "sku": "colchao-ouro-spring-king"
         }
       ],
       "compare_at_price_base": 4398,
@@ -295,9 +567,39 @@
       ],
       "variants": [
         {
-          "size": "Padrão",
+          "size": "Solteiro",
+          "price": 709,
+          "compare_at_price": 879.9,
+          "dimensions": "30 x 188 x 88",
+          "sku": "base-sommier-orthopur-solteiro"
+        },
+        {
+          "size": "Solteiro Extra",
+          "price": 829,
+          "compare_at_price": 879.9,
+          "dimensions": "30 x 198 x 108",
+          "sku": "base-sommier-orthopur-solteiro-extra"
+        },
+        {
+          "size": "Casal",
           "price": 899,
-          "dimensions": ""
+          "compare_at_price": null,
+          "dimensions": "30 x 188 x 138",
+          "sku": "base-sommier-orthopur-casal"
+        },
+        {
+          "size": "Queen",
+          "price": 1379,
+          "compare_at_price": null,
+          "dimensions": "30 x 198 x 158",
+          "sku": "base-sommier-orthopur-queen"
+        },
+        {
+          "size": "King",
+          "price": 1579,
+          "compare_at_price": null,
+          "dimensions": "30 x 203 x 193",
+          "sku": "base-sommier-orthopur-king"
         }
       ],
       "compare_at_price_base": 879.9,
@@ -318,9 +620,39 @@
       ],
       "variants": [
         {
-          "size": "Padrão",
+          "size": "Solteiro",
+          "price": 529,
+          "compare_at_price": 907.61,
+          "dimensions": "35 x 188 x 88",
+          "sku": "base-sommier-pro-saude-solteiro"
+        },
+        {
+          "size": "Solteiro Extra",
+          "price": 679,
+          "compare_at_price": 907.61,
+          "dimensions": "35 x 198 x 108",
+          "sku": "base-sommier-pro-saude-solteiro-extra"
+        },
+        {
+          "size": "Casal",
           "price": 729,
-          "dimensions": ""
+          "compare_at_price": 907.61,
+          "dimensions": "35 x 188 x 138",
+          "sku": "base-sommier-pro-saude-casal"
+        },
+        {
+          "size": "Queen",
+          "price": 1079,
+          "compare_at_price": null,
+          "dimensions": "35 x 198 x 158",
+          "sku": "base-sommier-pro-saude-queen"
+        },
+        {
+          "size": "King",
+          "price": 1189,
+          "compare_at_price": null,
+          "dimensions": "35 x 203 x 193",
+          "sku": "base-sommier-pro-saude-king"
         }
       ],
       "compare_at_price_base": 907.61,
@@ -343,9 +675,39 @@
       ],
       "variants": [
         {
-          "size": "Padrão",
+          "size": "Solteiro",
+          "price": 589,
+          "compare_at_price": 1389,
+          "dimensions": "23 x 188 x 88",
+          "sku": "base-sommier-liberty-solteiro"
+        },
+        {
+          "size": "Solteiro Extra",
+          "price": 749,
+          "compare_at_price": 1389,
+          "dimensions": "23 x 198 x 108",
+          "sku": "base-sommier-liberty-solteiro-extra"
+        },
+        {
+          "size": "Casal",
           "price": 829,
-          "dimensions": ""
+          "compare_at_price": 1389,
+          "dimensions": "23 x 188 x 138",
+          "sku": "base-sommier-liberty-casal"
+        },
+        {
+          "size": "Queen",
+          "price": 1249,
+          "compare_at_price": 1389,
+          "dimensions": "23 x 198 x 158",
+          "sku": "base-sommier-liberty-queen"
+        },
+        {
+          "size": "King",
+          "price": 1459,
+          "compare_at_price": null,
+          "dimensions": "23 x 203 x 193",
+          "sku": "base-sommier-liberty-king"
         }
       ],
       "compare_at_price_base": 1389,
@@ -372,9 +734,25 @@
       ],
       "variants": [
         {
-          "size": "Padrão",
+          "size": "Solteiro",
+          "price": 1199,
+          "compare_at_price": 2500,
+          "dimensions": "39 x 188 x 88",
+          "sku": "base-sommier-bau-fashion-nobuck-solteiro"
+        },
+        {
+          "size": "Casal",
           "price": 1399,
-          "dimensions": ""
+          "compare_at_price": 2500,
+          "dimensions": "39 x 188 x 138",
+          "sku": "base-sommier-bau-fashion-nobuck-casal"
+        },
+        {
+          "size": "Queen",
+          "price": 2299,
+          "compare_at_price": 2500,
+          "dimensions": "39 x 198 x 158",
+          "sku": "base-sommier-bau-fashion-nobuck-queen"
         }
       ],
       "compare_at_price_base": 2500,
@@ -397,9 +775,39 @@
       ],
       "variants": [
         {
-          "size": "Padrão",
+          "size": "Solteiro",
+          "price": 649,
+          "compare_at_price": 1090,
+          "dimensions": "30 x 188 x 88",
+          "sku": "base-sommier-ouro-spring-solteiro"
+        },
+        {
+          "size": "Solteiro Extra",
+          "price": 749,
+          "compare_at_price": 1090,
+          "dimensions": "30 x 198 x 108",
+          "sku": "base-sommier-ouro-spring-solteiro-extra"
+        },
+        {
+          "size": "Casal",
           "price": 839,
-          "dimensions": ""
+          "compare_at_price": 1090,
+          "dimensions": "30 x 188 x 138",
+          "sku": "base-sommier-ouro-spring-casal"
+        },
+        {
+          "size": "Queen",
+          "price": 1259,
+          "compare_at_price": null,
+          "dimensions": "30 x 198 x 158",
+          "sku": "base-sommier-ouro-spring-queen"
+        },
+        {
+          "size": "King",
+          "price": 1449,
+          "compare_at_price": null,
+          "dimensions": "30 x 203 x 193",
+          "sku": "base-sommier-ouro-spring-king"
         }
       ],
       "compare_at_price_base": 1090,
@@ -422,9 +830,39 @@
       ],
       "variants": [
         {
-          "size": "Padrão",
+          "size": "Solteiro",
+          "price": 649,
+          "compare_at_price": 1439.9,
+          "dimensions": "30 x 188 x 88",
+          "sku": "base-sommier-pro-forca-solteiro"
+        },
+        {
+          "size": "Solteiro Extra",
+          "price": 779,
+          "compare_at_price": 1439.9,
+          "dimensions": "30 x 198 x 108",
+          "sku": "base-sommier-pro-forca-solteiro-extra"
+        },
+        {
+          "size": "Casal",
           "price": 859,
-          "dimensions": ""
+          "compare_at_price": 1439.9,
+          "dimensions": "30 x 188 x 138",
+          "sku": "base-sommier-pro-forca-casal"
+        },
+        {
+          "size": "Queen",
+          "price": 1289,
+          "compare_at_price": 1439.9,
+          "dimensions": "30 x 198 x 158",
+          "sku": "base-sommier-pro-forca-queen"
+        },
+        {
+          "size": "King",
+          "price": 1669,
+          "compare_at_price": null,
+          "dimensions": "30 x 203 x 193",
+          "sku": "base-sommier-pro-forca-king"
         }
       ],
       "compare_at_price_base": 1439.9,
@@ -448,9 +886,32 @@
       ],
       "variants": [
         {
-          "size": "Padrão",
+          "size": "Solteiro Extra",
+          "price": 1239,
+          "compare_at_price": 1604.81,
+          "dimensions": "23 x 198 x 108",
+          "sku": "base-sommier-orion-solteiro-extra"
+        },
+        {
+          "size": "Casal",
           "price": 1289,
-          "dimensions": ""
+          "compare_at_price": 1604.81,
+          "dimensions": "23 x 188 x 138",
+          "sku": "base-sommier-orion-casal"
+        },
+        {
+          "size": "Queen",
+          "price": 2159,
+          "compare_at_price": null,
+          "dimensions": "23 x 198 x 158",
+          "sku": "base-sommier-orion-queen"
+        },
+        {
+          "size": "King",
+          "price": 2369,
+          "compare_at_price": null,
+          "dimensions": "23 x 203 x 193",
+          "sku": "base-sommier-orion-king"
         }
       ],
       "compare_at_price_base": 1604.81,
@@ -473,9 +934,25 @@
       ],
       "variants": [
         {
-          "size": "Padrão",
+          "size": "Casal",
           "price": 1279,
-          "dimensions": ""
+          "compare_at_price": 1623.75,
+          "dimensions": "23 x 188 x 138",
+          "sku": "base-sommier-bellona-casal"
+        },
+        {
+          "size": "Queen",
+          "price": 1959,
+          "compare_at_price": null,
+          "dimensions": "23 x 198 x 158",
+          "sku": "base-sommier-bellona-queen"
+        },
+        {
+          "size": "King",
+          "price": 2139,
+          "compare_at_price": null,
+          "dimensions": "23 x 203 x 193",
+          "sku": "base-sommier-bellona-king"
         }
       ],
       "compare_at_price_base": 1623.75,
@@ -501,64 +978,18 @@
       ],
       "variants": [
         {
-          "size": "10x de R$ 1.489,80",
-          "price": 17620.7814898,
-          "dimensions": ""
+          "size": "Solteiro",
+          "price": 1869,
+          "compare_at_price": 3510.9,
+          "dimensions": "15 x 198 x 79",
+          "sku": "colchao-pro-saude-visco-adapt-solteiro"
         },
         {
-          "size": "21x de R$ 53,30",
-          "price": 899.002153,
-          "dimensions": ""
-        },
-        {
-          "size": "6x de R$ 121,50",
-          "price": 178.61907,
-          "dimensions": ""
-        },
-        {
-          "size": "6x de R$ 138,17",
-          "price": 560.001389,
-          "dimensions": ""
-        },
-        {
-          "size": "6x de R$ 233,17",
-          "price": 1101.0025,
-          "dimensions": ""
-        },
-        {
-          "size": "6x de R$ 139,84",
-          "price": 251.00109,
-          "dimensions": ""
-        },
-        {
-          "size": "21x de R$ 50,93",
-          "price": 580.901439,
-          "dimensions": ""
-        },
-        {
-          "size": "21x de R$ 76,42",
-          "price": 315.811604,
-          "dimensions": ""
-        },
-        {
-          "size": "21x de R$ 75,83",
-          "price": 344.751623,
-          "dimensions": ""
-        },
-        {
-          "size": "21x de R$ 165,95",
-          "price": 1199.903998,
-          "dimensions": ""
-        },
-        {
-          "size": "21x de R$ 55,08",
-          "price": 51.0098,
-          "dimensions": ""
-        },
-        {
-          "size": "6x de R$ 156,50",
-          "price": 230.061169,
-          "dimensions": ""
+          "size": "Casal",
+          "price": 3119,
+          "compare_at_price": 3510.9,
+          "dimensions": "15 x 198 x 138",
+          "sku": "colchao-pro-saude-visco-adapt-casal"
         }
       ],
       "compare_at_price_base": 3510.9,
@@ -579,9 +1010,32 @@
       ],
       "variants": [
         {
-          "size": "Padrão",
+          "size": "Solteiro",
+          "price": 549,
+          "compare_at_price": 1515.38,
+          "dimensions": "120 x 8 x 90",
+          "sku": "cabeceira-glamour-linho-solteiro"
+        },
+        {
+          "size": "Casal",
+          "price": 549,
+          "compare_at_price": 1515.38,
+          "dimensions": "120 x 8 x 140",
+          "sku": "cabeceira-glamour-linho-casal"
+        },
+        {
+          "size": "Queen",
           "price": 629,
-          "dimensions": ""
+          "compare_at_price": 1515.38,
+          "dimensions": "120 x 8 x 160",
+          "sku": "cabeceira-glamour-linho-queen"
+        },
+        {
+          "size": "King",
+          "price": 869,
+          "compare_at_price": 1515.38,
+          "dimensions": "120 x 8 x 195",
+          "sku": "cabeceira-glamour-linho-king"
         }
       ],
       "compare_at_price_base": 1515.38,
@@ -602,9 +1056,32 @@
       ],
       "variants": [
         {
-          "size": "Padrão",
+          "size": "Solteiro",
+          "price": 399,
+          "compare_at_price": 720.8,
+          "dimensions": "120 x 8 x 90",
+          "sku": "cabeceira-lieve-cori-solteiro"
+        },
+        {
+          "size": "Casal",
           "price": 499,
-          "dimensions": ""
+          "compare_at_price": 720.8,
+          "dimensions": "120 x 8 x 140",
+          "sku": "cabeceira-lieve-cori-casal"
+        },
+        {
+          "size": "Queen",
+          "price": 559,
+          "compare_at_price": 720.8,
+          "dimensions": "120 x 8 x 160",
+          "sku": "cabeceira-lieve-cori-queen"
+        },
+        {
+          "size": "King",
+          "price": 799,
+          "compare_at_price": null,
+          "dimensions": "120 x 8 x 195",
+          "sku": "cabeceira-lieve-cori-king"
         }
       ],
       "compare_at_price_base": 720.8,
@@ -625,9 +1102,32 @@
       ],
       "variants": [
         {
-          "size": "Padrão",
+          "size": "Solteiro",
+          "price": 499,
+          "compare_at_price": 1120,
+          "dimensions": "120 x 8 x 90",
+          "sku": "cabeceira-lovely-facto-solteiro"
+        },
+        {
+          "size": "Casal",
           "price": 649,
-          "dimensions": ""
+          "compare_at_price": 1120,
+          "dimensions": "120 x 8 x 140",
+          "sku": "cabeceira-lovely-facto-casal"
+        },
+        {
+          "size": "Queen",
+          "price": 699,
+          "compare_at_price": 1120,
+          "dimensions": "120 x 8 x 160",
+          "sku": "cabeceira-lovely-facto-queen"
+        },
+        {
+          "size": "King",
+          "price": 799,
+          "compare_at_price": 1120,
+          "dimensions": "120 x 8 x 195",
+          "sku": "cabeceira-lovely-facto-king"
         }
       ],
       "compare_at_price_base": 1120,
@@ -648,9 +1148,32 @@
       ],
       "variants": [
         {
-          "size": "Padrão",
+          "size": "Solteiro",
+          "price": 369,
+          "compare_at_price": 749,
+          "dimensions": "120 x 8 x 90",
+          "sku": "cabeceira-cherie-veludo-solteiro"
+        },
+        {
+          "size": "Casal",
           "price": 459,
-          "dimensions": ""
+          "compare_at_price": 749,
+          "dimensions": "120 x 8 x 140",
+          "sku": "cabeceira-cherie-veludo-casal"
+        },
+        {
+          "size": "Queen",
+          "price": 499,
+          "compare_at_price": 749,
+          "dimensions": "120 x 8 x 160",
+          "sku": "cabeceira-cherie-veludo-queen"
+        },
+        {
+          "size": "King",
+          "price": 579,
+          "compare_at_price": 749,
+          "dimensions": "120 x 8 x 195",
+          "sku": "cabeceira-cherie-veludo-king"
         }
       ],
       "compare_at_price_base": 749,
@@ -671,9 +1194,32 @@
       ],
       "variants": [
         {
-          "size": "Padrão",
+          "size": "Solteiro",
+          "price": 619,
+          "compare_at_price": 1014.12,
+          "dimensions": "120 x 8 x 90",
+          "sku": "cabeceira-cherie-linho-solteiro"
+        },
+        {
+          "size": "Casal",
           "price": 779,
-          "dimensions": ""
+          "compare_at_price": 1014.12,
+          "dimensions": "120 x 8 x 140",
+          "sku": "cabeceira-cherie-linho-casal"
+        },
+        {
+          "size": "Queen",
+          "price": 849,
+          "compare_at_price": 1014.12,
+          "dimensions": "120 x 8 x 160",
+          "sku": "cabeceira-cherie-linho-queen"
+        },
+        {
+          "size": "King",
+          "price": 989,
+          "compare_at_price": 1014.12,
+          "dimensions": "120 x 8 x 195",
+          "sku": "cabeceira-cherie-linho-king"
         }
       ],
       "compare_at_price_base": 1014.12,
@@ -695,9 +1241,32 @@
       ],
       "variants": [
         {
-          "size": "Padrão",
+          "size": "Solteiro",
+          "price": 739,
+          "compare_at_price": 1390.9,
+          "dimensions": "120 x 8 x 90",
+          "sku": "cabeceira-lieve-facto-solteiro"
+        },
+        {
+          "size": "Casal",
           "price": 919,
-          "dimensions": ""
+          "compare_at_price": 1390.9,
+          "dimensions": "120 x 8 x 140",
+          "sku": "cabeceira-lieve-facto-casal"
+        },
+        {
+          "size": "Queen",
+          "price": 999,
+          "compare_at_price": 1390.9,
+          "dimensions": "120 x 8 x 160",
+          "sku": "cabeceira-lieve-facto-queen"
+        },
+        {
+          "size": "King",
+          "price": 1149,
+          "compare_at_price": 1390.9,
+          "dimensions": "120 x 8 x 195",
+          "sku": "cabeceira-lieve-facto-king"
         }
       ],
       "compare_at_price_base": 1390.9,
@@ -718,9 +1287,32 @@
       ],
       "variants": [
         {
-          "size": "Padrão",
+          "size": "Solteiro",
+          "price": 399,
+          "compare_at_price": 1228.9,
+          "dimensions": "120 x 8 x 90",
+          "sku": "cabeceira-glamour-veludo-solteiro"
+        },
+        {
+          "size": "Casal",
+          "price": 499,
+          "compare_at_price": 1228.9,
+          "dimensions": "120 x 8 x 140",
+          "sku": "cabeceira-glamour-veludo-casal"
+        },
+        {
+          "size": "Queen",
+          "price": 509,
+          "compare_at_price": 1228.9,
+          "dimensions": "120 x 8 x 160",
+          "sku": "cabeceira-glamour-veludo-queen"
+        },
+        {
+          "size": "King",
           "price": 799,
-          "dimensions": ""
+          "compare_at_price": 1228.9,
+          "dimensions": "120 x 8 x 195",
+          "sku": "cabeceira-glamour-veludo-king"
         }
       ],
       "compare_at_price_base": 1228.9,
@@ -741,7 +1333,9 @@
         {
           "size": "Padrão",
           "price": 259,
-          "dimensions": ""
+          "compare_at_price": null,
+          "dimensions": "",
+          "sku": "travesseiro-pro-latex-padrao"
         }
       ],
       "compare_at_price_base": 221.9,
@@ -763,7 +1357,9 @@
         {
           "size": "Padrão",
           "price": 399,
-          "dimensions": ""
+          "compare_at_price": null,
+          "dimensions": "",
+          "sku": "travesseiro-viscopur-gel-padrao"
         }
       ],
       "compare_at_price_base": 399,
@@ -783,7 +1379,9 @@
         {
           "size": "Padrão",
           "price": 159,
-          "dimensions": ""
+          "compare_at_price": 175.9,
+          "dimensions": "",
+          "sku": "travesseiro-conforto-regulavel-padrao"
         }
       ],
       "compare_at_price_base": 175.9,
@@ -804,7 +1402,9 @@
         {
           "size": "Padrão",
           "price": 169,
-          "dimensions": ""
+          "compare_at_price": 185.9,
+          "dimensions": "",
+          "sku": "travesseiro-viscopur-padrao"
         }
       ],
       "compare_at_price_base": 185.9,
@@ -827,7 +1427,9 @@
         {
           "size": "Padrão",
           "price": 159,
-          "dimensions": ""
+          "compare_at_price": 172,
+          "dimensions": "",
+          "sku": "travesseiro-royal-pillow-padrao"
         }
       ],
       "compare_at_price_base": 172,
@@ -850,7 +1452,9 @@
         {
           "size": "Padrão",
           "price": 119,
-          "dimensions": ""
+          "compare_at_price": 165.65,
+          "dimensions": "",
+          "sku": "travesseiro-sonho-padrao"
         }
       ],
       "compare_at_price_base": 165.65,
@@ -871,7 +1475,9 @@
         {
           "size": "Padrão",
           "price": 179,
-          "dimensions": ""
+          "compare_at_price": 376.99,
+          "dimensions": "",
+          "sku": "travesseiro-flock-padrao"
         }
       ],
       "compare_at_price_base": 376.99,
@@ -893,7 +1499,9 @@
         {
           "size": "Padrão",
           "price": 179,
-          "dimensions": ""
+          "compare_at_price": 189.85,
+          "dimensions": "",
+          "sku": "travesseiro-hug-padrao"
         }
       ],
       "compare_at_price_base": 189.85,
@@ -913,7 +1521,9 @@
         {
           "size": "Padrão",
           "price": 549,
-          "dimensions": ""
+          "compare_at_price": 699,
+          "dimensions": "",
+          "sku": "travesseiro-pro-latex-gel-padrao"
         }
       ],
       "compare_at_price_base": 699,
@@ -933,7 +1543,9 @@
         {
           "size": "Padrão",
           "price": 599,
-          "dimensions": ""
+          "compare_at_price": null,
+          "dimensions": "",
+          "sku": "travesseiro-pluma-de-ganso-padrao"
         }
       ],
       "compare_at_price_base": 562.03,
@@ -954,7 +1566,9 @@
         {
           "size": "Padrão",
           "price": 139,
-          "dimensions": ""
+          "compare_at_price": null,
+          "dimensions": "",
+          "sku": "tapete-de-yoga-padrao"
         }
       ],
       "compare_at_price_base": 124.38,
@@ -973,9 +1587,25 @@
       ],
       "variants": [
         {
-          "size": "Padrão",
+          "size": "20 x 85 x 20",
+          "price": 29,
+          "compare_at_price": 73.46,
+          "dimensions": "20 x 85 x 20",
+          "sku": "almofada-rolete-nobuck-20-x-85-x-20"
+        },
+        {
+          "size": "20 x 135 x 20",
+          "price": 49,
+          "compare_at_price": 73.46,
+          "dimensions": "20 x 135 x 20",
+          "sku": "almofada-rolete-nobuck-20-x-135-x-20"
+        },
+        {
+          "size": "20 x 155 x 20",
           "price": 59,
-          "dimensions": ""
+          "compare_at_price": 73.46,
+          "dimensions": "20 x 155 x 20",
+          "sku": "almofada-rolete-nobuck-20-x-155-x-20"
         }
       ],
       "compare_at_price_base": 73.46,
@@ -994,9 +1624,18 @@
       ],
       "variants": [
         {
-          "size": "Padrão",
+          "size": "Solteiro",
+          "price": 269,
+          "compare_at_price": 490.03,
+          "dimensions": "8 x 188 x 88",
+          "sku": "colchonete-all-day-solteiro"
+        },
+        {
+          "size": "Casal",
           "price": 429,
-          "dimensions": ""
+          "compare_at_price": 490.03,
+          "dimensions": "8 x 188 x 138",
+          "sku": "colchonete-all-day-casal"
         }
       ],
       "compare_at_price_base": 490.03,
@@ -1016,7 +1655,9 @@
         {
           "size": "Padrão",
           "price": 79,
-          "dimensions": ""
+          "compare_at_price": 139.88,
+          "dimensions": "",
+          "sku": "colchonete-big-para-academia-padrao"
         }
       ],
       "compare_at_price_base": 139.88,
@@ -1036,7 +1677,9 @@
         {
           "size": "Padrão",
           "price": 129,
-          "dimensions": ""
+          "compare_at_price": 258,
+          "dimensions": "",
+          "sku": "encosto-dino-veludo-padrao"
         }
       ],
       "compare_at_price_base": 258,
@@ -1056,7 +1699,9 @@
         {
           "size": "Padrão",
           "price": 59,
-          "dimensions": ""
+          "compare_at_price": 85.34,
+          "dimensions": "",
+          "sku": "colchonete-small-para-academia-padrao"
         }
       ],
       "compare_at_price_base": 85.34,
@@ -1077,9 +1722,18 @@
       ],
       "variants": [
         {
-          "size": "Padrão",
+          "size": "6 x 40 x 60",
           "price": 89,
-          "dimensions": ""
+          "compare_at_price": 112.85,
+          "dimensions": "6 x 40 x 60",
+          "sku": "suavencosto-infantil-6-x-40-x-60"
+        },
+        {
+          "size": "6 x 40 x 70",
+          "price": 89,
+          "compare_at_price": 112.85,
+          "dimensions": "6 x 40 x 70",
+          "sku": "suavencosto-infantil-6-x-40-x-70"
         }
       ],
       "compare_at_price_base": 112.85,
@@ -1097,9 +1751,18 @@
       ],
       "variants": [
         {
-          "size": "Padrão",
+          "size": "Solteiro",
+          "price": 119,
+          "compare_at_price": 201.23,
+          "dimensions": "6 x 188 x 88",
+          "sku": "massageador-alveolado-solteiro"
+        },
+        {
+          "size": "Casal",
           "price": 169,
-          "dimensions": ""
+          "compare_at_price": 201.23,
+          "dimensions": "6 x 188 x 138",
+          "sku": "massageador-alveolado-casal"
         }
       ],
       "compare_at_price_base": 201.23,
@@ -1121,7 +1784,9 @@
         {
           "size": "Padrão",
           "price": 209,
-          "dimensions": ""
+          "compare_at_price": 266.73,
+          "dimensions": "",
+          "sku": "suavencosto-alveolado-padrao"
         }
       ],
       "compare_at_price_base": 266.73,
@@ -1143,7 +1808,9 @@
         {
           "size": "Padrão",
           "price": 3999,
-          "dimensions": ""
+          "compare_at_price": 6665,
+          "dimensions": "",
+          "sku": "sofa-cama-2l-veludo-azul-marinho-padrao"
         }
       ],
       "compare_at_price_base": 6665,
@@ -1165,7 +1832,9 @@
         {
           "size": "Padrão",
           "price": 2119,
-          "dimensions": ""
+          "compare_at_price": 3028,
+          "dimensions": "",
+          "sku": "poltrona-reclinavel-ortobom-cori-padrao"
         }
       ],
       "compare_at_price_base": 3028,
@@ -1187,7 +1856,9 @@
         {
           "size": "Padrão",
           "price": 2799,
-          "dimensions": ""
+          "compare_at_price": 4665,
+          "dimensions": "",
+          "sku": "sofa-cama-3l-linho-bege-padrao"
         }
       ],
       "compare_at_price_base": 4665,
@@ -1209,7 +1880,9 @@
         {
           "size": "Padrão",
           "price": 2119,
-          "dimensions": ""
+          "compare_at_price": 3028,
+          "dimensions": "",
+          "sku": "poltrona-reclinavel-ortobom-nobuck-padrao"
         }
       ],
       "compare_at_price_base": 3028,
@@ -1230,7 +1903,9 @@
         {
           "size": "Padrão",
           "price": 3999,
-          "dimensions": ""
+          "compare_at_price": 6665,
+          "dimensions": "",
+          "sku": "sofa-cama-2l-linho-cinza-padrao"
         }
       ],
       "compare_at_price_base": 6665,
@@ -1253,7 +1928,9 @@
         {
           "size": "Padrão",
           "price": 2799,
-          "dimensions": ""
+          "compare_at_price": 4665,
+          "dimensions": "",
+          "sku": "sofa-cama-3l-veludo-azul-marinho-padrao"
         }
       ],
       "compare_at_price_base": 4665,
@@ -1279,7 +1956,9 @@
         {
           "size": "Padrão",
           "price": 4999,
-          "dimensions": ""
+          "compare_at_price": 5555,
+          "dimensions": "",
+          "sku": "poltrona-massageadora-ortobom-cori-padrao"
         }
       ],
       "compare_at_price_base": 5555,
@@ -1301,7 +1980,9 @@
         {
           "size": "Padrão",
           "price": 2729,
-          "dimensions": ""
+          "compare_at_price": 3899,
+          "dimensions": "",
+          "sku": "poltrona-reclinavel-ortobom-premium-nobuck-padrao"
         }
       ],
       "compare_at_price_base": 3899,

@@ -2,7 +2,7 @@
 
 exports[`Badge > renders the count variant 1`] = `
 <span
-  class="bg-bg-light text-text-muted text-xs px-2 py-0.5 rounded-full"
+  class="inline-flex items-center gap-1 bg-bg-light text-text-muted px-2.5 py-1 t-badge rounded-full"
 >
   3 Tamanhos
 </span>
@@ -10,7 +10,7 @@ exports[`Badge > renders the count variant 1`] = `
 
 exports[`Badge > renders the discount variant 1`] = `
 <span
-  class="bg-accent text-white font-bold text-[11px] px-2 py-0.5 rounded-[var(--radius-button)]"
+  class="inline-flex items-center gap-1 bg-accent text-white px-2.5 py-1 t-badge rounded-full"
 >
   25% OFF
 </span>
@@ -18,7 +18,7 @@ exports[`Badge > renders the discount variant 1`] = `
 
 exports[`Badge > renders the info variant 1`] = `
 <span
-  class="bg-primary/10 text-primary text-xs px-2 py-0.5 rounded-full"
+  class="inline-flex items-center gap-1 bg-primary/10 text-primary px-2.5 py-1 t-badge rounded-full"
 >
   Info
 </span>
@@ -105,30 +105,30 @@ exports[`Breadcrumb > renders with three items 1`] = `
 exports[`PriceDisplay > renders with a compare-at price above the current price 1`] = `
 <div>
   <div
-    class="flex flex-col"
+    class="flex flex-col "
   >
     <span
-      class="text-xs text-text-muted"
+      class="t-meta"
     >
       A partir de
     </span>
     <span
-      class="text-xs text-text-muted line-through"
+      class="t-price-strike mb-1.5"
     >
       R$ 1.999,00
     </span>
     <p
-      class="text-xl md:text-2xl font-extrabold text-primary tabular-nums"
+      class="t-price-medium"
     >
       R$ 1.500,00
       <span
-        class="text-xs font-normal text-text-muted ml-1"
+        class="t-price-suffix ml-1"
       >
         à vista
       </span>
     </p>
     <p
-      class="text-[11px] text-text-muted"
+      class="t-product-installments mt-1"
     >
       ou até 
       <strong>
@@ -149,25 +149,25 @@ exports[`PriceDisplay > renders with a compare-at price above the current price 
 exports[`PriceDisplay > renders without a compare-at price 1`] = `
 <div>
   <div
-    class="flex flex-col"
+    class="flex flex-col "
   >
     <span
-      class="text-xs text-text-muted"
+      class="t-meta"
     >
       A partir de
     </span>
     <p
-      class="text-xl md:text-2xl font-extrabold text-primary tabular-nums"
+      class="t-price-medium"
     >
       R$ 1.500,00
       <span
-        class="text-xs font-normal text-text-muted ml-1"
+        class="t-price-suffix ml-1"
       >
         à vista
       </span>
     </p>
     <p
-      class="text-[11px] text-text-muted"
+      class="t-product-installments mt-1"
     >
       ou até 
       <strong>

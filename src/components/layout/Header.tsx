@@ -3,9 +3,11 @@
 import Link from 'next/link'
 import Image from 'next/image'
 import { Search, Menu, X, ShoppingCart, Heart, User, MapPin, ChevronRight, ChevronLeft, Shield, Store, Factory, Hotel, Phone } from 'lucide-react'
-import { useState, useRef, useEffect } from 'react'
+import { useState, useRef, useEffect, useCallback } from 'react'
 import { useCart } from '@/context/CartContext'
 import { NavCategoryItem } from './NavCategoryItem'
+import useEmblaCarousel from 'embla-carousel-react'
+import Autoplay from 'embla-carousel-autoplay'
 
 const NAV_CATEGORIES = [
     {
@@ -75,6 +77,20 @@ export function Header() {
     const { totalItems, openCart } = useCart()
     const timeoutRef = useRef<NodeJS.Timeout | null>(null)
 
+    const PROMO_MESSAGES = [
+        { text: 'Seleção especial em até 6x sem juros', cta: 'Transforme suas noites!', href: '/c/colchoes' },
+        { text: 'Todo site com +10% OFF por tempo limitado!', cta: 'Use SUPER10 💙', href: '/c/colchoes' },
+        { text: 'Seu Colchão na Caixa em até 12x sem juros', cta: 'Quero praticidade e conforto', href: '/c/colchoes' },
+    ]
+
+    const [promoEmblaRef, promoEmblaApi] = useEmblaCarousel(
+        { loop: true, align: 'center' },
+        [Autoplay({ delay: 5000, stopOnInteraction: false, stopOnMouseEnter: true })]
+    )
+
+    const promoPrev = useCallback(() => promoEmblaApi?.scrollPrev(), [promoEmblaApi])
+    const promoNext = useCallback(() => promoEmblaApi?.scrollNext(), [promoEmblaApi])
+
     useEffect(() => {
         // Histerese para evitar flicker quando o header encolhe e altera o scrollY
         // Entra em "scrolled" só quando passar de 100px; sai quando voltar pra antes de 30px
@@ -104,36 +120,65 @@ export function Header() {
 
                 {/* ═══ ROW 1: Top promo bar (some quando scrolla) ═══ */}
                 <div className={`hidden lg:block border-b border-white/[0.08] text-[14px] font-medium text-white overflow-hidden transition-all duration-300 ${isScrolled ? 'max-h-0 py-0 opacity-0 border-b-0' : 'max-h-20 py-2.5 opacity-100'}`}>
-                    <div className="max-w-[1280px] mx-auto px-6 flex items-center justify-between gap-6">
-                        <div className="flex items-center gap-3 flex-1 justify-center">
-                            <button className="text-white/40 hover:text-white" aria-label="Anterior"><ChevronLeft size={18} /></button>
-                            <span className="whitespace-nowrap">Os Mais Desejados com 20% OFF extra ⚡ Só hoje!</span>
-                            <Link
-                                href="/c/colchoes"
-                                className="border border-white text-white text-[13px] font-semibold rounded px-3.5 py-1 hover:bg-white hover:text-navy-medium transition-colors whitespace-nowrap"
+                    <div className="max-w-[1280px] mx-auto px-6 flex items-center justify-between gap-10">
+                        {/* Bloco esquerda: seta + carrossel de promos + seta — ocupa o espaço entre logo e Franqueado */}
+                        <div className="flex items-center gap-5 flex-1 min-w-0">
+                            <button
+                                type="button"
+                                onClick={promoPrev}
+                                aria-label="Mensagem anterior"
+                                className="text-white/70 hover:text-white transition-colors flex-shrink-0"
                             >
-                                Use TOP20
-                            </Link>
-                            <button className="text-white/40 hover:text-white" aria-label="Próximo"><ChevronRight size={18} /></button>
+                                <ChevronLeft size={20} />
+                            </button>
+
+                            <div className="overflow-hidden flex-1 min-w-0" ref={promoEmblaRef}>
+                                <div className="flex">
+                                    {PROMO_MESSAGES.map((promo, idx) => (
+                                        <div
+                                            key={idx}
+                                            className="flex-[0_0_100%] min-w-0 flex items-center justify-center gap-4 px-2"
+                                        >
+                                            <span className="truncate">{promo.text}</span>
+                                            <Link
+                                                href={promo.href}
+                                                className="border border-white text-white text-[13px] font-semibold rounded px-5 py-1.5 hover:bg-white hover:text-navy-medium transition-colors whitespace-nowrap flex-shrink-0"
+                                            >
+                                                {promo.cta}
+                                            </Link>
+                                        </div>
+                                    ))}
+                                </div>
+                            </div>
+
+                            <button
+                                type="button"
+                                onClick={promoNext}
+                                aria-label="Próxima mensagem"
+                                className="text-white/70 hover:text-white transition-colors flex-shrink-0"
+                            >
+                                <ChevronRight size={20} />
+                            </button>
                         </div>
-                        <div className="flex items-center text-white text-[14px] font-medium divide-x divide-white/20">
-                            <Link href="#" className="flex items-center gap-1.5 px-3 hover:text-orange-300 transition-colors">
+
+                        <div className="flex items-center text-white text-[14px] font-medium divide-x divide-white/20 flex-shrink-0">
+                            <Link href="https://www.ortobom.com.br/SejaUmFranqueado" target="_blank" rel="noopener noreferrer" className="flex items-center gap-1.5 px-2.5 hover:text-orange-300 transition-colors">
                                 <Shield size={16} strokeWidth={1.8} />
                                 <span>Franqueado</span>
                             </Link>
-                            <Link href="#" className="flex items-center gap-1.5 px-3 hover:text-orange-300 transition-colors">
+                            <Link href="https://www.ortobom.com.br/listalojas" target="_blank" rel="noopener noreferrer" className="flex items-center gap-1.5 px-2.5 hover:text-orange-300 transition-colors">
                                 <Store size={16} strokeWidth={1.8} />
                                 <span>Lojas Próximas</span>
                             </Link>
-                            <Link href="#" className="flex items-center gap-1.5 px-3 hover:text-orange-300 transition-colors">
+                            <Link href="https://www.ortobom.com.br/industrias" target="_blank" rel="noopener noreferrer" className="flex items-center gap-1.5 px-2.5 hover:text-orange-300 transition-colors">
                                 <Factory size={16} strokeWidth={1.8} />
                                 <span>Para Indústrias</span>
                             </Link>
-                            <Link href="#" className="flex items-center gap-1.5 px-3 hover:text-orange-300 transition-colors">
+                            <Link href="https://www.ortobom.com.br/hotelaria" target="_blank" rel="noopener noreferrer" className="flex items-center gap-1.5 px-2.5 hover:text-orange-300 transition-colors">
                                 <Hotel size={16} strokeWidth={1.8} />
                                 <span>Para Hotéis</span>
                             </Link>
-                            <Link href="#" className="flex items-center gap-1.5 pl-3 hover:text-orange-300 transition-colors">
+                            <Link href="https://ortobom.custhelp.com/" target="_blank" rel="noopener noreferrer" className="flex items-center gap-1.5 pl-2.5 hover:text-orange-300 transition-colors">
                                 <Phone size={16} strokeWidth={1.8} />
                                 <span>SAC</span>
                             </Link>
@@ -213,9 +258,10 @@ export function Header() {
                 </div>
 
                 {/* ═══ ROW 3: Nav — azul medium da marca, com separador sutil no topo ═══ */}
+                {/* ═══ ROW 3: Nav — fundo full-width, conteúdo indentado para hierarquia visual ═══ */}
                 <nav className="hidden lg:block bg-navy-nav shadow-[inset_0_8px_12px_-8px_rgba(0,0,0,0.5)]" aria-label="Categorias">
                     <div className="max-w-[1280px] mx-auto px-6">
-                        <ul className="flex items-center justify-center py-1.5">
+                        <ul className="flex items-center justify-start gap-2 py-1.5">
                             <NavCategoryItem
                                 label="OFERTAS"
                                 href="/c/colchoes"

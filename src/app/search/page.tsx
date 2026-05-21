@@ -30,7 +30,12 @@ export default async function SearchPage({ searchParams }: { searchParams: Promi
                 variants (
                     price,
                     compare_at_price,
-                    size
+                    size,
+                    dimensions
+                ),
+                product_images (
+                    url,
+                    position
                 )
             `)
             .eq('is_active', true)
@@ -39,15 +44,23 @@ export default async function SearchPage({ searchParams }: { searchParams: Promi
             .limit(24)
 
         products = (rawProducts || []).map(p => {
-            const variants = (p.variants as any[]) || []
+            const variants = (p.variants as { price: number; compare_at_price: number | null; size: string; dimensions: string | null }[]) || []
             const cheapest = variants.reduce(
                 (min, v) => (v.price < min.price ? v : min),
-                variants[0] || { price: 0, compare_at_price: null }
+                variants[0] || { price: 0, compare_at_price: null, size: '', dimensions: '' }
             )
+            const productImages = ((p.product_images as { url: string; position: number }[]) || [])
+                .sort((a, b) => a.position - b.position)
+                .map(i => i.url)
+            const variantLabel = cheapest.dimensions
+                ? `${cheapest.size} (${cheapest.dimensions})`
+                : cheapest.size
             return {
                 ...p,
                 price: cheapest.price,
                 compare_at_price: cheapest.compare_at_price || null,
+                images: productImages,
+                variant_label: variantLabel,
             }
         })
     }

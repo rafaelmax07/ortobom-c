@@ -3,6 +3,9 @@
 import { useCart } from '@/context/CartContext';
 import { X, Trash2, Plus, Minus, ShoppingBag, MessageCircle } from 'lucide-react';
 import Image from 'next/image';
+import { Button } from './primitives/Button';
+import { Badge } from './primitives/Badge';
+import { IconButton } from './primitives/IconButton';
 
 export default function CartDrawer() {
     const {
@@ -48,12 +51,10 @@ export default function CartDrawer() {
                 <div className="flex items-center justify-between px-4 py-4 border-b border-border bg-navy-medium">
                     <div className="flex items-center gap-2">
                         <ShoppingBag className="text-white" size={18} />
-                        <h2 className="text-white font-bold text-base">
+                        <h2 className="t-product-title text-white">
                             Meu Carrinho
                             {totalItems > 0 && (
-                                <span className="ml-2 text-xs bg-accent text-white rounded-full px-2 py-0.5">
-                                    {totalItems}
-                                </span>
+                                <Badge variant="discount" size="sm" className="ml-2">{totalItems}</Badge>
                             )}
                         </h2>
                     </div>
@@ -71,13 +72,10 @@ export default function CartDrawer() {
                     {items.length === 0 ? (
                         <div className="flex flex-col items-center justify-center h-full gap-3 text-text-muted">
                             <ShoppingBag size={48} strokeWidth={1} className="text-border" />
-                            <p className="font-medium text-text-soft text-sm">Seu carrinho está vazio</p>
-                            <button
-                                onClick={closeCart}
-                                className="mt-2 px-5 py-2 bg-navy-medium text-white rounded text-xs font-bold hover:bg-primary-hover transition-colors"
-                            >
+                            <p className="t-body-small">Seu carrinho está vazio</p>
+                            <Button onClick={closeCart} variant="primary" size="sm" className="mt-2">
                                 Continuar comprando
-                            </button>
+                            </Button>
                         </div>
                     ) : (
                         items.map((item) => (
@@ -97,20 +95,20 @@ export default function CartDrawer() {
                                 </div>
 
                                 <div className="flex-1 min-w-0">
-                                    <p className="text-xs font-semibold text-text-main truncate">{item.productName}</p>
-                                    <p className="text-[11px] text-text-muted">{item.variantSize}{item.dimensions ? ` — ${item.dimensions}` : ''}</p>
-                                    <p className="text-sm font-bold text-navy-medium mt-1">
+                                    <p className="t-product-title text-xs truncate">{item.productName}</p>
+                                    <p className="t-meta">{item.variantSize}{item.dimensions ? ` — ${item.dimensions}` : ''}</p>
+                                    <p className="t-price-medium text-sm mt-1 text-navy-medium">
                                         {(item.price * item.quantity).toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })}
                                     </p>
 
                                     <div className="flex items-center gap-2 mt-1.5">
-                                        <button onClick={() => decrement(item.variantId)} aria-label="Diminuir" className="w-6 h-6 rounded border border-border flex items-center justify-center text-text-soft hover:bg-bg-light">
+                                        <IconButton onClick={() => decrement(item.variantId)} aria-label="Diminuir" size="sm" className="w-6 h-6">
                                             <Minus size={11} />
-                                        </button>
+                                        </IconButton>
                                         <span className="text-xs font-bold w-4 text-center">{item.quantity}</span>
-                                        <button onClick={() => increment(item.variantId)} aria-label="Aumentar" className="w-6 h-6 rounded border border-border flex items-center justify-center text-text-soft hover:bg-bg-light">
+                                        <IconButton onClick={() => increment(item.variantId)} aria-label="Aumentar" size="sm" className="w-6 h-6">
                                             <Plus size={11} />
-                                        </button>
+                                        </IconButton>
                                         <button onClick={() => removeItem(item.variantId)} aria-label="Remover" className="ml-auto text-text-muted hover:text-danger transition-colors">
                                             <Trash2 size={13} />
                                         </button>
@@ -125,19 +123,21 @@ export default function CartDrawer() {
                 {items.length > 0 && (
                     <div className="border-t border-border px-4 py-4 space-y-3">
                         <div className="flex items-center justify-between">
-                            <span className="text-text-muted text-sm">Subtotal</span>
-                            <span className="text-lg font-extrabold text-navy-medium">
+                            <span className="t-meta">Subtotal</span>
+                            <span className="t-price-medium text-navy-medium">
                                 {totalPrice.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })}
                             </span>
                         </div>
 
-                        <button
+                        <Button
                             onClick={handleCheckout}
-                            className="w-full flex items-center justify-center gap-2 bg-whatsapp hover:bg-whatsapp-hover text-white font-bold py-3.5 rounded transition-colors"
+                            variant="whatsapp"
+                            size="lg"
+                            fullWidth
+                            leadingIcon={<MessageCircle size={18} />}
                         >
-                            <MessageCircle size={18} />
                             Fechar pedido via WhatsApp
-                        </button>
+                        </Button>
 
                         <button onClick={clearCart} className="w-full text-text-muted hover:text-danger text-xs transition-colors text-center">
                             Limpar carrinho

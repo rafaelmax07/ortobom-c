@@ -5,7 +5,8 @@ import Image from 'next/image'
 import useEmblaCarousel from 'embla-carousel-react'
 import { ChevronLeft, ChevronRight } from 'lucide-react'
 
-import { Badge } from './Badge'
+import { Badge } from './primitives/Badge'
+import { IconButton } from './primitives/IconButton'
 
 interface ProductGalleryProps {
     images: string[];
@@ -76,22 +77,26 @@ export function ProductGallery({ images, productName, discountPercent }: Product
 
                 {hasMultiple && (
                     <>
-                        <button
-                            type="button"
+                        <IconButton
                             onClick={scrollPrev}
                             aria-label="Imagem anterior"
-                            className="absolute left-3 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-navy-medium text-white flex items-center justify-center shadow-md hover:bg-primary-hover transition-colors"
+                            variant="navy"
+                            size="lg"
+                            rounded="full"
+                            className="absolute left-3 top-1/2 -translate-y-1/2 shadow-md"
                         >
                             <ChevronLeft size={20} />
-                        </button>
-                        <button
-                            type="button"
+                        </IconButton>
+                        <IconButton
                             onClick={scrollNext}
                             aria-label="Próxima imagem"
-                            className="absolute right-3 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-navy-medium text-white flex items-center justify-center shadow-md hover:bg-primary-hover transition-colors"
+                            variant="navy"
+                            size="lg"
+                            rounded="full"
+                            className="absolute right-3 top-1/2 -translate-y-1/2 shadow-md"
                         >
                             <ChevronRight size={20} />
-                        </button>
+                        </IconButton>
                     </>
                 )}
             </div>

@@ -1,387 +1,381 @@
-const puppeteer = require('puppeteer');
-const fs = require('fs');
-const path = require('path');
-const slugify = require('slugify');
+/* eslint-disable @typescript-eslint/no-require-imports */
+/**
+ * Ortobom Scraper — V2
+ *
+ * Estratégia: cada tamanho é uma URL/produto separado no site oficial. A PLP
+ * de cada categoria/tamanho lista cards com data-attributes ricos:
+ *   data-produto-nome      (ex: "Colchão Pró Saúde Nanolastic")
+ *   data-produto-variant   (ex: "Casal (25 x 188 x 138)")
+ *   data-produto-preco     (ex: "1499.00")
+ *   data-produto-id, data-produto-url
+ *
+ * Algoritmo:
+ *   1. Visita PLPs filtradas por tamanho (`/cat/colchao/solteiro/`, etc.)
+ *   2. Extrai todos os cards e seus data-attributes
+ *   3. Agrupa por `data-produto-nome` → cada nome único vira UM produto no DB
+ *      e cada `data-produto-variant` distinto vira uma `variant`
+ *   4. Para cada produto, visita uma PDP só pra puxar imagens e descrição
+ */
 
-// ────────────────────────────────────────────
-// Configuration
-// ────────────────────────────────────────────
-const BASE_URL = 'https://www.ortobom.com.br';
-const OUTPUT_FILE = path.join(__dirname, 'seed-products.json');
+const puppeteer = require('puppeteer')
+const fs = require('fs')
+const path = require('path')
+const slugify = require('slugify')
 
-// All 6 real categories from the website
-const TARGET_CATEGORIES = [
-  { slug: 'colchoes',     urlPath: 'colchoes',     type: 'colchao' },
-  { slug: 'camas',        urlPath: 'bases',         type: 'cama' },
-  { slug: 'cabeceiras',   urlPath: 'cabeceiras',    type: 'cabeceira' },
-  { slug: 'travesseiros', urlPath: 'travesseiros',  type: 'travesseiro' },
-  { slug: 'acessorios',   urlPath: 'acessorios',    type: null },
-  { slug: 'moveis',       urlPath: 'moveis',        type: null },
-];
+const BASE_URL = 'https://www.ortobom.com.br'
+const OUTPUT_FILE = path.join(__dirname, 'seed-products.json')
+const DELAY_MS = 1000
 
-// Politeness delay between requests (ms)
-const DELAY_MS = 1500;
+// Lista de PLPs a visitar por categoria. Cada categoria pode ter múltiplas
+// "rotas de tamanho" no site oficial. Para Acessórios/Móveis/Travesseiros não
+// existe segmentação de tamanho, então usamos só a raiz.
+const CATEGORIES = [
+    {
+        slug: 'colchoes',
+        urlPaths: [
+            '/cat/colchao/solteiro/',
+            '/cat/colchao/solteiro-extra/',
+            '/cat/colchao/casal/',
+            '/cat/colchao/queen/',
+            '/cat/colchao/king/',
+            '/cat/colchao/infantil/',
+        ],
+    },
+    {
+        slug: 'camas',
+        urlPaths: [
+            '/cat/base/solteiro/',
+            '/cat/base/solteiro-extra/',
+            '/cat/base/casal/',
+            '/cat/base/queen/',
+            '/cat/base/king/',
+        ],
+    },
+    {
+        slug: 'cabeceiras',
+        urlPaths: [
+            '/cat/cabeceira/solteiro/',
+            '/cat/cabeceira/solteiro-extra/',
+            '/cat/cabeceira/casal/',
+            '/cat/cabeceira/queen/',
+            '/cat/cabeceira/king/',
+        ],
+    },
+    { slug: 'travesseiros', urlPaths: ['/travesseiros'] },
+    { slug: 'acessorios', urlPaths: ['/acessorios'] },
+    { slug: 'moveis', urlPaths: ['/moveis'] },
+]
 
-const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
-
-// ────────────────────────────────────────────
-// Helpers
-// ────────────────────────────────────────────
-function cleanImageUrl(url) {
-  if (!url) return '';
-  // Remove query params to get highest-resolution version
-  return url.split('?')[0];
-}
+const sleep = (ms) => new Promise((r) => setTimeout(r, ms))
 
 function makeSlug(name) {
-  return slugify(name, { lower: true, strict: true, locale: 'pt' });
+    return slugify(name, { lower: true, strict: true, locale: 'pt' })
 }
 
-// ────────────────────────────────────────────
-// Scrape a single category page → return all product URLs
-// ────────────────────────────────────────────
-async function getCategoryProductLinks(page, cat) {
-  const url = `${BASE_URL}/${cat.urlPath}`;
-  console.log(`\n📂 Category: ${cat.slug} → ${url}`);
-
-  try {
-    await page.goto(url, { waitUntil: 'domcontentloaded', timeout: 30000 });
-    await sleep(1000);
-
-    // Scroll to load all lazy-loaded products
-    let lastHeight = 0;
-    for (let i = 0; i < 15; i++) {
-      await page.evaluate(() => window.scrollBy(0, 1200));
-      await sleep(800);
-      const newHeight = await page.evaluate(() => document.body.scrollHeight);
-      if (newHeight === lastHeight) break;
-      lastHeight = newHeight;
-    }
-
-    const links = await page.evaluate((catType) => {
-      const found = new Set();
-      document.querySelectorAll('a').forEach((a) => {
-        const href = a.href;
-        if (!href || !href.includes('/p/')) return;
-        // Exclude "sob-medida" / custom variants
-        if (href.includes('sob-medida') || href.includes('sobmedida') || href.includes('custom')) return;
-        found.add(href);
-      });
-      return [...found];
-    }, cat.type);
-
-    console.log(`   Found ${links.length} product links`);
-    return links;
-  } catch (err) {
-    console.error(`   ❌ Error scraping category ${cat.slug}: ${err.message}`);
-    return [];
-  }
+function cleanImageUrl(url) {
+    if (!url) return ''
+    return url.split('?')[0]
 }
 
-// ────────────────────────────────────────────
-// Scrape a single product page
-// ────────────────────────────────────────────
-async function scrapeProduct(page, url, categorySlug) {
-  try {
-    await page.goto(url, { waitUntil: 'domcontentloaded', timeout: 30000 });
-    await sleep(800);
+// ────────────────────────────────────────────────────────────────────
+// PLP: extrai todos os cards (com tamanho) de uma URL
+// ────────────────────────────────────────────────────────────────────
+async function scrapePLP(page, plpUrl, categorySlug) {
+    const url = `${BASE_URL}${plpUrl}`
+    console.log(`\n📂 PLP: ${url}`)
 
-    // Wait for the product name
     try {
-      await page.waitForSelector('h1', { timeout: 8000 });
-    } catch (_) {}
+        await page.goto(url, { waitUntil: 'networkidle2', timeout: 60000 })
+        await sleep(1500)
 
-    const data = await page.evaluate(() => {
-      // ── Name ──────────────────────────────────────────────────────────────
-      const name =
-        document.querySelector('h1.titleNomeProduto')?.innerText?.trim() ||
-        document.querySelector('h1')?.innerText?.trim() ||
-        '';
+        // Auto-scroll para forçar lazy-load de cards
+        await page.evaluate(async () => {
+            await new Promise((resolve) => {
+                let total = 0
+                const distance = 600
+                const timer = setInterval(() => {
+                    window.scrollBy(0, distance)
+                    total += distance
+                    if (total >= document.body.scrollHeight - window.innerHeight) {
+                        clearInterval(timer)
+                        window.scrollTo(0, 0)
+                        resolve()
+                    }
+                }, 200)
+            })
+        })
+        await sleep(800)
 
-      if (!name) return null;
+        const cards = await page.evaluate(() => {
+            const out = []
+            document.querySelectorAll('.card.product-card[data-produto-nome]').forEach((card) => {
+                const link = card.closest('a') || card.querySelector('a')
+                const url = card.getAttribute('data-produto-url') || link?.getAttribute('href') || ''
+                const featuredImg = card.querySelector('img.card-img-top')
+                const featuredSrc = featuredImg
+                    ? (featuredImg.getAttribute('src') || featuredImg.getAttribute('data-src') || '').split('?')[0]
+                    : ''
 
-      // ── Description ───────────────────────────────────────────────────────
-      const descEl =
-        document.querySelector('.product-description') ||
-        document.querySelector('[itemprop="description"]') ||
-        document.querySelector('.s-mb-1\\.5.s-fs-1') ||
-        document.querySelector('[class*="description"]');
-      const description = descEl ? descEl.innerText.trim() : '';
-      const descriptionHtml = descEl ? descEl.innerHTML.trim() : '';
+                out.push({
+                    productId: card.getAttribute('data-produto-id') || '',
+                    name: card.getAttribute('data-produto-nome') || '',
+                    variant: card.getAttribute('data-produto-variant') || '',
+                    price: parseFloat(card.getAttribute('data-produto-preco') || '0'),
+                    pdpPath: url,
+                    featuredImage: featuredSrc,
+                })
+            })
+            return out
+        })
 
-      // ── Images ────────────────────────────────────────────────────────────
-      // Collect all CDN images from the gallery/splide/thumbnails
-      const imageUrls = new Set();
+        console.log(`   Cards encontrados: ${cards.length}`)
+        return cards.map((c) => ({ ...c, categorySlug }))
+    } catch (e) {
+        console.warn(`   ⚠️  Falha em ${url}: ${e.message}`)
+        return []
+    }
+}
 
-      // Main gallery images (splide slides)
-      document.querySelectorAll('.splide__slide img, .splide__list img').forEach((img) => {
-        const src = (img.dataset.src || img.src || '').split('?')[0];
-        if (src && src.includes('cdn.ortobom.com.br')) imageUrls.add(src);
-      });
+// ────────────────────────────────────────────────────────────────────
+// PDP: visita 1 vez por PRODUTO para puxar imagens + descrição
+// ────────────────────────────────────────────────────────────────────
+async function scrapePDP(page, pdpPath) {
+    const url = pdpPath.startsWith('http') ? pdpPath : `${BASE_URL}${pdpPath}`
+    try {
+        await page.goto(url, { waitUntil: 'domcontentloaded', timeout: 30000 })
+        await sleep(800)
 
-      // Thumbnail strip
-      document.querySelectorAll('.thumb img, [class*="thumb"] img, [class*="thumbnail"] img').forEach((img) => {
-        const src = (img.dataset.src || img.src || '').split('?')[0];
-        if (src && src.includes('cdn.ortobom.com.br')) imageUrls.add(src);
-      });
+        const data = await page.evaluate(() => {
+            // Imagens: pega tudo que está em galerias/thumbnails do CDN
+            const imageUrls = new Set()
 
-      // Any CDN image on the page as fallback
-      if (imageUrls.size === 0) {
-        document.querySelectorAll('img').forEach((img) => {
-          const src = (img.dataset.src || img.src || '').split('?')[0];
-          if (src && src.includes('cdn.ortobom.com.br')) imageUrls.add(src);
-        });
-      }
+            const imgSelectors = [
+                '.splide__slide img',
+                '.splide__list img',
+                '[class*="thumb"] img',
+                '[class*="thumbnail"] img',
+                '[class*="gallery"] img',
+                '[class*="produto-fotos"] img',
+            ]
+            imgSelectors.forEach((sel) => {
+                document.querySelectorAll(sel).forEach((img) => {
+                    const src = (img.dataset.src || img.src || '').split('?')[0]
+                    if (src && src.includes('cdn.ortobom.com.br')) imageUrls.add(src)
+                })
+            })
 
-      const images = [...imageUrls];
-
-      // ── Variants / Sizes ──────────────────────────────────────────────────
-      // The real site shows size cards with dimensions + price
-      const variants = [];
-
-      // Strategy 1: size selector buttons/cards (most reliable)
-      const sizeCards = document.querySelectorAll(
-        '[class*="size"] [class*="card"], [class*="tamanho"] [class*="card"], ' +
-        '.product-size-item, [class*="sizeItem"], [class*="size-item"], ' +
-        '[data-size], [class*="SelectSize"] > *, [class*="selectSize"] > *'
-      );
-
-      sizeCards.forEach((card) => {
-        const sizeText = card.querySelector('[class*="size"], [class*="name"], strong, b')?.innerText?.trim()
-          || card.innerText.split('\n')[0]?.trim();
-        const priceText = card.querySelector('[class*="price"], .price')?.innerText?.trim()
-          || card.innerText.match(/R\$\s*[\d.,]+/)?.[0];
-        const dimText = card.querySelector('[class*="dim"], [class*="medida"]')?.innerText?.trim() || '';
-
-        if (sizeText && priceText && !sizeText.toLowerCase().includes('sob medida')) {
-          const rawPrice = priceText.replace(/[^\d,]/g, '').replace(',', '.');
-          const price = parseFloat(rawPrice) || 0;
-          if (price > 0) {
-            variants.push({ size: sizeText, price, dimensions: dimText });
-          }
-        }
-      });
-
-      // Strategy 2: look for all sizes listed in the page text (fallback)
-      if (variants.length === 0) {
-        const sizeNames = ['Solteiro', 'Casal', 'Queen', 'King', 'Super King', 'Berço'];
-        const priceEls = document.querySelectorAll('[class*="price"], .price, .newPrice');
-
-        // Try to find each size + associate with a price
-        sizeNames.forEach((sz) => {
-          const el = Array.from(document.querySelectorAll('button, span, div, li')).find(
-            (e) => e.innerText?.trim() === sz && e.children.length <= 2
-          );
-          if (el) {
-            // Find nearby price
-            const priceEl = el.closest('[class*="item"], [class*="card"], li')?.querySelector('[class*="price"]');
-            const priceText = priceEl?.innerText?.trim() || '';
-            const rawPrice = priceText.replace(/[^\d,]/g, '').replace(',', '.');
-            const price = parseFloat(rawPrice) || 0;
-            if (price > 0) {
-              variants.push({ size: sz, price, dimensions: '' });
+            // Fallback: qualquer imagem CDN na página
+            if (imageUrls.size === 0) {
+                document.querySelectorAll('img').forEach((img) => {
+                    const src = (img.dataset.src || img.src || '').split('?')[0]
+                    if (src && src.includes('cdn.ortobom.com.br')) imageUrls.add(src)
+                })
             }
-          }
-        });
-      }
 
-      // Strategy 3: single price (travesseiros / acessórios with no size choice)
-      if (variants.length === 0) {
-        const priceEl =
-          document.querySelector('.newPrice') ||
-          document.querySelector('[class*="price-value"]') ||
-          document.querySelector('[class*="s-fs-3"][class*="s-fw-700"]');
-        if (priceEl) {
-          const raw = priceEl.innerText.replace(/[^\d,]/g, '').replace(',', '.');
-          const price = parseFloat(raw) || 0;
-          if (price > 0) variants.push({ size: 'Padrão', price, dimensions: '' });
-        }
-      }
+            // Descrição
+            const descEl =
+                document.querySelector('.product-description') ||
+                document.querySelector('[itemprop="description"]') ||
+                document.querySelector('[class*="description"]')
+            const description = descEl ? descEl.innerText.trim() : ''
+            const descriptionHtml = descEl ? descEl.innerHTML.trim() : ''
 
-      // ── Compare at price ──────────────────────────────────────────────────
-      const compareEl =
-        document.querySelector('[class*="price-old"], [class*="oldPrice"], s, del, [class*="compare"]');
-      const compareRaw = compareEl?.innerText?.replace(/[^\d,]/g, '').replace(',', '.') || '';
-      const compareAtPrice = parseFloat(compareRaw) || 0;
+            // "Preço de" (compare_at_price)
+            const compareEl =
+                document.querySelector('#precoSugeridoProduto') ||
+                document.querySelector('.oldPrice') ||
+                document.querySelector('[class*="price-old"]')
+            const compareRaw = compareEl?.innerText?.replace(/[^\d,]/g, '').replace(',', '.') || ''
+            const compareAtPrice = parseFloat(compareRaw) || 0
 
-      return {
-        name,
-        description,
-        descriptionHtml,
-        images,
-        variants,
-        compareAtPriceBase: compareAtPrice,
-      };
-    });
+            return {
+                images: [...imageUrls],
+                description,
+                descriptionHtml,
+                compareAtPrice,
+            }
+        })
 
-    if (!data || !data.name) {
-      console.log(`      ⚠️ Could not parse product at ${url}`);
-      return null;
+        return data
+    } catch (e) {
+        console.warn(`   ⚠️  PDP falhou ${url}: ${e.message}`)
+        return { images: [], description: '', descriptionHtml: '', compareAtPrice: 0 }
     }
-
-    // De-duplicate variants by size
-    const seenSizes = new Set();
-    const cleanVariants = data.variants.filter((v) => {
-      if (seenSizes.has(v.size)) return false;
-      seenSizes.add(v.size);
-      return true;
-    });
-
-    // If no variants found, put a placeholder that generate-sql will handle
-    if (cleanVariants.length === 0) {
-      cleanVariants.push({ size: 'Padrão', price: 0, dimensions: '' });
-    }
-
-    const featured_image = data.images[0] || '';
-
-    return {
-      name: data.name,
-      slug: makeSlug(data.name),
-      description: data.description,
-      description_html: data.descriptionHtml,
-      featured_image,
-      images: data.images,           // all gallery images
-      variants: cleanVariants,
-      compare_at_price_base: data.compareAtPriceBase,
-      category_slug: categorySlug,
-      original_url: url,
-    };
-  } catch (err) {
-    console.error(`      ❌ Error scraping ${url}: ${err.message}`);
-    return null;
-  }
 }
 
-// ────────────────────────────────────────────
-// Scrape homepage banners
-// ────────────────────────────────────────────
+// ────────────────────────────────────────────────────────────────────
+// Banners da home
+// ────────────────────────────────────────────────────────────────────
 async function scrapeBanners(page) {
-  console.log('\n🖼️  Scraping homepage banners...');
-  try {
-    await page.goto(BASE_URL, { waitUntil: 'domcontentloaded', timeout: 30000 });
-    await sleep(2000);
+    console.log('\n🖼️  Scraping banners da home...')
+    try {
+        await page.goto(BASE_URL, { waitUntil: 'networkidle2', timeout: 60000 })
+        await sleep(2000)
 
-    const banners = await page.evaluate(() => {
-      const found = [];
+        const banners = await page.evaluate(() => {
+            const found = []
+            document.querySelectorAll('.splide__slide, .carousel-item').forEach((slide, i) => {
+                const img = slide.querySelector('img')
+                const link = slide.querySelector('a')
+                if (!img) return
 
-      // Main hero slider
-      document.querySelectorAll('.splide__slide').forEach((slide, i) => {
-        const img = slide.querySelector('img');
-        const link = slide.querySelector('a');
-        if (!img) return;
+                const src = (img.dataset.src || img.src || '').split('?')[0]
+                if (!src || src.includes('loading') || !src.includes('cdn.')) return
 
-        const src = (img.dataset.src || img.src || '').split('?')[0];
-        if (!src || src.includes('loading')) return;
+                let mobileSrc = ''
+                slide.querySelectorAll('picture source').forEach((s) => {
+                    if (s.media && s.media.includes('max-width')) {
+                        mobileSrc = (s.srcset || '').split('?')[0]
+                    }
+                })
 
-        // Check for mobile-specific image (picture source)
-        const pictureSources = slide.querySelectorAll('picture source');
-        let mobileSrc = '';
-        pictureSources.forEach((src) => {
-          if (src.media && src.media.includes('max-width')) {
-            mobileSrc = (src.srcset || '').split('?')[0];
-          }
-        });
-
-        found.push({
-          title: img.alt || `Banner ${i + 1}`,
-          image_desktop_url: src,
-          image_mobile_url: mobileSrc || src,
-          link: link?.href || '#',
-          position: i,
-        });
-      });
-
-      return found.filter((b) => b.image_desktop_url && b.image_desktop_url.includes('cdn.'));
-    });
-
-    console.log(`   Found ${banners.length} banners`);
-    return banners;
-  } catch (err) {
-    console.error(`   ❌ Error scraping banners: ${err.message}`);
-    return [];
-  }
+                found.push({
+                    title: img.alt || `Banner ${i + 1}`,
+                    image_desktop_url: src,
+                    image_mobile_url: mobileSrc || src,
+                    link: link?.href || '#',
+                    position: i,
+                })
+            })
+            return found
+        })
+        console.log(`   Banners: ${banners.length}`)
+        return banners
+    } catch (e) {
+        console.warn(`   ⚠️  Banners falhou: ${e.message}`)
+        return []
+    }
 }
 
-// ────────────────────────────────────────────
+// ────────────────────────────────────────────────────────────────────
 // Main
-// ────────────────────────────────────────────
+// ────────────────────────────────────────────────────────────────────
 async function scrape() {
-  console.log('🚀 Starting Ortobom Full Scraper...\n');
-  console.log(`   Categories: ${TARGET_CATEGORIES.map((c) => c.slug).join(', ')}`);
-  console.log('   Mode: ALL products (no limit)\n');
+    console.log('🚀 Ortobom Scraper V2\n')
+    console.log(`   Categorias: ${CATEGORIES.map((c) => c.slug).join(', ')}\n`)
 
-  const browser = await puppeteer.launch({
-    headless: true,
-    args: ['--no-sandbox', '--disable-setuid-sandbox', '--disable-dev-shm-usage'],
-    defaultViewport: { width: 1440, height: 900 },
-  });
+    const browser = await puppeteer.launch({
+        headless: true,
+        args: ['--no-sandbox', '--disable-setuid-sandbox', '--disable-dev-shm-usage'],
+        defaultViewport: { width: 1440, height: 900 },
+    })
 
-  const page = await browser.newPage();
-  await page.setUserAgent(
-    'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'
-  );
+    const page = await browser.newPage()
+    await page.setUserAgent(
+        'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'
+    )
 
-  // Track slugs to avoid duplicates across categories
-  const seenSlugs = new Set();
-  const allProducts = [];
-  const banners = await scrapeBanners(page);
+    const banners = await scrapeBanners(page)
 
-  for (const cat of TARGET_CATEGORIES) {
-    const productLinks = await getCategoryProductLinks(page, cat);
-    let scraped = 0;
-    let skipped = 0;
+    // Fase 1: agregação de cards de todas as PLPs
+    // Estrutura: Map<nome do produto, { name, categorySlug, variants[], pdpPath, featuredImage }>
+    const productMap = new Map()
 
-    for (const link of productLinks) {
-      if (scraped >= 10) {
-        console.log(`   ⏹️ Reached limit of 10 products for category ${cat.slug}`);
-        break;
-      }
+    for (const cat of CATEGORIES) {
+        console.log(`\n═══ ${cat.slug.toUpperCase()} ═══`)
+        for (const plpPath of cat.urlPaths) {
+            const cards = await scrapePLP(page, plpPath, cat.slug)
+            for (const card of cards) {
+                if (!card.name) continue
 
-      // Skip "sob medida" in URL
-      if (link.includes('sob-medida') || link.includes('sobmedida')) {
-        skipped++;
-        continue;
-      }
+                let entry = productMap.get(card.name.trim())
+                if (!entry) {
+                    entry = {
+                        name: card.name.trim(),
+                        categorySlug: cat.slug,
+                        variants: [],
+                        pdpPath: card.pdpPath,
+                        featuredImage: card.featuredImage,
+                    }
+                    productMap.set(card.name.trim(), entry)
+                }
 
-      console.log(`   ➡️  [${cat.slug}] ${scraped + 1}/${productLinks.length} ${link}`);
+                // Adiciona variante (deduplicada por size+price)
+                const variantKey = `${card.variant}__${card.price}`
+                const exists = entry.variants.some((v) => `${v.rawVariant}__${v.price}` === variantKey)
+                if (!exists && card.variant && card.price > 0) {
+                    // Parse "Casal (25 x 188 x 138)" → size: "Casal", dimensions: "25 x 188 x 138"
+                    const m = card.variant.match(/^(.*?)\s*\((.*?)\)\s*$/)
+                    const size = m ? m[1].trim() : card.variant.trim()
+                    const dimensions = m ? m[2].trim() : ''
+                    entry.variants.push({
+                        rawVariant: card.variant,
+                        size,
+                        dimensions,
+                        price: card.price,
+                        productId: card.productId,
+                        pdpPath: card.pdpPath,
+                    })
+                }
 
-      const product = await scrapeProduct(page, link, cat.slug);
-
-      if (!product) {
-        skipped++;
-        continue;
-      }
-
-      // De-duplicate by slug
-      if (seenSlugs.has(product.slug)) {
-        console.log(`      ↩️  Duplicate slug: ${product.slug}, skipping`);
-        skipped++;
-        continue;
-      }
-
-      seenSlugs.add(product.slug);
-      allProducts.push(product);
-      scraped++;
-
-      await sleep(DELAY_MS);
+                // Mantém o primeiro pdpPath/featuredImage encontrado
+                if (!entry.pdpPath && card.pdpPath) entry.pdpPath = card.pdpPath
+                if (!entry.featuredImage && card.featuredImage) entry.featuredImage = card.featuredImage
+            }
+            await sleep(DELAY_MS)
+        }
     }
 
-    console.log(`\n   ✅ ${cat.slug}: ${scraped} scraped, ${skipped} skipped\n`);
-  }
+    console.log(`\n📦 Produtos únicos coletados: ${productMap.size}\n`)
 
-  await browser.close();
+    // Fase 2: para cada produto, visita uma PDP pra puxar imagens + descrição
+    const products = []
+    let i = 0
+    for (const [, entry] of productMap) {
+        i++
+        console.log(`[${i}/${productMap.size}] ${entry.name} (${entry.variants.length} variants)`)
 
-  // Write output
-  const output = { products: allProducts, banners };
-  fs.writeFileSync(OUTPUT_FILE, JSON.stringify(output, null, 2));
+        // Pula produtos sem variantes válidas
+        if (entry.variants.length === 0) continue
 
-  console.log(`\n✅ Done!`);
-  console.log(`   Products: ${allProducts.length}`);
-  console.log(`   Banners:  ${banners.length}`);
-  console.log(`   Output:   ${OUTPUT_FILE}`);
+        const pdp = await scrapePDP(page, entry.pdpPath)
+
+        // featured_image: usa imagem da PLP se a PDP não retornar
+        const featuredImage = pdp.images[0] || cleanImageUrl(entry.featuredImage)
+        const allImages = pdp.images.length > 0 ? pdp.images : [featuredImage].filter(Boolean)
+
+        // Aplicar compare_at_price em cada variant (heurística: mesmo % de desconto na PDP base)
+        const variantsWithCompare = entry.variants.map((v) => {
+            // Se a PDP retornou compareAtPrice E é maior que o preço da variante atual, aplica
+            const compare = pdp.compareAtPrice > v.price ? pdp.compareAtPrice : null
+            return {
+                size: v.size,
+                price: v.price,
+                compare_at_price: compare,
+                dimensions: v.dimensions,
+                sku: `${makeSlug(entry.name)}-${makeSlug(v.size)}`.slice(0, 60),
+            }
+        })
+
+        products.push({
+            name: entry.name,
+            slug: makeSlug(entry.name),
+            description: pdp.description,
+            description_html: pdp.descriptionHtml,
+            featured_image: featuredImage,
+            images: allImages,
+            variants: variantsWithCompare,
+            compare_at_price_base: pdp.compareAtPrice,
+            category_slug: entry.categorySlug,
+            original_url: `${BASE_URL}${entry.pdpPath}`,
+        })
+
+        await sleep(DELAY_MS)
+    }
+
+    await browser.close()
+
+    const output = { products, banners }
+    fs.writeFileSync(OUTPUT_FILE, JSON.stringify(output, null, 2))
+
+    console.log(`\n✅ Concluído.`)
+    console.log(`   Produtos: ${products.length}`)
+    console.log(`   Variantes totais: ${products.reduce((acc, p) => acc + p.variants.length, 0)}`)
+    console.log(`   Banners:  ${banners.length}`)
+    console.log(`   Output:   ${OUTPUT_FILE}`)
 }
 
-scrape().catch((err) => {
-  console.error('Fatal error:', err);
-  process.exit(1);
-});
+scrape().catch((e) => {
+    console.error('Fatal:', e)
+    process.exit(1)
+})

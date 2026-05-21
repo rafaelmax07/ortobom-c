@@ -52,7 +52,12 @@ export default async function CategoryPage({
                 id,
                 price,
                 compare_at_price,
-                size
+                size,
+                dimensions
+            ),
+            product_images (
+                url,
+                position
             )
         `)
         .eq('category_id', category.id)
@@ -73,7 +78,7 @@ export default async function CategoryPage({
     // 4. Transform and filter products
     const products = (rawProducts || [])
         .map(p => {
-            const variants = (p.variants as { id: string; price: number; compare_at_price: number | null; size: string }[]) || []
+            const variants = (p.variants as { id: string; price: number; compare_at_price: number | null; size: string; dimensions: string | null }[]) || []
             // Apply size filter at variant level
             const filteredVariants = sizeFilters.length > 0
                 ? variants.filter(v => sizeFilters.includes(v.size))
@@ -84,13 +89,23 @@ export default async function CategoryPage({
             // Find lowest price variant from filtered set
             const cheapest = filteredVariants.reduce(
                 (min, v) => (v.price < min.price ? v : min),
-                filteredVariants[0] || { price: 0, compare_at_price: null }
+                filteredVariants[0] || { price: 0, compare_at_price: null, size: '', dimensions: '' }
             )
+
+            const productImages = ((p.product_images as { url: string; position: number }[]) || [])
+                .sort((a, b) => a.position - b.position)
+                .map(i => i.url)
+
+            const variantLabel = cheapest.dimensions
+                ? `${cheapest.size} (${cheapest.dimensions})`
+                : cheapest.size
 
             return {
                 ...p,
                 price: cheapest.price,
                 compare_at_price: cheapest.compare_at_price || null,
+                images: productImages,
+                variant_label: variantLabel,
             }
         })
         .filter((p): p is NonNullable<typeof p> => {

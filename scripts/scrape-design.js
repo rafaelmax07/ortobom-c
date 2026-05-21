@@ -32,11 +32,21 @@ const OUTPUT_ROOT = path.join(__dirname, 'design-scrape');
 
 const TARGET_PAGES = [
     { slug: 'home', url: BASE_URL },
-    { slug: 'plp-colchoes', url: `${BASE_URL}/colchoes` },
-    { slug: 'plp-bases', url: `${BASE_URL}/bases` },
-    { slug: 'plp-cabeceiras', url: `${BASE_URL}/cabeceiras` },
+    { slug: 'plp-colchoes-solteiro', url: `${BASE_URL}/cat/colchao/solteiro/` },
+    { slug: 'plp-colchoes-solteiro-extra', url: `${BASE_URL}/cat/colchao/solteiro-extra/` },
+    { slug: 'plp-colchoes-casal', url: `${BASE_URL}/cat/colchao/casal/` },
+    { slug: 'plp-colchoes-queen', url: `${BASE_URL}/cat/colchao/queen/` },
+    { slug: 'plp-colchoes-king', url: `${BASE_URL}/cat/colchao/king/` },
+    { slug: 'plp-bases-solteiro', url: `${BASE_URL}/cat/base/solteiro/` },
+    { slug: 'plp-bases-casal', url: `${BASE_URL}/cat/base/casal/` },
+    { slug: 'plp-bases-queen', url: `${BASE_URL}/cat/base/queen/` },
+    { slug: 'plp-bases-king', url: `${BASE_URL}/cat/base/king/` },
+    { slug: 'plp-cabeceiras-casal', url: `${BASE_URL}/cat/cabeceira/casal/` },
+    { slug: 'plp-cabeceiras-queen', url: `${BASE_URL}/cat/cabeceira/queen/` },
+    { slug: 'plp-cabeceiras-king', url: `${BASE_URL}/cat/cabeceira/king/` },
     { slug: 'plp-travesseiros', url: `${BASE_URL}/travesseiros` },
     { slug: 'plp-acessorios', url: `${BASE_URL}/acessorios` },
+    { slug: 'plp-moveis', url: `${BASE_URL}/moveis` },
     // PDP é descoberta dinamicamente abaixo (primeiro produto da PLP de colchões)
 ];
 

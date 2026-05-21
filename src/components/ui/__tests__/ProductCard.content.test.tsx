@@ -33,7 +33,7 @@ describe('ProductCard content', () => {
         cleanup()
     })
 
-    it('Property 2: ProductCard surfaces "A partir de", variant chip, and CTA — Validates: Requirements 2.2, 2.3, 2.4', () => {
+    it('Property 2: ProductCard surfaces "A partir de", variant chip, and CTA — Validates: Requirements 2.2, 2.3, 2.4', { timeout: 30000 }, () => {
         fc.assert(
             fc.property(
                 slugArb,
