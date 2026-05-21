@@ -2,151 +2,345 @@
 
 import Link from 'next/link'
 import Image from 'next/image'
-import { Search, Menu, Phone, X, ShoppingCart, Tag } from 'lucide-react'
-import { useState } from 'react'
+import { Search, Menu, X, ShoppingCart, Heart, User, MapPin, ChevronRight, ChevronLeft, Shield, Store, Factory, Hotel, Phone } from 'lucide-react'
+import { useState, useRef, useEffect } from 'react'
 import { useCart } from '@/context/CartContext'
+import { NavCategoryItem } from './NavCategoryItem'
 
-// All navigation categories matching the real Ortobom site
 const NAV_CATEGORIES = [
-    { label: 'Colchões',     slug: 'colchoes' },
-    { label: 'Bases',        slug: 'camas' },
-    { label: 'Cabeceiras',   slug: 'cabeceiras' },
-    { label: 'Travesseiros', slug: 'travesseiros' },
-    { label: 'Acessórios',   slug: 'acessorios' },
-    { label: 'Móveis',       slug: 'moveis' },
+    {
+        label: 'Colchões',
+        slug: 'colchoes',
+        sizes: ['Solteiro', 'Solteiro Extra', 'Casal', 'Queen', 'King', 'Infantil', 'Sob medida'],
+        filters: [
+            { group: 'Nível de Conforto', items: ['Macio', 'Firme', 'Híbrido'] },
+            { group: 'Estilo', items: ['Tradicional/Clássico', 'Moderno/Tecnológico', 'Natural/Sustentável'] },
+            { group: 'Tipos de Colchão', items: ['Mola', 'Espuma', 'Ortopédico'] },
+        ],
+        image: 'https://cdn.ortobom.com.br/file/34dfaf5b-db37-472b-a3ae-4d4e36c220e7/liberty%20site.jpg',
+    },
+    {
+        label: 'Bases',
+        slug: 'camas',
+        sizes: ['Solteiro', 'Solteiro Extra', 'Casal', 'Queen', 'King', 'Sob medida'],
+        filters: [
+            { group: 'Estilos', items: ['Baú', 'Elétrica', 'Plana'] },
+            { group: 'Revestimentos', items: ['Nobuck', 'Cori', 'Linho', 'Malha', 'Suede', 'TNT'] },
+        ],
+        image: 'https://cdn.ortobom.com.br/file/02adf6bb-7cf9-40bc-b755-a84b9c268bab/BASE-SOMMIER-LIBERTY-CASAL--7-.jpg',
+    },
+    {
+        label: 'Cabeceiras',
+        slug: 'cabeceiras',
+        sizes: ['Solteiro', 'Solteiro Extra', 'Casal', 'Queen', 'King'],
+        filters: [
+            { group: 'Estilos', items: ['Tradicional/Clássico', 'Moderno/Tecnológico', 'Natural/Sustentável'] },
+            { group: 'Revestimentos', items: ['Linho', 'Veludo', 'Cori', 'Facto'] },
+        ],
+        image: 'https://images.unsplash.com/photo-1540518614846-7eded433c457?q=80&w=400&auto=format&fit=crop',
+    },
+    {
+        label: 'Travesseiros',
+        slug: 'travesseiros',
+        sizes: ['Conforto', 'Estilo', 'Material'],
+        filters: [
+            { group: 'Níveis de Conforto', items: ['Macio', 'Firme', 'Híbrido'] },
+            { group: 'Variações de Estilo', items: ['Clássico/Tradicional', 'Moderno/Tecnológico', 'Natural/Sustentável'] },
+            { group: 'Variações de Material', items: ['Fibra', 'Látex', 'Pluma', 'Viscoelástica'] },
+        ],
+        image: 'https://images.unsplash.com/photo-1616594039964-ae9021a400a0?q=80&w=400&auto=format&fit=crop',
+    },
+    {
+        label: 'Acessórios',
+        slug: 'acessorios',
+        sizes: ['Colchonete', 'Tapete', 'Massageador Alveolado', 'Suavencosto', 'Encosto Dino', 'Aromatizador', 'Cama Pet'],
+        filters: [],
+        image: 'https://images.unsplash.com/photo-1522771739844-6a9f6d5f14af?q=80&w=400&auto=format&fit=crop',
+    },
+    {
+        label: 'Móveis',
+        slug: 'moveis',
+        sizes: ['Sofá Cama', 'Poltrona'],
+        filters: [
+            { group: 'Material', items: ['Cori', 'Linho', 'Nobuck'] },
+        ],
+        image: 'https://images.unsplash.com/photo-1595428774223-ef52624120d2?q=80&w=400&auto=format&fit=crop',
+    },
 ]
 
 export function Header() {
     const [isMenuOpen, setIsMenuOpen] = useState(false)
+    const [megaMenuOpen, setMegaMenuOpen] = useState<string | null>(null)
+    const [isScrolled, setIsScrolled] = useState(false)
     const { totalItems, openCart } = useCart()
+    const timeoutRef = useRef<NodeJS.Timeout | null>(null)
+
+    useEffect(() => {
+        // Histerese para evitar flicker quando o header encolhe e altera o scrollY
+        // Entra em "scrolled" só quando passar de 100px; sai quando voltar pra antes de 30px
+        const handleScroll = () => {
+            const y = window.scrollY
+            setIsScrolled(prev => {
+                if (!prev && y > 100) return true
+                if (prev && y < 30) return false
+                return prev
+            })
+        }
+        window.addEventListener('scroll', handleScroll, { passive: true })
+        return () => window.removeEventListener('scroll', handleScroll)
+    }, [])
+
+    const handleMegaMenuEnter = (slug: string) => {
+        if (timeoutRef.current) clearTimeout(timeoutRef.current)
+        setMegaMenuOpen(slug)
+    }
+    const handleMegaMenuLeave = () => {
+        timeoutRef.current = setTimeout(() => setMegaMenuOpen(null), 150)
+    }
 
     return (
-        <header className="w-full font-sans">
-            {/* ── Promotional Top Bar ─────────────────────────────────────── */}
-            <div className="bg-[#1B2B4E] text-white py-2 text-xs">
-                <div className="container mx-auto px-4 flex items-center justify-between">
-                    {/* Promo message */}
-                    <div className="flex items-center gap-2 min-w-0">
-                        <Tag size={13} className="flex-shrink-0 text-orange-400" />
-                        <span className="truncate">
-                            Frete Grátis a partir de R$&nbsp;300 &bull; Parcele em até 21x
-                        </span>
-                    </div>
-                    {/* Utility links — desktop only */}
-                    <div className="hidden md:flex items-center gap-5 flex-shrink-0 ml-4">
-                        <a href="tel:30035011" className="flex items-center gap-1 hover:text-orange-400 transition-colors whitespace-nowrap">
-                            <Phone size={12} />
-                            Televendas: 3003-5011
-                        </a>
-                        <span className="text-white/30">|</span>
-                        <span className="hover:text-orange-400 cursor-pointer transition-colors whitespace-nowrap">Lojas Próximas</span>
-                        <span className="text-white/30">|</span>
-                        <span className="hover:text-orange-400 cursor-pointer transition-colors whitespace-nowrap">SAC</span>
+        <header className="w-full font-sans sticky top-0 z-50">
+            <div className="bg-navy-dark">
+
+                {/* ═══ ROW 1: Top promo bar (some quando scrolla) ═══ */}
+                <div className={`hidden lg:block border-b border-white/[0.08] text-[14px] font-medium text-white overflow-hidden transition-all duration-300 ${isScrolled ? 'max-h-0 py-0 opacity-0 border-b-0' : 'max-h-20 py-2.5 opacity-100'}`}>
+                    <div className="max-w-[1280px] mx-auto px-6 flex items-center justify-between gap-6">
+                        <div className="flex items-center gap-3 flex-1 justify-center">
+                            <button className="text-white/40 hover:text-white" aria-label="Anterior"><ChevronLeft size={18} /></button>
+                            <span className="whitespace-nowrap">Os Mais Desejados com 20% OFF extra ⚡ Só hoje!</span>
+                            <Link
+                                href="/c/colchoes"
+                                className="border border-white text-white text-[13px] font-semibold rounded px-3.5 py-1 hover:bg-white hover:text-navy-medium transition-colors whitespace-nowrap"
+                            >
+                                Use TOP20
+                            </Link>
+                            <button className="text-white/40 hover:text-white" aria-label="Próximo"><ChevronRight size={18} /></button>
+                        </div>
+                        <div className="flex items-center text-white text-[14px] font-medium divide-x divide-white/20">
+                            <Link href="#" className="flex items-center gap-1.5 px-3 hover:text-orange-300 transition-colors">
+                                <Shield size={16} strokeWidth={1.8} />
+                                <span>Franqueado</span>
+                            </Link>
+                            <Link href="#" className="flex items-center gap-1.5 px-3 hover:text-orange-300 transition-colors">
+                                <Store size={16} strokeWidth={1.8} />
+                                <span>Lojas Próximas</span>
+                            </Link>
+                            <Link href="#" className="flex items-center gap-1.5 px-3 hover:text-orange-300 transition-colors">
+                                <Factory size={16} strokeWidth={1.8} />
+                                <span>Para Indústrias</span>
+                            </Link>
+                            <Link href="#" className="flex items-center gap-1.5 px-3 hover:text-orange-300 transition-colors">
+                                <Hotel size={16} strokeWidth={1.8} />
+                                <span>Para Hotéis</span>
+                            </Link>
+                            <Link href="#" className="flex items-center gap-1.5 pl-3 hover:text-orange-300 transition-colors">
+                                <Phone size={16} strokeWidth={1.8} />
+                                <span>SAC</span>
+                            </Link>
+                        </div>
                     </div>
                 </div>
-            </div>
 
-            {/* ── Main Header ─────────────────────────────────────────────── */}
-            <div className="bg-white border-b border-gray-200 sticky top-0 z-50 shadow-sm">
-                <div className="container mx-auto px-4 py-3 flex items-center gap-4">
+                {/* ═══ ROW 2: Logo + Search + Icons ═══ */}
+                <div className={`transition-all duration-300 ${isScrolled ? 'py-2 lg:py-2.5' : 'py-3 lg:py-4'}`}>
+                    <div className="max-w-[1280px] mx-auto px-4 lg:px-6 flex items-center w-full">
 
-                    {/* Mobile hamburger */}
-                    <button
-                        className="md:hidden text-[#1B2B4E] p-1"
-                        onClick={() => setIsMenuOpen(!isMenuOpen)}
-                        aria-label={isMenuOpen ? 'Fechar menu' : 'Abrir menu'}
-                    >
-                        {isMenuOpen ? <X size={26} /> : <Menu size={26} />}
-                    </button>
-
-                    {/* Logo */}
-                    <Link href="/" className="flex-shrink-0 mr-2" aria-label="Ortobom — página inicial">
-                        <Image
-                            src="https://www.ortobom.com.br/Content/V3/img/Ortobom_azul.png"
-                            alt="Ortobom"
-                            width={140}
-                            height={40}
-                            className="h-9 w-auto object-contain"
-                            priority
-                            unoptimized
-                        />
-                    </Link>
-
-                    {/* Desktop Search */}
-                    <form
-                        action="/search"
-                        method="GET"
-                        className="hidden md:flex flex-1 max-w-2xl relative"
-                    >
-                        <input
-                            type="text"
-                            name="q"
-                            placeholder="O que deseja buscar?"
-                            className="w-full border border-gray-300 rounded-full py-2.5 px-5 pr-12 text-sm focus:outline-none focus:border-[#1B2B4E] transition-colors placeholder-gray-400"
-                        />
-                        <button
-                            type="submit"
-                            aria-label="Buscar"
-                            className="absolute right-1.5 top-1/2 -translate-y-1/2 bg-[#1B2B4E] text-white p-2 rounded-full hover:bg-[#243a65] transition-colors"
-                        >
-                            <Search size={16} />
+                        {/* Mobile hamburger */}
+                        <button className="lg:hidden text-white mr-3" onClick={() => setIsMenuOpen(!isMenuOpen)} aria-label="Menu">
+                            {isMenuOpen ? <X size={22} /> : <Menu size={22} />}
                         </button>
-                    </form>
 
-                    {/* Cart button */}
-                    <button
-                        id="cart-icon-button"
-                        onClick={openCart}
-                        aria-label={`Carrinho — ${totalItems} ${totalItems === 1 ? 'item' : 'itens'}`}
-                        className="relative flex flex-col items-center text-[#1B2B4E] hover:text-[#F97316] transition-colors p-1 ml-auto md:ml-0"
-                    >
-                        <ShoppingCart size={26} />
-                        {totalItems > 0 && (
-                            <span className="absolute -top-1.5 -right-1.5 bg-orange-500 text-white text-[10px] font-bold min-w-[18px] h-[18px] rounded-full flex items-center justify-center px-1">
-                                {totalItems > 99 ? '99+' : totalItems}
-                            </span>
-                        )}
-                        <span className="hidden md:block text-[10px] font-medium mt-0.5">Carrinho</span>
-                    </button>
+                        {/* Logo */}
+                        <Link href="/" className="flex-shrink-0">
+                            <Image
+                                src="https://www.ortobom.com.br/Content/V3/img/Ortobom_branco.png"
+                                alt="Ortobom"
+                                width={200}
+                                height={54}
+                                className={`object-contain transition-all duration-300 ${isScrolled ? 'w-[155px]' : 'w-[195px]'}`}
+                                style={{ height: 'auto' }}
+                                priority
+                                unoptimized
+                            />
+                        </Link>
+
+                        {/* Search */}
+                        <form action="/search" method="GET" className={`hidden md:flex relative flex-1 mr-10 transition-all duration-300 ${isScrolled ? 'ml-3 max-w-[1000px]' : 'ml-5 max-w-[760px]'}`}>
+                            <input
+                                type="text"
+                                name="q"
+                                placeholder="O que deseja buscar?"
+                                className="w-full bg-white rounded-md pl-5 pr-12 h-[42px] text-[15px] font-normal placeholder-[#888] text-[#222] focus:outline-none transition-all duration-300"
+                            />
+                            <button
+                                type="submit"
+                                aria-label="Buscar"
+                                className="absolute right-2 top-1/2 -translate-y-1/2 h-[32px] w-[32px] flex items-center justify-center text-[#666] hover:text-[#222] rounded-md transition-all duration-300"
+                            >
+                                <Search size={18} />
+                            </button>
+                        </form>
+
+                        {/* Right icons */}
+                        <div className={`flex items-center justify-evenly flex-shrink-0 text-white transition-all duration-300 ${isScrolled ? 'min-w-[440px]' : 'min-w-[460px]'}`}>
+                            {/* Location — icon on top, text below */}
+                            <div className="flex flex-col items-center justify-center cursor-pointer hover:text-orange-300 transition-colors">
+                                <MapPin size={22} strokeWidth={2.25} />
+                                <span className={`mt-1 transition-all duration-300 ${isScrolled ? 'text-[12px]' : 'text-[13px]'}`} style={{ fontWeight: 700 }}>João Pessoa – PB</span>
+                            </div>
+                            {/* Login */}
+                            <Link href="#" className="flex flex-col items-center justify-center hover:text-orange-300 transition-colors">
+                                <User size={24} strokeWidth={2.25} />
+                                <span className={`mt-1 text-white transition-all duration-300 ${isScrolled ? 'text-[12px]' : 'text-[13px]'}`} style={{ fontWeight: 700 }}>Fazer login</span>
+                            </Link>
+                            {/* Favoritos */}
+                            <Link href="#" className="flex flex-col items-center justify-center hover:text-orange-300 transition-colors">
+                                <Heart size={24} strokeWidth={2.25} />
+                                <span className={`mt-1 text-white transition-all duration-300 ${isScrolled ? 'text-[12px]' : 'text-[13px]'}`} style={{ fontWeight: 700 }}>Favoritos</span>
+                            </Link>
+                            {/* Carrinho */}
+                            <button onClick={openCart} aria-label="Carrinho" className="relative flex flex-col items-center justify-center hover:text-orange-300 transition-colors">
+                                <ShoppingCart size={24} strokeWidth={2.25} />
+                                {totalItems > 0 && (
+                                    <span className="absolute -top-1.5 -right-2.5 bg-accent text-white text-[10px] font-bold w-5 h-5 rounded-full flex items-center justify-center">
+                                        {totalItems > 99 ? '99+' : totalItems}
+                                    </span>
+                                )}
+                                <span className={`mt-1 text-white transition-all duration-300 ${isScrolled ? 'text-[12px]' : 'text-[13px]'}`} style={{ fontWeight: 700 }}>Carrinho</span>
+                            </button>
+                        </div>
+                    </div>
                 </div>
 
-                {/* Mobile search — below logo row */}
+                {/* ═══ ROW 3: Nav — azul medium da marca, com separador sutil no topo ═══ */}
+                <nav className="hidden lg:block bg-navy-nav shadow-[inset_0_8px_12px_-8px_rgba(0,0,0,0.5)]" aria-label="Categorias">
+                    <div className="max-w-[1280px] mx-auto px-6">
+                        <ul className="flex items-center justify-center py-1.5">
+                            <NavCategoryItem
+                                label="OFERTAS"
+                                href="/c/colchoes"
+                                showChevron={false}
+                                accent
+                            />
+                            {NAV_CATEGORIES.map((cat) => (
+                                <NavCategoryItem
+                                    key={cat.slug}
+                                    label={cat.label}
+                                    href={`/c/${cat.slug}`}
+                                    isOpen={megaMenuOpen === cat.slug}
+                                    onMouseEnter={() => handleMegaMenuEnter(cat.slug)}
+                                    onMouseLeave={handleMegaMenuLeave}
+                                />
+                            ))}
+                        </ul>
+                    </div>
+
+                    {/* Mega Menu */}
+                    {megaMenuOpen && (() => {
+                        const cat = NAV_CATEGORIES.find(c => c.slug === megaMenuOpen)
+                        if (!cat) return null
+                        return (
+                            <div
+                                className="absolute top-full left-0 right-0 bg-white shadow-[0_8px_32px_rgba(0,0,0,0.15)] z-50"
+                                onMouseEnter={() => handleMegaMenuEnter(cat.slug)}
+                                onMouseLeave={handleMegaMenuLeave}
+                            >
+                                <div className="flex">
+                                    {/* Coluna esquerda: sizes/sub-categorias com fundo cinza */}
+                                    {cat.sizes.length > 0 ? (
+                                        <aside className="w-[260px] xl:w-[300px] flex-shrink-0 bg-bg-light py-6 pl-20 xl:pl-24 pr-6 border-r border-border">
+                                            <ul className="space-y-1">
+                                                {cat.sizes.map(s => (
+                                                    <li key={s}>
+                                                        <Link
+                                                            href={`/c/${cat.slug}?sizes=${encodeURIComponent(s)}`}
+                                                            className="flex items-center justify-between py-2 text-[13px] text-text-soft hover:text-primary transition-colors"
+                                                            onClick={() => setMegaMenuOpen(null)}
+                                                        >
+                                                            <span>{s}</span>
+                                                            <ChevronRight size={13} className="text-text-muted" />
+                                                        </Link>
+                                                    </li>
+                                                ))}
+                                            </ul>
+                                        </aside>
+                                    ) : (
+                                        <aside className="w-[260px] xl:w-[300px] flex-shrink-0 bg-bg-light border-r border-border" />
+                                    )}
+
+                                    {/* Centro: grupos de filtros */}
+                                    <div className="flex-1 flex gap-16 py-6 pl-10 xl:pl-12 pr-12">
+                                        {cat.filters.map((fg) => (
+                                            <div key={fg.group} className="min-w-[170px]">
+                                                <h4 className="text-[14px] font-bold text-navy-medium mb-4">{fg.group}</h4>
+                                                <ul className="space-y-3">
+                                                    {fg.items.map(i => (
+                                                        <li key={i}>
+                                                            <Link
+                                                                href={`/c/${cat.slug}`}
+                                                                className="text-[13px] text-text-soft hover:text-primary transition-colors"
+                                                                onClick={() => setMegaMenuOpen(null)}
+                                                            >
+                                                                {i}
+                                                            </Link>
+                                                        </li>
+                                                    ))}
+                                                </ul>
+                                            </div>
+                                        ))}
+                                    </div>
+
+                                    {/* Imagem à direita */}
+                                    {cat.image && (
+                                        <div className="flex-shrink-0 py-6 pr-24 xl:pr-32 pl-12 flex items-center">
+                                            <div className="relative w-[180px] h-[140px] rounded-2xl overflow-hidden">
+                                                <Image
+                                                    src={cat.image}
+                                                    alt={cat.label}
+                                                    fill
+                                                    className="object-cover"
+                                                    sizes="180px"
+                                                    unoptimized
+                                                />
+                                            </div>
+                                        </div>
+                                    )}
+                                </div>
+                            </div>
+                        )
+                    })()}
+                </nav>
+
+                {/* Mobile search */}
                 <form action="/search" method="GET" className="md:hidden px-4 pb-3">
                     <div className="relative">
-                        <input
-                            type="text"
-                            name="q"
-                            placeholder="Buscar produtos..."
-                            className="w-full border border-gray-300 rounded-lg py-2 px-4 pr-10 text-sm focus:outline-none focus:border-[#1B2B4E]"
-                        />
-                        <button type="submit" aria-label="Buscar" className="absolute right-3 top-2.5 text-gray-400">
-                            <Search size={16} />
+                        <input type="text" name="q" placeholder="O que deseja buscar?" className="w-full bg-white rounded-md h-10 pl-4 pr-11 text-sm focus:outline-none placeholder-[#999]" />
+                        <button type="submit" aria-label="Buscar" className="absolute right-1 top-1/2 -translate-y-1/2 h-8 w-8 flex items-center justify-center text-[#666]">
+                            <Search size={17} />
                         </button>
                     </div>
                 </form>
             </div>
 
-            {/* ── Navigation ──────────────────────────────────────────────── */}
-            <nav
-                className={`bg-white border-b border-gray-200 ${isMenuOpen ? 'block' : 'hidden md:block'}`}
-                aria-label="Categorias"
-            >
-                <div className="container mx-auto px-4">
-                    <ul className="flex flex-col md:flex-row md:items-center md:gap-6 text-sm font-medium text-gray-700 py-1">
-                        {NAV_CATEGORIES.map((cat) => (
-                            <li key={cat.slug}>
-                                <Link
-                                    href={`/c/${cat.slug}`}
-                                    className="block py-2.5 md:py-3 border-b-2 border-transparent hover:border-[#F97316] hover:text-[#1B2B4E] transition-all duration-200 whitespace-nowrap"
-                                    onClick={() => setIsMenuOpen(false)}
-                                >
-                                    {cat.label}
-                                </Link>
-                            </li>
+            {/* ═══ MOBILE DRAWER ═══ */}
+            {isMenuOpen && (
+                <>
+                    <div className="fixed inset-0 bg-black/50 z-40 lg:hidden" onClick={() => setIsMenuOpen(false)} />
+                    <div className="fixed top-0 left-0 h-full w-[300px] bg-white z-50 shadow-2xl flex flex-col lg:hidden overflow-y-auto">
+                        <div className="flex items-center justify-between px-5 py-4 bg-navy-dark">
+                            <span className="text-white font-bold">Menu</span>
+                            <button onClick={() => setIsMenuOpen(false)} className="text-white/70 hover:text-white"><X size={20} /></button>
+                        </div>
+                        <Link href="#" className="px-5 py-3.5 text-sm text-primary font-semibold border-b border-border" onClick={() => setIsMenuOpen(false)}>Fazer login</Link>
+                        <Link href="/c/colchoes" className="px-5 py-3.5 text-accent font-bold text-sm border-b border-border" onClick={() => setIsMenuOpen(false)}>OFERTAS</Link>
+                        {NAV_CATEGORIES.map(cat => (
+                            <Link key={cat.slug} href={`/c/${cat.slug}`} className="flex items-center justify-between px-5 py-3.5 text-sm text-text-main border-b border-border hover:bg-bg-light" onClick={() => setIsMenuOpen(false)}>
+                                {cat.label}<ChevronRight size={16} className="text-text-muted" />
+                            </Link>
                         ))}
-                    </ul>
-                </div>
-            </nav>
+                    </div>
+                </>
+            )}
         </header>
     )
 }

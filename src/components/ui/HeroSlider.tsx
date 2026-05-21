@@ -1,6 +1,6 @@
 'use client'
 
-import React, { useCallback } from 'react'
+import React, { useCallback, useEffect, useState } from 'react'
 import useEmblaCarousel from 'embla-carousel-react'
 import Autoplay from 'embla-carousel-autoplay'
 import { ChevronLeft, ChevronRight } from 'lucide-react'
@@ -20,52 +20,101 @@ interface HeroSliderProps {
     banners?: Banner[]
 }
 
-const FALLBACK_BANNERS = [
+const FALLBACK_BANNERS: Banner[] = [
     {
         id: '1',
-        title: 'Saldão dos Sonhos Ortobom - Até 50% OFF',
+        title: 'Top20',
         image_desktop_url: 'https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?q=80&w=1920&auto=format&fit=crop',
         image_mobile_url: 'https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?q=80&w=600&auto=format&fit=crop',
-        link: '/c/colchoes'
+        link: '/c/colchoes',
+        position: 0,
     },
     {
         id: '2',
-        title: 'Colchões de Alta Tecnologia com Frete Grátis',
+        title: 'Liberty',
         image_desktop_url: 'https://images.unsplash.com/photo-1631049307264-da0ec9d70304?q=80&w=1920&auto=format&fit=crop',
         image_mobile_url: 'https://images.unsplash.com/photo-1631049307264-da0ec9d70304?q=80&w=600&auto=format&fit=crop',
-        link: '/c/colchoes'
+        link: '/c/colchoes',
+        position: 1,
     },
     {
         id: '3',
-        title: 'Bases Sommier e Camas Baú - Conforto Exclusivo',
+        title: 'Orion',
         image_desktop_url: 'https://images.unsplash.com/photo-1540518614846-7eded433c457?q=80&w=1920&auto=format&fit=crop',
         image_mobile_url: 'https://images.unsplash.com/photo-1540518614846-7eded433c457?q=80&w=600&auto=format&fit=crop',
-        link: '/c/camas'
-    }
+        link: '/c/camas',
+        position: 2,
+    },
+    {
+        id: '4',
+        title: 'Base Baú',
+        image_desktop_url: 'https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?q=80&w=1920&auto=format&fit=crop',
+        image_mobile_url: 'https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?q=80&w=600&auto=format&fit=crop',
+        link: '/c/camas',
+        position: 3,
+    },
+    {
+        id: '5',
+        title: 'Pillow Top HR Gel',
+        image_desktop_url: 'https://images.unsplash.com/photo-1631049307264-da0ec9d70304?q=80&w=1920&auto=format&fit=crop',
+        image_mobile_url: 'https://images.unsplash.com/photo-1631049307264-da0ec9d70304?q=80&w=600&auto=format&fit=crop',
+        link: '/c/colchoes',
+        position: 4,
+    },
+    {
+        id: '6',
+        title: 'Travesseiros',
+        image_desktop_url: 'https://images.unsplash.com/photo-1540518614846-7eded433c457?q=80&w=1920&auto=format&fit=crop',
+        image_mobile_url: 'https://images.unsplash.com/photo-1540518614846-7eded433c457?q=80&w=600&auto=format&fit=crop',
+        link: '/c/travesseiros',
+        position: 5,
+    },
 ]
 
 export function HeroSlider({ banners = [] }: HeroSliderProps) {
     const displayBanners = banners.length > 0 ? banners : FALLBACK_BANNERS
 
     const [emblaRef, emblaApi] = useEmblaCarousel({ loop: true }, [
-        Autoplay({ delay: 6000, stopOnInteraction: false })
+        Autoplay({ delay: 5000, stopOnInteraction: false }),
     ])
 
-    const scrollPrev = useCallback(() => {
-        if (emblaApi) emblaApi.scrollPrev()
-    }, [emblaApi])
+    const [selectedIndex, setSelectedIndex] = useState(0)
 
-    const scrollNext = useCallback(() => {
-        if (emblaApi) emblaApi.scrollNext()
+    const scrollPrev = useCallback(() => emblaApi?.scrollPrev(), [emblaApi])
+    const scrollNext = useCallback(() => emblaApi?.scrollNext(), [emblaApi])
+    const scrollTo = useCallback((index: number) => emblaApi?.scrollTo(index), [emblaApi])
+
+    /** Encurta títulos longos vindos do banco (ex: "TOP20 - Os Mais Desejados" → "Top20") */
+    const shortenTitle = (title: string): string => {
+        if (!title) return ''
+        // Pega só a parte antes de separadores comuns
+        const beforeSep = title.split(/[-—|:]/)[0].trim()
+        // Limita em ~20 chars pra caber na barra
+        return beforeSep.length > 20 ? beforeSep.slice(0, 20).trim() + '…' : beforeSep
+    }
+
+    useEffect(() => {
+        if (!emblaApi) return
+        const onSelect = () => setSelectedIndex(emblaApi.selectedScrollSnap())
+        onSelect()
+        emblaApi.on('select', onSelect)
+        emblaApi.on('reInit', onSelect)
+        return () => {
+            emblaApi.off('select', onSelect)
+            emblaApi.off('reInit', onSelect)
+        }
     }, [emblaApi])
 
     return (
-        <div className="relative group overflow-hidden bg-gray-900 border-b border-gray-100">
-            {/* Viewport */}
+        <section className="relative bg-bg-light">
+            {/* Banner viewport */}
             <div className="overflow-hidden" ref={emblaRef}>
                 <div className="flex">
                     {displayBanners.map((banner) => (
-                        <div className="flex-[0_0_100%] min-w-0 relative aspect-[16/7] md:aspect-[21/9] lg:aspect-[21/8]" key={banner.id}>
+                        <div
+                            key={banner.id}
+                            className="flex-[0_0_100%] min-w-0 relative aspect-[16/5] md:aspect-[64/15]"
+                        >
                             <Link href={banner.link || '#'} className="block w-full h-full relative">
                                 {/* Desktop Image */}
                                 <div className="hidden md:block w-full h-full relative">
@@ -74,7 +123,7 @@ export function HeroSlider({ banners = [] }: HeroSliderProps) {
                                         alt={banner.title}
                                         fill
                                         sizes="100vw"
-                                        className="object-cover transition-scale duration-[8000ms] group-hover:scale-105"
+                                        className="object-cover"
                                         priority
                                         unoptimized
                                     />
@@ -91,48 +140,59 @@ export function HeroSlider({ banners = [] }: HeroSliderProps) {
                                         unoptimized
                                     />
                                 </div>
-
-                                {/* Premium Gradient Overlay for styling */}
-                                <div className="absolute inset-0 bg-gradient-to-r from-black/50 via-transparent to-black/25 flex flex-col justify-center px-6 sm:px-12 md:px-20 text-white">
-                                    <div className="max-w-xl md:max-w-2xl transition-all duration-700 transform translate-y-2 group-hover:translate-y-0">
-                                        <span className="inline-block bg-[#F97316] text-white text-[10px] sm:text-xs font-bold uppercase tracking-wider px-2.5 py-1 rounded-full mb-3 shadow-md animate-pulse">
-                                            Destaque Ortobom
-                                        </span>
-                                        <h2 className="text-2xl sm:text-4xl md:text-5xl lg:text-6xl font-extrabold tracking-tight leading-none text-white drop-shadow-md mb-4 whitespace-pre-line">
-                                            {banner.title.split(' - ')[0]}
-                                        </h2>
-                                        {banner.title.split(' - ')[1] && (
-                                            <p className="text-sm sm:text-lg md:text-xl font-medium text-gray-100 drop-shadow-sm mb-6 max-w-lg">
-                                                {banner.title.split(' - ')[1]}
-                                            </p>
-                                        )}
-                                        <span className="inline-block bg-white text-[#1B2B4E] hover:bg-[#F97316] hover:text-white text-xs sm:text-sm font-bold px-6 py-3 rounded-full transition-all duration-300 shadow-lg transform hover:scale-105">
-                                            Aproveitar Oferta
-                                        </span>
-                                    </div>
-                                </div>
                             </Link>
                         </div>
                     ))}
                 </div>
             </div>
 
-            {/* Navigation Buttons */}
-            <button
-                aria-label="Slide anterior"
-                className="absolute left-4 top-1/2 -translate-y-1/2 bg-white/90 hover:bg-white text-[#1B2B4E] hover:text-[#F97316] w-10 h-10 sm:w-12 sm:h-12 rounded-full flex items-center justify-center shadow-lg opacity-0 group-hover:opacity-100 transition-all duration-300 hover:scale-105"
-                onClick={scrollPrev}
-            >
-                <ChevronLeft className="w-5 h-5 sm:w-6 sm:h-6" />
-            </button>
+            {/* Barra de navegação inferior — setas + nomes dos banners (sobreposta ao banner) */}
+            <div className="absolute left-0 right-0 bottom-0 z-10 bg-black/35 backdrop-blur-md">
+                <div className="flex items-center px-6 lg:px-10 xl:px-16 py-1.5 gap-4">
+                    {/* Setas */}
+                    <div className="flex items-center gap-2 flex-shrink-0">
+                        <button
+                            type="button"
+                            aria-label="Banner anterior"
+                            onClick={scrollPrev}
+                            className="w-9 h-9 flex items-center justify-center rounded-md bg-white/15 hover:bg-white/30 text-white transition-colors"
+                        >
+                            <ChevronLeft size={18} />
+                        </button>
+                        <button
+                            type="button"
+                            aria-label="Próximo banner"
+                            onClick={scrollNext}
+                            className="w-9 h-9 flex items-center justify-center rounded-md bg-white/15 hover:bg-white/30 text-white transition-colors"
+                        >
+                            <ChevronRight size={18} />
+                        </button>
+                    </div>
 
-            <button
-                aria-label="Próximo slide"
-                className="absolute right-4 top-1/2 -translate-y-1/2 bg-white/90 hover:bg-white text-[#1B2B4E] hover:text-[#F97316] w-10 h-10 sm:w-12 sm:h-12 rounded-full flex items-center justify-center shadow-lg opacity-0 group-hover:opacity-100 transition-all duration-300 hover:scale-105"
-                onClick={scrollNext}
-            >
-                <ChevronRight className="w-5 h-5 sm:w-6 sm:h-6" />
-            </button>
-        </div>
+                    {/* Lista de nomes dos banners */}
+                    <ul className="flex items-center gap-7 overflow-x-auto scrollbar-hide flex-1 min-w-0">
+                        {displayBanners.map((banner, idx) => {
+                            const isActive = idx === selectedIndex
+                            return (
+                                <li key={banner.id} className="flex-shrink-0">
+                                    <button
+                                        type="button"
+                                        onClick={() => scrollTo(idx)}
+                                        className={`text-[14px] whitespace-nowrap transition-colors ${
+                                            isActive
+                                                ? 'text-white'
+                                                : 'text-white/75 hover:text-white'
+                                        }`}
+                                        style={{ fontWeight: isActive ? 700 : 500 }}
+                                    >
+                                        {shortenTitle(banner.title)}
+                                    </button>
+                                </li>
+                            )
+                        })}
+                    </ul>
+                </div>
+            </div>
+        </section>
     )
 }

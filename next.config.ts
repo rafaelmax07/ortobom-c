@@ -6,6 +6,7 @@ const nextConfig: NextConfig = {
       { protocol: 'https', hostname: 'cdn.ortobom.com.br' },
       { protocol: 'https', hostname: 'www.ortobom.com.br' },
       { protocol: 'https', hostname: 'placehold.co' },
+      { protocol: 'https', hostname: 'images.unsplash.com' },
     ],
   },
 };

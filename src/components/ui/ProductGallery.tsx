@@ -1,67 +1,122 @@
 'use client'
 
-import { useState, useEffect } from 'react'
+import { useCallback, useEffect, useState } from 'react'
 import Image from 'next/image'
+import useEmblaCarousel from 'embla-carousel-react'
+import { ChevronLeft, ChevronRight } from 'lucide-react'
+
+import { Badge } from './Badge'
 
 interface ProductGalleryProps {
-    images: string[]
-    productName: string
+    images: string[];
+    productName: string;
+    discountPercent?: number;
 }
 
-export function ProductGallery({ images, productName }: ProductGalleryProps) {
-    // Fallback if no images are passed
-    const safeImages = images && images.length > 0
-        ? images
-        : ['https://placehold.co/800x600/png?text=Sem+Imagem']
+const PLACEHOLDER_IMAGE = 'https://placehold.co/600x600/png?text=Ortobom'
 
-    const [mainImage, setMainImage] = useState(safeImages[0])
+export function ProductGallery({ images, productName, discountPercent }: ProductGalleryProps) {
+    const safeImages = images && images.length > 0 ? images : [PLACEHOLDER_IMAGE]
+    const hasMultiple = safeImages.length > 1
 
-    // Update main image if the images prop changes (e.g. when changing product pages)
+    const [emblaRef, emblaApi] = useEmblaCarousel({ loop: false })
+    const [selectedIndex, setSelectedIndex] = useState(0)
+
+    const scrollPrev = useCallback(() => emblaApi?.scrollPrev(), [emblaApi])
+    const scrollNext = useCallback(() => emblaApi?.scrollNext(), [emblaApi])
+    const scrollTo = useCallback(
+        (index: number) => emblaApi?.scrollTo(index),
+        [emblaApi]
+    )
+
     useEffect(() => {
-        if (safeImages[0]) {
-            setMainImage(safeImages[0])
+        if (!emblaApi) return
+        const onSelect = () => setSelectedIndex(emblaApi.selectedScrollSnap())
+        onSelect()
+        emblaApi.on('select', onSelect)
+        emblaApi.on('reInit', onSelect)
+        return () => {
+            emblaApi.off('select', onSelect)
+            emblaApi.off('reInit', onSelect)
         }
-    }, [images])
+    }, [emblaApi])
 
     return (
         <div className="flex flex-col gap-4 w-full">
-            {/* Main Featured Image Container */}
-            <div className="relative aspect-square sm:aspect-[4/3] w-full bg-white rounded-2xl overflow-hidden border border-gray-100 shadow-sm group">
-                <Image
-                    src={mainImage}
-                    alt={productName}
-                    fill
-                    sizes="(max-width: 768px) 100vw, 50vw"
-                    className="object-contain p-4 transition-transform duration-500 ease-out group-hover:scale-105"
-                    priority
-                    unoptimized
-                />
+            <div className="relative bg-white rounded-[var(--radius-card)] shadow-sm overflow-hidden">
+                {discountPercent !== undefined && discountPercent > 0 && (
+                    <Badge
+                        variant="discount"
+                        className="absolute top-3 left-3 z-10"
+                    >
+                        {discountPercent}% OFF
+                    </Badge>
+                )}
+
+                <div ref={emblaRef} className="overflow-hidden">
+                    <div className="flex">
+                        {safeImages.map((img, idx) => (
+                            <div
+                                key={`${img}-${idx}`}
+                                className="flex-[0_0_100%] min-w-0 relative aspect-square sm:aspect-[4/3]"
+                            >
+                                <Image
+                                    src={img}
+                                    alt={`${productName} - Imagem ${idx + 1}`}
+                                    fill
+                                    sizes="(max-width: 768px) 100vw, 50vw"
+                                    className="object-contain p-4"
+                                    priority={idx === 0}
+                                    unoptimized
+                                />
+                            </div>
+                        ))}
+                    </div>
+                </div>
+
+                {hasMultiple && (
+                    <>
+                        <button
+                            type="button"
+                            onClick={scrollPrev}
+                            aria-label="Imagem anterior"
+                            className="absolute left-3 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-navy-medium text-white flex items-center justify-center shadow-md hover:bg-primary-hover transition-colors"
+                        >
+                            <ChevronLeft size={20} />
+                        </button>
+                        <button
+                            type="button"
+                            onClick={scrollNext}
+                            aria-label="Próxima imagem"
+                            className="absolute right-3 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-navy-medium text-white flex items-center justify-center shadow-md hover:bg-primary-hover transition-colors"
+                        >
+                            <ChevronRight size={20} />
+                        </button>
+                    </>
+                )}
             </div>
 
-            {/* Thumbnail Navigation Strip */}
-            {safeImages.length > 1 && (
-                <div className="flex gap-3 overflow-x-auto py-2 scrollbar-thin scrollbar-thumb-gray-200 scrollbar-track-transparent">
+            {hasMultiple && (
+                <div className="flex gap-2 overflow-x-auto scrollbar-hide">
                     {safeImages.map((img, idx) => {
-                        const isActive = mainImage === img
+                        const isActive = selectedIndex === idx
                         return (
                             <button
-                                key={idx}
+                                key={`thumb-${img}-${idx}`}
                                 type="button"
-                                onClick={() => setMainImage(img)}
-                                className={`
-                                    relative w-20 h-20 flex-shrink-0 rounded-xl overflow-hidden border-2 bg-white cursor-pointer transition-all duration-300 hover:scale-105
-                                    ${isActive 
-                                        ? 'border-[#1B2B4E] ring-2 ring-[#1B2B4E]/20 shadow-sm' 
-                                        : 'border-gray-200 hover:border-gray-300'
-                                    }
-                                `}
+                                onClick={() => scrollTo(idx)}
+                                aria-label={`Ver imagem ${idx + 1}`}
+                                aria-current={isActive ? 'true' : undefined}
+                                className={`relative w-16 h-16 flex-shrink-0 rounded-md overflow-hidden bg-white border-2 transition-colors ${
+                                    isActive ? 'border-primary' : 'border-border hover:border-text-muted'
+                                }`}
                             >
-                                <Image 
-                                    src={img} 
-                                    alt={`${productName} thumbnail ${idx + 1}`} 
-                                    fill 
-                                    sizes="80px"
-                                    className="object-cover p-1"
+                                <Image
+                                    src={img}
+                                    alt={`${productName} miniatura ${idx + 1}`}
+                                    fill
+                                    sizes="64px"
+                                    className="object-cover"
                                     unoptimized
                                 />
                             </button>
@@ -69,6 +124,10 @@ export function ProductGallery({ images, productName }: ProductGalleryProps) {
                     })}
                 </div>
             )}
+
+            <p className="text-xs text-text-muted">
+                * Fotos meramente ilustrativas. Cores e detalhes podem variar.
+            </p>
         </div>
     )
 }

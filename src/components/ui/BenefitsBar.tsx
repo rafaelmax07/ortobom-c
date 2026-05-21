@@ -1,55 +1,68 @@
 'use client'
 
-import React from 'react'
-import { Truck, Percent, CreditCard, ShieldCheck } from 'lucide-react'
+import { Truck, CreditCard, Percent, Bed } from 'lucide-react'
+import Link from 'next/link'
 
-const BENEFITS = [
+interface Benefit {
+    icon: React.ComponentType<{ size?: number; strokeWidth?: number; className?: string }>
+    title: string
+    subtitle: string
+    note?: string
+    link: string
+}
+
+const BENEFITS: Benefit[] = [
     {
         icon: Truck,
-        title: 'Frete Grátis',
-        description: 'A partir de R$ 300 em compras',
+        title: 'Frete Grátis a partir de R$ 300',
+        subtitle: 'Confira a Política de Entrega',
+        link: '#',
     },
     {
         icon: Percent,
-        title: 'Até 10% OFF',
-        description: 'Desconto extra no Pix ou Boleto',
+        title: 'Descontos + 6x sem juros',
+        subtitle: 'Só nesta semana',
+        note: '*Em itens selecionados',
+        link: '/c/colchoes',
     },
     {
         icon: CreditCard,
-        title: 'Até 21x Sem Juros',
-        description: 'No cartão de crédito',
+        title: 'Parcelamento em até 21x',
+        subtitle: 'Confira a Política de Pagamento',
+        link: '#',
     },
     {
-        icon: ShieldCheck,
-        title: 'Garantia Ortobom',
-        description: 'Qualidade direto de fábrica',
+        icon: Bed,
+        title: 'Colchões e bases sob medida',
+        subtitle: 'Seu ortobom do seu jeito',
+        link: '/c/colchoes',
     },
 ]
 
 export function BenefitsBar() {
     return (
-        <section className="bg-white border-b border-gray-100 py-6 md:py-8 shadow-xs">
-            <div className="container mx-auto px-4">
-                <div className="grid grid-cols-2 md:grid-cols-4 gap-6 md:gap-4">
+        <section className="bg-white border-b border-border py-6">
+            <div className="max-w-[1280px] mx-auto px-6">
+                <div className="grid grid-cols-2 md:grid-cols-4 gap-6 md:gap-8">
                     {BENEFITS.map((benefit, idx) => {
                         const Icon = benefit.icon
                         return (
-                            <div 
-                                key={idx} 
-                                className="flex flex-col sm:flex-row items-center sm:items-start text-center sm:text-left gap-3.5 p-2 rounded-xl hover:bg-gray-50/50 transition-all duration-300 group"
+                            <Link
+                                key={idx}
+                                href={benefit.link}
+                                className="flex items-center gap-4 group"
                             >
-                                <div className="p-3 bg-blue-50 text-[#1B2B4E] rounded-full group-hover:scale-105 transition-transform duration-300">
-                                    <Icon size={20} className="stroke-[2px]" />
+                                <div className="flex-shrink-0 w-11 h-11 rounded-full bg-bg-light flex items-center justify-center text-navy-medium group-hover:bg-bg-soft transition-colors">
+                                    <Icon size={20} strokeWidth={1.8} />
                                 </div>
-                                <div className="flex flex-col min-w-0">
-                                    <h3 className="font-bold text-gray-900 text-sm md:text-base mb-0.5 leading-snug">
-                                        {benefit.title}
-                                    </h3>
-                                    <p className="text-gray-500 text-xs leading-relaxed truncate-2-lines">
-                                        {benefit.description}
-                                    </p>
+                                <div className="min-w-0">
+                                    <p className="text-[13px] text-text-soft leading-snug">{benefit.title}</p>
+                                    <p className="text-[13px] text-navy-medium font-bold leading-snug">{benefit.subtitle}</p>
+                                    {benefit.note && (
+                                        <p className="text-[11px] text-text-muted italic leading-snug mt-0.5">{benefit.note}</p>
+                                    )}
                                 </div>
-                            </div>
+                            </Link>
                         )
                     })}
                 </div>

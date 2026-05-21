@@ -1,8 +1,7 @@
-'use client'
-
 import Link from 'next/link'
 import Image from 'next/image'
-import { ShoppingBag } from 'lucide-react'
+import { Badge } from './Badge'
+import { PriceDisplay } from './PriceDisplay'
 
 interface ProductCardProps {
     product: {
@@ -13,90 +12,78 @@ interface ProductCardProps {
         compare_at_price?: number
         featured_image: string
         category_slug?: string
+        variants?: { size: string }[]
     }
 }
 
 export function ProductCard({ product }: ProductCardProps) {
-    // Format BRL prices
-    const formattedPrice = new Intl.NumberFormat('pt-BR', {
-        style: 'currency',
-        currency: 'BRL'
-    }).format(product.price)
+    const hasDiscount =
+        product.compare_at_price !== undefined &&
+        product.compare_at_price > product.price
 
-    const formattedInstallment = new Intl.NumberFormat('pt-BR', {
-        style: 'currency',
-        currency: 'BRL'
-    }).format(product.price / 12)
-
-    // Calculate discount percent
-    const hasDiscount = product.compare_at_price && product.compare_at_price > product.price
-    const discountPercent = hasDiscount 
-        ? Math.round((1 - product.price / (product.compare_at_price || 1)) * 100) 
+    const discountPercent = hasDiscount
+        ? Math.round((1 - product.price / (product.compare_at_price as number)) * 100)
         : 0
 
+    const variantCount = product.variants?.length ?? 0
+    const showVariantCount = variantCount > 1
+
+    const imageSrc =
+        product.featured_image && product.featured_image.length > 0
+            ? product.featured_image
+            : 'https://placehold.co/400x300/png?text=Ortobom'
+
     return (
-        <div className="group bg-white rounded-2xl border border-gray-100 overflow-hidden hover:shadow-xl hover:-translate-y-1 transition-all duration-300 flex flex-col h-full relative">
-            
-            {/* Discount Badge */}
+        <article className="group bg-white rounded-[var(--radius-card)] shadow-md overflow-hidden flex flex-col h-full relative">
             {hasDiscount && (
-                <div className="absolute top-4 left-4 z-10 bg-green-500 text-white font-extrabold text-[11px] uppercase px-3 py-1 rounded-full shadow-md animate-pulse">
+                <Badge
+                    variant="discount"
+                    className="absolute top-2 left-2 z-10"
+                >
                     {discountPercent}% OFF
-                </div>
+                </Badge>
             )}
 
-            {/* Image Area */}
-            <Link href={`/p/${product.slug}`} className="relative aspect-square overflow-hidden bg-gray-50/50 block">
+            <Link
+                href={`/p/${product.slug}`}
+                className="relative aspect-[4/3] overflow-hidden block"
+            >
                 <Image
-                    src={product.featured_image || 'https://placehold.co/400x400/png?text=Ortobom'}
+                    src={imageSrc}
                     alt={product.name}
                     fill
-                    sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
-                    className="object-cover object-center group-hover:scale-105 transition-transform duration-500 ease-out"
-                    priority={false}
+                    sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 25vw"
+                    className="object-contain p-3 transition-transform duration-200 group-hover:scale-[1.05]"
                     unoptimized
                 />
-                {/* Light hover overlay */}
-                <div className="absolute inset-0 bg-gray-950/2 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
             </Link>
 
-            {/* Content & Action Area */}
-            <div className="p-5 flex flex-col flex-grow">
-                <span className="text-[10px] text-gray-400 font-bold uppercase tracking-wider mb-1 block">
-                    {product.category_slug || 'Produto'}
-                </span>
-                
-                <Link href={`/p/${product.slug}`} className="block mb-3">
-                    <h3 className="text-gray-800 font-bold text-sm md:text-base leading-snug line-clamp-2 min-h-[40px] hover:text-[#1B2B4E] transition-colors">
+            <div className="p-4 flex flex-col flex-grow gap-2">
+                <Link href={`/p/${product.slug}`}>
+                    <h3 className="text-navy-dark font-semibold text-sm line-clamp-2">
                         {product.name}
                     </h3>
                 </Link>
 
-                {/* Price Section */}
-                <div className="mt-auto pt-2 border-t border-gray-50">
-                    {hasDiscount && (
-                        <div className="text-xs text-gray-400 line-through mb-0.5">
-                            {product.compare_at_price?.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })}
-                        </div>
-                    )}
-                    
-                    <div className="text-xl md:text-2xl font-black text-[#1B2B4E] leading-none mb-1">
-                        {formattedPrice}
-                    </div>
-                    
-                    <div className="text-[11px] text-gray-500 font-medium mb-5">
-                        ou <span className="text-[#1B2B4E] font-bold">12x</span> de <span className="text-[#1B2B4E] font-bold">{formattedInstallment}</span> sem juros
-                    </div>
+                {showVariantCount && (
+                    <Badge variant="count">
+                        {variantCount} Tamanhos Disponíveis
+                    </Badge>
+                )}
 
-                    {/* CTA Button */}
-                    <Link
-                        href={`/p/${product.slug}`}
-                        className="w-full flex items-center justify-center gap-2 bg-[#1B2B4E] hover:bg-[#F97316] text-white py-3 px-4 rounded-xl font-bold text-xs md:text-sm shadow-sm transition-all duration-300 transform group-hover:scale-[1.02]"
-                    >
-                        <ShoppingBag size={16} className="stroke-[2.5px]" />
-                        Comprar
-                    </Link>
-                </div>
+                <PriceDisplay
+                    priceLabel="A partir de"
+                    price={product.price}
+                    compareAtPrice={product.compare_at_price}
+                />
+
+                <Link
+                    href={`/p/${product.slug}`}
+                    className="w-full inline-flex items-center justify-center bg-primary hover:bg-primary-hover text-white font-bold text-xs py-2.5 px-3 rounded-[var(--radius-button)] transition-colors"
+                >
+                    Ver Detalhes
+                </Link>
             </div>
-        </div>
+        </article>
     )
 }

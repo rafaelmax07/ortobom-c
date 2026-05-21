@@ -1,5 +1,9 @@
 # See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
 
+# IDE
+.vscode
+.kiro
+
 # dependencies
 /node_modules
 /.pnp
@@ -43,3 +47,6 @@ next-env.d.ts
 # supabase local config
 /supabase/.temp/
 
+
+# design scrape (referência educativa, não versionar)
+/scripts/design-scrape/

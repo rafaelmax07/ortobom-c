@@ -1,6 +1,8 @@
 import { createClient } from '@supabase/supabase-js'
 import { ProductCard } from '@/components/ui/ProductCard'
 import { FilterSidebar } from '@/components/ui/FilterSidebar'
+import { Container } from '@/components/layout/Container'
+import { Breadcrumb } from '@/components/ui/Breadcrumb'
 import { notFound } from 'next/navigation'
 import type { Metadata } from 'next'
 
@@ -42,7 +44,7 @@ export default async function CategoryPage({
     }
 
     // 2. Build query — fetch products with their variants
-    let query = supabase
+    const query = supabase
         .from('products')
         .select(`
             *,
@@ -71,7 +73,7 @@ export default async function CategoryPage({
     // 4. Transform and filter products
     const products = (rawProducts || [])
         .map(p => {
-            const variants = (p.variants as any[]) || []
+            const variants = (p.variants as { id: string; price: number; compare_at_price: number | null; size: string }[]) || []
             // Apply size filter at variant level
             const filteredVariants = sizeFilters.length > 0
                 ? variants.filter(v => sizeFilters.includes(v.size))
@@ -100,71 +102,78 @@ export default async function CategoryPage({
         })
 
     return (
-        <div className="container mx-auto px-4 py-8">
-            {/* Breadcrumb */}
-            <div className="text-sm text-gray-500 mb-8">
-                <a href="/" className="hover:text-blue-600">Home</a> / {category.name}
-            </div>
-
-            <div className="flex flex-col md:flex-row gap-8">
-                {/* Sidebar */}
-                <FilterSidebar
-                    activeCategorySlug={slug}
-                    currentMinPrice={minPrice || ''}
-                    currentMaxPrice={maxPrice || ''}
-                    currentSizes={sizeFilters}
-                />
-
-                {/* Main Content */}
-                <div className="flex-1">
-                    <header className="mb-6 flex justify-between items-center">
-                        <h1 className="text-3xl font-bold text-[#1B2B4E]">{category.name}</h1>
-                        <span className="text-sm text-gray-500">{products.length} produtos encontrados</span>
-                    </header>
-
-                    {/* Active Filters */}
-                    {(minPriceNum || maxPriceNum || sizeFilters.length > 0) && (
-                        <div className="flex flex-wrap items-center gap-2 mb-6">
-                            <span className="text-xs text-gray-500">Filtros ativos:</span>
-                            {minPriceNum && (
-                                <span className="bg-blue-50 text-blue-700 text-xs px-2 py-1 rounded-full">
-                                    Min: R$ {minPriceNum}
-                                </span>
-                            )}
-                            {maxPriceNum && (
-                                <span className="bg-blue-50 text-blue-700 text-xs px-2 py-1 rounded-full">
-                                    Max: R$ {maxPriceNum}
-                                </span>
-                            )}
-                            {sizeFilters.map(s => (
-                                <span key={s} className="bg-blue-50 text-blue-700 text-xs px-2 py-1 rounded-full">
-                                    {s}
-                                </span>
-                            ))}
-                            <a
-                                href={`/c/${slug}`}
-                                className="text-xs text-red-600 hover:text-red-800 underline ml-2"
-                            >
-                                Limpar filtros
-                            </a>
-                        </div>
-                    )}
-
-                    {/* Product Grid */}
-                    {products.length > 0 ? (
-                        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-                            {products.map(product => (
-                                <ProductCard key={product.id} product={product} />
-                            ))}
-                        </div>
-                    ) : (
-                        <div className="text-center py-20 bg-gray-50 rounded-lg border border-dashed border-gray-300">
-                            <p className="text-lg text-gray-600 mb-2">Nenhum produto encontrado nesta categoria.</p>
-                            <p className="text-sm text-gray-400">Tente ajustar os filtros ou volte mais tarde.</p>
-                        </div>
-                    )}
+        <main className="min-h-screen bg-bg-page">
+            <Container className="py-8 md:py-12">
+                {/* Breadcrumb */}
+                <div className="mb-6">
+                    <Breadcrumb
+                        items={[
+                            { label: 'Home', href: '/' },
+                            { label: category.name },
+                        ]}
+                    />
                 </div>
-            </div>
-        </div>
+
+                <div className="flex flex-col md:flex-row gap-8">
+                    {/* Sidebar */}
+                    <FilterSidebar
+                        activeCategorySlug={slug}
+                        currentMinPrice={minPrice || ''}
+                        currentMaxPrice={maxPrice || ''}
+                        currentSizes={sizeFilters}
+                    />
+
+                    {/* Main Content */}
+                    <div className="flex-1">
+                        <header className="mb-6 flex justify-between items-center">
+                            <h1 className="text-3xl font-bold text-navy-dark">{category.name}</h1>
+                            <span className="text-sm text-text-muted">{products.length} produtos encontrados</span>
+                        </header>
+
+                        {/* Active Filters */}
+                        {(minPriceNum || maxPriceNum || sizeFilters.length > 0) && (
+                            <div className="flex flex-wrap items-center gap-2 mb-6">
+                                <span className="text-xs text-text-muted">Filtros ativos:</span>
+                                {minPriceNum && (
+                                    <span className="bg-primary/10 text-primary text-xs px-2 py-1 rounded-full">
+                                        Min: R$ {minPriceNum}
+                                    </span>
+                                )}
+                                {maxPriceNum && (
+                                    <span className="bg-primary/10 text-primary text-xs px-2 py-1 rounded-full">
+                                        Max: R$ {maxPriceNum}
+                                    </span>
+                                )}
+                                {sizeFilters.map(s => (
+                                    <span key={s} className="bg-primary/10 text-primary text-xs px-2 py-1 rounded-full">
+                                        {s}
+                                    </span>
+                                ))}
+                                <a
+                                    href={`/c/${slug}`}
+                                    className="text-xs text-accent hover:text-primary-hover underline ml-2"
+                                >
+                                    Limpar filtros
+                                </a>
+                            </div>
+                        )}
+
+                        {/* Product Grid */}
+                        {products.length > 0 ? (
+                            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                                {products.map(product => (
+                                    <ProductCard key={product.id} product={product} />
+                                ))}
+                            </div>
+                        ) : (
+                            <div className="text-center py-20 bg-bg-light rounded-[var(--radius-card)] border border-dashed border-text-muted/30">
+                                <p className="text-lg text-text-main mb-2">Nenhum produto encontrado nesta categoria.</p>
+                                <p className="text-sm text-text-muted">Tente ajustar os filtros ou volte mais tarde.</p>
+                            </div>
+                        )}
+                    </div>
+                </div>
+            </Container>
+        </main>
     )
 }

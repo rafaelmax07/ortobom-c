@@ -119,7 +119,7 @@ interface CartContextValue {
 
 const CartContext = createContext<CartContextValue | null>(null);
 
-const WHATSAPP_PHONE = process.env.NEXT_PUBLIC_WHATSAPP_PHONE || '5583996723380';
+const WHATSAPP_PHONE = process.env.NEXT_PUBLIC_WHATSAPP_PHONE || '558399283994';
 
 // ─────────────────────────────────────────────────────────────────────────────
 // Provider

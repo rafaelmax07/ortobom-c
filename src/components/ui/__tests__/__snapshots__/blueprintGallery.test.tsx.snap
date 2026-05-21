@@ -1,0 +1,417 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`ProductGallery > renders with four images and no discount badge 1`] = `
+<div>
+  <div
+    class="flex flex-col gap-4 w-full"
+  >
+    <div
+      class="relative bg-white rounded-[var(--radius-card)] shadow-sm overflow-hidden"
+    >
+      <div
+        class="overflow-hidden"
+      >
+        <div
+          class="flex"
+        >
+          <div
+            class="flex-[0_0_100%] min-w-0 relative aspect-square sm:aspect-[4/3]"
+          >
+            <img
+              alt="Test - Imagem 1"
+              class="object-contain p-4"
+              data-nimg="fill"
+              decoding="async"
+              src="https://placehold.co/600/png?text=A"
+              style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
+            />
+          </div>
+          <div
+            class="flex-[0_0_100%] min-w-0 relative aspect-square sm:aspect-[4/3]"
+          >
+            <img
+              alt="Test - Imagem 2"
+              class="object-contain p-4"
+              data-nimg="fill"
+              decoding="async"
+              loading="lazy"
+              src="https://placehold.co/600/png?text=B"
+              style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
+            />
+          </div>
+          <div
+            class="flex-[0_0_100%] min-w-0 relative aspect-square sm:aspect-[4/3]"
+          >
+            <img
+              alt="Test - Imagem 3"
+              class="object-contain p-4"
+              data-nimg="fill"
+              decoding="async"
+              loading="lazy"
+              src="https://placehold.co/600/png?text=C"
+              style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
+            />
+          </div>
+          <div
+            class="flex-[0_0_100%] min-w-0 relative aspect-square sm:aspect-[4/3]"
+          >
+            <img
+              alt="Test - Imagem 4"
+              class="object-contain p-4"
+              data-nimg="fill"
+              decoding="async"
+              loading="lazy"
+              src="https://placehold.co/600/png?text=D"
+              style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
+            />
+          </div>
+        </div>
+      </div>
+      <button
+        aria-label="Imagem anterior"
+        class="absolute left-3 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-navy-medium text-white flex items-center justify-center shadow-md hover:bg-primary-hover transition-colors"
+        type="button"
+      >
+        <svg
+          aria-hidden="true"
+          class="lucide lucide-chevron-left"
+          fill="none"
+          height="20"
+          stroke="currentColor"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          stroke-width="2"
+          viewBox="0 0 24 24"
+          width="20"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            d="m15 18-6-6 6-6"
+          />
+        </svg>
+      </button>
+      <button
+        aria-label="Próxima imagem"
+        class="absolute right-3 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-navy-medium text-white flex items-center justify-center shadow-md hover:bg-primary-hover transition-colors"
+        type="button"
+      >
+        <svg
+          aria-hidden="true"
+          class="lucide lucide-chevron-right"
+          fill="none"
+          height="20"
+          stroke="currentColor"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          stroke-width="2"
+          viewBox="0 0 24 24"
+          width="20"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            d="m9 18 6-6-6-6"
+          />
+        </svg>
+      </button>
+    </div>
+    <div
+      class="flex gap-2 overflow-x-auto scrollbar-hide"
+    >
+      <button
+        aria-current="true"
+        aria-label="Ver imagem 1"
+        class="relative w-16 h-16 flex-shrink-0 rounded-md overflow-hidden bg-white border-2 transition-colors border-primary"
+        type="button"
+      >
+        <img
+          alt="Test miniatura 1"
+          class="object-cover"
+          data-nimg="fill"
+          decoding="async"
+          loading="lazy"
+          src="https://placehold.co/600/png?text=A"
+          style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
+        />
+      </button>
+      <button
+        aria-label="Ver imagem 2"
+        class="relative w-16 h-16 flex-shrink-0 rounded-md overflow-hidden bg-white border-2 transition-colors border-border hover:border-text-muted"
+        type="button"
+      >
+        <img
+          alt="Test miniatura 2"
+          class="object-cover"
+          data-nimg="fill"
+          decoding="async"
+          loading="lazy"
+          src="https://placehold.co/600/png?text=B"
+          style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
+        />
+      </button>
+      <button
+        aria-label="Ver imagem 3"
+        class="relative w-16 h-16 flex-shrink-0 rounded-md overflow-hidden bg-white border-2 transition-colors border-border hover:border-text-muted"
+        type="button"
+      >
+        <img
+          alt="Test miniatura 3"
+          class="object-cover"
+          data-nimg="fill"
+          decoding="async"
+          loading="lazy"
+          src="https://placehold.co/600/png?text=C"
+          style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
+        />
+      </button>
+      <button
+        aria-label="Ver imagem 4"
+        class="relative w-16 h-16 flex-shrink-0 rounded-md overflow-hidden bg-white border-2 transition-colors border-border hover:border-text-muted"
+        type="button"
+      >
+        <img
+          alt="Test miniatura 4"
+          class="object-cover"
+          data-nimg="fill"
+          decoding="async"
+          loading="lazy"
+          src="https://placehold.co/600/png?text=D"
+          style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
+        />
+      </button>
+    </div>
+    <p
+      class="text-xs text-text-muted"
+    >
+      * Fotos meramente ilustrativas. Cores e detalhes podem variar.
+    </p>
+  </div>
+</div>
+`;
+
+exports[`ProductGallery > renders with two images and a discount badge 1`] = `
+<div>
+  <div
+    class="flex flex-col gap-4 w-full"
+  >
+    <div
+      class="relative bg-white rounded-[var(--radius-card)] shadow-sm overflow-hidden"
+    >
+      <span
+        class="bg-accent text-white font-bold text-[11px] px-2 py-0.5 rounded-[var(--radius-button)] absolute top-3 left-3 z-10"
+      >
+        15
+        % OFF
+      </span>
+      <div
+        class="overflow-hidden"
+      >
+        <div
+          class="flex"
+        >
+          <div
+            class="flex-[0_0_100%] min-w-0 relative aspect-square sm:aspect-[4/3]"
+          >
+            <img
+              alt="Test - Imagem 1"
+              class="object-contain p-4"
+              data-nimg="fill"
+              decoding="async"
+              src="https://placehold.co/600/png?text=A"
+              style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
+            />
+          </div>
+          <div
+            class="flex-[0_0_100%] min-w-0 relative aspect-square sm:aspect-[4/3]"
+          >
+            <img
+              alt="Test - Imagem 2"
+              class="object-contain p-4"
+              data-nimg="fill"
+              decoding="async"
+              loading="lazy"
+              src="https://placehold.co/600/png?text=B"
+              style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
+            />
+          </div>
+        </div>
+      </div>
+      <button
+        aria-label="Imagem anterior"
+        class="absolute left-3 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-navy-medium text-white flex items-center justify-center shadow-md hover:bg-primary-hover transition-colors"
+        type="button"
+      >
+        <svg
+          aria-hidden="true"
+          class="lucide lucide-chevron-left"
+          fill="none"
+          height="20"
+          stroke="currentColor"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          stroke-width="2"
+          viewBox="0 0 24 24"
+          width="20"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            d="m15 18-6-6 6-6"
+          />
+        </svg>
+      </button>
+      <button
+        aria-label="Próxima imagem"
+        class="absolute right-3 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-navy-medium text-white flex items-center justify-center shadow-md hover:bg-primary-hover transition-colors"
+        type="button"
+      >
+        <svg
+          aria-hidden="true"
+          class="lucide lucide-chevron-right"
+          fill="none"
+          height="20"
+          stroke="currentColor"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          stroke-width="2"
+          viewBox="0 0 24 24"
+          width="20"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            d="m9 18 6-6-6-6"
+          />
+        </svg>
+      </button>
+    </div>
+    <div
+      class="flex gap-2 overflow-x-auto scrollbar-hide"
+    >
+      <button
+        aria-current="true"
+        aria-label="Ver imagem 1"
+        class="relative w-16 h-16 flex-shrink-0 rounded-md overflow-hidden bg-white border-2 transition-colors border-primary"
+        type="button"
+      >
+        <img
+          alt="Test miniatura 1"
+          class="object-cover"
+          data-nimg="fill"
+          decoding="async"
+          loading="lazy"
+          src="https://placehold.co/600/png?text=A"
+          style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
+        />
+      </button>
+      <button
+        aria-label="Ver imagem 2"
+        class="relative w-16 h-16 flex-shrink-0 rounded-md overflow-hidden bg-white border-2 transition-colors border-border hover:border-text-muted"
+        type="button"
+      >
+        <img
+          alt="Test miniatura 2"
+          class="object-cover"
+          data-nimg="fill"
+          decoding="async"
+          loading="lazy"
+          src="https://placehold.co/600/png?text=B"
+          style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
+        />
+      </button>
+    </div>
+    <p
+      class="text-xs text-text-muted"
+    >
+      * Fotos meramente ilustrativas. Cores e detalhes podem variar.
+    </p>
+  </div>
+</div>
+`;
+
+exports[`VariantSelector > renders three variants with one selected and a Sob medida entry 1`] = `
+<div>
+  <div
+    class="flex flex-col gap-3"
+  >
+    <header
+      class="flex items-baseline justify-between"
+    >
+      <span
+        class="text-sm font-semibold text-navy-dark"
+      >
+        Selecionar tamanho
+      </span>
+      <button
+        class="text-xs text-primary hover:underline font-medium"
+        type="button"
+      >
+        Entenda
+      </button>
+    </header>
+    <div
+      class="grid grid-cols-2 sm:grid-cols-3 gap-3"
+      role="radiogroup"
+    >
+      <button
+        aria-checked="false"
+        class="border-2 border-transparent bg-bg-light hover:border-primary/40 rounded-[var(--radius-card)] p-3 flex flex-col items-center text-center"
+        role="radio"
+        type="button"
+      >
+        <span
+          class="text-sm font-bold text-navy-dark"
+        >
+          Casal
+        </span>
+        <span
+          class="text-xs text-text-muted"
+        >
+          138x188x25cm
+        </span>
+        <span
+          class="mt-1 text-sm font-extrabold text-primary tabular-nums"
+        >
+          R$ 1.500,00
+        </span>
+      </button>
+      <button
+        aria-checked="true"
+        class="border-2 border-primary bg-primary/5 rounded-[var(--radius-card)] p-3 flex flex-col items-center text-center"
+        role="radio"
+        type="button"
+      >
+        <span
+          class="text-sm font-bold text-navy-dark"
+        >
+          Queen
+        </span>
+        <span
+          class="text-xs text-text-muted"
+        >
+          158x198x25cm
+        </span>
+        <span
+          class="mt-1 text-sm font-extrabold text-primary tabular-nums"
+        >
+          R$ 1.900,00
+        </span>
+      </button>
+      <button
+        aria-checked="false"
+        class="border-2 border-transparent bg-bg-light hover:border-primary/40 rounded-[var(--radius-card)] p-3 flex flex-col items-center text-center"
+        role="radio"
+        type="button"
+      >
+        <span
+          class="text-sm font-bold text-navy-dark"
+        >
+          Sob medida
+        </span>
+        <span
+          class="mt-1 text-sm font-extrabold text-primary tabular-nums"
+        >
+          Consultar
+        </span>
+      </button>
+    </div>
+  </div>
+</div>
+`;

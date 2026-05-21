@@ -1,0 +1,186 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`Badge > renders the count variant 1`] = `
+<span
+  class="bg-bg-light text-text-muted text-xs px-2 py-0.5 rounded-full"
+>
+  3 Tamanhos
+</span>
+`;
+
+exports[`Badge > renders the discount variant 1`] = `
+<span
+  class="bg-accent text-white font-bold text-[11px] px-2 py-0.5 rounded-[var(--radius-button)]"
+>
+  25% OFF
+</span>
+`;
+
+exports[`Badge > renders the info variant 1`] = `
+<span
+  class="bg-primary/10 text-primary text-xs px-2 py-0.5 rounded-full"
+>
+  Info
+</span>
+`;
+
+exports[`Breadcrumb > renders with a single item 1`] = `
+<div>
+  <nav
+    aria-label="breadcrumb"
+  >
+    <ol
+      class="flex items-center gap-1 text-xs"
+    >
+      <li
+        class="flex items-center gap-1"
+      >
+        <span
+          aria-current="page"
+          class="text-text-main"
+        >
+          Home
+        </span>
+      </li>
+    </ol>
+  </nav>
+</div>
+`;
+
+exports[`Breadcrumb > renders with three items 1`] = `
+<div>
+  <nav
+    aria-label="breadcrumb"
+  >
+    <ol
+      class="flex items-center gap-1 text-xs"
+    >
+      <li
+        class="flex items-center gap-1"
+      >
+        <a
+          class="text-text-muted hover:text-primary"
+          href="/"
+        >
+          Home
+        </a>
+        <span
+          aria-hidden="true"
+          class="text-text-muted"
+        >
+          /
+        </span>
+      </li>
+      <li
+        class="flex items-center gap-1"
+      >
+        <a
+          class="text-text-muted hover:text-primary"
+          href="/c/colchoes"
+        >
+          Categoria
+        </a>
+        <span
+          aria-hidden="true"
+          class="text-text-muted"
+        >
+          /
+        </span>
+      </li>
+      <li
+        class="flex items-center gap-1"
+      >
+        <span
+          aria-current="page"
+          class="text-text-main"
+        >
+          Produto
+        </span>
+      </li>
+    </ol>
+  </nav>
+</div>
+`;
+
+exports[`PriceDisplay > renders with a compare-at price above the current price 1`] = `
+<div>
+  <div
+    class="flex flex-col"
+  >
+    <span
+      class="text-xs text-text-muted"
+    >
+      A partir de
+    </span>
+    <span
+      class="text-xs text-text-muted line-through"
+    >
+      R$ 1.999,00
+    </span>
+    <p
+      class="text-xl md:text-2xl font-extrabold text-primary tabular-nums"
+    >
+      R$ 1.500,00
+      <span
+        class="text-xs font-normal text-text-muted ml-1"
+      >
+        à vista
+      </span>
+    </p>
+    <p
+      class="text-[11px] text-text-muted"
+    >
+      ou até 
+      <strong>
+        6
+        x
+      </strong>
+       de
+       
+      <strong>
+        R$ 250,00
+      </strong>
+       sem juros
+    </p>
+  </div>
+</div>
+`;
+
+exports[`PriceDisplay > renders without a compare-at price 1`] = `
+<div>
+  <div
+    class="flex flex-col"
+  >
+    <span
+      class="text-xs text-text-muted"
+    >
+      A partir de
+    </span>
+    <p
+      class="text-xl md:text-2xl font-extrabold text-primary tabular-nums"
+    >
+      R$ 1.500,00
+      <span
+        class="text-xs font-normal text-text-muted ml-1"
+      >
+        à vista
+      </span>
+    </p>
+    <p
+      class="text-[11px] text-text-muted"
+    >
+      ou até 
+      <strong>
+        6
+        x
+      </strong>
+       de
+       
+      <strong>
+        R$ 250,00
+      </strong>
+       sem juros
+    </p>
+  </div>
+</div>
+`;

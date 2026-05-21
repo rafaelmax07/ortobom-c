@@ -1,16 +1,19 @@
-import { createClient } from '@supabase/supabase-js'
+﻿import { createClient } from '@supabase/supabase-js'
 import { ProductCard } from '@/components/ui/ProductCard'
-import Link from 'next/link'
 import { Search } from 'lucide-react'
+import Link from 'next/link'
 import type { Metadata } from 'next'
 
 const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL!
 const supabaseKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!
 const supabase = createClient(supabaseUrl, supabaseKey)
 
-export const metadata: Metadata = {
-    title: 'Buscar Produtos',
-    description: 'Busque colchões, camas e travesseiros na Ortobom.',
+export async function generateMetadata({ searchParams }: { searchParams: Promise<{ q?: string }> }): Promise<Metadata> {
+    const { q } = await searchParams
+    return {
+        title: q ? `Busca: ${q}` : 'Buscar Produtos',
+        description: q ? `Resultados da busca por "${q}" na Ortobom` : 'Busque colchões, camas e acessórios Ortobom',
+    }
 }
 
 export default async function SearchPage({ searchParams }: { searchParams: Promise<{ q?: string }> }) {
@@ -19,8 +22,8 @@ export default async function SearchPage({ searchParams }: { searchParams: Promi
 
     let products: any[] = []
 
-    if (query.length > 0) {
-        const { data: rawProducts, error } = await supabase
+    if (query) {
+        const { data: rawProducts } = await supabase
             .from('products')
             .select(`
                 *,
@@ -33,13 +36,10 @@ export default async function SearchPage({ searchParams }: { searchParams: Promi
             .eq('is_active', true)
             .ilike('name', `%${query}%`)
             .order('created_at', { ascending: false })
+            .limit(24)
 
-        if (error) {
-            console.error('Search error:', error)
-        }
-
-        products = rawProducts?.map(p => {
-            const variants = p.variants as any[] || []
+        products = (rawProducts || []).map(p => {
+            const variants = (p.variants as any[]) || []
             const cheapest = variants.reduce(
                 (min, v) => (v.price < min.price ? v : min),
                 variants[0] || { price: 0, compare_at_price: null }
@@ -49,52 +49,71 @@ export default async function SearchPage({ searchParams }: { searchParams: Promi
                 price: cheapest.price,
                 compare_at_price: cheapest.compare_at_price || null,
             }
-        }) || []
+        })
     }
 
     return (
-        <div className="container mx-auto px-4 py-8">
-            {/* Breadcrumb */}
-            <div className="text-sm text-gray-500 mb-8">
-                <Link href="/" className="hover:text-blue-600">Home</Link> / Buscar
-            </div>
+        <main className="min-h-screen bg-bg-light/30 py-8">
+            <div className="container mx-auto px-4">
+                {/* Search Header */}
+                <div className="mb-8">
+                    <div className="text-sm text-text-muted mb-4">
+                        <Link href="/" className="hover:text-navy-medium transition-colors">Home</Link>
+                        {' / '}
+                        <span>Busca</span>
+                    </div>
 
-            <header className="mb-8">
-                <h1 className="text-3xl font-bold text-[#1B2B4E] mb-2">
-                    {query ? `Resultados para "${query}"` : 'Buscar Produtos'}
-                </h1>
-                {query && (
-                    <p className="text-sm text-gray-500">
-                        {products.length} {products.length === 1 ? 'produto encontrado' : 'produtos encontrados'}
-                    </p>
+                    {query ? (
+                        <div>
+                            <h1 className="text-2xl md:text-3xl font-extrabold text-text-main mb-2">
+                                Resultados para &ldquo;{query}&rdquo;
+                            </h1>
+                            <p className="text-sm text-text-muted">
+                                {products.length} {products.length === 1 ? 'produto encontrado' : 'produtos encontrados'}
+                            </p>
+                        </div>
+                    ) : (
+                        <div className="text-center py-12">
+                            <Search size={48} className="mx-auto text-border mb-4" />
+                            <h1 className="text-2xl font-bold text-text-main mb-2">Buscar Produtos</h1>
+                            <p className="text-sm text-text-muted">Use a barra de busca acima para encontrar produtos</p>
+                        </div>
+                    )}
+                </div>
+
+                {/* Results */}
+                {query && products.length > 0 && (
+                    <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6">
+                        {products.map(product => (
+                            <ProductCard key={product.id} product={product} />
+                        ))}
+                    </div>
                 )}
-            </header>
 
-            {/* Results */}
-            {query.length === 0 ? (
-                <div className="text-center py-20 bg-gray-50 rounded-lg border border-dashed border-gray-300">
-                    <Search className="w-12 h-12 text-gray-300 mx-auto mb-4" />
-                    <p className="text-lg text-gray-600 mb-2">Digite algo para buscar</p>
-                    <p className="text-sm text-gray-400">Ex: &quot;Colchão Freedom&quot;, &quot;Travesseiro&quot;, &quot;Base Sommier&quot;</p>
-                </div>
-            ) : products.length > 0 ? (
-                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-                    {products.map(product => (
-                        <ProductCard key={product.id} product={product} />
-                    ))}
-                </div>
-            ) : (
-                <div className="text-center py-20 bg-gray-50 rounded-lg border border-dashed border-gray-300">
-                    <p className="text-lg text-gray-600 mb-2">Nenhum produto encontrado para &quot;{query}&quot;</p>
-                    <p className="text-sm text-gray-400 mb-6">Tente buscar com outros termos.</p>
-                    <Link
-                        href="/"
-                        className="inline-block bg-[#1B2B4E] text-white px-6 py-2.5 rounded-md text-sm font-medium hover:bg-blue-900 transition-colors"
-                    >
-                        Voltar à Home
-                    </Link>
-                </div>
-            )}
-        </div>
+                {/* No results */}
+                {query && products.length === 0 && (
+                    <div className="text-center py-16 bg-white rounded-2xl border border-border">
+                        <Search size={48} className="mx-auto text-border mb-4" />
+                        <h2 className="text-xl font-bold text-text-main mb-2">
+                            Nenhum produto encontrado
+                        </h2>
+                        <p className="text-sm text-text-muted mb-6 max-w-md mx-auto">
+                            Não encontramos resultados para &ldquo;{query}&rdquo;. Tente buscar com outros termos ou explore nossas categorias.
+                        </p>
+                        <div className="flex flex-wrap justify-center gap-2">
+                            {['Colchões', 'Camas', 'Travesseiros', 'Cabeceiras'].map(cat => (
+                                <Link
+                                    key={cat}
+                                    href={`/c/${cat.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '').replace(/[õ]/g, 'o')}`}
+                                    className="bg-bg-light hover:bg-navy-medium hover:text-white text-text-soft text-sm font-medium px-4 py-2 rounded-full transition-all duration-200"
+                                >
+                                    {cat}
+                                </Link>
+                            ))}
+                        </div>
+                    </div>
+                )}
+            </div>
+        </main>
     )
 }

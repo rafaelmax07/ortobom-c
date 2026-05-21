@@ -59,15 +59,15 @@ export function FilterSidebar({ activeCategorySlug, currentMinPrice, currentMaxP
         <aside className="w-full md:w-64 flex-shrink-0 space-y-8">
             {/* Categories Filter */}
             <div>
-                <h3 className="font-bold text-[#1B2B4E] mb-4 text-lg">Categorias</h3>
+                <h3 className="font-bold text-navy-medium mb-4 text-lg">Categorias</h3>
                 <ul className="space-y-2">
                     {CATEGORIES.map(cat => (
                         <li key={cat.slug}>
                             <Link
                                 href={`/c/${cat.slug}`}
                                 className={`block text-sm py-1 transition-colors ${activeCategorySlug === cat.slug
-                                    ? 'text-blue-600 font-bold'
-                                    : 'text-gray-600 hover:text-blue-600'
+                                    ? 'text-primary font-bold'
+                                    : 'text-text-soft hover:text-primary'
                                     }`}
                             >
                                 {cat.name}
@@ -79,27 +79,27 @@ export function FilterSidebar({ activeCategorySlug, currentMinPrice, currentMaxP
 
             {/* Price Filter */}
             <div>
-                <h3 className="font-bold text-[#1B2B4E] mb-4 text-lg">Preço</h3>
+                <h3 className="font-bold text-navy-medium mb-4 text-lg">Preço</h3>
                 <div className="flex items-center gap-2 mb-4">
                     <div className="relative">
-                        <span className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 text-xs">R$</span>
+                        <span className="absolute left-3 top-1/2 -translate-y-1/2 text-text-muted text-xs">R$</span>
                         <input
                             type="number"
                             placeholder="Min"
                             value={minPrice}
                             onChange={(e) => setMinPrice(e.target.value)}
-                            className="w-full border border-gray-300 rounded-md py-2 pl-8 pr-2 text-sm focus:border-blue-500 outline-none"
+                            className="w-full border border-border rounded-md py-2 pl-8 pr-2 text-sm focus:border-primary outline-none"
                         />
                     </div>
-                    <span className="text-gray-400">-</span>
+                    <span className="text-text-muted">-</span>
                     <div className="relative">
-                        <span className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 text-xs">R$</span>
+                        <span className="absolute left-3 top-1/2 -translate-y-1/2 text-text-muted text-xs">R$</span>
                         <input
                             type="number"
                             placeholder="Max"
                             value={maxPrice}
                             onChange={(e) => setMaxPrice(e.target.value)}
-                            className="w-full border border-gray-300 rounded-md py-2 pl-8 pr-2 text-sm focus:border-blue-500 outline-none"
+                            className="w-full border border-border rounded-md py-2 pl-8 pr-2 text-sm focus:border-primary outline-none"
                         />
                     </div>
                 </div>
@@ -107,7 +107,7 @@ export function FilterSidebar({ activeCategorySlug, currentMinPrice, currentMaxP
 
             {/* Size Filter */}
             <div>
-                <h3 className="font-bold text-[#1B2B4E] mb-4 text-lg">Tamanho</h3>
+                <h3 className="font-bold text-navy-medium mb-4 text-lg">Tamanho</h3>
                 <div className="space-y-2">
                     {SIZES.map(size => (
                         <label key={size} className="flex items-center gap-2 cursor-pointer group">
@@ -115,9 +115,9 @@ export function FilterSidebar({ activeCategorySlug, currentMinPrice, currentMaxP
                                 type="checkbox"
                                 checked={selectedSizes.includes(size)}
                                 onChange={() => toggleSize(size)}
-                                className="rounded border-gray-300 text-blue-600 focus:ring-blue-500"
+                                className="rounded border-border text-primary focus:ring-primary"
                             />
-                            <span className="text-sm text-gray-600 group-hover:text-gray-900">{size}</span>
+                            <span className="text-sm text-text-soft group-hover:text-text-main">{size}</span>
                         </label>
                     ))}
                 </div>
@@ -126,13 +126,13 @@ export function FilterSidebar({ activeCategorySlug, currentMinPrice, currentMaxP
             {/* Action Buttons */}
             <div className="space-y-2">
                 <button
-                    className="w-full bg-[#1B2B4E] text-white font-medium py-2.5 rounded-md text-sm hover:bg-blue-900 transition-colors"
+                    className="w-full bg-navy-medium text-white font-medium py-2.5 rounded-md text-sm hover:bg-primary-hover transition-colors"
                     onClick={applyFilters}
                 >
                     Filtrar
                 </button>
                 <button
-                    className="w-full bg-gray-100 text-gray-700 font-medium py-2 rounded-md text-sm hover:bg-gray-200 transition-colors"
+                    className="w-full bg-bg-light text-text-soft font-medium py-2 rounded-md text-sm hover:bg-bg-soft transition-colors"
                     onClick={clearFilters}
                 >
                     Limpar Filtros
