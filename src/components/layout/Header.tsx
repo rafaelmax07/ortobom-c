@@ -155,9 +155,9 @@ export function Header() {
                                     {PROMO_MESSAGES.map((promo, idx) => (
                                         <div
                                             key={idx}
-                                            className="flex-[0_0_100%] min-w-0 flex flex-wrap items-center justify-center gap-x-3 gap-y-1 lg:gap-4 px-2"
+                                            className="flex-[0_0_100%] min-w-0 flex flex-nowrap items-center justify-center gap-3 lg:gap-4 px-2"
                                         >
-                                            <span className="truncate">{promo.text}</span>
+                                            <span className="truncate min-w-0">{promo.text}</span>
                                             <Link
                                                 href={promo.href}
                                                 className="lg:border lg:border-white text-white text-[13px] font-semibold lg:rounded lg:px-5 lg:py-1.5 hover:bg-white hover:text-navy-medium transition-colors whitespace-nowrap flex-shrink-0 underline underline-offset-4 lg:no-underline"
