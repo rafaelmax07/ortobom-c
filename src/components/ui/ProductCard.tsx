@@ -7,7 +7,6 @@ import useEmblaCarousel from 'embla-carousel-react'
 import { ChevronLeft, ChevronRight, ShoppingCart } from 'lucide-react'
 import { Badge } from './primitives/Badge'
 import { LinkButton } from './primitives/Button'
-import { IconButton } from './primitives/IconButton'
 import { PriceDisplay } from './primitives/PriceDisplay'
 import { AutoFitText } from './primitives/AutoFitText'
 
@@ -90,7 +89,7 @@ export function ProductCard({
             <div className={
                 variant === 'mini'
                     ? 'px-4 pb-4 pt-2 flex flex-col flex-grow gap-3'
-                    : 'px-5 pb-5 pt-2 flex flex-col flex-grow gap-5'
+                    : 'px-4 lg:px-5 pb-4 lg:pb-5 pt-2 flex flex-col flex-grow gap-5'
             }>
                 <div className="flex flex-col gap-0.5">
                     <Link href={`/p/${product.slug}`}>
@@ -165,7 +164,7 @@ function ProductImage({
 
         return (
             <Link href={`/p/${product.slug}`} className="block">
-                <div className="relative aspect-square overflow-hidden m-5">
+                <div className="relative aspect-square overflow-hidden m-4 lg:m-5">
                     <BadgeStack hasDiscount={hasDiscount} discountPercent={discountPercent} showCouponBadge={showCouponBadge} couponText={couponText} />
                     <Image
                         src={imageSrc}
@@ -290,7 +289,7 @@ function ProductImageGallery({
 
     return (
         <Link href={`/p/${product.slug}`} className="block">
-            <div className="relative aspect-square overflow-hidden m-5">
+            <div className="relative aspect-square overflow-hidden m-4 lg:m-5">
                 <BadgeStack
                     hasDiscount={hasDiscount}
                     discountPercent={discountPercent}
@@ -317,33 +316,31 @@ function ProductImageGallery({
 
                 {showNav && (
                     <>
-                        <IconButton
+                        <button
+                            type="button"
                             onClick={scrollPrev}
                             aria-label="Imagem anterior"
-                            variant="overlay"
-                            size="sm"
-                            rounded="full"
-                            className="absolute left-2 top-1/2 -translate-y-1/2 z-30 opacity-0 group-hover:opacity-100 transition-opacity"
+                            className="absolute left-0 top-1/2 -translate-y-1/2 z-30 w-5 h-5 flex items-center justify-center rounded-full bg-white/90 hover:bg-white text-primary transition-colors opacity-100 lg:opacity-0 lg:group-hover:opacity-100"
                         >
-                            <ChevronLeft size={16} />
-                        </IconButton>
-                        <IconButton
+                            <ChevronLeft size={14} strokeWidth={2.5} />
+                        </button>
+                        <button
+                            type="button"
                             onClick={scrollNext}
                             aria-label="Próxima imagem"
-                            variant="overlay"
-                            size="sm"
-                            rounded="full"
-                            className="absolute right-2 top-1/2 -translate-y-1/2 z-30 opacity-0 group-hover:opacity-100 transition-opacity"
+                            className="absolute right-0 top-1/2 -translate-y-1/2 z-30 w-5 h-5 flex items-center justify-center rounded-full bg-white/90 hover:bg-white text-primary transition-colors opacity-100 lg:opacity-0 lg:group-hover:opacity-100"
                         >
-                            <ChevronRight size={16} />
-                        </IconButton>
+                            <ChevronRight size={14} strokeWidth={2.5} />
+                        </button>
 
-                        <div className="absolute bottom-2 left-1/2 -translate-x-1/2 z-20 flex gap-1 opacity-0 group-hover:opacity-100 transition-opacity">
+                        <div className="absolute bottom-2 left-1/2 -translate-x-1/2 z-20 flex gap-1 opacity-100 lg:opacity-0 lg:group-hover:opacity-100 transition-opacity">
                             {gallery.map((_, idx) => (
                                 <span
                                     key={idx}
-                                    className={`w-1 h-1 rounded-full transition-colors shadow-[0_0_2px_rgba(0,0,0,0.5)] ${
-                                        idx === selectedIndex ? 'bg-white' : 'bg-white/50'
+                                    className={`w-1.5 h-1.5 rounded-full transition-colors ${
+                                        idx === selectedIndex
+                                            ? 'bg-[#6b7280]'
+                                            : 'bg-[#cbd5e1]'
                                     }`}
                                 />
                             ))}

@@ -2,7 +2,13 @@
 
 import { useState, useEffect } from 'react'
 
-export function OffersCountdown() {
+type Size = 'md' | 'lg'
+
+interface OffersCountdownProps {
+    size?: Size
+}
+
+export function OffersCountdown({ size = 'md' }: OffersCountdownProps) {
     const [time, setTime] = useState({ days: 0, hours: 0, minutes: 0, seconds: 0 })
 
     useEffect(() => {
@@ -37,23 +43,26 @@ export function OffersCountdown() {
             aria-live="polite"
             aria-label="Tempo restante da promoção"
         >
-            <TimeBlock value={pad(time.days)} label="DIAS" />
-            <Separator />
-            <TimeBlock value={pad(time.hours)} label="HORAS" />
-            <Separator />
-            <TimeBlock value={pad(time.minutes)} label="MIN" />
-            <Separator />
-            <TimeBlock value={pad(time.seconds)} label="SEG" />
+            <TimeBlock value={pad(time.days)} label="DIAS" size={size} />
+            <Separator size={size} />
+            <TimeBlock value={pad(time.hours)} label="HORAS" size={size} />
+            <Separator size={size} />
+            <TimeBlock value={pad(time.minutes)} label="MIN" size={size} />
+            <Separator size={size} />
+            <TimeBlock value={pad(time.seconds)} label="SEG" size={size} />
         </div>
     )
 }
 
-function TimeBlock({ value, label }: { value: string; label: string }) {
+function TimeBlock({ value, label, size }: { value: string; label: string; size: Size }) {
+    const isLarge = size === 'lg'
     return (
-        <div className="flex flex-col items-center w-[38px]">
-            <span className="text-[20px] font-bold leading-none">{value}</span>
+        <div className={`flex flex-col items-center ${isLarge ? 'w-[42px]' : 'w-[38px]'}`}>
+            <span className={`font-bold leading-none ${isLarge ? 'text-[22px]' : 'text-[20px]'}`}>
+                {value}
+            </span>
             <span
-                className="text-[9px] font-medium uppercase mt-1.5"
+                className={`font-medium uppercase ${isLarge ? 'text-[10px] mt-2' : 'text-[9px] mt-1.5'}`}
                 style={{ letterSpacing: '0.5px', color: '#E2E8F0' }}
             >
                 {label}
@@ -62,9 +71,13 @@ function TimeBlock({ value, label }: { value: string; label: string }) {
     )
 }
 
-function Separator() {
+function Separator({ size }: { size: Size }) {
+    const isLarge = size === 'lg'
     return (
-        <span className="text-[16px] font-bold mx-0.5 relative" style={{ top: -2 }}>
+        <span
+            className={`font-bold relative ${isLarge ? 'text-[18px] mx-0.5' : 'text-[16px] mx-0.5'}`}
+            style={{ top: -2 }}
+        >
             :
         </span>
     )

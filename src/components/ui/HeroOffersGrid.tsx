@@ -14,10 +14,9 @@ interface HeroOffersGridProps {
 
 export function HeroOffersGrid({ products }: HeroOffersGridProps) {
     const [emblaRef, emblaApi] = useEmblaCarousel({
-        loop: false,
+        loop: true,
         align: 'start',
         slidesToScroll: 1,
-        containScroll: 'trimSnaps',
     })
 
     const [canScrollPrev, setCanScrollPrev] = useState(false)
@@ -45,18 +44,23 @@ export function HeroOffersGrid({ products }: HeroOffersGridProps) {
 
     return (
         <section className="bg-bg-light py-10">
-            <div className="max-w-[1280px] mx-auto px-6">
+            <div className="max-w-[1280px] mx-auto px-3 lg:px-6">
                 {/* Header da seção */}
-                <div className="flex items-center justify-between mb-5">
-                    <h2 className="t-subsection-heading flex items-center gap-2">
-                        <span aria-hidden="true">🔥</span>
-                        Todo site com 10% OFF EXTRA com o cupom SUPER10
+                <div className="flex items-center justify-between gap-4 mb-5">
+                    <h2 className="t-subsection-heading flex-1 min-w-0 text-[18px] lg:text-[22px] leading-snug">
+                        <span className="lg:hidden">
+                            Você ganhou +10% OFF em todo site para dormir melhor! Use SUPER10 💙
+                        </span>
+                        <span className="hidden lg:inline-flex lg:items-center lg:gap-2">
+                            <span aria-hidden="true">🔥</span>
+                            Todo site com 10% OFF EXTRA com o cupom SUPER10
+                        </span>
                     </h2>
                     <Link
                         href="/c/colchoes"
-                        className="t-link whitespace-nowrap"
+                        className="t-link whitespace-nowrap inline-flex items-center gap-1 flex-shrink-0"
                     >
-                        Ver todas &gt;
+                        Ver todas <ChevronRight size={14} />
                     </Link>
                 </div>
 
@@ -64,7 +68,7 @@ export function HeroOffersGrid({ products }: HeroOffersGridProps) {
                 <div className="grid grid-cols-1 lg:grid-cols-[300px_minmax(0,1fr)] gap-5">
                     {/* Card Countdown */}
                     <div
-                        className="relative rounded-[var(--radius-card)] flex flex-col text-center text-white min-h-[400px] overflow-hidden pt-[50px]"
+                        className="relative rounded-[var(--radius-card)] flex flex-col text-center text-white min-h-[220px] lg:min-h-[400px] overflow-hidden pt-5 lg:pt-[50px] pb-5 lg:pb-0"
                         style={{
                             background:
                                 'linear-gradient(135deg, #243E69 0%, #152238 50%, #0E1624 100%)',
@@ -85,69 +89,69 @@ export function HeroOffersGrid({ products }: HeroOffersGridProps) {
                             }}
                         />
 
-                        {/* 4 ondas concêntricas centralizadas no topo, com distância vertical fixa */}
+                        {/* 4 ondas concêntricas (visíveis em mobile e desktop) */}
                         <div
                             aria-hidden="true"
-                            className="absolute left-1/2 -translate-x-1/2 pointer-events-none rounded-full"
+                            className="absolute left-1/2 -translate-x-1/2 pointer-events-none rounded-full top-[-50px] lg:top-[-100px]"
                             style={{
                                 width: 140,
                                 height: 140,
-                                top: -100,
-                                border: '2px solid rgba(180,190,210,0.025)',
+                                border: '2px solid rgba(180,190,210,0.05)',
                             }}
                         />
                         <div
                             aria-hidden="true"
-                            className="absolute left-1/2 -translate-x-1/2 pointer-events-none rounded-full"
+                            className="absolute left-1/2 -translate-x-1/2 pointer-events-none rounded-full top-[-70px] lg:top-[-120px]"
                             style={{
                                 width: 230,
                                 height: 230,
-                                top: -120,
-                                border: '2px solid rgba(180,190,210,0.02)',
+                                border: '2px solid rgba(180,190,210,0.04)',
                             }}
                         />
                         <div
                             aria-hidden="true"
-                            className="absolute left-1/2 -translate-x-1/2 pointer-events-none rounded-full"
+                            className="absolute left-1/2 -translate-x-1/2 pointer-events-none rounded-full top-[-90px] lg:top-[-140px]"
                             style={{
                                 width: 320,
                                 height: 320,
-                                top: -140,
-                                border: '2px solid rgba(180,190,210,0.015)',
+                                border: '2px solid rgba(180,190,210,0.03)',
                             }}
                         />
                         <div
                             aria-hidden="true"
-                            className="absolute left-1/2 -translate-x-1/2 pointer-events-none rounded-full"
+                            className="absolute left-1/2 -translate-x-1/2 pointer-events-none rounded-full top-[-110px] lg:top-[-160px]"
                             style={{
                                 width: 410,
                                 height: 410,
-                                top: -160,
-                                border: '2px solid rgba(180,190,210,0.012)',
+                                border: '2px solid rgba(180,190,210,0.025)',
                             }}
                         />
 
                         {/* Header */}
-                        <header className="relative z-10 px-6 text-center">
-                            <h3 className="text-[22px] font-bold leading-[1.3] text-white mb-2 drop-shadow-sm">
-                                Sua melhor noite de
+                        <header className="relative z-10 px-3 lg:px-6 text-center">
+                            <h3 className="text-[20px] lg:text-[22px] font-bold leading-[1.25] text-white mb-1 lg:mb-2 drop-shadow-sm whitespace-nowrap lg:whitespace-normal">
+                                Sua melhor noite de sono
                                 <br />
-                                sono começa agora <span aria-hidden="true">🌙</span>
+                                começa agora <span aria-hidden="true">🌙</span>
                             </h3>
-                            <p className="text-[14px] font-medium text-white/90">
+                            <p className="text-[13px] lg:text-[14px] font-medium text-white/90">
                                 Ofertas imbatíveis por pouco tempo!
                             </p>
                         </header>
 
-                        {/* Anel SVG + timer dentro */}
-                        <section className="relative z-10 mx-auto mt-8 w-[240px] h-[240px]">
+                        {/* Timer mobile/tablet (sem anel) */}
+                        <div className="lg:hidden relative z-10 mt-9 flex justify-center">
+                            <OffersCountdown size="lg" />
+                        </div>
+
+                        {/* Anel SVG + timer dentro (só desktop) */}
+                        <section className="hidden lg:block relative z-10 mx-auto mt-8 w-[240px] h-[240px]">
                             <svg
                                 viewBox="0 0 260 260"
                                 className="w-full h-full"
                                 style={{ transform: 'rotate(-90deg)' }}
                                 aria-hidden="true"
                             >
-                                {/* Track */}
                                 <circle
                                     cx="130"
                                     cy="130"
@@ -156,7 +160,6 @@ export function HeroOffersGrid({ products }: HeroOffersGridProps) {
                                     stroke="#1E304D"
                                     strokeWidth="6"
                                 />
-                                {/* Progress */}
                                 <circle
                                     cx="130"
                                     cy="130"
@@ -170,7 +173,6 @@ export function HeroOffersGrid({ products }: HeroOffersGridProps) {
                                 />
                             </svg>
 
-                            {/* Timer text content sobre o anel */}
                             <div className="absolute inset-0 flex items-center justify-center">
                                 <OffersCountdown />
                             </div>
@@ -184,7 +186,7 @@ export function HeroOffersGrid({ products }: HeroOffersGridProps) {
                                 {products.map((product) => (
                                     <div
                                         key={product.id}
-                                        className="flex-[0_0_33.333%] min-w-0 px-2 [&>article_.aspect-square]:aspect-[5/4]"
+                                        className="flex-[0_0_70%] sm:flex-[0_0_55%] lg:flex-[0_0_33.333%] min-w-0 px-2 [&>article_.aspect-square]:aspect-square sm:[&>article_.aspect-square]:aspect-[5/4]"
                                     >
                                         <ProductCard product={product} variant="offer" />
                                     </div>

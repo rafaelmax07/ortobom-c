@@ -1,4 +1,4 @@
-'use client'
+﻿'use client'
 
 import Link from 'next/link'
 import Image from 'next/image'
@@ -8,16 +8,18 @@ import { useCart } from '@/context/CartContext'
 import { NavCategoryItem } from './NavCategoryItem'
 import useEmblaCarousel from 'embla-carousel-react'
 import Autoplay from 'embla-carousel-autoplay'
+import { LocationModal } from '@/components/ui/LocationModal'
+import { readSavedLocation, DEFAULT_LOCATION, type SavedLocation } from '@/lib/locations'
 
 const NAV_CATEGORIES = [
     {
-        label: 'Colchões',
+        label: 'ColchÃµes',
         slug: 'colchoes',
         sizes: ['Solteiro', 'Solteiro Extra', 'Casal', 'Queen', 'King', 'Infantil', 'Sob medida'],
         filters: [
-            { group: 'Nível de Conforto', items: ['Macio', 'Firme', 'Híbrido'] },
-            { group: 'Estilo', items: ['Tradicional/Clássico', 'Moderno/Tecnológico', 'Natural/Sustentável'] },
-            { group: 'Tipos de Colchão', items: ['Mola', 'Espuma', 'Ortopédico'] },
+            { group: 'NÃ­vel de Conforto', items: ['Macio', 'Firme', 'HÃ­brido'] },
+            { group: 'Estilo', items: ['Tradicional/ClÃ¡ssico', 'Moderno/TecnolÃ³gico', 'Natural/SustentÃ¡vel'] },
+            { group: 'Tipos de ColchÃ£o', items: ['Mola', 'Espuma', 'OrtopÃ©dico'] },
         ],
         image: 'https://cdn.ortobom.com.br/file/34dfaf5b-db37-472b-a3ae-4d4e36c220e7/liberty%20site.jpg',
     },
@@ -26,7 +28,7 @@ const NAV_CATEGORIES = [
         slug: 'camas',
         sizes: ['Solteiro', 'Solteiro Extra', 'Casal', 'Queen', 'King', 'Sob medida'],
         filters: [
-            { group: 'Estilos', items: ['Baú', 'Elétrica', 'Plana'] },
+            { group: 'Estilos', items: ['BaÃº', 'ElÃ©trica', 'Plana'] },
             { group: 'Revestimentos', items: ['Nobuck', 'Cori', 'Linho', 'Malha', 'Suede', 'TNT'] },
         ],
         image: 'https://cdn.ortobom.com.br/file/02adf6bb-7cf9-40bc-b755-a84b9c268bab/BASE-SOMMIER-LIBERTY-CASAL--7-.jpg',
@@ -36,7 +38,7 @@ const NAV_CATEGORIES = [
         slug: 'cabeceiras',
         sizes: ['Solteiro', 'Solteiro Extra', 'Casal', 'Queen', 'King'],
         filters: [
-            { group: 'Estilos', items: ['Tradicional/Clássico', 'Moderno/Tecnológico', 'Natural/Sustentável'] },
+            { group: 'Estilos', items: ['Tradicional/ClÃ¡ssico', 'Moderno/TecnolÃ³gico', 'Natural/SustentÃ¡vel'] },
             { group: 'Revestimentos', items: ['Linho', 'Veludo', 'Cori', 'Facto'] },
         ],
         image: 'https://images.unsplash.com/photo-1540518614846-7eded433c457?q=80&w=400&auto=format&fit=crop',
@@ -46,23 +48,23 @@ const NAV_CATEGORIES = [
         slug: 'travesseiros',
         sizes: ['Conforto', 'Estilo', 'Material'],
         filters: [
-            { group: 'Níveis de Conforto', items: ['Macio', 'Firme', 'Híbrido'] },
-            { group: 'Variações de Estilo', items: ['Clássico/Tradicional', 'Moderno/Tecnológico', 'Natural/Sustentável'] },
-            { group: 'Variações de Material', items: ['Fibra', 'Látex', 'Pluma', 'Viscoelástica'] },
+            { group: 'NÃ­veis de Conforto', items: ['Macio', 'Firme', 'HÃ­brido'] },
+            { group: 'VariaÃ§Ãµes de Estilo', items: ['ClÃ¡ssico/Tradicional', 'Moderno/TecnolÃ³gico', 'Natural/SustentÃ¡vel'] },
+            { group: 'VariaÃ§Ãµes de Material', items: ['Fibra', 'LÃ¡tex', 'Pluma', 'ViscoelÃ¡stica'] },
         ],
         image: 'https://images.unsplash.com/photo-1616594039964-ae9021a400a0?q=80&w=400&auto=format&fit=crop',
     },
     {
-        label: 'Acessórios',
+        label: 'AcessÃ³rios',
         slug: 'acessorios',
         sizes: ['Colchonete', 'Tapete', 'Massageador Alveolado', 'Suavencosto', 'Encosto Dino', 'Aromatizador', 'Cama Pet'],
         filters: [],
         image: 'https://images.unsplash.com/photo-1522771739844-6a9f6d5f14af?q=80&w=400&auto=format&fit=crop',
     },
     {
-        label: 'Móveis',
+        label: 'MÃ³veis',
         slug: 'moveis',
-        sizes: ['Sofá Cama', 'Poltrona'],
+        sizes: ['SofÃ¡ Cama', 'Poltrona'],
         filters: [
             { group: 'Material', items: ['Cori', 'Linho', 'Nobuck'] },
         ],
@@ -72,15 +74,29 @@ const NAV_CATEGORIES = [
 
 export function Header() {
     const [isMenuOpen, setIsMenuOpen] = useState(false)
+    const [expandedCat, setExpandedCat] = useState<string | null>(null)
+    const [expandedSize, setExpandedSize] = useState<string | null>(null)
     const [megaMenuOpen, setMegaMenuOpen] = useState<string | null>(null)
     const [isScrolled, setIsScrolled] = useState(false)
+    const [locationOpen, setLocationOpen] = useState(false)
+    const [location, setLocation] = useState<SavedLocation>(DEFAULT_LOCATION)
     const { totalItems, openCart } = useCart()
     const timeoutRef = useRef<NodeJS.Timeout | null>(null)
 
+    // Carrega localizaÃ§Ã£o salva e ouve mudanÃ§as (apÃ³s confirmar no modal)
+    useEffect(() => {
+        const sync = () => setLocation(readSavedLocation())
+        sync()
+        window.addEventListener('ortobom:location-changed', sync)
+        return () => window.removeEventListener('ortobom:location-changed', sync)
+    }, [])
+
+    const locationLabel = `${location.city} â€“ ${location.uf}`
+
     const PROMO_MESSAGES = [
-        { text: 'Seleção especial em até 6x sem juros', cta: 'Transforme suas noites!', href: '/c/colchoes' },
-        { text: 'Todo site com +10% OFF por tempo limitado!', cta: 'Use SUPER10 💙', href: '/c/colchoes' },
-        { text: 'Seu Colchão na Caixa em até 12x sem juros', cta: 'Quero praticidade e conforto', href: '/c/colchoes' },
+        { text: 'SeleÃ§Ã£o especial em atÃ© 6x sem juros', cta: 'Transforme suas noites!', href: '/c/colchoes' },
+        { text: 'Todo site com +10% OFF por tempo limitado!', cta: 'Use SUPER10 ðŸ’™', href: '/c/colchoes' },
+        { text: 'Seu ColchÃ£o na Caixa em atÃ© 12x sem juros', cta: 'Quero praticidade e conforto', href: '/c/colchoes' },
     ]
 
     const [promoEmblaRef, promoEmblaApi] = useEmblaCarousel(
@@ -92,13 +108,15 @@ export function Header() {
     const promoNext = useCallback(() => promoEmblaApi?.scrollNext(), [promoEmblaApi])
 
     useEffect(() => {
-        // Histerese para evitar flicker quando o header encolhe e altera o scrollY
-        // Entra em "scrolled" só quando passar de 100px; sai quando voltar pra antes de 30px
+        // Histerese para evitar flicker quando o header encolhe e altera o scrollY.
+        // No mobile, encolher pode reduzir o header em ~100px (linha 1 + busca +
+        // localizaÃ§Ã£o), entÃ£o a janela precisa ser bem maior do que essa variaÃ§Ã£o.
+        // Entra em "scrolled" sÃ³ quando passar de 200px; sai quando voltar antes de 10px.
         const handleScroll = () => {
             const y = window.scrollY
             setIsScrolled(prev => {
-                if (!prev && y > 100) return true
-                if (prev && y < 30) return false
+                if (!prev && y > 200) return true
+                if (prev && y < 10) return false
                 return prev
             })
         }
@@ -118,11 +136,11 @@ export function Header() {
         <header className="w-full font-sans sticky top-0 z-50">
             <div className="bg-navy-dark">
 
-                {/* ═══ ROW 1: Top promo bar (some quando scrolla) ═══ */}
-                <div className={`hidden lg:block border-b border-white/[0.08] text-[14px] font-medium text-white overflow-hidden transition-all duration-300 ${isScrolled ? 'max-h-0 py-0 opacity-0 border-b-0' : 'max-h-20 py-2.5 opacity-100'}`}>
-                    <div className="max-w-[1280px] mx-auto px-6 flex items-center justify-between gap-10">
-                        {/* Bloco esquerda: seta + carrossel de promos + seta — ocupa o espaço entre logo e Franqueado */}
-                        <div className="flex items-center gap-5 flex-1 min-w-0">
+                {/* â•â•â• ROW 1: Top promo bar (some quando scrolla) â•â•â• */}
+                <div className={`border-b border-white/[0.08] text-[13px] lg:text-[14px] font-medium text-white overflow-hidden transition-all duration-500 ease-out ${isScrolled ? 'max-h-0 py-0 opacity-0 border-b-0' : 'max-h-20 py-2.5 opacity-100'}`}>
+                    <div className="max-w-[1280px] mx-auto px-3 lg:px-6 flex items-center justify-between gap-4 lg:gap-10">
+                        {/* Bloco esquerda: seta + carrossel de promos + seta */}
+                        <div className="flex items-center gap-3 lg:gap-5 flex-1 min-w-0">
                             <button
                                 type="button"
                                 onClick={promoPrev}
@@ -137,12 +155,12 @@ export function Header() {
                                     {PROMO_MESSAGES.map((promo, idx) => (
                                         <div
                                             key={idx}
-                                            className="flex-[0_0_100%] min-w-0 flex items-center justify-center gap-4 px-2"
+                                            className="flex-[0_0_100%] min-w-0 flex flex-wrap items-center justify-center gap-x-3 gap-y-1 lg:gap-4 px-2"
                                         >
                                             <span className="truncate">{promo.text}</span>
                                             <Link
                                                 href={promo.href}
-                                                className="border border-white text-white text-[13px] font-semibold rounded px-5 py-1.5 hover:bg-white hover:text-navy-medium transition-colors whitespace-nowrap flex-shrink-0"
+                                                className="lg:border lg:border-white text-white text-[13px] font-semibold lg:rounded lg:px-5 lg:py-1.5 hover:bg-white hover:text-navy-medium transition-colors whitespace-nowrap flex-shrink-0 underline underline-offset-4 lg:no-underline"
                                             >
                                                 {promo.cta}
                                             </Link>
@@ -154,29 +172,29 @@ export function Header() {
                             <button
                                 type="button"
                                 onClick={promoNext}
-                                aria-label="Próxima mensagem"
+                                aria-label="PrÃ³xima mensagem"
                                 className="text-white/70 hover:text-white transition-colors flex-shrink-0"
                             >
                                 <ChevronRight size={20} />
                             </button>
                         </div>
 
-                        <div className="flex items-center text-white text-[14px] font-medium divide-x divide-white/20 flex-shrink-0">
+                        <div className="hidden lg:flex items-center text-white text-[14px] font-medium divide-x divide-white/20 flex-shrink-0">
                             <Link href="https://www.ortobom.com.br/SejaUmFranqueado" target="_blank" rel="noopener noreferrer" className="flex items-center gap-1.5 px-2.5 hover:text-orange-300 transition-colors">
                                 <Shield size={16} strokeWidth={1.8} />
                                 <span>Franqueado</span>
                             </Link>
                             <Link href="https://www.ortobom.com.br/listalojas" target="_blank" rel="noopener noreferrer" className="flex items-center gap-1.5 px-2.5 hover:text-orange-300 transition-colors">
                                 <Store size={16} strokeWidth={1.8} />
-                                <span>Lojas Próximas</span>
+                                <span>Lojas PrÃ³ximas</span>
                             </Link>
                             <Link href="https://www.ortobom.com.br/industrias" target="_blank" rel="noopener noreferrer" className="flex items-center gap-1.5 px-2.5 hover:text-orange-300 transition-colors">
                                 <Factory size={16} strokeWidth={1.8} />
-                                <span>Para Indústrias</span>
+                                <span>Para IndÃºstrias</span>
                             </Link>
                             <Link href="https://www.ortobom.com.br/hotelaria" target="_blank" rel="noopener noreferrer" className="flex items-center gap-1.5 px-2.5 hover:text-orange-300 transition-colors">
                                 <Hotel size={16} strokeWidth={1.8} />
-                                <span>Para Hotéis</span>
+                                <span>Para HotÃ©is</span>
                             </Link>
                             <Link href="https://ortobom.custhelp.com/" target="_blank" rel="noopener noreferrer" className="flex items-center gap-1.5 pl-2.5 hover:text-orange-300 transition-colors">
                                 <Phone size={16} strokeWidth={1.8} />
@@ -186,62 +204,68 @@ export function Header() {
                     </div>
                 </div>
 
-                {/* ═══ ROW 2: Logo + Search + Icons ═══ */}
-                <div className={`transition-all duration-300 ${isScrolled ? 'py-2 lg:py-2.5' : 'py-3 lg:py-4'}`}>
-                    <div className="max-w-[1280px] mx-auto px-4 lg:px-6 flex items-center w-full">
+                {/* â•â•â• ROW 2: Logo + Search (desktop) + Icons â•â•â• */}
+                <div className={`transition-all duration-500 ease-out ${isScrolled ? 'py-2 lg:py-2.5' : 'py-3 lg:py-4'}`}>
+                    <div className="max-w-[1280px] mx-auto px-4 lg:px-6 flex items-center w-full gap-3 lg:gap-0">
 
                         {/* Mobile hamburger */}
-                        <button className="lg:hidden text-white mr-3" onClick={() => setIsMenuOpen(!isMenuOpen)} aria-label="Menu">
-                            {isMenuOpen ? <X size={22} /> : <Menu size={22} />}
+                        <button className="lg:hidden text-white" onClick={() => setIsMenuOpen(!isMenuOpen)} aria-label="Menu">
+                            {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
                         </button>
 
                         {/* Logo */}
-                        <Link href="/" className="flex-shrink-0">
+                        <Link href="/" className="flex-shrink-0" onClick={() => setIsMenuOpen(false)}>
                             <Image
                                 src="https://www.ortobom.com.br/Content/V3/img/Ortobom_branco.png"
                                 alt="Ortobom"
                                 width={200}
                                 height={54}
-                                className={`object-contain transition-all duration-300 ${isScrolled ? 'w-[155px]' : 'w-[195px]'}`}
+                                className={`object-contain transition-all duration-500 ease-out w-[140px] lg:w-[195px] ${isScrolled ? 'lg:w-[155px]' : 'lg:w-[195px]'}`}
                                 style={{ height: 'auto' }}
                                 priority
                                 unoptimized
                             />
                         </Link>
 
-                        {/* Search */}
-                        <form action="/search" method="GET" className={`hidden md:flex relative flex-1 mr-10 transition-all duration-300 ${isScrolled ? 'ml-3 max-w-[1000px]' : 'ml-5 max-w-[760px]'}`}>
+                        {/* Search desktop */}
+                        <form action="/search" method="GET" className={`hidden lg:flex relative flex-1 mr-10 transition-all duration-500 ease-out ${isScrolled ? 'ml-3 max-w-[1000px]' : 'ml-5 max-w-[760px]'}`}>
                             <input
                                 type="text"
                                 name="q"
                                 placeholder="O que deseja buscar?"
-                                className="w-full bg-white rounded-md pl-5 pr-12 h-[42px] text-[15px] font-normal placeholder-[#888] text-[#222] focus:outline-none transition-all duration-300"
+                                className="w-full bg-white rounded-md pl-5 pr-12 h-[42px] text-[15px] font-normal placeholder-[#888] text-[#222] focus:outline-none transition-all duration-500 ease-out"
                             />
                             <button
                                 type="submit"
                                 aria-label="Buscar"
-                                className="absolute right-2 top-1/2 -translate-y-1/2 h-[32px] w-[32px] flex items-center justify-center text-[#666] hover:text-[#222] rounded-md transition-all duration-300"
+                                className="absolute right-2 top-1/2 -translate-y-1/2 h-[32px] w-[32px] flex items-center justify-center text-[#666] hover:text-[#222] rounded-md transition-all duration-500 ease-out"
                             >
                                 <Search size={18} />
                             </button>
                         </form>
 
                         {/* Right icons */}
-                        <div className={`flex items-center justify-evenly flex-shrink-0 text-white transition-all duration-300 ${isScrolled ? 'min-w-[440px]' : 'min-w-[460px]'}`}>
-                            {/* Location — icon on top, text below */}
-                            <div className="flex flex-col items-center justify-center cursor-pointer hover:text-orange-300 transition-colors">
+                        <div className={`flex items-center gap-4 sm:gap-5 lg:justify-evenly flex-shrink-0 text-white transition-all duration-500 ease-out ml-auto lg:ml-0 ${isScrolled ? 'lg:min-w-[440px]' : 'lg:min-w-[460px]'}`}>
+                            {/* Location â€” desktop only */}
+                            <button
+                                type="button"
+                                onClick={() => setLocationOpen(true)}
+                                className="hidden lg:flex flex-col items-center justify-center cursor-pointer hover:text-orange-300 transition-colors"
+                                aria-label="Alterar localizaÃ§Ã£o"
+                            >
                                 <MapPin size={22} strokeWidth={2.25} />
-                                <span className={`mt-1 transition-all duration-300 ${isScrolled ? 'text-[12px]' : 'text-[13px]'}`} style={{ fontWeight: 700 }}>João Pessoa – PB</span>
-                            </div>
+                                <span className={`mt-1 transition-all duration-500 ease-out ${isScrolled ? 'text-[12px]' : 'text-[13px]'}`} style={{ fontWeight: 700 }}>{locationLabel}</span>
+                            </button>
                             {/* Login */}
                             <Link
                                 href="https://www.ortobom.com.br/Account/LogOn"
                                 target="_blank"
                                 rel="noopener noreferrer"
                                 className="flex flex-col items-center justify-center hover:text-orange-300 transition-colors"
+                                aria-label="Fazer login"
                             >
-                                <User size={24} strokeWidth={2.25} />
-                                <span className={`mt-1 text-white transition-all duration-300 ${isScrolled ? 'text-[12px]' : 'text-[13px]'}`} style={{ fontWeight: 700 }}>Fazer login</span>
+                                <User className="w-[20px] h-[20px] lg:w-[24px] lg:h-[24px]" strokeWidth={2.25} />
+                                <span className={`hidden lg:block mt-1 text-white transition-all duration-500 ease-out ${isScrolled ? 'text-[12px]' : 'text-[13px]'}`} style={{ fontWeight: 700 }}>Fazer login</span>
                             </Link>
                             {/* Favoritos */}
                             <Link
@@ -249,26 +273,27 @@ export function Header() {
                                 target="_blank"
                                 rel="noopener noreferrer"
                                 className="flex flex-col items-center justify-center hover:text-orange-300 transition-colors"
+                                aria-label="Favoritos"
                             >
-                                <Heart size={24} strokeWidth={2.25} />
-                                <span className={`mt-1 text-white transition-all duration-300 ${isScrolled ? 'text-[12px]' : 'text-[13px]'}`} style={{ fontWeight: 700 }}>Favoritos</span>
+                                <Heart className="w-[20px] h-[20px] lg:w-[24px] lg:h-[24px]" strokeWidth={2.25} />
+                                <span className={`hidden lg:block mt-1 text-white transition-all duration-500 ease-out ${isScrolled ? 'text-[12px]' : 'text-[13px]'}`} style={{ fontWeight: 700 }}>Favoritos</span>
                             </Link>
                             {/* Carrinho */}
                             <button onClick={openCart} aria-label="Carrinho" className="relative flex flex-col items-center justify-center hover:text-orange-300 transition-colors">
-                                <ShoppingCart size={24} strokeWidth={2.25} />
+                                <ShoppingCart className="w-[20px] h-[20px] lg:w-[24px] lg:h-[24px]" strokeWidth={2.25} />
                                 {totalItems > 0 && (
                                     <span className="absolute -top-1.5 -right-2.5 bg-accent text-white text-[10px] font-bold w-5 h-5 rounded-full flex items-center justify-center">
                                         {totalItems > 99 ? '99+' : totalItems}
                                     </span>
                                 )}
-                                <span className={`mt-1 text-white transition-all duration-300 ${isScrolled ? 'text-[12px]' : 'text-[13px]'}`} style={{ fontWeight: 700 }}>Carrinho</span>
+                                <span className={`hidden lg:block mt-1 text-white transition-all duration-500 ease-out ${isScrolled ? 'text-[12px]' : 'text-[13px]'}`} style={{ fontWeight: 700 }}>Carrinho</span>
                             </button>
                         </div>
                     </div>
                 </div>
 
-                {/* ═══ ROW 3: Nav — azul medium da marca, com separador sutil no topo ═══ */}
-                {/* ═══ ROW 3: Nav — fundo full-width, conteúdo indentado para hierarquia visual ═══ */}
+                {/* â•â•â• ROW 3: Nav â€” azul medium da marca, com separador sutil no topo â•â•â• */}
+                {/* â•â•â• ROW 3: Nav â€” fundo full-width, conteÃºdo indentado para hierarquia visual â•â•â• */}
                 <nav className="hidden lg:block bg-navy-nav shadow-[inset_0_8px_12px_-8px_rgba(0,0,0,0.5)]" aria-label="Categorias">
                     <div className="max-w-[1280px] mx-auto px-6">
                         <ul className="flex items-center justify-start gap-2 py-1.5">
@@ -346,7 +371,7 @@ export function Header() {
                                         ))}
                                     </div>
 
-                                    {/* Imagem à direita */}
+                                    {/* Imagem Ã  direita */}
                                     {cat.image && (
                                         <div className="flex-shrink-0 py-6 pr-24 xl:pr-32 pl-12 flex items-center">
                                             <div className="relative w-[180px] h-[140px] rounded-2xl overflow-hidden">
@@ -367,44 +392,266 @@ export function Header() {
                     })()}
                 </nav>
 
-                {/* Mobile search */}
-                <form action="/search" method="GET" className="md:hidden px-4 pb-3">
-                    <div className="relative">
-                        <input type="text" name="q" placeholder="O que deseja buscar?" className="w-full bg-white rounded-md h-10 pl-4 pr-11 text-sm focus:outline-none placeholder-[#999]" />
-                        <button type="submit" aria-label="Buscar" className="absolute right-1 top-1/2 -translate-y-1/2 h-8 w-8 flex items-center justify-center text-[#666]">
-                            <Search size={17} />
+                {/* Mobile/Tablet search + location */}
+                <div className={`lg:hidden px-4 transition-all duration-500 ease-out ${isScrolled ? 'pt-2 pb-2 space-y-0' : 'pt-3 pb-3 space-y-2'}`}>
+                    <form action="/search" method="GET">
+                        <div className="relative">
+                            <input
+                                type="text"
+                                name="q"
+                                placeholder="O que deseja buscar?"
+                                className={`w-full bg-white rounded-md pl-4 pr-11 focus:outline-none placeholder-[#999] transition-all duration-500 ease-out ${
+                                    isScrolled ? 'h-9 text-[13px]' : 'h-11 text-[14px]'
+                                }`}
+                            />
+                            <button
+                                type="submit"
+                                aria-label="Buscar"
+                                className={`absolute right-1 top-1/2 -translate-y-1/2 flex items-center justify-center text-[#666] transition-all duration-500 ease-out ${
+                                    isScrolled ? 'h-7 w-7' : 'h-9 w-9'
+                                }`}
+                            >
+                                <Search size={isScrolled ? 16 : 18} />
+                            </button>
+                        </div>
+                    </form>
+
+                    {/* LocalizaÃ§Ã£o â€” visÃ­vel sÃ³ quando nÃ£o scrollado */}
+                    <div
+                        className={`overflow-hidden transition-all duration-500 ease-out ${
+                            isScrolled ? 'max-h-0 opacity-0' : 'max-h-12 opacity-100'
+                        }`}
+                    >
+                        <button
+                            type="button"
+                            onClick={() => setLocationOpen(true)}
+                            className="w-full flex items-center justify-between text-white text-[14px] font-medium px-1 py-1.5"
+                            aria-label="Alterar localizaÃ§Ã£o"
+                        >
+                            <span className="flex items-center gap-2">
+                                <MapPin size={18} strokeWidth={2.25} />
+                                {locationLabel}
+                            </span>
+                            <ChevronRight size={16} className="text-white/70" />
                         </button>
                     </div>
-                </form>
+                </div>
             </div>
 
-            {/* ═══ MOBILE DRAWER ═══ */}
+            {/* â•â•â• MOBILE DRAWER â•â•â• */}
             {isMenuOpen && (
                 <>
                     <div className="fixed inset-0 bg-black/50 z-40 lg:hidden" onClick={() => setIsMenuOpen(false)} />
-                    <div className="fixed top-0 left-0 h-full w-[300px] bg-white z-50 shadow-2xl flex flex-col lg:hidden overflow-y-auto">
-                        <div className="flex items-center justify-between px-5 py-4 bg-navy-dark">
-                            <span className="text-white font-bold">Menu</span>
-                            <button onClick={() => setIsMenuOpen(false)} className="text-white/70 hover:text-white"><X size={20} /></button>
-                        </div>
-                        <Link
-                            href="https://www.ortobom.com.br/Account/LogOn"
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="px-5 py-3.5 text-sm text-primary font-semibold border-b border-border"
-                            onClick={() => setIsMenuOpen(false)}
-                        >
-                            Fazer login
-                        </Link>
-                        <Link href="/c/colchoes" className="px-5 py-3.5 text-accent font-bold text-sm border-b border-border" onClick={() => setIsMenuOpen(false)}>OFERTAS</Link>
-                        {NAV_CATEGORIES.map(cat => (
-                            <Link key={cat.slug} href={`/c/${cat.slug}`} className="flex items-center justify-between px-5 py-3.5 text-sm text-text-main border-b border-border hover:bg-bg-light" onClick={() => setIsMenuOpen(false)}>
-                                {cat.label}<ChevronRight size={16} className="text-text-muted" />
+                    <div className="fixed top-0 left-0 h-full w-full bg-white z-50 shadow-2xl flex flex-col lg:hidden overflow-y-auto">
+                        {/* Topo: Fechar menu + Fazer login */}
+                        <div className="flex items-center justify-between px-5 py-4 border-b border-border text-text-main">
+                            <button
+                                type="button"
+                                onClick={() => setIsMenuOpen(false)}
+                                className="inline-flex items-center gap-1.5 text-[14px] font-semibold"
+                            >
+                                <ChevronLeft size={16} />
+                                Fechar menu
+                            </button>
+                            <Link
+                                href="https://www.ortobom.com.br/Account/LogOn"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="inline-flex items-center gap-1.5 text-[14px] font-semibold"
+                                onClick={() => setIsMenuOpen(false)}
+                            >
+                                <User size={15} />
+                                Fazer login
                             </Link>
-                        ))}
+                        </div>
+
+                        {/* Categorias */}
+                        <div className="px-5 pt-4">
+                            <Link
+                                href="/c/colchoes"
+                                className="block py-3 text-[15px] font-bold text-text-main"
+                                onClick={() => setIsMenuOpen(false)}
+                            >
+                                Ofertas
+                            </Link>
+                            {NAV_CATEGORIES.map(cat => {
+                                const isExpanded = expandedCat === cat.slug
+                                return (
+                                    <div key={cat.slug}>
+                                        <button
+                                            type="button"
+                                            onClick={() =>
+                                                setExpandedCat(isExpanded ? null : cat.slug)
+                                            }
+                                            aria-expanded={isExpanded}
+                                            className="w-full flex items-center justify-start gap-2 py-3 text-[15px] font-bold text-text-main"
+                                        >
+                                            <span>{cat.label}</span>
+                                            <span className="text-text-muted text-[18px] leading-none">
+                                                {isExpanded ? 'âˆ’' : '+'}
+                                            </span>
+                                        </button>
+
+                                        {isExpanded && (
+                                            <div className="-mx-5 mb-2 bg-bg-light px-5 py-2">
+                                                <Link
+                                                    href={`/c/${cat.slug}`}
+                                                    className="block py-2 text-[14px] font-semibold text-text-main"
+                                                    onClick={() => setIsMenuOpen(false)}
+                                                >
+                                                    Ver Todos
+                                                </Link>
+                                                {cat.sizes.map(size => {
+                                                    const sizeKey = `${cat.slug}::${size}`
+                                                    const isSizeExpanded = expandedSize === sizeKey
+                                                    const hasFilters = cat.filters && cat.filters.length > 0
+                                                    return (
+                                                        <div key={size}>
+                                                            <button
+                                                                type="button"
+                                                                onClick={() => {
+                                                                    if (!hasFilters) {
+                                                                        setIsMenuOpen(false)
+                                                                        return
+                                                                    }
+                                                                    setExpandedSize(isSizeExpanded ? null : sizeKey)
+                                                                }}
+                                                                className="w-full flex items-center justify-between py-2 text-[14px] font-semibold text-text-main"
+                                                            >
+                                                                <span>{size}</span>
+                                                                {hasFilters && (
+                                                                    <span className="text-text-muted text-[16px] leading-none">
+                                                                        {isSizeExpanded ? 'âˆ’' : '+'}
+                                                                    </span>
+                                                                )}
+                                                            </button>
+
+                                                            {isSizeExpanded && hasFilters && (
+                                                                <div className="-mx-5 px-7 py-3 bg-bg-soft">
+                                                                    <Link
+                                                                        href={`/c/${cat.slug}?sizes=${encodeURIComponent(size)}`}
+                                                                        className="block py-2 text-[14px] font-semibold text-text-main"
+                                                                        onClick={() => setIsMenuOpen(false)}
+                                                                    >
+                                                                        Ver Todos
+                                                                    </Link>
+                                                                    {cat.filters.map(group => (
+                                                                        <div key={group.group} className="mt-3">
+                                                                            <h4 className="text-[14px] font-bold text-text-main mb-1.5">
+                                                                                {group.group}
+                                                                            </h4>
+                                                                            <ul className="space-y-1.5">
+                                                                                {group.items.map(item => (
+                                                                                    <li key={item}>
+                                                                                        <Link
+                                                                                            href={`/c/${cat.slug}?sizes=${encodeURIComponent(size)}`}
+                                                                                            className="block text-[13px] text-text-soft"
+                                                                                            onClick={() => setIsMenuOpen(false)}
+                                                                                        >
+                                                                                            {item}
+                                                                                        </Link>
+                                                                                    </li>
+                                                                                ))}
+                                                                            </ul>
+                                                                        </div>
+                                                                    ))}
+                                                                </div>
+                                                            )}
+                                                        </div>
+                                                    )
+                                                })}
+                                            </div>
+                                        )}
+                                    </div>
+                                )
+                            })}
+                        </div>
+
+                        {/* Links institucionais (sublinhados) */}
+                        <div className="px-5 pt-4 flex flex-col gap-3">
+                            <Link
+                                href="https://www.ortobom.com.br/i/sobre-a-ortobom"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="text-[14px] font-semibold text-text-main underline"
+                                onClick={() => setIsMenuOpen(false)}
+                            >
+                                Institucional
+                            </Link>
+                            <Link
+                                href="https://www.ortobom.com.br/SejaUmFranqueado"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="text-[14px] font-semibold text-text-main underline"
+                                onClick={() => setIsMenuOpen(false)}
+                            >
+                                Seja um(a) Franqueado(a)
+                            </Link>
+                            <Link
+                                href="https://www.ortobom.com.br/industrias"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="text-[14px] font-semibold text-text-main underline"
+                                onClick={() => setIsMenuOpen(false)}
+                            >
+                                Para IndÃºstrias
+                            </Link>
+                            <Link
+                                href="https://www.ortobom.com.br/hotelaria"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="text-[14px] font-semibold text-text-main underline"
+                                onClick={() => setIsMenuOpen(false)}
+                            >
+                                Para HotÃ©is
+                            </Link>
+                            <Link
+                                href="https://ortobom.pandape.infojobs.com.br/"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="text-[14px] font-semibold text-text-main underline"
+                                onClick={() => setIsMenuOpen(false)}
+                            >
+                                Trabalhe Conosco
+                            </Link>
+                        </div>
+
+                        {/* Divisor + links extras */}
+                        <hr className="border-border mx-5 my-5" />
+                        <div className="px-5 pb-6 flex flex-col gap-3">
+                            <Link
+                                href="https://www.ortobom.com.br/listalojas"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="text-[14px] font-semibold text-text-main underline"
+                                onClick={() => setIsMenuOpen(false)}
+                            >
+                                Lojas PrÃ³ximas
+                            </Link>
+                            <Link
+                                href="https://ortobom.custhelp.com/"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="text-[14px] font-semibold text-text-main underline"
+                                onClick={() => setIsMenuOpen(false)}
+                            >
+                                SAC
+                            </Link>
+                            <Link
+                                href="https://www.ortobom.com.br/Televendas"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="text-[14px] font-semibold text-text-main underline"
+                                onClick={() => setIsMenuOpen(false)}
+                            >
+                                Televendas
+                            </Link>
+                        </div>
                     </div>
                 </>
             )}
+
+            <LocationModal open={locationOpen} onClose={() => setLocationOpen(false)} />
         </header>
     )
 }

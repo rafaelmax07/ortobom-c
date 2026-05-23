@@ -7,7 +7,7 @@ export type ButtonSize = 'sm' | 'md' | 'lg'
 
 const VARIANT_CLASSES: Record<ButtonVariant, string> = {
     primary:
-        'bg-primary text-white hover:bg-primary-hover disabled:bg-bg-light disabled:text-text-muted disabled:cursor-not-allowed',
+        'bg-[#2a4474] text-white hover:bg-[#243c66] disabled:bg-bg-light disabled:text-text-muted disabled:cursor-not-allowed',
     secondary:
         'bg-bg-light text-text-soft hover:bg-bg-soft border border-border',
     whatsapp:

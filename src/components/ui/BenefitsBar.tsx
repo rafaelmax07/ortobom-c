@@ -1,7 +1,9 @@
 'use client'
 
-import { Truck, CreditCard, Percent, Bed } from 'lucide-react'
+import { useCallback } from 'react'
+import { Truck, CreditCard, Percent, Bed, ChevronLeft, ChevronRight } from 'lucide-react'
 import Link from 'next/link'
+import useEmblaCarousel from 'embla-carousel-react'
 
 interface Benefit {
     icon: React.ComponentType<{ size?: number; strokeWidth?: number; className?: string }>
@@ -39,32 +41,87 @@ const BENEFITS: Benefit[] = [
     },
 ]
 
+function BenefitItem({ benefit }: { benefit: Benefit }) {
+    const Icon = benefit.icon
+    return (
+        <Link
+            href={benefit.link}
+            className="flex items-center gap-4 group"
+        >
+            <div className="flex-shrink-0 w-11 h-11 rounded-full bg-bg-light flex items-center justify-center text-navy-medium group-hover:bg-bg-soft transition-colors">
+                <Icon size={20} strokeWidth={1.8} />
+            </div>
+            <div className="min-w-0">
+                <p className="text-[13px] text-text-soft leading-snug">{benefit.title}</p>
+                <p className="text-[13px] text-navy-medium font-bold leading-snug">{benefit.subtitle}</p>
+                {benefit.note && (
+                    <p className="text-[11px] text-text-muted italic leading-snug mt-0.5">{benefit.note}</p>
+                )}
+            </div>
+        </Link>
+    )
+}
+
+function BenefitsCarouselMobile() {
+    const [emblaRef, emblaApi] = useEmblaCarousel({
+        loop: true,
+        align: 'start',
+        slidesToScroll: 1,
+        containScroll: false,
+    })
+
+    const scrollPrev = useCallback(() => emblaApi?.scrollPrev(), [emblaApi])
+    const scrollNext = useCallback(() => emblaApi?.scrollNext(), [emblaApi])
+
+    return (
+        <div className="relative">
+            <div className="overflow-hidden flex-1" ref={emblaRef}>
+                <div className="flex">
+                    {BENEFITS.map((benefit, idx) => (
+                        <div
+                            key={idx}
+                            className="flex-[0_0_100%] min-w-0 px-12"
+                        >
+                            <BenefitItem benefit={benefit} />
+                        </div>
+                    ))}
+                </div>
+            </div>
+
+            <button
+                type="button"
+                aria-label="Benefício anterior"
+                onClick={scrollPrev}
+                className="absolute left-0 top-1/2 -translate-y-1/2 w-8 h-8 flex items-center justify-center rounded-full text-text-soft hover:bg-bg-light transition-colors"
+            >
+                <ChevronLeft size={20} />
+            </button>
+            <button
+                type="button"
+                aria-label="Próximo benefício"
+                onClick={scrollNext}
+                className="absolute right-0 top-1/2 -translate-y-1/2 w-8 h-8 flex items-center justify-center rounded-full text-text-soft hover:bg-bg-light transition-colors"
+            >
+                <ChevronRight size={20} />
+            </button>
+        </div>
+    )
+}
+
 export function BenefitsBar() {
     return (
-        <section className="bg-white py-6">
-            <div className="max-w-[1280px] mx-auto px-6">
-                <div className="grid grid-cols-2 md:grid-cols-4 gap-6 md:gap-8">
-                    {BENEFITS.map((benefit, idx) => {
-                        const Icon = benefit.icon
-                        return (
-                            <Link
-                                key={idx}
-                                href={benefit.link}
-                                className="flex items-center gap-4 group"
-                            >
-                                <div className="flex-shrink-0 w-11 h-11 rounded-full bg-bg-light flex items-center justify-center text-navy-medium group-hover:bg-bg-soft transition-colors">
-                                    <Icon size={20} strokeWidth={1.8} />
-                                </div>
-                                <div className="min-w-0">
-                                    <p className="text-[13px] text-text-soft leading-snug">{benefit.title}</p>
-                                    <p className="text-[13px] text-navy-medium font-bold leading-snug">{benefit.subtitle}</p>
-                                    {benefit.note && (
-                                        <p className="text-[11px] text-text-muted italic leading-snug mt-0.5">{benefit.note}</p>
-                                    )}
-                                </div>
-                            </Link>
-                        )
-                    })}
+        <section className="bg-white py-3 lg:py-6">
+            <div className="max-w-[1280px] mx-auto px-4 lg:px-6">
+                {/* Mobile/Tablet: carrossel 1-por-vez com setas laterais */}
+                <div className="lg:hidden">
+                    <BenefitsCarouselMobile />
+                </div>
+
+                {/* Desktop: grid 4 colunas */}
+                <div className="hidden lg:grid lg:grid-cols-4 gap-8">
+                    {BENEFITS.map((benefit, idx) => (
+                        <BenefitItem key={idx} benefit={benefit} />
+                    ))}
                 </div>
             </div>
         </section>

@@ -86,10 +86,14 @@ export default async function CategoryPage({
 
             if (filteredVariants.length === 0 && sizeFilters.length > 0) return null
 
-            // Find lowest price variant from filtered set
-            const cheapest = filteredVariants.reduce(
+            // Discard variants with invalid price (0 or null)
+            const validVariants = filteredVariants.filter(v => typeof v.price === 'number' && v.price > 0)
+            if (validVariants.length === 0) return null
+
+            // Find lowest price variant from valid set
+            const cheapest = validVariants.reduce(
                 (min, v) => (v.price < min.price ? v : min),
-                filteredVariants[0] || { price: 0, compare_at_price: null, size: '', dimensions: '' }
+                validVariants[0]
             )
 
             const productImages = ((p.product_images as { url: string; position: number }[]) || [])

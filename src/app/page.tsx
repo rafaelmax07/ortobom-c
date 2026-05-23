@@ -38,28 +38,32 @@ export default async function Home() {
         .eq('is_active', true)
         .order('created_at', { ascending: false })
 
-    const formattedProducts = (rawProducts || []).map(p => {
-        const variants = (p.variants as { price: number; compare_at_price: number | null; size: string; dimensions: string | null }[]) || []
-        const cheapest = variants.reduce(
-            (min, v) => (v.price < min.price ? v : min),
-            variants[0] || { price: 0, compare_at_price: null, size: '', dimensions: '' }
-        )
-        const cat = p.categories as { slug: string; name: string } | null
-        const productImages = ((p.product_images as { url: string; position: number }[]) || [])
-            .sort((a, b) => a.position - b.position)
-            .map(i => i.url)
-        const variantLabel = cheapest.dimensions
-            ? `${cheapest.size} (${cheapest.dimensions})`
-            : cheapest.size
-        return {
-            ...p,
-            price: cheapest.price,
-            compare_at_price: cheapest.compare_at_price || null,
-            category_slug: cat?.slug || '',
-            images: productImages,
-            variant_label: variantLabel,
-        }
-    })
+    const formattedProducts = (rawProducts || [])
+        .map(p => {
+            const variants = (p.variants as { price: number; compare_at_price: number | null; size: string; dimensions: string | null }[]) || []
+            const validVariants = variants.filter(v => typeof v.price === 'number' && v.price > 0)
+            if (validVariants.length === 0) return null
+            const cheapest = validVariants.reduce(
+                (min, v) => (v.price < min.price ? v : min),
+                validVariants[0]
+            )
+            const cat = p.categories as { slug: string; name: string } | null
+            const productImages = ((p.product_images as { url: string; position: number }[]) || [])
+                .sort((a, b) => a.position - b.position)
+                .map(i => i.url)
+            const variantLabel = cheapest.dimensions
+                ? `${cheapest.size} (${cheapest.dimensions})`
+                : cheapest.size
+            return {
+                ...p,
+                price: cheapest.price,
+                compare_at_price: cheapest.compare_at_price || null,
+                category_slug: cat?.slug || '',
+                images: productImages,
+                variant_label: variantLabel,
+            }
+        })
+        .filter((p): p is NonNullable<typeof p> => p !== null)
 
     // Ofertas (with discount) — colchões e bases primeiro, acessórios e travesseiros no final
     const offerPriority: Record<string, number> = {

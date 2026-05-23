@@ -1,6 +1,7 @@
 'use client'
 
-import { useCart } from '@/context/CartContext'
+import { useState } from 'react'
+import { useCart, type CartItem } from '@/context/CartContext'
 import { X, Trash2, Plus, Minus, Truck } from 'lucide-react'
 import Image from 'next/image'
 import { Button } from './primitives/Button'
@@ -24,9 +25,18 @@ export default function CartDrawer() {
         buildCartWhatsAppUrl,
     } = useCart()
 
+    const [pendingRemoval, setPendingRemoval] = useState<CartItem | null>(null)
+
     const handleCheckout = () => {
         const url = buildCartWhatsAppUrl()
         window.open(url, '_blank', 'noopener,noreferrer')
+    }
+
+    const confirmRemove = () => {
+        if (pendingRemoval) {
+            removeItem(pendingRemoval.variantId)
+            setPendingRemoval(null)
+        }
     }
 
     const hasFreeShipping = totalPrice >= FREE_SHIPPING_THRESHOLD
@@ -91,7 +101,7 @@ export default function CartDrawer() {
                                 <CartItemRow
                                     key={item.variantId}
                                     item={item}
-                                    onRemove={() => removeItem(item.variantId)}
+                                    onRemove={() => setPendingRemoval(item)}
                                     onIncrement={() => increment(item.variantId)}
                                     onDecrement={() => decrement(item.variantId)}
                                 />
@@ -141,7 +151,94 @@ export default function CartDrawer() {
                     </>
                 )}
             </aside>
+
+            {/* Modal de confirmação de remoção */}
+            {pendingRemoval && (
+                <RemoveConfirmDialog
+                    item={pendingRemoval}
+                    onConfirm={confirmRemove}
+                    onCancel={() => setPendingRemoval(null)}
+                />
+            )}
         </>
+    )
+}
+
+interface RemoveConfirmDialogProps {
+    item: CartItem
+    onConfirm: () => void
+    onCancel: () => void
+}
+
+function RemoveConfirmDialog({ item, onConfirm, onCancel }: RemoveConfirmDialogProps) {
+    const hasDiscount =
+        item.compare_at_price != null && item.compare_at_price > item.price
+    const discountPct = hasDiscount
+        ? Math.round((1 - item.price / (item.compare_at_price as number)) * 100)
+        : 0
+
+    return (
+        <div className="fixed inset-0 z-[60] flex items-center justify-center px-5 bg-black/50">
+            <div
+                role="dialog"
+                aria-modal="true"
+                aria-label="Confirmar remoção"
+                className="w-full max-w-[480px] bg-white rounded-lg shadow-2xl p-6 md:p-7"
+            >
+                <h3 className="text-[26px] md:text-[28px] font-bold text-text-main mb-5">
+                    Confirmação
+                </h3>
+                <p className="text-[14px] md:text-[15px] text-text-soft mb-5">
+                    Deseja realmente remover o produto abaixo do seu carrinho?
+                </p>
+
+                {/* Item */}
+                <div className="flex items-center gap-4 mb-6">
+                    <div className="relative w-[110px] h-[110px] rounded-md overflow-hidden bg-bg-light shrink-0">
+                        {hasDiscount && (
+                            <div className="absolute top-1 left-1 z-10 inline-flex items-center gap-1 bg-success text-white font-bold text-[11px] px-1.5 py-0.5 rounded">
+                                <span>%</span>
+                                {discountPct}% OFF
+                            </div>
+                        )}
+                        <Image
+                            src={item.image || '/placeholder.jpg'}
+                            alt={item.productName}
+                            fill
+                            sizes="110px"
+                            className="object-cover"
+                            unoptimized
+                        />
+                    </div>
+                    <div className="flex-1 min-w-0">
+                        <h4 className="text-[16px] md:text-[18px] font-bold text-text-main leading-tight">
+                            {item.productName}
+                        </h4>
+                        <p className="text-[13px] md:text-[14px] text-text-muted mt-1">
+                            {item.variantSize}
+                        </p>
+                    </div>
+                </div>
+
+                {/* Botões */}
+                <div className="flex justify-end gap-3">
+                    <button
+                        type="button"
+                        onClick={onCancel}
+                        className="px-7 py-2 rounded-md border border-border text-text-main font-semibold text-[14px] hover:bg-bg-light transition-colors"
+                    >
+                        Não
+                    </button>
+                    <button
+                        type="button"
+                        onClick={onConfirm}
+                        className="px-7 py-2 rounded-md bg-danger text-white font-semibold text-[14px] hover:opacity-90 transition-opacity"
+                    >
+                        Sim
+                    </button>
+                </div>
+            </div>
+        </div>
     )
 }
 

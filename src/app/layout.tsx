@@ -5,7 +5,6 @@ import { CartProvider } from "@/context/CartContext";
 import CartDrawer from "@/components/ui/CartDrawer";
 import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
-import { WhatsAppFAB } from "@/components/ui/WhatsAppFAB";
 
 const dmSans = DM_Sans({
   variable: "--font-dm-sans",
@@ -37,7 +36,6 @@ export default function RootLayout({
           {children}
           <Footer />
           <CartDrawer />
-          <WhatsAppFAB />
         </CartProvider>
       </body>
     </html>

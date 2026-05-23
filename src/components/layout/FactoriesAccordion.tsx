@@ -1,7 +1,6 @@
 'use client'
 
 import { useState } from 'react'
-import { Plus, Minus } from 'lucide-react'
 
 interface Factory {
     area: string
@@ -157,12 +156,14 @@ export function FactoriesAccordion() {
                 type="button"
                 onClick={() => setOpen(o => !o)}
                 aria-expanded={open}
-                className="w-full flex items-center justify-center gap-2 text-white text-[14px] font-semibold py-3 hover:opacity-90 transition-opacity"
+                className="w-full flex items-center justify-center gap-2 text-white py-3 hover:opacity-90 transition-opacity"
             >
-                <span className="inline-flex items-center justify-center w-5 h-5 rounded-full border border-white/70 text-white">
-                    {open ? <Minus size={12} /> : <Plus size={12} />}
+                <span className="text-[16px] font-bold whitespace-nowrap">
+                    Ver fábricas e regiões atendidas
                 </span>
-                Ver fábricas e regiões atendidas
+                <span className="text-[20px] font-bold leading-none">
+                    {open ? '−' : '+'}
+                </span>
             </button>
 
             {open && (

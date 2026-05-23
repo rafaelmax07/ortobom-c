@@ -1,6 +1,6 @@
 'use client'
 
-import { useCallback, useEffect, useMemo, useState } from 'react'
+import { useCallback, useEffect, useMemo, useRef, useState } from 'react'
 import useEmblaCarousel from 'embla-carousel-react'
 import { ChevronRight, ChevronLeft } from 'lucide-react'
 import type { ComponentType, SVGProps } from 'react'
@@ -63,47 +63,93 @@ export function CategoryTabsSection({
     if (availableTabs.length === 0) return null
 
     return (
-        <section className="bg-white py-10">
-            <div className="max-w-[1280px] mx-auto px-6">
-                <h2 className="text-[26px] md:text-[30px] font-extrabold leading-tight text-text-main mb-5">
+        <section className="bg-white pt-2 lg:pt-10 pb-8 lg:pb-10">
+            <div className="max-w-[1280px] mx-auto px-3 lg:px-6">
+                <h2 className="text-[20px] lg:text-[30px] font-extrabold leading-tight text-text-main mb-5 px-3 lg:px-0">
                     {title}
                 </h2>
 
                 <div className="grid grid-cols-1 lg:grid-cols-[260px_minmax(0,1fr)] gap-6">
-                    {/* Tabs verticais */}
-                    <nav
-                        aria-label="Categorias"
-                        className="flex flex-row lg:flex-col gap-3 overflow-x-auto lg:overflow-visible scrollbar-hide"
-                    >
-                        {availableTabs.map(tab => {
-                            const isActive = tab.slug === activeSlug
-                            const Icon = tab.Icon
-                            return (
-                                <button
-                                    key={tab.slug}
-                                    type="button"
-                                    onClick={() => setActiveSlug(tab.slug)}
-                                    aria-pressed={isActive}
-                                    className={[
-                                        'flex items-center gap-4 rounded-[var(--radius-card)] px-5 py-5 transition-colors duration-150 whitespace-nowrap',
-                                        'border min-h-[80px]',
-                                        isActive
-                                            ? 'bg-primary border-primary text-white shadow-sm'
-                                            : 'bg-white border-border text-text-main hover:border-primary/40 hover:bg-bg-light',
-                                    ].join(' ')}
-                                >
-                                    <Icon className="w-10 h-10 shrink-0" aria-hidden="true" />
-                                    <span className="text-[16px] font-semibold">{tab.label}</span>
-                                </button>
-                            )
-                        })}
-                    </nav>
+                    {/* Tabs */}
+                    <CategoryTabs
+                        tabs={availableTabs}
+                        activeSlug={activeSlug}
+                        onSelect={setActiveSlug}
+                    />
 
                     {/* Carrossel de produtos da categoria ativa */}
                     <ProductsCarousel key={activeSlug} products={filtered} />
                 </div>
             </div>
         </section>
+    )
+}
+
+interface CategoryTabsProps {
+    tabs: TabDef[]
+    activeSlug: string
+    onSelect: (slug: string) => void
+}
+
+function CategoryTabs({ tabs, activeSlug, onSelect }: CategoryTabsProps) {
+    const scrollerRef = useRef<HTMLDivElement | null>(null)
+
+    const scroll = useCallback((dir: 'prev' | 'next') => {
+        const el = scrollerRef.current
+        if (!el) return
+        const delta = el.clientWidth * 0.6 * (dir === 'prev' ? -1 : 1)
+        el.scrollBy({ left: delta, behavior: 'smooth' })
+    }, [])
+
+    return (
+        <div className="relative lg:contents">
+            <nav
+                ref={scrollerRef}
+                aria-label="Categorias"
+                className="flex flex-row lg:flex-col gap-3 overflow-x-auto lg:overflow-visible scrollbar-hide scroll-smooth"
+            >
+                {tabs.map(tab => {
+                    const isActive = tab.slug === activeSlug
+                    const Icon = tab.Icon
+                    return (
+                        <button
+                            key={tab.slug}
+                            type="button"
+                            onClick={() => onSelect(tab.slug)}
+                            aria-pressed={isActive}
+                            className={[
+                                'flex items-center gap-4 rounded-[var(--radius-card)] px-5 py-5 transition-colors duration-150 whitespace-nowrap',
+                                'border min-h-[80px] min-w-[260px] lg:min-w-0',
+                                isActive
+                                    ? 'border-transparent text-white shadow-sm bg-[#2a4474]'
+                                    : 'bg-white border-border text-text-main hover:border-primary/40 hover:bg-bg-light',
+                            ].join(' ')}
+                        >
+                            <Icon className="w-10 h-10 shrink-0" aria-hidden="true" />
+                            <span className="text-[16px] font-semibold">{tab.label}</span>
+                        </button>
+                    )
+                })}
+            </nav>
+
+            {/* Setas absolutas mobile — coladas nas bordas da tela (saem do padding do container) */}
+            <button
+                type="button"
+                onClick={() => scroll('prev')}
+                aria-label="Categorias anteriores"
+                className="lg:hidden absolute -left-3 top-1/2 -translate-y-1/2 z-20 w-8 h-8 flex items-center justify-center rounded-md bg-white text-primary border border-border shadow-md hover:bg-bg-light transition-colors"
+            >
+                <ChevronLeft size={16} strokeWidth={2.5} />
+            </button>
+            <button
+                type="button"
+                onClick={() => scroll('next')}
+                aria-label="Próximas categorias"
+                className="lg:hidden absolute -right-3 top-1/2 -translate-y-1/2 z-20 w-8 h-8 flex items-center justify-center rounded-md bg-white text-primary border border-border shadow-md hover:bg-bg-light transition-colors"
+            >
+                <ChevronRight size={16} strokeWidth={2.5} />
+            </button>
+        </div>
     )
 }
 
@@ -151,7 +197,7 @@ function ProductsCarousel({ products }: { products: ProductCardProduct[] }) {
                     {products.map(product => (
                         <div
                             key={product.id}
-                            className="flex-[0_0_33.333%] min-w-0 px-2 first:pl-0 last:pr-0"
+                            className="flex-[0_0_70%] sm:flex-[0_0_50%] lg:flex-[0_0_33.333%] min-w-0 px-2 first:pl-0 last:pr-0"
                         >
                             <ProductCard product={product} variant="offer" />
                         </div>

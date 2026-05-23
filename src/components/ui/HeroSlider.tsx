@@ -107,7 +107,7 @@ export function HeroSlider({ banners = [] }: HeroSliderProps) {
 
     return (
         <section className="bg-white">
-            <div className="max-w-[1600px] mx-auto px-6">
+            <div className="max-w-[1600px] mx-auto lg:px-6">
                 <div className="relative">
                     {/* Banner viewport */}
                     <div className="overflow-hidden" ref={emblaRef}>
@@ -115,11 +115,11 @@ export function HeroSlider({ banners = [] }: HeroSliderProps) {
                             {displayBanners.map((banner) => (
                                 <div
                                     key={banner.id}
-                                    className="flex-[0_0_100%] min-w-0 relative aspect-[16/5] md:aspect-[64/16]"
+                                    className="flex-[0_0_100%] min-w-0 relative aspect-[9/8] sm:aspect-[16/9] lg:aspect-[64/15]"
                                 >
                                     <Link href={banner.link || '#'} className="block w-full h-full relative">
                                         {/* Desktop Image */}
-                                        <div className="hidden md:block w-full h-full relative">
+                                        <div className="hidden lg:block w-full h-full relative">
                                             <Image
                                                 src={banner.image_desktop_url}
                                                 alt={banner.title}
@@ -131,7 +131,7 @@ export function HeroSlider({ banners = [] }: HeroSliderProps) {
                                             />
                                         </div>
                                         {/* Mobile Image */}
-                                        <div className="block md:hidden w-full h-full relative">
+                                        <div className="block lg:hidden w-full h-full relative">
                                             <Image
                                                 src={banner.image_mobile_url || banner.image_desktop_url}
                                                 alt={banner.title}
@@ -148,51 +148,46 @@ export function HeroSlider({ banners = [] }: HeroSliderProps) {
                         </div>
                     </div>
 
-            {/* Barra de navegação inferior — setas + nomes dos banners (sobreposta ao banner) */}
-                    <div className="absolute left-0 right-0 bottom-0 z-10 bg-black/35 backdrop-blur-md">
-                        <div className="flex items-center px-6 lg:px-10 xl:px-12 py-1.5 gap-4">
-                            {/* Setas */}
-                            <div className="flex items-center gap-2 flex-shrink-0">
-                                <button
-                                    type="button"
-                                    aria-label="Banner anterior"
-                                    onClick={scrollPrev}
-                                    className="w-9 h-9 flex items-center justify-center rounded-md bg-white/15 hover:bg-white/30 text-white transition-colors"
-                                >
-                                    <ChevronLeft size={18} />
-                                </button>
-                                <button
-                                    type="button"
-                                    aria-label="Próximo banner"
-                                    onClick={scrollNext}
-                                    className="w-9 h-9 flex items-center justify-center rounded-md bg-white/15 hover:bg-white/30 text-white transition-colors"
-                                >
-                                    <ChevronRight size={18} />
-                                </button>
-                            </div>
+                    {/* Barra de controles full-width na base do banner — translúcida cinza */}
+                    <div className="absolute left-0 right-0 bottom-0 z-10 bg-black/35 border-t border-white/10">
+                        <div className="flex items-center justify-center gap-3 py-2 lg:py-2.5">
+                            <button
+                                type="button"
+                                aria-label="Banner anterior"
+                                onClick={scrollPrev}
+                                className="w-7 h-7 lg:w-8 lg:h-8 flex items-center justify-center rounded-md bg-white/25 hover:bg-white/40 text-white transition-colors"
+                            >
+                                <ChevronLeft size={15} />
+                            </button>
 
-                            {/* Lista de nomes dos banners */}
-                            <ul className="flex items-center gap-7 overflow-x-auto scrollbar-hide flex-1 min-w-0">
+                            <div className="flex items-center justify-center gap-2 px-1">
                                 {displayBanners.map((banner, idx) => {
                                     const isActive = idx === selectedIndex
                                     return (
-                                        <li key={banner.id} className="flex-shrink-0">
-                                            <button
-                                                type="button"
-                                                onClick={() => scrollTo(idx)}
-                                                className={`text-[14px] whitespace-nowrap transition-colors ${
-                                                    isActive
-                                                        ? 'text-white'
-                                                        : 'text-white/75 hover:text-white'
-                                                }`}
-                                                style={{ fontWeight: isActive ? 700 : 500 }}
-                                            >
-                                                {shortenTitle(banner.title)}
-                                            </button>
-                                        </li>
+                                        <button
+                                            key={banner.id}
+                                            type="button"
+                                            aria-label={`Ir para o banner ${idx + 1}`}
+                                            aria-current={isActive ? 'true' : undefined}
+                                            onClick={() => scrollTo(idx)}
+                                            className={`h-[5px] rounded-full transition-all duration-300 ${
+                                                isActive
+                                                    ? 'w-6 bg-white'
+                                                    : 'w-2.5 bg-white/55 hover:bg-white/80'
+                                            }`}
+                                        />
                                     )
                                 })}
-                            </ul>
+                            </div>
+
+                            <button
+                                type="button"
+                                aria-label="Próximo banner"
+                                onClick={scrollNext}
+                                className="w-7 h-7 lg:w-8 lg:h-8 flex items-center justify-center rounded-md bg-white/25 hover:bg-white/40 text-white transition-colors"
+                            >
+                                <ChevronRight size={15} />
+                            </button>
                         </div>
                     </div>
                 </div>

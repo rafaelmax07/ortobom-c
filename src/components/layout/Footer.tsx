@@ -139,8 +139,13 @@ export function Footer() {
         <footer className="bg-navy-dark text-white/70">
             <div className="max-w-[1280px] mx-auto px-6 pt-10 pb-6">
                 {/* Top: cards Televendas + Manual do Sono */}
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-5 mb-10 max-w-[1200px] mx-auto">
-                    <div className="border border-white rounded-xl px-5 py-6 flex items-center justify-center gap-4 min-h-[88px]">
+                <div className="grid grid-cols-1 lg:grid-cols-2 gap-5 mb-10 max-w-[1200px] mx-auto">
+                    <a
+                        href={`${ORTOBOM_BASE}/Televendas`}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="border border-white rounded-xl px-5 py-6 flex items-center justify-center gap-4 min-h-[88px] text-white hover:bg-white/5 transition-colors"
+                    >
                         <Phone size={22} className="text-white shrink-0" aria-hidden="true" />
                         <div className="min-w-0 max-w-[290px] flex flex-col justify-center">
                             <h4 className="font-medium text-white text-[15px] leading-tight">Televendas</h4>
@@ -148,17 +153,17 @@ export function Footer() {
                                 Nossa equipe de consultores está preparada para te auxiliar.
                             </p>
                         </div>
-                        <a
-                            href={`${ORTOBOM_BASE}/Televendas`}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="text-white text-[13px] font-bold inline-flex items-center gap-1 hover:underline whitespace-nowrap"
-                        >
+                        <span className="hidden lg:inline-flex text-white text-[13px] font-bold items-center gap-1 hover:underline whitespace-nowrap">
                             Fale com consultores <ChevronRight size={14} />
-                        </a>
-                    </div>
+                        </span>
+                    </a>
 
-                    <div className="border border-white rounded-xl px-5 py-6 flex items-center justify-center gap-3 min-h-[88px]">
+                    <a
+                        href="https://cdn.ortobom.com.br/file/b094f962-936c-4f52-8607-ddbcfb7d3ff5/MANUAL%20DO%20SONO%20FRANQUIA%202.2024-otimizado.pdf"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="border border-white rounded-xl px-5 py-6 flex items-center justify-center gap-3 min-h-[88px] text-white hover:bg-white/5 transition-colors"
+                    >
                         <BookOpen size={28} className="text-white shrink-0" aria-hidden="true" />
                         <div className="min-w-0 max-w-[330px] flex flex-col justify-center">
                             <h4 className="font-medium text-white text-[15px] leading-tight">
@@ -168,19 +173,14 @@ export function Footer() {
                                 Confira como ter sono melhores com o nosso manual.
                             </p>
                         </div>
-                        <a
-                            href="https://cdn.ortobom.com.br/file/b094f962-936c-4f52-8607-ddbcfb7d3ff5/MANUAL%20DO%20SONO%20FRANQUIA%202.2024-otimizado.pdf"
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="text-white text-[13px] font-bold inline-flex items-center gap-1 hover:underline whitespace-nowrap"
-                        >
+                        <span className="hidden lg:inline-flex text-white text-[13px] font-bold items-center gap-1 hover:underline whitespace-nowrap">
                             Acesse e confira <ChevronRight size={14} />
-                        </a>
-                    </div>
+                        </span>
+                    </a>
                 </div>
 
                 {/* Colunas */}
-                <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-8 mb-10 max-w-[1200px] mx-auto">
+                <div className="grid grid-cols-1 lg:grid-cols-5 gap-6 lg:gap-8 mb-10 max-w-[1200px] mx-auto">
                     <FooterColumn
                         title="Institucional"
                         items={INSTITUCIONAL}
@@ -213,7 +213,7 @@ export function Footer() {
                 </div>
 
                 {/* Pagamentos + Segurança */}
-                <div className="grid grid-cols-1 md:grid-cols-[1fr_auto] gap-8 pt-6 items-start max-w-[1200px] mx-auto">
+                <div className="grid grid-cols-1 lg:grid-cols-[1fr_auto] gap-8 pt-6 items-start max-w-[1200px] mx-auto">
                     <div>
                         <h5 className="font-bold text-white text-[13px] mb-3">
                             Formas e bandeiras de pagamento aceitas

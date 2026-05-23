@@ -52,9 +52,9 @@ export function AwardsCarousel() {
     }, [emblaApi])
 
     return (
-        <section className="bg-white pt-2 pb-10">
-            <div className="max-w-[1280px] mx-auto px-6">
-                <h2 className="text-[26px] md:text-[30px] font-extrabold leading-tight text-text-main mb-5">
+        <section className="bg-white pt-0 lg:pt-2 pb-10">
+            <div className="max-w-[1280px] mx-auto px-3 lg:px-6">
+                <h2 className="text-[18px] lg:text-[30px] font-black leading-tight text-text-main mb-5 px-3 lg:px-0">
                     Prêmios e certificações recebidas pelo Ortobom
                 </h2>
 
