@@ -1,4 +1,4 @@
-﻿'use client'
+'use client'
 
 import Link from 'next/link'
 import Image from 'next/image'
@@ -13,13 +13,13 @@ import { readSavedLocation, DEFAULT_LOCATION, type SavedLocation } from '@/lib/l
 
 const NAV_CATEGORIES = [
     {
-        label: 'ColchÃµes',
+        label: 'Colchões',
         slug: 'colchoes',
         sizes: ['Solteiro', 'Solteiro Extra', 'Casal', 'Queen', 'King', 'Infantil', 'Sob medida'],
         filters: [
-            { group: 'NÃ­vel de Conforto', items: ['Macio', 'Firme', 'HÃ­brido'] },
-            { group: 'Estilo', items: ['Tradicional/ClÃ¡ssico', 'Moderno/TecnolÃ³gico', 'Natural/SustentÃ¡vel'] },
-            { group: 'Tipos de ColchÃ£o', items: ['Mola', 'Espuma', 'OrtopÃ©dico'] },
+            { group: 'Nível de Conforto', items: ['Macio', 'Firme', 'Híbrido'] },
+            { group: 'Estilo', items: ['Tradicional/Clássico', 'Moderno/Tecnológico', 'Natural/Sustentável'] },
+            { group: 'Tipos de Colchão', items: ['Mola', 'Espuma', 'Ortopédico'] },
         ],
         image: 'https://cdn.ortobom.com.br/file/34dfaf5b-db37-472b-a3ae-4d4e36c220e7/liberty%20site.jpg',
     },
@@ -28,7 +28,7 @@ const NAV_CATEGORIES = [
         slug: 'camas',
         sizes: ['Solteiro', 'Solteiro Extra', 'Casal', 'Queen', 'King', 'Sob medida'],
         filters: [
-            { group: 'Estilos', items: ['BaÃº', 'ElÃ©trica', 'Plana'] },
+            { group: 'Estilos', items: ['Baú', 'Elétrica', 'Plana'] },
             { group: 'Revestimentos', items: ['Nobuck', 'Cori', 'Linho', 'Malha', 'Suede', 'TNT'] },
         ],
         image: 'https://cdn.ortobom.com.br/file/02adf6bb-7cf9-40bc-b755-a84b9c268bab/BASE-SOMMIER-LIBERTY-CASAL--7-.jpg',
@@ -38,7 +38,7 @@ const NAV_CATEGORIES = [
         slug: 'cabeceiras',
         sizes: ['Solteiro', 'Solteiro Extra', 'Casal', 'Queen', 'King'],
         filters: [
-            { group: 'Estilos', items: ['Tradicional/ClÃ¡ssico', 'Moderno/TecnolÃ³gico', 'Natural/SustentÃ¡vel'] },
+            { group: 'Estilos', items: ['Tradicional/Clássico', 'Moderno/Tecnológico', 'Natural/Sustentável'] },
             { group: 'Revestimentos', items: ['Linho', 'Veludo', 'Cori', 'Facto'] },
         ],
         image: 'https://images.unsplash.com/photo-1540518614846-7eded433c457?q=80&w=400&auto=format&fit=crop',
@@ -48,23 +48,23 @@ const NAV_CATEGORIES = [
         slug: 'travesseiros',
         sizes: ['Conforto', 'Estilo', 'Material'],
         filters: [
-            { group: 'NÃ­veis de Conforto', items: ['Macio', 'Firme', 'HÃ­brido'] },
-            { group: 'VariaÃ§Ãµes de Estilo', items: ['ClÃ¡ssico/Tradicional', 'Moderno/TecnolÃ³gico', 'Natural/SustentÃ¡vel'] },
-            { group: 'VariaÃ§Ãµes de Material', items: ['Fibra', 'LÃ¡tex', 'Pluma', 'ViscoelÃ¡stica'] },
+            { group: 'Níveis de Conforto', items: ['Macio', 'Firme', 'Híbrido'] },
+            { group: 'Variações de Estilo', items: ['Clássico/Tradicional', 'Moderno/Tecnológico', 'Natural/Sustentável'] },
+            { group: 'Variações de Material', items: ['Fibra', 'Látex', 'Pluma', 'Viscoelástica'] },
         ],
         image: 'https://images.unsplash.com/photo-1616594039964-ae9021a400a0?q=80&w=400&auto=format&fit=crop',
     },
     {
-        label: 'AcessÃ³rios',
+        label: 'Acessórios',
         slug: 'acessorios',
         sizes: ['Colchonete', 'Tapete', 'Massageador Alveolado', 'Suavencosto', 'Encosto Dino', 'Aromatizador', 'Cama Pet'],
         filters: [],
         image: 'https://images.unsplash.com/photo-1522771739844-6a9f6d5f14af?q=80&w=400&auto=format&fit=crop',
     },
     {
-        label: 'MÃ³veis',
+        label: 'Móveis',
         slug: 'moveis',
-        sizes: ['SofÃ¡ Cama', 'Poltrona'],
+        sizes: ['Sofá Cama', 'Poltrona'],
         filters: [
             { group: 'Material', items: ['Cori', 'Linho', 'Nobuck'] },
         ],
@@ -83,7 +83,7 @@ export function Header() {
     const { totalItems, openCart } = useCart()
     const timeoutRef = useRef<NodeJS.Timeout | null>(null)
 
-    // Carrega localizaÃ§Ã£o salva e ouve mudanÃ§as (apÃ³s confirmar no modal)
+    // Carrega localização salva e ouve mudanças (após confirmar no modal)
     useEffect(() => {
         const sync = () => setLocation(readSavedLocation())
         sync()
@@ -91,12 +91,12 @@ export function Header() {
         return () => window.removeEventListener('ortobom:location-changed', sync)
     }, [])
 
-    const locationLabel = `${location.city} â€“ ${location.uf}`
+    const locationLabel = `${location.city} – ${location.uf}`
 
     const PROMO_MESSAGES = [
-        { text: 'SeleÃ§Ã£o especial em atÃ© 6x sem juros', cta: 'Transforme suas noites!', href: '/c/colchoes' },
-        { text: 'Todo site com +10% OFF por tempo limitado!', cta: 'Use SUPER10 ðŸ’™', href: '/c/colchoes' },
-        { text: 'Seu ColchÃ£o na Caixa em atÃ© 12x sem juros', cta: 'Quero praticidade e conforto', href: '/c/colchoes' },
+        { text: 'Seleção especial em até 6x sem juros', cta: 'Transforme suas noites!', href: '/c/colchoes' },
+        { text: 'Todo site com +10% OFF por tempo limitado!', cta: 'Use SUPER10 💙', href: '/c/colchoes' },
+        { text: 'Seu Colchão na Caixa em até 12x sem juros', cta: 'Quero praticidade e conforto', href: '/c/colchoes' },
     ]
 
     const [promoEmblaRef, promoEmblaApi] = useEmblaCarousel(
@@ -110,8 +110,8 @@ export function Header() {
     useEffect(() => {
         // Histerese para evitar flicker quando o header encolhe e altera o scrollY.
         // No mobile, encolher pode reduzir o header em ~100px (linha 1 + busca +
-        // localizaÃ§Ã£o), entÃ£o a janela precisa ser bem maior do que essa variaÃ§Ã£o.
-        // Entra em "scrolled" sÃ³ quando passar de 200px; sai quando voltar antes de 10px.
+        // localização), então a janela precisa ser bem maior do que essa variação.
+        // Entra em "scrolled" só quando passar de 200px; sai quando voltar antes de 10px.
         const handleScroll = () => {
             const y = window.scrollY
             setIsScrolled(prev => {
@@ -136,7 +136,7 @@ export function Header() {
         <header className="w-full font-sans sticky top-0 z-50">
             <div className="bg-navy-dark">
 
-                {/* â•â•â• ROW 1: Top promo bar (some quando scrolla) â•â•â• */}
+                {/* ─── ROW 1: Top promo bar (some quando scrolla) ─── */}
                 <div className={`border-b border-white/[0.08] text-[13px] lg:text-[14px] font-medium text-white overflow-hidden transition-all duration-500 ease-out ${isScrolled ? 'max-h-0 py-0 opacity-0 border-b-0' : 'max-h-20 py-2.5 opacity-100'}`}>
                     <div className="max-w-[1280px] mx-auto px-3 lg:px-6 flex items-center justify-between gap-4 lg:gap-10">
                         {/* Bloco esquerda: seta + carrossel de promos + seta */}
@@ -172,7 +172,7 @@ export function Header() {
                             <button
                                 type="button"
                                 onClick={promoNext}
-                                aria-label="PrÃ³xima mensagem"
+                                aria-label="Próxima mensagem"
                                 className="text-white/70 hover:text-white transition-colors flex-shrink-0"
                             >
                                 <ChevronRight size={20} />
@@ -186,15 +186,15 @@ export function Header() {
                             </Link>
                             <Link href="https://www.ortobom.com.br/listalojas" target="_blank" rel="noopener noreferrer" className="flex items-center gap-1.5 px-2.5 hover:text-orange-300 transition-colors">
                                 <Store size={16} strokeWidth={1.8} />
-                                <span>Lojas PrÃ³ximas</span>
+                                <span>Lojas Próximas</span>
                             </Link>
                             <Link href="https://www.ortobom.com.br/industrias" target="_blank" rel="noopener noreferrer" className="flex items-center gap-1.5 px-2.5 hover:text-orange-300 transition-colors">
                                 <Factory size={16} strokeWidth={1.8} />
-                                <span>Para IndÃºstrias</span>
+                                <span>Para Indústrias</span>
                             </Link>
                             <Link href="https://www.ortobom.com.br/hotelaria" target="_blank" rel="noopener noreferrer" className="flex items-center gap-1.5 px-2.5 hover:text-orange-300 transition-colors">
                                 <Hotel size={16} strokeWidth={1.8} />
-                                <span>Para HotÃ©is</span>
+                                <span>Para Hotéis</span>
                             </Link>
                             <Link href="https://ortobom.custhelp.com/" target="_blank" rel="noopener noreferrer" className="flex items-center gap-1.5 pl-2.5 hover:text-orange-300 transition-colors">
                                 <Phone size={16} strokeWidth={1.8} />
@@ -204,7 +204,7 @@ export function Header() {
                     </div>
                 </div>
 
-                {/* â•â•â• ROW 2: Logo + Search (desktop) + Icons â•â•â• */}
+                {/* ─── ROW 2: Logo + Search (desktop) + Icons ─── */}
                 <div className={`transition-all duration-500 ease-out ${isScrolled ? 'py-2 lg:py-2.5' : 'py-3 lg:py-4'}`}>
                     <div className="max-w-[1280px] mx-auto px-4 lg:px-6 flex items-center w-full gap-3 lg:gap-0">
 
@@ -246,12 +246,12 @@ export function Header() {
 
                         {/* Right icons */}
                         <div className={`flex items-center gap-4 sm:gap-5 lg:justify-evenly flex-shrink-0 text-white transition-all duration-500 ease-out ml-auto lg:ml-0 ${isScrolled ? 'lg:min-w-[440px]' : 'lg:min-w-[460px]'}`}>
-                            {/* Location â€” desktop only */}
+                            {/* Location  desktop only */}
                             <button
                                 type="button"
                                 onClick={() => setLocationOpen(true)}
                                 className="hidden lg:flex flex-col items-center justify-center cursor-pointer hover:text-orange-300 transition-colors"
-                                aria-label="Alterar localizaÃ§Ã£o"
+                                aria-label="Alterar localização"
                             >
                                 <MapPin size={22} strokeWidth={2.25} />
                                 <span className={`mt-1 transition-all duration-500 ease-out ${isScrolled ? 'text-[12px]' : 'text-[13px]'}`} style={{ fontWeight: 700 }}>{locationLabel}</span>
@@ -291,9 +291,7 @@ export function Header() {
                         </div>
                     </div>
                 </div>
-
-                {/* â•â•â• ROW 3: Nav â€” azul medium da marca, com separador sutil no topo â•â•â• */}
-                {/* â•â•â• ROW 3: Nav â€” fundo full-width, conteÃºdo indentado para hierarquia visual â•â•â• */}
+                {/* ─── ROW 3: Nav – fundo full-width, conteúdo indentado para hierarquia visual ─── */}
                 <nav className="hidden lg:block bg-navy-nav shadow-[inset_0_8px_12px_-8px_rgba(0,0,0,0.5)]" aria-label="Categorias">
                     <div className="max-w-[1280px] mx-auto px-6">
                         <ul className="flex items-center justify-start gap-2 py-1.5">
@@ -371,7 +369,7 @@ export function Header() {
                                         ))}
                                     </div>
 
-                                    {/* Imagem Ã  direita */}
+                                    {/* Imagem à direita */}
                                     {cat.image && (
                                         <div className="flex-shrink-0 py-6 pr-24 xl:pr-32 pl-12 flex items-center">
                                             <div className="relative w-[180px] h-[140px] rounded-2xl overflow-hidden">
@@ -416,7 +414,7 @@ export function Header() {
                         </div>
                     </form>
 
-                    {/* LocalizaÃ§Ã£o â€” visÃ­vel sÃ³ quando nÃ£o scrollado */}
+                    {/* Localização  visível só quando não scrollado */}
                     <div
                         className={`overflow-hidden transition-all duration-500 ease-out ${
                             isScrolled ? 'max-h-0 opacity-0' : 'max-h-12 opacity-100'
@@ -426,7 +424,7 @@ export function Header() {
                             type="button"
                             onClick={() => setLocationOpen(true)}
                             className="w-full flex items-center justify-between text-white text-[14px] font-medium px-1 py-1.5"
-                            aria-label="Alterar localizaÃ§Ã£o"
+                            aria-label="Alterar localização"
                         >
                             <span className="flex items-center gap-2">
                                 <MapPin size={18} strokeWidth={2.25} />
@@ -438,7 +436,7 @@ export function Header() {
                 </div>
             </div>
 
-            {/* â•â•â• MOBILE DRAWER â•â•â• */}
+            {/* ─── MOBILE DRAWER ─── */}
             {isMenuOpen && (
                 <>
                     <div className="fixed inset-0 bg-black/50 z-40 lg:hidden" onClick={() => setIsMenuOpen(false)} />
@@ -488,7 +486,7 @@ export function Header() {
                                         >
                                             <span>{cat.label}</span>
                                             <span className="text-text-muted text-[18px] leading-none">
-                                                {isExpanded ? 'âˆ’' : '+'}
+                                                {isExpanded ? '−' : '+'}
                                             </span>
                                         </button>
 
@@ -521,7 +519,7 @@ export function Header() {
                                                                 <span>{size}</span>
                                                                 {hasFilters && (
                                                                     <span className="text-text-muted text-[16px] leading-none">
-                                                                        {isSizeExpanded ? 'âˆ’' : '+'}
+                                                                        {isSizeExpanded ? '−' : '+'}
                                                                     </span>
                                                                 )}
                                                             </button>
@@ -594,7 +592,7 @@ export function Header() {
                                 className="text-[14px] font-semibold text-text-main underline"
                                 onClick={() => setIsMenuOpen(false)}
                             >
-                                Para IndÃºstrias
+                                Para Indústrias
                             </Link>
                             <Link
                                 href="https://www.ortobom.com.br/hotelaria"
@@ -603,7 +601,7 @@ export function Header() {
                                 className="text-[14px] font-semibold text-text-main underline"
                                 onClick={() => setIsMenuOpen(false)}
                             >
-                                Para HotÃ©is
+                                Para Hotéis
                             </Link>
                             <Link
                                 href="https://ortobom.pandape.infojobs.com.br/"
@@ -626,7 +624,7 @@ export function Header() {
                                 className="text-[14px] font-semibold text-text-main underline"
                                 onClick={() => setIsMenuOpen(false)}
                             >
-                                Lojas PrÃ³ximas
+                                Lojas Próximas
                             </Link>
                             <Link
                                 href="https://ortobom.custhelp.com/"
