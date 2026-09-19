@@ -106,9 +106,9 @@ export function HeroSlider({ banners = [] }: HeroSliderProps) {
     }, [emblaApi])
 
     return (
-        <section className="bg-white">
-            <div className="max-w-[1600px] mx-auto lg:px-6">
-                <div className="relative">
+        <section className="bg-white lg:pb-4" aria-label="Campanhas">
+            <div className="max-w-[1280px] mx-auto lg:px-6">
+                <div className="relative lg:rounded-[24px] overflow-hidden lg:shadow-lg">
                     {/* Banner viewport */}
                     <div className="overflow-hidden" ref={emblaRef}>
                         <div className="flex">

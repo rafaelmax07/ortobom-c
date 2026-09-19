@@ -53,7 +53,7 @@ function CategoryItem({ cat }: { cat: Category }) {
             className="group flex flex-col items-center gap-3 text-center"
         >
             <div
-                className="relative w-[120px] h-[120px] sm:w-[140px] sm:h-[140px] lg:w-[200px] lg:h-[200px] rounded-full overflow-hidden flex items-center justify-center transition-transform duration-200 group-hover:scale-[1.03]"
+                className="relative w-[112px] h-[112px] sm:w-[140px] sm:h-[140px] lg:w-[184px] lg:h-[184px] rounded-full overflow-hidden flex items-center justify-center transition-all duration-200 group-hover:scale-[1.04] group-hover:shadow-[0_0_0_3px_#fff,0_0_0_5px_var(--color-cta)]"
                 style={{ backgroundColor: '#EAEEF7' }}
             >
                 <Image
@@ -66,7 +66,7 @@ function CategoryItem({ cat }: { cat: Category }) {
                     unoptimized
                 />
             </div>
-            <span className="text-[13px] sm:text-[14px] lg:text-[15px] font-medium text-text-main group-hover:text-primary transition-colors">
+            <span className="text-[14px] lg:text-[16px] font-semibold text-text-main group-hover:text-accent transition-colors">
                 {cat.name}
             </span>
         </Link>
@@ -99,11 +99,12 @@ function CategoryCarouselMobile() {
 
 export function CategoryGrid() {
     return (
-        <section className="py-8 lg:py-10 bg-white">
+        <section className="py-12 lg:py-16 bg-white">
             <div className="max-w-[1280px] mx-auto px-3 lg:px-6">
-                <h2 className="text-[20px] lg:text-[30px] font-extrabold leading-tight text-text-main mb-5 lg:mb-8 px-3 lg:px-0">
-                    Encontre o que procura
-                </h2>
+                <div className="mb-6 lg:mb-10 px-3 lg:px-0 lg:text-center">
+                    <span className="lp-eyebrow">Categorias</span>
+                    <h2 className="lp-title mt-1.5">Encontre o que procura</h2>
+                </div>
 
                 {/* Mobile/Tablet: carrossel arrastável */}
                 <div className="lg:hidden">

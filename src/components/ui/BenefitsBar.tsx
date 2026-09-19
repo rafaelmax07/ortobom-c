@@ -48,8 +48,8 @@ function BenefitItem({ benefit }: { benefit: Benefit }) {
             href={benefit.link}
             className="flex items-center gap-4 group"
         >
-            <div className="flex-shrink-0 w-11 h-11 rounded-full bg-bg-light flex items-center justify-center text-navy-medium group-hover:bg-bg-soft transition-colors">
-                <Icon size={20} strokeWidth={1.8} />
+            <div className="flex-shrink-0 w-12 h-12 rounded-2xl bg-accent-light flex items-center justify-center text-accent group-hover:bg-accent group-hover:text-white transition-colors">
+                <Icon size={22} strokeWidth={1.9} />
             </div>
             <div className="min-w-0">
                 <p className="text-[13px] text-text-soft leading-snug">{benefit.title}</p>
@@ -110,7 +110,7 @@ function BenefitsCarouselMobile() {
 
 export function BenefitsBar() {
     return (
-        <section className="bg-white py-3 lg:py-6">
+        <section className="bg-white py-4 lg:py-7 border-b border-border shadow-sm relative z-[1]">
             <div className="max-w-[1280px] mx-auto px-4 lg:px-6">
                 {/* Mobile/Tablet: carrossel 1-por-vez com setas laterais */}
                 <div className="lg:hidden">

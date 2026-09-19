@@ -52,11 +52,12 @@ export function AwardsCarousel() {
     }, [emblaApi])
 
     return (
-        <section className="bg-white pt-0 lg:pt-2 pb-10">
+        <section className="bg-white pt-0 lg:pt-2 pb-12 lg:pb-16">
             <div className="max-w-[1280px] mx-auto px-3 lg:px-6">
-                <h2 className="text-[18px] lg:text-[30px] font-black leading-tight text-text-main mb-5 px-3 lg:px-0">
-                    Prêmios e certificações recebidas pelo Ortobom
-                </h2>
+                <div className="mb-6 px-3 lg:px-0">
+                    <span className="lp-eyebrow">Qualidade reconhecida</span>
+                    <h2 className="lp-title mt-1.5">Prêmios e certificações recebidas pelo Ortobom</h2>
+                </div>
 
                 <div className="relative">
                     <div className="overflow-hidden" ref={emblaRef}>
@@ -66,7 +67,7 @@ export function AwardsCarousel() {
                                     key={i}
                                     className="flex-[0_0_50%] sm:flex-[0_0_25%] lg:flex-[0_0_12.5%] min-w-0 px-2"
                                 >
-                                    <div className="border border-border rounded-[var(--radius-card)] h-[100px] flex items-center justify-center px-3 bg-white">
+                                    <div className="border border-border rounded-2xl h-[100px] flex items-center justify-center px-3 bg-white grayscale-[35%] hover:grayscale-0 transition-[filter]">
                                         <Image
                                             src={cert.src}
                                             alt={cert.alt}

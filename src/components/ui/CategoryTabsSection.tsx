@@ -63,11 +63,12 @@ export function CategoryTabsSection({
     if (availableTabs.length === 0) return null
 
     return (
-        <section className="bg-white pt-2 lg:pt-10 pb-8 lg:pb-10">
+        <section className="bg-white py-12 lg:py-16">
             <div className="max-w-[1280px] mx-auto px-3 lg:px-6">
-                <h2 className="text-[20px] lg:text-[30px] font-extrabold leading-tight text-text-main mb-5 px-3 lg:px-0">
-                    {title}
-                </h2>
+                <div className="mb-6 lg:mb-8 px-1">
+                    <span className="lp-eyebrow">Mais vendidos</span>
+                    <h2 className="lp-title mt-1.5">{title}</h2>
+                </div>
 
                 <div className="grid grid-cols-1 lg:grid-cols-[260px_minmax(0,1fr)] gap-6">
                     {/* Tabs */}
@@ -118,11 +119,11 @@ function CategoryTabs({ tabs, activeSlug, onSelect }: CategoryTabsProps) {
                             onClick={() => onSelect(tab.slug)}
                             aria-pressed={isActive}
                             className={[
-                                'flex items-center gap-4 rounded-[var(--radius-card)] px-5 py-5 transition-colors duration-150 whitespace-nowrap',
-                                'border min-h-[80px] min-w-[260px] lg:min-w-0',
+                                'flex items-center gap-4 rounded-2xl px-5 py-4 transition-all duration-150 whitespace-nowrap',
+                                'border min-h-[76px] min-w-[220px] lg:min-w-0',
                                 isActive
-                                    ? 'border-transparent text-white shadow-sm bg-[#2a4474]'
-                                    : 'bg-white border-border text-text-main hover:border-primary/40 hover:bg-bg-light',
+                                    ? 'border-transparent text-white shadow-lg bg-[#2a4474]'
+                                    : 'bg-bg-light border-transparent text-text-main hover:border-primary/30 hover:bg-white',
                             ].join(' ')}
                         >
                             <Icon className="w-10 h-10 shrink-0" aria-hidden="true" />
@@ -193,7 +194,7 @@ function ProductsCarousel({ products }: { products: ProductCardProduct[] }) {
     return (
         <div className="relative min-w-0">
             <div className="overflow-hidden" ref={emblaRef}>
-                <div className="flex">
+                <div className="flex lp-carousel-track">
                     {products.map(product => (
                         <div
                             key={product.id}

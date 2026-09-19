@@ -2,12 +2,14 @@ import { forwardRef } from 'react'
 import type { ButtonHTMLAttributes, AnchorHTMLAttributes, ReactNode } from 'react'
 import Link from 'next/link'
 
-export type ButtonVariant = 'primary' | 'secondary' | 'whatsapp' | 'ghost' | 'outline-light'
+export type ButtonVariant = 'primary' | 'cta' | 'secondary' | 'whatsapp' | 'ghost' | 'outline-light'
 export type ButtonSize = 'sm' | 'md' | 'lg'
 
 const VARIANT_CLASSES: Record<ButtonVariant, string> = {
     primary:
         'bg-[#2a4474] text-white hover:bg-[#243c66] disabled:bg-bg-light disabled:text-text-muted disabled:cursor-not-allowed',
+    cta:
+        'bg-cta text-cta-ink hover:bg-cta-hover shadow-[var(--shadow-cta)] disabled:bg-bg-light disabled:text-text-muted disabled:shadow-none disabled:cursor-not-allowed',
     secondary:
         'bg-bg-light text-text-soft hover:bg-bg-soft border border-border',
     whatsapp:

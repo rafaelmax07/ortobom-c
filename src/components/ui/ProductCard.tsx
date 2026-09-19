@@ -76,7 +76,7 @@ export function ProductCard({
     const showCouponBadge = (showCouponBadgeProp ?? true) && hasDiscount
 
     return (
-        <article className="group bg-white rounded-[var(--radius-card)] overflow-hidden flex flex-col border border-border hover:border-primary transition-colors h-full">
+        <article className="lp-product-card group bg-white overflow-hidden flex flex-col border border-border h-full">
             <ProductImage
                 product={product}
                 hasDiscount={hasDiscount}
@@ -88,11 +88,11 @@ export function ProductCard({
 
             <div className={
                 variant === 'mini'
-                    ? 'px-4 pb-4 pt-2 flex flex-col flex-grow gap-3'
-                    : 'px-4 lg:px-5 pb-4 lg:pb-5 pt-2 flex flex-col flex-grow gap-5'
+                    ? 'px-4 pb-4 pt-1 flex flex-col flex-grow gap-3'
+                    : 'px-4 lg:px-5 pb-4 lg:pb-5 pt-1 flex flex-col flex-grow gap-4'
             }>
                 <div className="flex flex-col gap-0.5">
-                    <Link href={`/p/${product.slug}`}>
+                    <Link href={`/p/${product.slug}`} className="group-hover:text-primary transition-colors">
                         <AutoFitText
                             as="h3"
                             maxFontSize={15}
@@ -117,16 +117,17 @@ export function ProductCard({
                     variant={variant === 'mini' ? 'mini' : 'card'}
                     showSavings={hasDiscount && variant !== 'mini'}
                     showInstallments={showInstallments}
-                    className="mt-auto"
+                    className="mt-auto lp-card-price"
                 />
 
                 {variant !== 'mini' && (
                     <LinkButton
                         href={`/p/${product.slug}`}
-                        variant="primary"
+                        variant={variant === 'offer' ? 'cta' : 'primary'}
                         size="md"
                         fullWidth
-                        leadingIcon={variant === 'offer' ? <ShoppingCart size={15} /> : undefined}
+                        leadingIcon={variant === 'offer' ? <ShoppingCart size={16} /> : undefined}
+                        className="lp-card-cta"
                     >
                         {variant === 'offer' ? 'Comprar' : 'Ver Detalhes'}
                     </LinkButton>
@@ -164,14 +165,14 @@ function ProductImage({
 
         return (
             <Link href={`/p/${product.slug}`} className="block">
-                <div className="relative aspect-square overflow-hidden m-4 lg:m-5">
+                <div className="relative aspect-square overflow-hidden m-3 lg:m-4 rounded-xl bg-bg-light">
                     <BadgeStack hasDiscount={hasDiscount} discountPercent={discountPercent} showCouponBadge={showCouponBadge} couponText={couponText} />
                     <Image
                         src={imageSrc}
                         alt={product.name}
                         fill
                         sizes="(max-width: 768px) 50vw, 280px"
-                        className="object-cover rounded-lg"
+                        className="object-cover transition-transform duration-500 group-hover:scale-105"
                         unoptimized
                     />
                 </div>
@@ -212,13 +213,13 @@ function BadgeStack({ hasDiscount, discountPercent, showCouponBadge, couponText 
                             <path d="M12 6v6l4 2" />
                         </svg>
                     }
-                    className="shadow-sm"
+                    className="shadow-md"
                 >
                     {discountPercent}% OFF
                 </Badge>
             )}
             {showCouponBadge && (
-                <Badge variant="coupon" size="sm" shape="square">
+                <Badge variant="coupon" size="sm" shape="square" className="lp-badge-coupon">
                     {couponText}
                 </Badge>
             )}
@@ -289,7 +290,7 @@ function ProductImageGallery({
 
     return (
         <Link href={`/p/${product.slug}`} className="block">
-            <div className="relative aspect-square overflow-hidden m-4 lg:m-5">
+            <div className="relative aspect-square overflow-hidden m-3 lg:m-4 rounded-xl bg-bg-light">
                 <BadgeStack
                     hasDiscount={hasDiscount}
                     discountPercent={discountPercent}
@@ -300,13 +301,13 @@ function ProductImageGallery({
                 <div className="overflow-hidden w-full h-full" ref={emblaRef}>
                     <div className="flex h-full">
                         {gallery.map((src, idx) => (
-                            <div key={idx} className="relative flex-[0_0_100%] min-w-0 h-full">
+                            <div key={idx} className="relative flex-[0_0_100%] min-w-0 h-full overflow-hidden">
                                 <Image
                                     src={src}
                                     alt={product.name}
                                     fill
                                     sizes="(max-width: 768px) 50vw, 280px"
-                                    className="object-cover rounded-lg"
+                                    className="object-cover transition-transform duration-500 group-hover:scale-105"
                                     unoptimized
                                 />
                             </div>
