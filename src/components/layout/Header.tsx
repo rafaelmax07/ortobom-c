@@ -2,7 +2,7 @@
 
 import Link from 'next/link'
 import Image from 'next/image'
-import { Search, Menu, X, ShoppingCart, Heart, User, MapPin, ChevronRight, ChevronLeft, Shield, Store, Factory, Hotel, Phone } from 'lucide-react'
+import { Search, Menu, X, ShoppingCart, Heart, User, MapPin, ChevronRight, ChevronLeft, Shield, Store, Phone } from 'lucide-react'
 import { useState, useRef, useEffect, useCallback } from 'react'
 import { useCart } from '@/context/CartContext'
 import { NavCategoryItem } from './NavCategoryItem'
@@ -94,6 +94,7 @@ export function Header() {
     const locationLabel = `${location.city} – ${location.uf}`
 
     const PROMO_MESSAGES = [
+        { text: 'Bem-vindo à Ortobom, seu refúgio de descanso em João Pessoa!', cta: 'Ver ofertas', href: '/c/colchoes' },
         { text: 'Seleção especial em até 6x sem juros', cta: 'Transforme suas noites!', href: '/c/colchoes' },
         { text: 'Todo site com +10% OFF por tempo limitado!', cta: 'Use SUPER10 💙', href: '/c/colchoes' },
         { text: 'Seu Colchão na Caixa em até 12x sem juros', cta: 'Quero praticidade e conforto', href: '/c/colchoes' },
@@ -134,10 +135,10 @@ export function Header() {
 
     return (
         <header className="w-full font-sans sticky top-0 z-50">
-            <div className="bg-navy-dark">
+            <div className={`hdr-shell ${isScrolled ? 'is-scrolled' : ''}`}>
 
                 {/* ─── ROW 1: Top promo bar (some quando scrolla) ─── */}
-                <div className={`border-b border-white/[0.08] text-[13px] lg:text-[14px] font-medium text-white overflow-hidden transition-all duration-500 ease-out ${isScrolled ? 'max-h-0 py-0 opacity-0 border-b-0' : 'max-h-20 py-2.5 opacity-100'}`}>
+                <div className={`hdr-topbar text-[13px] lg:text-[14px] font-medium overflow-hidden transition-all duration-500 ease-out ${isScrolled ? 'max-h-0 py-0 opacity-0 border-b-0' : 'max-h-20 py-2.5 opacity-100'}`}>
                     <div className="max-w-[1280px] mx-auto px-3 lg:px-6 flex items-center justify-between gap-4 lg:gap-10">
                         {/* Bloco esquerda: seta + carrossel de promos + seta */}
                         <div className="flex items-center gap-3 lg:gap-5 flex-1 min-w-0">
@@ -157,10 +158,10 @@ export function Header() {
                                             key={idx}
                                             className="flex-[0_0_100%] min-w-0 flex flex-nowrap items-center justify-center gap-3 lg:gap-4 px-2"
                                         >
-                                            <span className="truncate min-w-0">{promo.text}</span>
+                                            <span className="line-clamp-3 lg:truncate min-w-0 text-center lg:text-left leading-snug">{promo.text}</span>
                                             <Link
                                                 href={promo.href}
-                                                className="lg:border lg:border-white text-white text-[13px] font-semibold lg:rounded lg:px-5 lg:py-1.5 hover:bg-white hover:text-navy-medium transition-colors whitespace-nowrap flex-shrink-0 underline underline-offset-4 lg:no-underline"
+                                                className="hdr-promo-cta lg:border text-[13px] font-semibold lg:px-5 lg:py-1.5 transition-colors whitespace-nowrap flex-shrink-0 underline underline-offset-4 lg:no-underline"
                                             >
                                                 {promo.cta}
                                             </Link>
@@ -180,23 +181,15 @@ export function Header() {
                         </div>
 
                         <div className="hidden lg:flex items-center text-white text-[14px] font-medium divide-x divide-white/20 flex-shrink-0">
-                            <Link href="https://www.ortobom.com.br/SejaUmFranqueado" target="_blank" rel="noopener noreferrer" className="flex items-center gap-1.5 px-2.5 hover:text-orange-300 transition-colors">
+                            <Link href="https://www.ortobom.com.br/SejaUmFranqueado" target="_blank" rel="noopener noreferrer" className="flex items-center gap-1.5 px-2.5 hover:text-primary transition-colors">
                                 <Shield size={16} strokeWidth={1.8} />
                                 <span>Franqueado</span>
                             </Link>
-                            <Link href="https://www.ortobom.com.br/listalojas" target="_blank" rel="noopener noreferrer" className="flex items-center gap-1.5 px-2.5 hover:text-orange-300 transition-colors">
+                            <Link href="https://www.ortobom.com.br/listalojas" target="_blank" rel="noopener noreferrer" className="flex items-center gap-1.5 px-2.5 hover:text-primary transition-colors">
                                 <Store size={16} strokeWidth={1.8} />
                                 <span>Lojas Próximas</span>
                             </Link>
-                            <Link href="https://www.ortobom.com.br/industrias" target="_blank" rel="noopener noreferrer" className="flex items-center gap-1.5 px-2.5 hover:text-orange-300 transition-colors">
-                                <Factory size={16} strokeWidth={1.8} />
-                                <span>Para Indústrias</span>
-                            </Link>
-                            <Link href="https://www.ortobom.com.br/hotelaria" target="_blank" rel="noopener noreferrer" className="flex items-center gap-1.5 px-2.5 hover:text-orange-300 transition-colors">
-                                <Hotel size={16} strokeWidth={1.8} />
-                                <span>Para Hotéis</span>
-                            </Link>
-                            <Link href="https://ortobom.custhelp.com/" target="_blank" rel="noopener noreferrer" className="flex items-center gap-1.5 pl-2.5 hover:text-orange-300 transition-colors">
+                            <Link href="https://ortobom.custhelp.com/" target="_blank" rel="noopener noreferrer" className="flex items-center gap-1.5 pl-2.5 hover:text-primary transition-colors">
                                 <Phone size={16} strokeWidth={1.8} />
                                 <span>SAC</span>
                             </Link>
@@ -209,14 +202,14 @@ export function Header() {
                     <div className="max-w-[1280px] mx-auto px-4 lg:px-6 flex items-center w-full gap-3 lg:gap-0">
 
                         {/* Mobile hamburger */}
-                        <button className="lg:hidden text-white" onClick={() => setIsMenuOpen(!isMenuOpen)} aria-label="Menu">
+                        <button className="lg:hidden hdr-onshell" onClick={() => setIsMenuOpen(!isMenuOpen)} aria-label="Menu">
                             {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
                         </button>
 
                         {/* Logo */}
                         <Link href="/" className="flex-shrink-0" onClick={() => setIsMenuOpen(false)}>
                             <Image
-                                src="https://www.ortobom.com.br/Content/V3/img/Ortobom_branco.png"
+                                src="https://www.ortobom.com.br/Content/V3/img/Ortobom.png"
                                 alt="Ortobom"
                                 width={200}
                                 height={54}
@@ -232,25 +225,25 @@ export function Header() {
                             <input
                                 type="text"
                                 name="q"
-                                placeholder="O que deseja buscar?"
-                                className="w-full bg-white rounded-md pl-5 pr-12 h-[42px] text-[15px] font-normal placeholder-[#888] text-[#222] focus:outline-none transition-all duration-500 ease-out"
+                                placeholder="O que você busca para o seu sono?"
+                                className="hdr-search-input w-full pl-5 pr-12 h-[44px] text-[15px] font-normal transition-all duration-500 ease-out"
                             />
                             <button
                                 type="submit"
                                 aria-label="Buscar"
-                                className="absolute right-2 top-1/2 -translate-y-1/2 h-[32px] w-[32px] flex items-center justify-center text-[#666] hover:text-[#222] rounded-md transition-all duration-500 ease-out"
+                                className="hdr-search-btn absolute right-2 top-1/2 -translate-y-1/2 h-[34px] w-[34px] flex items-center justify-center transition-all duration-500 ease-out"
                             >
                                 <Search size={18} />
                             </button>
                         </form>
 
                         {/* Right icons */}
-                        <div className={`flex items-center gap-4 sm:gap-5 lg:justify-evenly flex-shrink-0 text-white transition-all duration-500 ease-out ml-auto lg:ml-0 ${isScrolled ? 'lg:min-w-[440px]' : 'lg:min-w-[460px]'}`}>
+                        <div className={`hdr-actions flex items-center gap-4 sm:gap-5 lg:justify-evenly flex-shrink-0 transition-all duration-500 ease-out ml-auto lg:ml-0 ${isScrolled ? 'lg:min-w-[440px]' : 'lg:min-w-[460px]'}`}>
                             {/* Location  desktop only */}
                             <button
                                 type="button"
                                 onClick={() => setLocationOpen(true)}
-                                className="hidden lg:flex flex-col items-center justify-center cursor-pointer hover:text-orange-300 transition-colors"
+                                className="hidden lg:flex flex-col items-center justify-center cursor-pointer hover:text-primary transition-colors"
                                 aria-label="Alterar localização"
                             >
                                 <MapPin size={22} strokeWidth={2.25} />
@@ -261,7 +254,7 @@ export function Header() {
                                 href="https://www.ortobom.com.br/Account/LogOn"
                                 target="_blank"
                                 rel="noopener noreferrer"
-                                className="flex flex-col items-center justify-center hover:text-orange-300 transition-colors"
+                                className="flex flex-col items-center justify-center hover:text-primary transition-colors"
                                 aria-label="Fazer login"
                             >
                                 <User className="w-[20px] h-[20px] lg:w-[24px] lg:h-[24px]" strokeWidth={2.25} />
@@ -272,17 +265,17 @@ export function Header() {
                                 href="https://www.ortobom.com.br/Account/Favoritos"
                                 target="_blank"
                                 rel="noopener noreferrer"
-                                className="flex flex-col items-center justify-center hover:text-orange-300 transition-colors"
+                                className="flex flex-col items-center justify-center hover:text-primary transition-colors"
                                 aria-label="Favoritos"
                             >
                                 <Heart className="w-[20px] h-[20px] lg:w-[24px] lg:h-[24px]" strokeWidth={2.25} />
                                 <span className={`hidden lg:block mt-1 text-white transition-all duration-500 ease-out ${isScrolled ? 'text-[12px]' : 'text-[13px]'}`} style={{ fontWeight: 700 }}>Favoritos</span>
                             </Link>
                             {/* Carrinho */}
-                            <button onClick={openCart} aria-label="Carrinho" className="relative flex flex-col items-center justify-center hover:text-orange-300 transition-colors">
+                            <button onClick={openCart} aria-label="Carrinho" className="relative flex flex-col items-center justify-center hover:text-primary transition-colors">
                                 <ShoppingCart className="w-[20px] h-[20px] lg:w-[24px] lg:h-[24px]" strokeWidth={2.25} />
                                 {totalItems > 0 && (
-                                    <span className="absolute -top-1.5 -right-2.5 bg-accent text-white text-[10px] font-bold w-5 h-5 rounded-full flex items-center justify-center">
+                                    <span className="hdr-cart-badge absolute -top-1.5 -right-2.5 text-[10px] font-bold w-5 h-5 rounded-full flex items-center justify-center">
                                         {totalItems > 99 ? '99+' : totalItems}
                                     </span>
                                 )}
@@ -292,7 +285,7 @@ export function Header() {
                     </div>
                 </div>
                 {/* ─── ROW 3: Nav – fundo full-width, conteúdo indentado para hierarquia visual ─── */}
-                <nav className="hidden lg:block bg-navy-nav shadow-[inset_0_8px_12px_-8px_rgba(0,0,0,0.5)]" aria-label="Categorias">
+                <nav className="hdr-nav hidden lg:block" aria-label="Categorias">
                     <div className="max-w-[1280px] mx-auto px-6">
                         <ul className="flex items-center justify-start gap-2 py-1.5">
                             <NavCategoryItem
@@ -397,15 +390,15 @@ export function Header() {
                             <input
                                 type="text"
                                 name="q"
-                                placeholder="O que deseja buscar?"
-                                className={`w-full bg-white rounded-md pl-4 pr-11 focus:outline-none placeholder-[#999] transition-all duration-500 ease-out ${
+                                placeholder="O que você busca para o seu sono?"
+                                className={`hdr-search-input w-full pl-4 pr-11 transition-all duration-500 ease-out ${
                                     isScrolled ? 'h-9 text-[13px]' : 'h-11 text-[14px]'
                                 }`}
                             />
                             <button
                                 type="submit"
                                 aria-label="Buscar"
-                                className={`absolute right-1 top-1/2 -translate-y-1/2 flex items-center justify-center text-[#666] transition-all duration-500 ease-out ${
+                                className={`hdr-search-btn absolute right-1 top-1/2 -translate-y-1/2 flex items-center justify-center transition-all duration-500 ease-out ${
                                     isScrolled ? 'h-7 w-7' : 'h-9 w-9'
                                 }`}
                             >
@@ -423,7 +416,7 @@ export function Header() {
                         <button
                             type="button"
                             onClick={() => setLocationOpen(true)}
-                            className="w-full flex items-center justify-between text-white text-[14px] font-medium px-1 py-1.5"
+                            className="hdr-onshell w-full flex items-center justify-between text-[14px] font-medium px-1 py-1.5"
                             aria-label="Alterar localização"
                         >
                             <span className="flex items-center gap-2">

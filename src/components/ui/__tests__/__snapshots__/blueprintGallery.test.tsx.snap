@@ -6,7 +6,7 @@ exports[`ProductGallery > renders with four images and no discount badge 1`] = `
     class="flex flex-col gap-4 w-full"
   >
     <div
-      class="relative bg-white rounded-[var(--radius-card)] shadow-sm overflow-hidden"
+      class="relative bg-white rounded-2xl shadow-sm overflow-hidden"
     >
       <div
         class="overflow-hidden"
@@ -192,7 +192,7 @@ exports[`ProductGallery > renders with two images and a discount badge 1`] = `
     class="flex flex-col gap-4 w-full"
   >
     <div
-      class="relative bg-white rounded-[var(--radius-card)] shadow-sm overflow-hidden"
+      class="relative bg-white rounded-2xl shadow-sm overflow-hidden"
     >
       <span
         class="inline-flex items-center gap-1 bg-accent text-white px-2.5 py-1 t-badge rounded-full absolute top-3 left-3 z-10"

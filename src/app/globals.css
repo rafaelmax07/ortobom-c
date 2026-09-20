@@ -8,8 +8,9 @@
   --color-navy-medium: #263e66;    /* Header oficial (alias do primary) */
   --color-navy-light: #2a487a;     /* Variação clara do azul */
   --color-navy-nav: #243a5e;       /* Nav (entre dark e medium, sutil) */
-  --color-accent: #fb8c00;         /* Laranja oficial (Material 600) */
-  --color-accent-light: #ffe0b2;
+  --color-accent: #0369a1;         /* Azul profundo — badges e textos de destaque */
+  --color-accent-light: #e0f2fe;   /* Azul névoa — fundos suaves */
+  --color-accent-bright: #38bdf8;  /* Azul céu — destaques sobre fundo escuro */
   --color-bg-page: #ffffff;
   --color-bg-light: #f4f6fb;       /* Cinza-azulado oficial */
   --color-bg-soft: #f8f9fa;
@@ -23,7 +24,15 @@
   --color-info: #1976d2;
   --color-whatsapp: #25d366;
   --color-whatsapp-hover: #1da851;
-  --color-accent-hover: #e67c00;
+  --color-accent-hover: #075985;
+  /* CTA de conversão: azul céu com tinta navy (contraste 8.8:1) */
+  --color-cta: #38bdf8;
+  --color-cta-hover: #0ea5e9;
+  --color-cta-ink: #0b2545;
+  /* Cards de categorias: névoa azul + marinho profundo */
+  --color-mist: #ebf3fa;
+  --color-mist-border: #b8d4ea;
+  --color-navy-ink: #0b2545;
 
   /* ── Spacing (4-px base) ───────────────────────────── */
   --space-1: 4px;
@@ -76,6 +85,8 @@
   --shadow-md:   0 4px 8px rgba(16, 24, 40, 0.08);
   --shadow-lg:   0 10px 24px rgba(16, 24, 40, 0.10);
   --shadow-mega: 0 -8px 32px rgba(16, 24, 40, 0.15);
+  --shadow-card-hover: 0 18px 40px -12px rgba(18, 26, 43, 0.22);
+  --shadow-cta: 0 8px 20px -6px rgba(14, 165, 233, 0.45);
 }
 
 @theme inline {
@@ -88,6 +99,7 @@
   --color-navy-nav: var(--color-navy-nav);
   --color-accent: var(--color-accent);
   --color-accent-light: var(--color-accent-light);
+  --color-accent-bright: var(--color-accent-bright);
   --color-bg-page: var(--color-bg-page);
   --color-bg-light: var(--color-bg-light);
   --color-bg-soft: var(--color-bg-soft);
@@ -102,6 +114,12 @@
   --color-whatsapp: var(--color-whatsapp);
   --color-whatsapp-hover: var(--color-whatsapp-hover);
   --color-accent-hover: var(--color-accent-hover);
+  --color-cta: var(--color-cta);
+  --color-cta-hover: var(--color-cta-hover);
+  --color-cta-ink: var(--color-cta-ink);
+  --color-mist: var(--color-mist);
+  --color-mist-border: var(--color-mist-border);
+  --color-navy-ink: var(--color-navy-ink);
 
   /* Breakpoints (alinhados com Bootstrap, usado pelo site oficial) */
   --breakpoint-sm: 576px;
@@ -308,4 +326,400 @@ html { scroll-behavior: smooth; }
   outline: 2px solid var(--color-primary);
   outline-offset: 2px;
   border-radius: var(--radius-button);
+}
+
+/* ══════════════════════════════════════════════════════
+ * Landing page (lp-*)
+ * Camada visual da home de alta conversão. Só estilo:
+ * nenhuma regra aqui altera dados, links ou comportamento.
+ * ══════════════════════════════════════════════════════ */
+
+/* Section headings ─────────────────────────────────── */
+.lp-eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: var(--text-sm);
+  font-weight: var(--font-weight-bold);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--color-accent);
+}
+.lp-title {
+  font-size: clamp(22px, 2.2vw + 14px, 34px);
+  font-weight: var(--font-weight-extrabold);
+  line-height: 1.15;
+  letter-spacing: -0.02em;
+  color: var(--color-text-main);
+  text-wrap: balance;
+}
+.lp-subtitle {
+  font-size: clamp(14px, 0.4vw + 13px, 16px);
+  line-height: var(--leading-normal);
+  color: var(--color-text-muted);
+  text-wrap: pretty;
+}
+
+/* Buttons ──────────────────────────────────────────── */
+.lp-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  min-height: 52px;
+  padding: 0 26px;
+  border-radius: 12px;
+  font-size: var(--text-xl);
+  font-weight: var(--font-weight-bold);
+  line-height: 1;
+  white-space: nowrap;
+  transition: background-color 150ms ease, box-shadow 150ms ease, transform 150ms ease, color 150ms ease;
+}
+.lp-btn:active { transform: translateY(1px); }
+.lp-btn-cta {
+  background: var(--color-cta);
+  color: var(--color-cta-ink);
+  box-shadow: var(--shadow-cta);
+}
+.lp-btn-cta:hover { background: var(--color-cta-hover); transform: translateY(-1px); }
+.lp-btn-whatsapp {
+  background: var(--color-whatsapp);
+  color: #0b3d20;
+}
+.lp-btn-whatsapp:hover { background: #3be07c; transform: translateY(-1px); }
+.lp-btn-ghost-light {
+  background: rgba(255, 255, 255, 0.08);
+  color: #fff;
+  border: 1px solid rgba(255, 255, 255, 0.35);
+}
+.lp-btn-ghost-light:hover { background: rgba(255, 255, 255, 0.16); }
+.lp-btn-outline {
+  background: #fff;
+  color: var(--color-primary);
+  border: 1.5px solid var(--color-primary);
+}
+.lp-btn-outline:hover { background: var(--color-primary); color: #fff; }
+
+/* Hero ─────────────────────────────────────────────── */
+.lp-hero {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  color: #fff;
+  background:
+    radial-gradient(900px 480px at 85% 10%, rgba(47, 100, 186, 0.45), transparent 60%),
+    radial-gradient(600px 400px at 0% 100%, rgba(56, 189, 248, 0.18), transparent 60%),
+    linear-gradient(135deg, #263e66 0%, #16233b 55%, #0e1624 100%);
+}
+.lp-hero::before {
+  /* textura sutil de pontos */
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background-image: radial-gradient(rgba(255, 255, 255, 0.07) 1px, transparent 1px);
+  background-size: 22px 22px;
+  mask-image: linear-gradient(to bottom, #000 0%, transparent 85%);
+}
+.lp-hero-title {
+  font-size: clamp(30px, 3.6vw + 16px, 56px);
+  font-weight: var(--font-weight-extrabold);
+  line-height: 1.05;
+  letter-spacing: -0.03em;
+  text-wrap: balance;
+}
+.lp-hero-highlight {
+  background: linear-gradient(90deg, #7dd3fc, #38bdf8);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+.lp-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 7px 14px;
+  border-radius: 999px;
+  font-size: var(--text-md);
+  font-weight: var(--font-weight-semibold);
+  line-height: 1.2;
+}
+.lp-chip-light {
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  color: #fff;
+  backdrop-filter: blur(6px);
+}
+.lp-coupon {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 12px;
+  border: 1.5px dashed currentColor;
+  border-radius: 10px;
+  font-weight: var(--font-weight-extrabold);
+  letter-spacing: 0.06em;
+}
+
+/* Cards ────────────────────────────────────────────── */
+.lp-surface {
+  background: #fff;
+  border: 1px solid var(--color-border);
+  border-radius: 20px;
+}
+
+/* Product card: sobrescreve apenas visual dos primitives dentro do card */
+.lp-product-card {
+  border-radius: 18px;
+  transition: box-shadow 200ms ease, transform 200ms ease, border-color 200ms ease;
+}
+@media (hover: hover) {
+  .lp-product-card:hover {
+    border-color: transparent;
+    box-shadow: var(--shadow-card-hover);
+    transform: translateY(-4px);
+  }
+}
+.lp-product-card .lp-card-cta {
+  border-radius: 12px;
+  padding-top: 13px;
+  padding-bottom: 13px;
+  font-size: var(--text-lg);
+}
+.lp-product-card .lp-card-price .t-price-strike { font-size: var(--text-md); margin-bottom: 2px; }
+.lp-product-card .lp-card-price .t-price-medium { font-size: 24px; letter-spacing: -0.02em; }
+.lp-product-card .lp-card-price .t-badge-savings {
+  font-size: var(--text-sm);
+  font-weight: var(--font-weight-bold);
+  border-radius: 999px;
+}
+.lp-product-card .lp-badge-coupon {
+  background: rgba(255, 255, 255, 0.96);
+  color: var(--color-primary);
+  font-weight: var(--font-weight-bold);
+  box-shadow: var(--shadow-sm);
+}
+
+/* Carrosséis: espaço vertical para o "lift" do card não ser cortado pelo overflow */
+.lp-carousel-track { padding-top: 6px; padding-bottom: 14px; }
+
+/* Row horizontal com scroll-snap (mobile), grid no desktop */
+.lp-snap-row {
+  display: flex;
+  gap: 16px;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  scroll-padding-inline: 16px;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+.lp-snap-row::-webkit-scrollbar { display: none; }
+.lp-snap-row > * { scroll-snap-align: start; flex: 0 0 85%; }
+@media (min-width: 768px) {
+  .lp-snap-row > * { flex-basis: calc(50% - 8px); }
+}
+@media (min-width: 992px) {
+  .lp-snap-row { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 24px; overflow: visible; }
+}
+
+/* Botão flutuante WhatsApp */
+@keyframes lp-pulse {
+  0% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.55); }
+  70% { box-shadow: 0 0 0 16px rgba(37, 211, 102, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0); }
+}
+.lp-float-whatsapp { animation: lp-pulse 2.4s ease-out infinite; }
+
+/* Entrada suave dos blocos do hero */
+@keyframes lp-rise {
+  from { opacity: 0; transform: translateY(14px); }
+  to { opacity: 1; transform: none; }
+}
+.lp-rise { animation: lp-rise 600ms cubic-bezier(0.2, 0.7, 0.2, 1) both; }
+.lp-rise-delay { animation-delay: 120ms; }
+
+@media (prefers-reduced-motion: reduce) {
+  .lp-rise, .lp-float-whatsapp { animation: none; }
+  .lp-product-card, .lp-btn { transition: none; }
+  .lp-product-card:hover, .lp-btn-cta:hover { transform: none; }
+}
+
+/* ══════════════════════════════════════════════════════
+ * Header — paleta "céu ao amanhecer" (hdr-*)
+ * Sobrescreve apenas cor/forma. Nenhuma regra aqui altera
+ * IDs, name/action do form de busca, rotas ou eventos JS.
+ * Para o header em azul profundo (ícones brancos): troque a
+ * classe `hdr-shell` por `hdr-shell hdr-shell--deep` no Header
+ * e volte o logo para a versão branca (Ortobom_branco.png).
+ * ══════════════════════════════════════════════════════ */
+.hdr-shell {
+  --hdr-grad-from: #7dd3fc;   /* céu claro */
+  --hdr-grad-to:   #93c5fd;   /* névoa azul */
+  --hdr-ink:       #0b3a5d;   /* texto sobre o gradiente (contraste 6.5:1) */
+  --hdr-ink-soft:  rgba(11, 58, 93, 0.72);
+  --hdr-halo:      0 1px 2px rgba(255, 255, 255, 0.55);
+  --hdr-hover:     #0c4a6e;
+  --hdr-badge:     #0369a1;
+  background: linear-gradient(120deg, var(--hdr-grad-from) 0%, var(--hdr-grad-to) 100%);
+}
+/* Variante profunda: mantém o clima de céu, mas permite branco puro (AA) */
+.hdr-shell--deep {
+  --hdr-grad-from: #0ea5e9;
+  --hdr-grad-to:   #0369a1;
+  --hdr-ink:       #ffffff;
+  --hdr-ink-soft:  rgba(255, 255, 255, 0.78);
+  --hdr-halo:      0 1px 2px rgba(0, 0, 0, 0.18);
+  --hdr-hover:     #e0f2fe;
+  --hdr-badge:     #0c4a6e;
+}
+
+/* ── Top bar ─────────────────────────────────────────── */
+.hdr-topbar {
+  background: #e0f2fe;
+  color: #334155;
+  border-bottom: 1px solid rgba(51, 65, 85, 0.1);
+}
+.hdr-topbar .text-white,
+.hdr-topbar a,
+.hdr-topbar button { color: #334155; }
+.hdr-topbar .text-white\/70 { color: rgba(51, 65, 85, 0.6); }
+.hdr-topbar a:hover,
+.hdr-topbar button:hover { color: #0284c7; }
+.hdr-topbar .divide-x > * + * { border-color: rgba(51, 65, 85, 0.18); }
+.hdr-promo-cta {
+  border-radius: 999px;
+  border-color: rgba(2, 132, 199, 0.45);
+  text-decoration-color: rgba(2, 132, 199, 0.5);
+}
+.hdr-promo-cta:hover {
+  background: #0284c7;
+  color: #0f172a!important;
+  border-color: #0284c7;
+}
+
+/* ── Campo de busca ──────────────────────────────────── */
+.hdr-search-input {
+  border-radius: 24px;
+  background: #fff;
+  color: #0f172a;
+  border: 1px solid rgba(255, 255, 255, 0.9);
+  box-shadow: 0 2px 8px rgba(12, 74, 110, 0.12);
+}
+.hdr-search-input::placeholder { color: #94a3b8; }
+.hdr-search-input:focus {
+  outline: none;
+  border-color: #38bdf8;
+  box-shadow: 0 0 0 3px rgba(56, 189, 248, 0.35);
+}
+.hdr-search-btn {
+  color: #64748b;
+  border-radius: 999px;
+}
+.hdr-search-btn:hover { color: #0284c7; background: #f1f5f9; }
+
+/* ── Ícones de ação (localização, login, favoritos, carrinho) ── */
+.hdr-actions,
+.hdr-onshell { color: var(--hdr-ink); text-shadow: var(--hdr-halo); }
+.hdr-actions .text-white,
+.hdr-onshell .text-white { color: var(--hdr-ink); }
+.hdr-actions .text-white\/70,
+.hdr-onshell .text-white\/70 { color: var(--hdr-ink-soft); }
+.hdr-actions a:hover,
+.hdr-actions button:hover,
+.hdr-onshell:hover { color: var(--hdr-hover); }
+.hdr-cart-badge {
+  background: var(--hdr-badge);
+  color: #fff;
+  text-shadow: none;
+  box-shadow: 0 1px 3px rgba(3, 105, 161, 0.4);
+}
+
+/* ── Barra de categorias ─────────────────────────────── */
+.hdr-nav {
+  background: rgba(255, 255, 255, 0.55);
+  border-top: 1px solid rgba(255, 255, 255, 0.55);
+  box-shadow: inset 0 6px 10px -10px rgba(12, 74, 110, 0.35);
+}
+.hdr-nav .text-white { color: var(--hdr-ink); }
+.hdr-nav .text-white\/70 { color: var(--hdr-ink-soft); }
+.hdr-nav .text-accent { color: #0369a1; }
+.hdr-shell--deep .hdr-nav { background: rgba(255, 255, 255, 0.12); }
+
+/* ══════════════════════════════════════════════════════
+ * Descrição do produto (.pdp-description)
+ * O HTML vem do site oficial e usa classes do Bootstrap
+ * (d-flex, w-50, gap-5…), que não existem no Tailwind —
+ * e `w-50` no Tailwind vale 200px fixos, e não 50%.
+ * Estas regras traduzem esse subconjunto para CSS real,
+ * só dentro da descrição. Não altera o HTML vindo do banco.
+ * ══════════════════════════════════════════════════════ */
+.pdp-description {
+  color: var(--color-text-soft);
+  font-size: var(--text-lg);
+  line-height: var(--leading-relaxed);
+}
+.pdp-description .d-flex { display: flex; }
+.pdp-description .align-items-center { align-items: center; }
+.pdp-description .justify-content-center { justify-content: center; }
+.pdp-description .flex-column { flex-direction: column; }
+.pdp-description .w-50 { width: 50%; }
+.pdp-description .w-100 { width: 100%; }
+.pdp-description .gap-5 { gap: 40px; }
+.pdp-description .gap-4 { gap: 24px; }
+.pdp-description .gap-3 { gap: 16px; }
+.pdp-description .p-2 { padding: 8px; }
+.pdp-description .mt-5 { margin-top: 40px; }
+.pdp-description .mb-4 { margin-bottom: 24px; }
+.pdp-description .text-center { text-align: center; }
+
+.pdp-description img {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: 16px;
+}
+.pdp-description .product-details-text { margin: 0; }
+.pdp-description p { margin-bottom: 16px; }
+.pdp-description p:last-child { margin-bottom: 0; }
+.pdp-description h2,
+.pdp-description h3 {
+  color: var(--color-primary);
+  font-weight: var(--font-weight-bold);
+  font-size: var(--text-2xl);
+  margin-bottom: 12px;
+}
+
+@media (min-width: 768px) {
+  .pdp-description .mb-md-5 { margin-bottom: 40px; }
+}
+
+/* Mobile: as duas metades viram linhas empilhadas */
+@media (max-width: 767px) {
+  .pdp-description .d-flex { flex-direction: column; gap: 20px; }
+  .pdp-description .w-50 { width: 100%; }
+  .pdp-description .p-2 { padding: 0; }
+}
+
+/* ══════════════════════════════════════════════════════
+ * Cards de categorias (cs-*) — molduras geométricas
+ * Só forma/decoração. Os recortes usam clip-path e
+ * border-radius (baratos para o compositor), e cada
+ * moldura tem aspect-ratio fixo para não gerar CLS.
+ * ══════════════════════════════════════════════════════ */
+
+/* Grade de pontos que some nas bordas (fundo do card "3 Passos") */
+.cs-dots {
+  background-image: radial-gradient(var(--color-mist-border) 1.6px, transparent 1.7px);
+  background-size: 16px 16px;
+  -webkit-mask-image: radial-gradient(closest-side, #000 45%, transparent 100%);
+  mask-image: radial-gradient(closest-side, #000 45%, transparent 100%);
+}
+
+/* Corte em diagonal no topo (card "Colchões") */
+.cs-diagonal { clip-path: polygon(0 24%, 100% 0, 100% 100%, 0 100%); }
+.cs-diagonal-echo { clip-path: polygon(0 12%, 100% 0, 100% 36%, 0 48%); }
+
+@media (prefers-reduced-motion: reduce) {
+  .cs-card, .cs-card * { transition: none !important; }
+  .cs-card:hover { transform: none !important; }
 }

@@ -43,32 +43,36 @@ export function HeroOffersGrid({ products }: HeroOffersGridProps) {
     if (products.length === 0) return null
 
     return (
-        <section className="bg-bg-light py-10">
+        <section id="ofertas" className="bg-bg-light py-12 lg:py-16 scroll-mt-28 lg:scroll-mt-40">
             <div className="max-w-[1280px] mx-auto px-3 lg:px-6">
                 {/* Header da seção */}
-                <div className="flex items-center justify-between gap-4 mb-5">
-                    <h2 className="t-subsection-heading flex-1 min-w-0 text-[18px] lg:text-[22px] leading-snug">
-                        <span className="lg:hidden">
-                            Você ganhou +10% OFF em todo site para dormir melhor! Use SUPER10 💙
+                <div className="flex items-end justify-between gap-4 mb-6 lg:mb-8 px-1">
+                    <div className="flex-1 min-w-0">
+                        <span className="lp-eyebrow">
+                            <span aria-hidden="true">🔥</span> Ofertas do dia
                         </span>
-                        <span className="hidden lg:inline-flex lg:items-center lg:gap-2">
-                            <span aria-hidden="true">🔥</span>
-                            Todo site com 10% OFF EXTRA com o cupom SUPER10
-                        </span>
-                    </h2>
+                        <h2 className="lp-title mt-1.5">
+                            <span className="lg:hidden">
+                                Você ganhou +10% OFF em todo site para dormir melhor! Use SUPER10 💙
+                            </span>
+                            <span className="hidden lg:inline">
+                                Todo site com 10% OFF EXTRA com o cupom SUPER10
+                            </span>
+                        </h2>
+                    </div>
                     <Link
                         href="/c/colchoes"
-                        className="t-link whitespace-nowrap inline-flex items-center gap-1 flex-shrink-0"
+                        className="hidden sm:inline-flex items-center gap-1 flex-shrink-0 whitespace-nowrap rounded-full border border-primary/30 bg-white px-4 py-2 text-[14px] font-semibold text-primary hover:bg-primary hover:text-white transition-colors"
                     >
                         Ver todas <ChevronRight size={14} />
                     </Link>
                 </div>
 
                 {/* Wrapper que controla a área do carousel */}
-                <div className="grid grid-cols-1 lg:grid-cols-[300px_minmax(0,1fr)] gap-5">
+                <div className="grid grid-cols-1 lg:grid-cols-[300px_minmax(0,1fr)] gap-5 lg:gap-6">
                     {/* Card Countdown */}
                     <div
-                        className="relative rounded-[var(--radius-card)] flex flex-col text-center text-white min-h-[220px] lg:min-h-[400px] overflow-hidden pt-5 lg:pt-[50px] pb-5 lg:pb-0"
+                        className="relative rounded-[20px] flex flex-col text-center text-white min-h-[220px] lg:min-h-[400px] overflow-hidden pt-6 lg:pt-8 pb-6 lg:mb-[14px] lg:mt-[6px] shadow-lg"
                         style={{
                             background:
                                 'linear-gradient(135deg, #243E69 0%, #152238 50%, #0E1624 100%)',
@@ -128,8 +132,8 @@ export function HeroOffersGrid({ products }: HeroOffersGridProps) {
                         />
 
                         {/* Header */}
-                        <header className="relative z-10 px-3 lg:px-6 text-center">
-                            <h3 className="text-[20px] lg:text-[22px] font-bold leading-[1.25] text-white mb-1 lg:mb-2 drop-shadow-sm whitespace-nowrap lg:whitespace-normal">
+                        <header className="relative z-10 px-3 lg:px-4 text-center">
+                            <h3 className="text-[20px] font-bold leading-[1.25] text-white mb-1 lg:mb-2 drop-shadow-sm whitespace-nowrap lg:whitespace-normal">
                                 Sua melhor noite de sono
                                 <br />
                                 começa agora <span aria-hidden="true">🌙</span>
@@ -145,7 +149,7 @@ export function HeroOffersGrid({ products }: HeroOffersGridProps) {
                         </div>
 
                         {/* Anel SVG + timer dentro (só desktop) */}
-                        <section className="hidden lg:block relative z-10 mx-auto mt-8 w-[240px] h-[240px]">
+                        <section className="hidden lg:block relative z-10 mx-auto mt-5 w-[200px] h-[200px]">
                             <svg
                                 viewBox="0 0 260 260"
                                 className="w-full h-full"
@@ -177,12 +181,24 @@ export function HeroOffersGrid({ products }: HeroOffersGridProps) {
                                 <OffersCountdown />
                             </div>
                         </section>
+
+                        {/* Cupom + CTA */}
+                        <footer className="relative z-10 mt-6 lg:mt-auto lg:pt-5 px-5 flex flex-col items-center gap-3">
+                            <span className="lp-coupon text-accent-bright text-[15px]">
+                                <span className="text-white/80 font-medium tracking-normal text-[13px]">Cupom</span>
+                                SUPER10
+                            </span>
+                            <Link href="/c/colchoes" className="lp-btn lp-btn-cta w-full !min-h-[46px] !text-[15px]">
+                                Ver todas as ofertas
+                                <ChevronRight size={16} aria-hidden="true" />
+                            </Link>
+                        </footer>
                     </div>
 
                     {/* Carousel de produtos */}
                     <div className="relative min-w-0">
                         <div className="overflow-hidden" ref={emblaRef}>
-                            <div className="flex">
+                            <div className="flex lp-carousel-track">
                                 {products.map((product) => (
                                     <div
                                         key={product.id}

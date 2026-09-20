@@ -4,7 +4,7 @@ import { useState } from 'react'
 import Image from 'next/image'
 
 const COLOR_BUTTON = '#2B4A75'
-const COLOR_ICON = '#FF7C00'
+const COLOR_ICON = '#38BDF8'
 
 export function NewsletterSection() {
     const [email, setEmail] = useState('')

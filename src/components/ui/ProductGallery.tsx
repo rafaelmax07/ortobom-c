@@ -44,7 +44,7 @@ export function ProductGallery({ images, productName, discountPercent }: Product
 
     return (
         <div className="flex flex-col gap-4 w-full">
-            <div className="relative bg-white rounded-[var(--radius-card)] shadow-sm overflow-hidden">
+            <div className="relative bg-white rounded-2xl shadow-sm overflow-hidden">
                 {discountPercent !== undefined && discountPercent > 0 && (
                     <Badge
                         variant="discount"

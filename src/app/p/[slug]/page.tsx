@@ -126,7 +126,7 @@ export default async function ProductPage({ params }: { params: Promise<{ slug: 
                         <Breadcrumb items={breadcrumbItems} />
                     </div>
 
-                    <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12">
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
                         {/* Left: Gallery */}
                         <div className="relative">
                             <ProductGallery
@@ -152,9 +152,7 @@ export default async function ProductPage({ params }: { params: Promise<{ slug: 
                     </h2>
 
                     <div
-                        className="prose prose-sm sm:prose max-w-4xl mx-auto text-text-muted leading-relaxed
-                            [&_img]:rounded-lg [&_img]:mx-auto [&_img]:my-6 [&_img]:max-w-full
-                            [&_p]:mb-4 [&_h3]:text-primary [&_h3]:font-bold [&_section]:my-6"
+                        className="pdp-description max-w-6xl mx-auto"
                         dangerouslySetInnerHTML={{
                             __html:
                                 product.description_html ||
